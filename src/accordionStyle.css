@@ -1,0 +1,19 @@
+/* TwistAccordion.css */
+.accordion-section {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .content {
+    margin-top: 5px;
+  }
+  
+  .open.arrow {
+    transform: rotate(180deg);
+  }
+  
+  .arrow {
+    transition: transform 0.3s ease-in-out;
+  }
+  
