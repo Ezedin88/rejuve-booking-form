@@ -126,7 +126,6 @@ const [fieldsAreEmptyForUpdate,setFieldsAreEmptyForUpdate] = useState(false);
   const [percentageTip, setPercentageTip] = useState(5);
   const [customTip, setCustomTip] = useState(0);
   const [productPrice,setProductPrice] = useState(currentProduct.price||0);
-  console.log('product price')
   const handlePercentageChange = (value) => {
     if (value === "custom") {
       return customTip;
@@ -146,7 +145,6 @@ const [fieldsAreEmptyForUpdate,setFieldsAreEmptyForUpdate] = useState(false);
 
   const calculatedTipAmount = Number(customTip) || (Number(productPrice) * Number(percentageTip)) / 100;
 // take values from formik and pass them to ProductHero
-console.log({productPrice})
   return (
     <section>
 <FormSection
@@ -169,6 +167,7 @@ submitForm={submitForm}
 handleSubmit={handleSubmit}
 isFetchingProduct={isFetchingProduct}
         currentProduct={currentProduct}
+        setCurrentProduct={setCurrentProduct}
         setProductPrice={setProductPrice}
 />
 
