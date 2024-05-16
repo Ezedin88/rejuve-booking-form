@@ -1,23 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Formik, Form, FieldArray, Field, ErrorMessage } from "formik";
-import CustomInput from "./CustomInput";
-import { handleValidation } from "./Validation";
-import { initialValues } from './initialValues';
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from 'react-places-autocomplete';
 import './App.css'
-import TwistAccordion from './Accordion/AccordionComponent';
 import { client } from './api/client';
-import UserDetail from './components/UserDetail';
-import ChooseTreatments from './components/ChooseTreatments';
-import Providers from './components/Providers';
-import BookingDateTime from './components/BookingDateTime';
-import AlmostDoneSection from './components/AlmostDone';
-import CardPaymentMethod from './components/CardPaymentMethod';
-import Agreement from './components/Agreement';
-import BookingLocation from './components/BookingLocation';
+import FormSection from './components/FormSection';
+import ProductHero from './components/ProductHero';
+import { Formik, useFormik } from 'formik';
 
 function App() {
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
@@ -43,9 +29,7 @@ function App() {
   const [treatments, setTreatments] = useState([]);
   const [providers, setProviders] = useState([]);
   const [selectedProvider, setSelectedProvider] = useState('Any');
-  const [agreeToTos, setAgreeToTos] = useState(false);
-  const [agreeToCreateAccount, setAgreeToCreateAccount] = useState(true);
-  const [agreeToSignUp, setAgreeToSignUp] = useState(true);
+ 
   const [currentProduct, setCurrentProduct] = useState({});
   const selectNad = treatments.filter(item => item.categories.some(category => category.slug === 'nad'));
   const selectAdons = treatments.filter(item => item.categories.some(category => category.slug === 'ad-ons'));
@@ -54,6 +38,7 @@ function App() {
   const selectAdvancedTherapies = treatments.filter(item => item.categories.some(category => category.slug === 'advanced-therapies'));
   const selectIvTherapies = treatments.filter(item => item.categories.some(category => category.slug === 'iv-therapy'));
   const [address1, setAddress1] = useState('');
+  const [isFetchingProduct,setIsFetchingProduct] = useState(false);
   // fetch treatments on first page load from client.getAllTreatments
   useEffect(() => {
     const fetchTreatments = async () => {
@@ -65,8 +50,10 @@ function App() {
       setProviders(data);
     }
     const fetchProductById = async () => {
+      setIsFetchingProduct(true);
       const data = await client.getProductById(108);
       setCurrentProduct(data);
+      setIsFetchingProduct(false);
     }
     fetchProductById();
     fetchProviders();
@@ -132,13 +119,14 @@ const [fieldsAreEmptyForUpdate,setFieldsAreEmptyForUpdate] = useState(false);
   }
 
   const handleSubmit = (values) => {
-    console.log({lineItems,values});
     
   };
 
   const [defaultTip, setDefaultTip] = useState(5);
   const [percentageTip, setPercentageTip] = useState(5);
   const [customTip, setCustomTip] = useState(0);
+  const [productPrice,setProductPrice] = useState(currentProduct.price||0);
+  console.log('product price')
   const handlePercentageChange = (value) => {
     if (value === "custom") {
       return customTip;
@@ -156,107 +144,35 @@ const [fieldsAreEmptyForUpdate,setFieldsAreEmptyForUpdate] = useState(false);
     handlePercentageChange("custom");
   }
 
-  const calculatedTipAmount = Number(customTip) || (Number(currentProduct?.price) * Number(percentageTip)) / 100;
-
+  const calculatedTipAmount = Number(customTip) || (Number(productPrice) * Number(percentageTip)) / 100;
+// take values from formik and pass them to ProductHero
+console.log({productPrice})
   return (
-    <>
-      <Formik
-        validationSchema={handleValidation}
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-      >
-        {({ values, setValues }) => (
-          <Form>
-            <FieldArray name="userData">
-              {() =>
-                values.userData.map((item, index) => {
-                  return (
-                    <div key={index}>
-                      {/* button to remove added item */}
-                      {
-                        values.userData.length > 1 && (
-                          <button type="button" onClick={() => removeFromList(index, values, setValues)}>Remove</button>
-                        )
-                      }
-                      <div>
-                        <UserDetail index={index} />
-                      </div>
-                      <div>
-                        <ChooseTreatments
-                          selectNad={selectNad}
-                          index={index}
-                          lineItems={lineItems}
-                          setlineItems={setlineItems}
-                          title={selectNad[0]?.categories[0]?.name} />
-                      </div>
-                      <>
-              <BookingLocation
-                index={index}
-                values={values}
-              />
-              </>
-                    </div>
-                  )
-                })
-              }
+    <section>
+<FormSection
+lineItems={lineItems}
+setlineItems={setlineItems}
+treatments={treatments}
+providers={providers}
+selectedProvider={selectedProvider}
+handleProviderChange={handleProviderChange}
+handleCustomTipChange={handleCustomTipChange}
+handlePercentageChange={handlePercentageChange}
+defaultTip={defaultTip}
+calculatedTipAmount={calculatedTipAmount}
+selectNad={selectNad}
+updateForm={updateForm}
+fieldsAreEmpty={fieldsAreEmpty}
+fieldsAreEmptyForUpdate={fieldsAreEmptyForUpdate}
+removeFromList={removeFromList}
+submitForm={submitForm}
+handleSubmit={handleSubmit}
+isFetchingProduct={isFetchingProduct}
+        currentProduct={currentProduct}
+        setProductPrice={setProductPrice}
+/>
 
-            </FieldArray>
-            <h1>Choose Provider</h1>
-            {/* any input option */}
-            <Providers
-              providers={providers}
-              handleProviderChange={handleProviderChange}
-              selectedProvider={selectedProvider}
-              values={values}
-            />
-            {/* booking date and time preference */}
-            <BookingDateTime />
-            {/* almost done */}
-            <>
-             
-             <AlmostDoneSection
-              calculatedTipAmount={calculatedTipAmount}
-              handleCustomTipChange={handleCustomTipChange}
-              handlePercentageChange={handlePercentageChange}
-              defaultTip={defaultTip}
-              values={values}
-              setValues={setValues}
-            />
-            </>
-            <div>
-              <label>
-                <Field type="radio" name="paymentMethod" value="creditCard" />
-                Credit Card
-              </label>
-              <label>
-                <Field type="radio" name="paymentMethod" value="payAtLocation" />
-                Pay at Location
-              </label>
-            </div>
-           {/* Payment Method */}
-           <CardPaymentMethod 
-            values={values}
-           />
-           <Agreement
-            agreeToTos={agreeToTos}
-            setAgreeToTos={setAgreeToTos}
-            agreeToCreateAccount={agreeToCreateAccount}
-            setAgreeToCreateAccount={setAgreeToCreateAccount}
-            agreeToSignUp={agreeToSignUp}
-            setAgreeToSignUp={setAgreeToSignUp}
-           />
-              
-            <button type="button"
-              onClick={() => updateForm(values, setValues)}>Add User</button>
-            {fieldsAreEmptyForUpdate && <small style={{ color: 'red', fontSize: '16px' }}>Please fill all fields</small>}
-            <button type="submit" onClick={()=>submitForm(values)}>Submit</button>
-            {fieldsAreEmpty && <small style={{ color: 'red', fontSize: '16px' }}>Please fill all fields</small>}
-          </Form>
-        )}
-      </Formik>
-
-
-    </>
+    </section>
   )
 }
 
