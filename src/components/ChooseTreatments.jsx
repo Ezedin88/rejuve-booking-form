@@ -7,14 +7,12 @@ function ChooseTreatments({
     setlineItems,
     treatmentChoices,
     ivTherapy,
+    whereBooking='atourclinics',
+    isFetchingProduct,
     currentProduct,
     setCurrentProduct
 }) {
-// const checkedProducts = treatmentChoices.filter(treatment => lineItems.some(item => item.product_id === treatment.id));
-// console.log('checked products-->',checkedProducts)
-// const [checkedProducts, setCheckedProducts] = useState([]);
-// console.log('checked products-->',checkedProducts)
-console.log('lineItems-->',lineItems) 
+
   return (
     <>
     <TwistAccordion title={treatmentChoices?.[0]?.categories?.[0]?.name}
@@ -24,7 +22,28 @@ console.log('lineItems-->',lineItems)
     treatmentChoices={treatmentChoices}
     >
       <div className='treatments-wrapper'>
-                        {treatmentChoices.map(treatment => (
+                        {treatmentChoices.map(treatment => {
+                          
+    const { id, price, price_html = 0} = treatment || {};
+
+    const pricePattern = /<bdi><span class="woocommerce-Price-currencySymbol">&#36;<\/span>(\d+(?:,\d+)*)<\/bdi>/g;
+
+    const matches = !isFetchingProduct&&price_html&& [...price_html.matchAll(pricePattern)];
+
+    const prices1 = matches?.map(match => match[1].replace(/,/g, ''));
+
+    let inClinicPrice = null;
+    let inHousePrice = null;
+
+    if (prices1.length === 1) {
+        inClinicPrice = parseFloat(prices1[0]);
+    } else if (prices1.length >= 2) {
+        inClinicPrice = parseFloat(prices1[0]);
+        inHousePrice = parseFloat(prices1[1]);
+    }
+console.log({inClinicPrice,inHousePrice,treatment:treatment.name,price_html,whereBooking})
+                       
+                          return(
                         <div key={treatment.id} className='check-box-price-wrapper'>
                           <div className='accordion-inner-wrapper'>
                           <div className="checkbox-title">
@@ -96,7 +115,8 @@ console.log('lineItems-->',lineItems)
                                      userIndex: index,
                                       product_id: treatment.id,
                                       productName: treatment?.name,
-                                      price: treatment?.price,
+                                      // price: treatment?.price,
+                                      price:ivTherapy&&whereBooking==='housecall'&& inHousePrice||treatment?.price,
                                       quantity: 1,
                                       metaData: []
                                   }]);
@@ -111,12 +131,12 @@ console.log('lineItems-->',lineItems)
                           <div className='accordion-item-price'
                           >
                             <p className='price-tag'>
-                           $ {treatment?.price}
+                           $ {ivTherapy&&whereBooking==='housecall'&& inHousePrice||treatment?.price}
                             </p>
                           </div>
                           </div>
                         </div>
-                      ))}
+                      )})}
                       </div>
                       </TwistAccordion>
                       </>

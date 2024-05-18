@@ -36,6 +36,8 @@ function FormSection({
   currentProduct,
   setCurrentProduct,
   setProductPrice,
+  setWhereBooking,
+  whereBooking,
   currentMainProduct,
   heroCurrentProduct,
   tips
@@ -50,7 +52,6 @@ function FormSection({
   const selectIvTherapies = treatments.filter(item => item.categories.some(category => category.slug === 'iv-treatment'));
   const currentProductPrice = Number(currentProduct?.price) || 0;
   const totalCalculation = lineItems.reduce((acc, item) => acc + Number(item.price), 0);
-
   return (
     <>
       <Formik
@@ -65,6 +66,7 @@ function FormSection({
                 isFetchingProduct={isFetchingProduct}
                 currentProduct={heroCurrentProduct}
                 setProductPrice={setProductPrice}
+                setWhereBooking={setWhereBooking}
                 values={values}
               />
             </>
@@ -111,6 +113,8 @@ function FormSection({
                           ivTherapy
                           currentProduct={currentProduct}
                           setCurrentProduct={setCurrentProduct}
+                          whereBooking={whereBooking}
+                          isFetchingProduct={isFetchingProduct}
                         />
                         <ChooseTreatments
                           treatmentChoices={selectNad}

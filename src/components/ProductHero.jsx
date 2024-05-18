@@ -1,37 +1,31 @@
 import '../ProductHero.css';
 import { useEffect, useState } from 'react';
 
-import productData from '../product.json';
-
-function ProductHero({ currentProduct, setProductPrice, isFetchingProduct, values }) {
+function ProductHero({ currentProduct, setProductPrice,setWhereBooking, isFetchingProduct, values }) {
 
     const { images, name, id, price, short_description, price_html = 0, slug } = currentProduct || {};
-    const largeHeroImage = images && images[0].src || '';
-    const smallHeroImage = images && images[1].src || '';
-    const prices = !isFetchingProduct && price_html && price_html.match(/&#36;<\/span>(\d+)/g) || 0;
-    const bookInClinic = !isFetchingProduct && price_html && prices[0].replace(/&#36;<\/span>/, '') || 0;
-    const bookHouseCall = !isFetchingProduct && price_html && prices[1].replace(/&#36;<\/span>/, '') || 0;
+    const pricePattern = /<bdi><span class="woocommerce-Price-currencySymbol">&#36;<\/span>(\d+(?:,\d+)*)<\/bdi>/g;
+    const matches =!isFetchingProduct&&price_html&& [...price_html.matchAll(pricePattern)];
+    let largeHeroImage = images && images[0].src || '';
+    let smallHeroImage = images && images[1].src || '';
+    const prices = !isFetchingProduct && price_html && matches?.map(match => match[1].replace(/,/g, '')) || 0;
+    let bookInClinic = null;
+    let bookHouseCall = null;
 
-    const {
-        productName,
-        productNameCite,
-        productDescription,
-        productImage,
-        productPrice,
-        WhereToBook
-    } = productData;
+    if (prices.length === 1) {
+        bookInClinic = parseFloat(prices[0]);
+    } else if (prices.length >= 2) {
+        bookInClinic = parseFloat(prices[0]);
+        bookHouseCall = parseFloat(prices[1]);
+    }
 
 
     const onChangeHandler = (name) => {
         if (name === "atourclinics") {
-            // dispatch(setIsRejuveClinicsSelected(true));
-            // dispatch(setIsHouseCallSelected(false));
-            setProductPrice(Number(bookInClinic));
+            setWhereBooking("atourclinics");
             values.Booking = "atourclinics";
         } else {
-            // dispatch(setIsRejuveClinicsSelected(false));
-            // dispatch(setIsHouseCallSelected(true));
-            setProductPrice(Number(bookHouseCall));
+            setWhereBooking("housecall");
             values.Booking = "housecall";
         }
         // scroll to element with id 'user-detail'

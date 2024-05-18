@@ -8,6 +8,11 @@ import { initialValues } from './initialValues';
 function App() {
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState('');
+  const [defaultTip, setDefaultTip] = useState(5);
+  const [percentageTip, setPercentageTip] = useState(5);
+  const [customTip, setCustomTip] = useState(0);
+  const [address1, setAddress1] = useState('');
+  const [isFetchingProduct, setIsFetchingProduct] = useState(false);
   // const dataPage = document.querySelector('[data-page_id]').getAttribute('data-page_id');
   useEffect(() => {
     const script = document.createElement('script');
@@ -35,8 +40,7 @@ function App() {
   const [currentProduct, setCurrentProduct] = useState({});
   const [currentProductCopy, setCurrentProductCopy] = useState({});
   const selectNad = treatments.filter(item => item.categories.some(category => category.slug === 'nad'));
-  const [address1, setAddress1] = useState('');
-  const [isFetchingProduct, setIsFetchingProduct] = useState(false);
+ 
 
   const providerId = providers.find(provider => provider.name === selectedProvider)?.id;
 
@@ -232,10 +236,15 @@ function organizeItems(user, lineItems, userIndex,values) {
    const transformedData = organizeLineItems({values,lineItems})
   };
 
-  const [defaultTip, setDefaultTip] = useState(5);
-  const [percentageTip, setPercentageTip] = useState(5);
-  const [customTip, setCustomTip] = useState(0);
-  const [productPrice, setProductPrice] = useState(currentProductCopy.price || 0);
+  
+  const allPriceForTipPercentage = lineItems.reduce((acc, item) => {
+    return acc + (item.price * item.quantity);
+  }, 0);
+  
+  const [productPrice, setProductPrice] = useState(allPriceForTipPercentage.price || 0);
+  const [whereBooking, setWhereBooking] = useState('atourclinics');
+  const selectIvTherapies = treatments.filter(item => item.categories.some(category => category.slug === 'iv-treatment'));
+
   const handlePercentageChange = (value) => {
     if (value === "custom") {
       return customTip;
@@ -284,6 +293,8 @@ function organizeItems(user, lineItems, userIndex,values) {
         heroCurrentProduct={currentProduct}
         setCurrentProduct={setCurrentProductCopy}
         setProductPrice={setProductPrice}
+        setWhereBooking={setWhereBooking}
+        whereBooking={whereBooking}
       />
     </section>
   )
