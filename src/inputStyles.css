@@ -1,0 +1,94 @@
+.user-input-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.input-box-wrapper {
+    margin-top: 32px;
+}
+
+.input-box {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 9px 12px;
+    gap: 10px;
+    width: 563px;
+    height: 44px;
+    border: 1px solid rgba(192, 196, 204, 0.47);
+    border-radius: 4px;
+    outline: none;
+}
+
+.zip-city-wrapper{
+    margin-top: 32px;
+    width: 100%;
+    gap: 32px;
+    /* justify-content: space-between; */
+}
+
+.cityStateZip .input-box{
+    max-width: 365px !important;
+    padding: 9px 12px;
+}
+
+/* small screen */
+@media (max-width: 900px) {
+   .zip-city-wrapper{
+         flex-direction: column !important;
+         justify-content: center;
+         align-items: center;
+   }
+}
+
+.input-box-label {
+    position: absolute;
+    left: 0;
+    top: -25px;
+    width: 100%;
+    text-align: left;
+    min-width: 100px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #282D41;
+}
+
+.label-input-wrapper {
+    width: 10%;
+    position: relative;
+}
+
+.input-box-error-message {
+    color: red;
+    font-size: 13px !important;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+.choose-tip-amount{
+    text-align: left;
+}
+
+/* target small screen */
+@media (max-width: 900px) {
+    .user-input-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center !important;
+    }
+    .input-box {
+    padding: 9px 12px;
+    width: 350px;
+    }
+
+    .input-box-wrapper {
+        margin-top: 20px;
+    }
+}

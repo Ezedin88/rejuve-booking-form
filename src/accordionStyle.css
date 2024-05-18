@@ -5,8 +5,9 @@
     /* width: 100%; */
   }
   .accordion-main-wrapper{
+    margin-top: 32px !important;
     background-color: #D0F4F7;
-    max-width: 1200px;
+    max-width: 1240px;
     border-radius: 8px;
     margin: auto;
   }
@@ -26,7 +27,6 @@
   width: 100%;
   padding: 0;
   background-color: transparent;
-  width: 100%;
     padding: 25px;
     background-color: #D0F4F7;
     border: none;
@@ -76,8 +76,21 @@
     flex-wrap: wrap;
   }
 
+  @media (max-width: 900px) {
+    .accordion-main-wrapper{
+      max-width: 80%!important;
+      border-radius: 8px;
+      margin: auto;
+    }
+}
+
 /* target small screen */
 @media (max-width: 768px) {
+   .accordion-main-wrapper{
+  max-width: 480px !important;
+  border-radius: 8px;
+  margin: auto;
+}
   .treatments-wrapper{
     display: flex;
     gap: 10px;
@@ -177,4 +190,53 @@ input.accordion-checkbox-details.iv-therapy-checkbox::before {
 
 input.accordion-checkbox-details:checked::before {
   opacity: 1;
+}
+
+/* checked items at the top */
+.accordion-title{
+  width: 100%;
+}
+
+.accordion-the-title{
+  min-width: 180px;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.checked-items-wrapper{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 40px;
+}
+
+.checked-items-wrapper p{
+  margin: 0;
+  color: #32C0CC;
+}
+
+.checked-item{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.close-icon{
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none !important;
+}
+
+.close-icon:active{
+  transform: scale(1.1);
+}
+
+.close-icon img{
+  width: 20px;
+  height: 20px;
 }

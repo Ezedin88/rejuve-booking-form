@@ -7,8 +7,6 @@ export const initialValues = {
                 "email": "",
                 "phone": "",
                 "dateOfBirth": "",
-                "address_1": "",
-                "address_2": "",
                 "city": "",
                 "state": "",
                 "postcode": "",

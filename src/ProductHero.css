@@ -71,7 +71,7 @@ color: #5A5F73;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 400;
-font-size: 14px;
+font-size: 16px;
 line-height: 150%;
 text-align: left !important;
 /* Text/Dark Secondary */
@@ -97,6 +97,14 @@ color: #5A5F73;
     outline: none !important;
 }
 
+.book-button:hover {
+    background-color: #24b8c5;
+}
+
+.book-button:active {
+    background-color: #27c1c9;
+}
+
 /* tablet size */
 @media (max-width: 900px) {
     .product-price-buttons-wrapper{
@@ -114,6 +122,42 @@ color: #5A5F73;
 
         padding: 0 12px;
     }
+
+    .product-price{
+        text-align: center !important;
+        width: 100%;
+    }
+    .product-name{
+font-weight: 700;
+text-align: center;
+color: #282D41;
+    }
+
+    .product-hero-wrapper {
+        flex-direction: column;
+
+        padding: 24px 24px !important;
+    }
+
+    .booking-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    
+.product-description-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+    .product-description {
+        text-align: center !important;
+        line-height: 150% !important;
+        }
 }
 
 .where-to-book{
@@ -134,12 +178,15 @@ font-style: normal;
 font-weight: 700;
 font-size: 24px;
 line-height: 29px;
-
+text-align: center;
 color: #32C0CC;
 }
 
 /* Styles for small screens */
 @media (max-width: 600px) {
+    .product-price{
+        text-align: center;
+    }
     .image-container.large-hero-image{
         display: none;
     }
@@ -173,7 +220,7 @@ color: #282D41;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
     }
     
 .product-description-wrapper {

@@ -1,8 +1,10 @@
 
+import '../providerStyles.css';
 function Providers({providers,handleProviderChange,selectedProvider,values}) {
   return (
     <>
-     <div className="provider-input-label-wrapper provider-group">
+     <div className="provider-input-label-wrapper">
+        {/* <div className='radio-input-wrapper'></div> */}
                 <input
                     className='provider-input'
                     type="radio"
@@ -15,6 +17,7 @@ function Providers({providers,handleProviderChange,selectedProvider,values}) {
                 />
                 <label htmlFor="any">Any</label>
             </div>
+            <div className="provider-group-wrapper">
     {
     providers?.map((providerItem, index) => {
         return (
@@ -34,6 +37,7 @@ function Providers({providers,handleProviderChange,selectedProvider,values}) {
         );
     })
 }
+    </div>
     </>
   )
 }

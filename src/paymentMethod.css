@@ -1,0 +1,31 @@
+/* especial instructions */
+
+.text-area-wrapper-input{
+    margin-top: 15px !important;
+    margin-right: 30px !important;
+    box-sizing: border-box;
+    margin: auto;
+}
+
+.special-instructions-text-area {
+    /* Text Input */
+width: 100%;
+margin: auto;
+outline: none !important;
+border: 1px solid rgba(192, 196, 204, 0.47);
+height: 200px !important;
+border-radius: 8px;
+box-sizing: border-box;
+padding: 12px;
+}
+
+.text-area-label{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 22px;
+text-align: left;
+color: #32C0CC;
+padding: 24px 0;
+}

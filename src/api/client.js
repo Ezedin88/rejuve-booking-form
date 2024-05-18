@@ -1,6 +1,6 @@
 export const client = {
-    getProductById: async (productId) => {
-        const apiUrl = `https://rejuve.md/wp-json/wc/v3/products/${productId}`;
+    getProductById: async (product_id) => {
+        const apiUrl = `https://rejuve.md/wp-json/wc/v3/products/${product_id}`;
         const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
         const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
         const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
@@ -66,5 +66,32 @@ export const client = {
             console.error("Error fetching data:", error);
             throw error;
         }
+    },
+    async createOrder(order) {
+        const url = `https://rejuve.md/wp-json/wc/v3/orders`;
+        const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
+        const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
+        const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
+
+        try {
+            const requests = order.map(async (singleOrder) => {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Basic ${encodedCredentials}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(singleOrder)
+                });
+                return response.json();
+            });
+
+            // Wait for all requests to complete
+            const results = await Promise.all(requests);
+            return results;
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            throw error;
+        }
     }
-}
+};

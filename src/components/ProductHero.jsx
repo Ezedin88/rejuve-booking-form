@@ -35,8 +35,8 @@ function ProductHero({ currentProduct, setProductPrice, isFetchingProduct, value
             values.Booking = "housecall";
         }
         // scroll to element with id 'user-detail'
-        // const element = document.getElementById('user-detail');
-        // element.scrollIntoView({ behavior: "smooth" });
+        const element = document.getElementById('user-detail-section');
+        element.scrollIntoView({ behavior: "smooth" });
 
     }
 
@@ -46,7 +46,6 @@ function ProductHero({ currentProduct, setProductPrice, isFetchingProduct, value
 
     return (
         <>
-            <nav style={{ marginBottom: '40px' }}>navs</nav>
             <section className='product-hero-main-wrapper'>
                 <section className="product-hero-wrapper">
                     {/* image section*/}

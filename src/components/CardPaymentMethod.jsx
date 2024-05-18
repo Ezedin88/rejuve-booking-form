@@ -1,3 +1,4 @@
+import '../paymentMethod.css';
 import CustomInput from "../CustomInput"
 
 function CardPaymentMethod({values}) {
@@ -10,7 +11,10 @@ function CardPaymentMethod({values}) {
                     <CustomInput label="CVV" name="cvv" type="text" />
                 </>
             )}
-            <CustomInput label="Special Instructions" name="specialInstructions" type="text" />
+            <CustomInput 
+            label="Special Instructions: " name="specialInstructions" type="textArea" 
+            placeholder='Anything Else We Should Know? (i.e parking, entry, time flexibility, pets)'
+            />
         </>
     )
 }

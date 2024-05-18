@@ -1,0 +1,356 @@
+.user-detail-main,.booking-location-main,.choose-treatments-main,.choose-providers,.order-summary-main {
+    margin-top: 100px !important;
+    position: relative;
+}
+
+.form-main-titles {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #282D41;
+    text-align: left;
+    position: absolute;
+    top: -65px;
+    left: 0;
+}
+
+.form-main-inner-title{
+     font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #282D41;
+    text-align: left;
+    /* position: absolute; */
+    top: -65px;
+    left: 0;
+}
+
+/* summary */
+.item-price-summary-wrapper{
+    margin-top: 32px;
+    background-color: #FBF2DD;
+    padding: 32px;
+}
+
+.product-name-summary{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 22px;
+color: #282D41;
+}
+
+.product-price-summary{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 22px;
+color: #282D41;
+}
+
+.item-price-summary{
+    display: flex;
+    justify-content: space-between;
+}
+
+.total-summary-whole-wrapper{
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.sub-total-summary{
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.total-label-price{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sub-total-summary-label{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 22px;
+color: #282D41;
+}
+
+.sub-total-summary-price{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 22px;
+color: #282D41;
+}
+
+.total-calculation{
+box-sizing: border-box;
+border-top: 0.8px solid rgba(40, 45, 65, 0.22);
+}
+
+.total-calculation-label,.total-calculation-price{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 22px;
+display: flex;
+align-items: center;
+color: #282D41;
+}
+
+/* summary till this */
+
+.user-detail-main,.booking-location-main,.choose-providers,.order-summary-main {
+    margin-top: 61px !important;
+    max-width: 1257px;
+    margin: auto;
+    background-color: #E3FAFF;
+    padding: 25px 0px 33px 50px;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+
+.remove-wrapper {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1257px;
+    margin: auto;
+    padding-top: 32px;
+}
+
+.person-to-remove{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+color: #333746;
+}
+
+.remove-person-button{
+    background-color: transparent;
+    border: 1px solid #ff0000;
+    color:  #ff0000;
+    /* padding: 10px 0px !important; */
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none !important;
+}
+
+.remove-person-button:hover{
+    background-color: #fff4f4;
+    border: 1px solid #ff0000;
+    /* color: white; */
+}
+
+.remove-person-button:active{
+    background-color: #ffffff;
+    border: 1px solid #ff0000;
+}
+
+.order-summary-main{
+    padding: unset;
+    padding: 33px 50px;
+}
+
+.order-summary-main-inner{
+    position: relative;
+    /* background-color: #FBF2DD; */
+    max-width: 1137px;
+    width: 100%;
+    margin: auto;
+}
+
+.order-summary-main{
+    background-color: #FFF9EB;
+}
+
+.agreement-wrapper-main {
+    margin-top: 20px !important;
+    max-width: 1257px;
+    margin: auto;
+    padding: 25px 0px 33px 0px;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+
+.choose-treatments-main {
+    max-width: 1257px;
+    margin: auto;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+
+.add-another-person-main{
+    margin-top: 10px !important;
+    max-width: 1257px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 25px 0px 33px 0px;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+
+.add-another-person-button {
+padding: 10px 20px;
+width: 250px;
+height: 55px;
+background: #32C0CC;
+border-radius: 5px;
+border: none;
+outline: none !important;
+font-weight: 600;
+font-size: 16px;
+line-height: 19px;
+color: #FFFFFF;
+}
+
+.add-another-person-button:hover {
+    background-color: #3dcbd8;
+}
+
+.add-another-person-button:active {
+    background-color: #32C0CC;
+}
+
+@media (max-width: 900px) {
+    .user-detail-main,.booking-location-main {
+        display: flex !important;
+        flex-wrap: wrap;
+        flex-direction: column;
+        padding: 33px 50px;
+        max-width: 90%;
+    }
+
+    .remove-wrapper {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 70%;
+        margin: auto;
+        padding-top: 32px;
+    }
+    
+}
+
+/* small screen */
+@media (max-width: 768px) {
+    .user-detail-main,.booking-location-main,.choose-providers {
+        /* padding: 33px 20px; */
+        width: 500px;
+    }
+    .payment-cards-wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 32px;
+    }
+    .add-another-person-main{
+        align-items: flex-start;
+    }
+}
+
+/* credit pay at location wrapper */
+/* payment radio inputs */
+
+.payment-cards-wrapper{
+    display: flex;
+    gap: 32px;
+}
+
+.radio-input-wrapper{
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #fff;
+
+gap: 12px;
+width: 563.5px;
+height: 44px;
+margin:0;
+padding: 0;
+box-sizing: border-box;
+padding-left: 25px;
+}
+
+.payment-radio-input{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+}
+
+.payment-radio-input{
+    appearance: none;
+    box-sizing: border-box;
+    border: 1px solid rgba(192, 196, 204, 0.47);
+    width: 20px;
+    border-radius: 10px;
+    height: 20px;
+    position: relative;
+    background-color: white;
+}
+
+.payment-radio-input::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid rgba(192, 196, 204, 0.47);
+    background-color: #32C0CC;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+
+.payment-radio-input:checked::before {
+    opacity: 1;
+}
+
+/* submit button */
+
+.book-and-pay-btn-wrapper{
+    max-width: 1257px;
+    margin: auto;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+
+.book-and-pay-btn{
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 19px 40px;
+gap: 10px;
+width: 221.15px;
+background: #32C0CC;
+border-radius: 5px;
+color: #fff;
+}
+
+.disabled-btn{
+background-color: gray;
+}

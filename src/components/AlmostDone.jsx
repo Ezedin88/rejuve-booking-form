@@ -1,3 +1,4 @@
+import '../almostDoneStyles.css';
 import { Field } from 'formik'
 import React from 'react'
 
@@ -10,57 +11,71 @@ function AlmostDoneSection({
 }) {
   return (
     <div>
-         <>
-              {/* checkbox gift card */}
-              <div>
-                <div>
-                  <label>
-                    <Field type="checkbox" name="giftCard" />
-                    Gift Card
-                  </label>
-                </div>
-                <div>
-                  <label>Promo Code</label>
-                  <Field type="text" name="promoCode" />
-                  <button
-                    disabled={!values.giftCard}
-                    style={{
-                      cursor: !values.giftCard ? 'not-allowed' : 'pointer'
-                    }}
-                  >Apply Discount</button>
-                </div>
-                {/* choose a tip amount */}
-                {[0, 5, 10, 15, 20].map((percentage) => (
-                  <div className="tip-choice-group" key={percentage}>
-                    <input
-                      type="radio"
-                      id={`${Number(percentage)}%`}
-                      name="tip"
-                      onChange={() => handlePercentageChange(Number(percentage))}
-                      checked={(Number(percentage) === Number(defaultTip))}
-                    />
-                    <label htmlFor={`${Number(percentage)}%`}>{`${Number(percentage)}%`}</label>
-                  </div>
-                ))}
-                {/* add a custom tip amount */}
-                <div className="tip-input-and-dollar-wrapper">
-                  <input type="number" placeholder="Custom Tip" className="tip-input"
-                    onChange={handleCustomTipChange}
+      <>
+      <div className="promo-wrapper">
+        <div className="promo-and-gift">
+          <p className="do-you-have-promo">Do you have a Promo Code ?</p>
+          <div className="promo-checkbox-and-label">
+            <Field className="promo-check-box" id="giftCard" type="checkbox" name="giftCard" />
+            <label htmlFor="giftCard">Gift Card</label>
+          </div>
+          <div className="promo-discount-button-wrapper">
+            <input className="enter-promo-discount"
+              placeholder="Enter Discount Code"
+              type="text" id="promo" name="promo" />
+            <button
+              disabled={!values.giftCard}
+              style={{
+                cursor: !values.giftCard ? 'not-allowed' : 'pointer'
+              }}
+              className="apply-promo-btn"
+            >Apply Discount</button>                    </div>
+        </div>
+
+        {/* checkbox gift card */}
+        <div className="inner-tip-wrapper">
+          <div className="tip-wrapper">
+            <p className="tip">Tip</p>
+          </div>
+          <p className='choose-tip-amount'>Choose a tip amount</p>
+          <div className="tips-and-inbox">
+            <div className="flex-tips-wrapper">
+              {[0, 5, 10, 15, 20].map((percentage) => (
+                <div className="tip-choice-group" key={percentage}>
+                  <input
+                    type="radio"
+                    id={`${Number(percentage)}%`}
+                    name="tip"
+                    onChange={() => handlePercentageChange(Number(percentage))}
+                    checked={(Number(percentage) === Number(defaultTip))}
                   />
+                  <label htmlFor={`${Number(percentage)}%`}>{`${Number(percentage)}%`}</label>
                 </div>
-                <div className="total-tip-wrapper" style={{ display: 'flex', gap: 10 }}>
-                  <p className="tipTotalLabel">Tip total:
-                    {/* className="tipTotalPrice" */}
-                  </p>
-                  <div style={{ display: 'flex', gap: 5 }}>
-                    <p className="tipTotalPrice">$</p>
-                    <p className="tipTotalPrice">
-                      {Number(calculatedTipAmount)}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </>
+              ))}
+            </div>
+          </div>
+          {/* add a custom tip amount */}
+
+          <div className="tip-input-and-dollar-wrapper">
+            <input type="number" placeholder="Custom Tip" className="tip-input input-box"
+            style={{marginTop: '30px'}}
+              onChange={handleCustomTipChange}
+            />
+          </div>
+          <div className="total-tip-wrapper" style={{ display: 'flex', gap: 10 }}>
+            <p className="tipTotalLabel">Tip total:
+              {/* className="tipTotalPrice" */}
+            </p>
+            <div style={{ display: 'flex', gap: 5 }}>
+              <p className="tipTotalPrice">$</p>
+              <p className="tipTotalPrice">
+                {Number(calculatedTipAmount)}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </>
     </div>
   )
 }
