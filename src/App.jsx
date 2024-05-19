@@ -193,7 +193,7 @@ function organizeItems(user, lineItems, userIndex,values) {
     return;
   }
   user.line_items = lineItems.map((item) => {
-    const bookingPlace = values?.userData?.[userIndex]?.Booking==='housecall'?'house':'clinic';
+    const bookingPlace = values?.userData?.[userIndex]?.billing?.booking==='housecall'?'house':'clinic';
     if (bookingPlace === 'clinic') {
       const fieldsToDelete = ['address_1', 'address_2', 'city', 'state', 'postcode'];
       
@@ -209,7 +209,7 @@ function organizeItems(user, lineItems, userIndex,values) {
       meta_data: [
         {
           key: 'type',
-          value: values?.userData?.[userIndex]?.Booking==='housecall'?'house call':'clinic',
+          value: values?.userData?.[userIndex]?.billing?.booking==='housecall'?'house call':'clinic',
         },
         {
           key:'Provider',

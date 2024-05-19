@@ -18,20 +18,20 @@ function BookingLocation({
       <div className='selection-wrapper'>
         <div className="choose-radio-wrapper">
           <div className='where-span'>
-            <Field className="location-radios" type="radio" name={`userData[${index}].Booking`} value="atourclinics"
+            <Field className="location-radios" type="radio" name={`userData[${index}].billing.booking`} value="atourclinics"
             />
            <p className='location-where'> At Our Clinics  <span className='location-span'>At our locations</span></p>
           </div>
         </div>
         <div className="choose-radio-wrapper">
           <div className='where-span'>
-            <Field className="location-radios" type="radio" name={`userData[${index}].Booking`} value="housecall" />
+            <Field className="location-radios" type="radio" name={`userData[${index}].billing.booking`} value="housecall" />
          <p className='location-where'>   We Come to You <span className='location-span'>We come to you</span></p>
           </div>
         </div>
       </div>
       {
-        values?.userData?.[index]?.Booking === 'atourclinics' &&
+        values?.userData?.[index]?.billing.booking === 'atourclinics' &&
         (
         <div className='select-clinic-wrapper'>
         <Field

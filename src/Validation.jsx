@@ -15,10 +15,35 @@ export const billingSchema = yup.object().shape({
         .matches(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/, 'Invalid email address'),
     phone: yup.string().required('Phone number is required'),
     dateOfBirth: yup.string().required('Date of birth is required'),
-    address_1: yup.string().required('Address is required'),
-    city: yup.string().required('City is required'),
-    state: yup.string().required('State is required'),
-    postcode: yup.string().required('Postcode is required'),
+    booking: yup.string().required('Booking is required'),
+    address_1: yup.string().when("booking",{
+        is:(val)=>{
+            return val === 'atourclinics'
+        },
+        then:(s)=>s.required('Address is required'),
+        otherwise: yup.string().notRequired()
+    }),
+    city: yup.string().when("booking",{
+        is:(val)=>{
+            return val === 'atourclinics'
+        },
+        then:(s)=>s.required('Address is required'),
+        otherwise: yup.string().notRequired()
+    }),
+    state: yup.string().when("booking",{
+        is:(val)=>{
+            return val === 'atourclinics'
+        },
+        then:(s)=>s.required('state is required'),
+        otherwise: yup.string().notRequired()
+    }),
+    postcode: yup.string().when("booking",{
+        is:(val)=>{
+            return val === 'atourclinics'
+        },
+        then:(s)=>s.required('postcode is required'),
+        otherwise: yup.string().notRequired()
+    }),
 });
 
 export const handleValidation = yup.object().shape({

@@ -21,7 +21,6 @@ function Agreement({
   // checked={agreeToTos} 
   // onChange={() => setAgreeToTos(!agreeToTos)} 
   className='agreement-checkbox-input' 
-  required 
 />
        <p className='agreement-description'>   I agree to the ToS, Privacy Policy, Consent To Treat, and and Cancellation Policy *</p>
         </div>

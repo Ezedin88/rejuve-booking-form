@@ -59,11 +59,16 @@ const [refactoredErrors,setRefactoredErrors]=useState([]);
       <Formik
         validationSchema={handleValidation}
         initialValues={initialValues}
+        validateOnMount
         onSubmit={handleSubmit}
       >
         {({ values, errors, setValues }) => {
-          // distructure the errors on errors change
+          console.log('all errors==>',errors)
   const {terms:termsError,userData:userDataErrors} = errors || {};
+  const areThereUserDataErrors = userDataErrors && userDataErrors.length > 0;
+  const hasUserDataErrors = !!(errors && errors.userData);
+  const hasAnyErrors = !!(errors && Object.keys(errors).length > 0);
+
           return(
           <Form style={{ marginBottom: '60px' }}>
             <>
@@ -174,7 +179,7 @@ const [refactoredErrors,setRefactoredErrors]=useState([]);
 
             </FieldArray>
             <div className='add-another-person-main'>
-              {/* {fieldsAreEmptyForUpdate && */}
+           {areThereUserDataErrors&&
               <div className="another-person-info-error">
               <img src="/src/assets/info.svg" />    
                 <p
@@ -182,11 +187,16 @@ const [refactoredErrors,setRefactoredErrors]=useState([]);
                     Please fill your information before adding another person
                     </p>
                     </div>
-                    {/* } */}
+                  }
               <button type="button"
                 className='add-another-person-button'
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}
-                onClick={() => updateForm(values, setValues)}>
+                disabled={hasUserDataErrors}
+                onClick={() => {
+                  if (!hasUserDataErrors) {
+                    updateForm(values, setValues);
+                  }
+                }}>
                 <img src="/src/assets/personIcon.svg" />
                 Add Another Person</button>
             </div>
@@ -227,7 +237,7 @@ const [refactoredErrors,setRefactoredErrors]=useState([]);
                       <div key={userIndex} className='personWrapper'>
                         <p className="form-main-inner-title">{
                           userIndex === 0 ? item?.billing?.first_name + ' ' + item?.billing?.last_name :
-                            'Person' + userIndex + 1}({item?.Booking === 'atourclinics' ? 'house call' : 'clinic'})</p>
+                            'Person' + userIndex + 1}({item?.billing?.booking === 'atourclinics' ? 'house call' : 'clinic'})</p>
                         <div className="item-price-summary-wrapper">
                           {
                             lineItems.length > 0 && lineItems.map((lineItem, index) => {
@@ -316,10 +326,10 @@ const [refactoredErrors,setRefactoredErrors]=useState([]);
             {/* submit button */}
             <div className="book-and-pay-btn-wrapper">
               <button type="submit"
-                className={`book-and-pay-btn`}
-                // disabled={Object.keys(errors).length > 0}
+                className={hasAnyErrors ? 'book-and-pay-btn-disabled' : 'book-and-pay-btn'}
+                disabled={hasAnyErrors}
                 onClick={() => {
-                  // Object.keys(errors).length == 0 &&
+               hasAnyErrors   &&
                     submitForm(values)
                 }}>
               <div><img src="/src/assets/lock-icon.svg" alt="" /></div>

@@ -12,6 +12,7 @@ export const initialValues = {
                 "postcode": "",
                 "address_1": "",
                 "address_2": "",
+                "booking": "atourclinics"
             },
             "Booking": "atourclinics",
             "clinic": "",
@@ -28,6 +29,7 @@ export const initialValues = {
     bookingDate: "",
     bookingTime: "",
     provider: "Any",
+    terms: false,
     paymentMethod: 'creditCard',
 }
 

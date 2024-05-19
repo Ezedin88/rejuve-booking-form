@@ -12,7 +12,7 @@ function ProductHero({ currentProduct, setProductPrice,setWhereBooking, isFetchi
     
        const updatedLineItems = lineItems.map(lineItem => {
         const { userIndex, product_id } = lineItem;
-        const userBooking = values.userData[userIndex].Booking;
+        const userBooking = values.userData[userIndex]?.billing?.booking;
     
         // Find the price entry in arrObj corresponding to the product_id
         const priceEntry = arrObj.find(price => price.id === product_id);
@@ -31,7 +31,7 @@ function ProductHero({ currentProduct, setProductPrice,setWhereBooking, isFetchi
     useEffect(()=>{
         setLineItems(updatedLineItems);
     },[
-        values.userData.map(user=>user.Booking).join(''),
+        values.userData.map(user=>user?.billing.booking).join(''),
     ])
 
     const {bookHouseCall,bookInClinic,largeHeroImage,name,short_description,smallHeroImage} = getProductPrice({ product: currentProduct, isFetchingProduct })||{};
@@ -39,11 +39,11 @@ function ProductHero({ currentProduct, setProductPrice,setWhereBooking, isFetchi
     const onChangeHandler = (name) => {
         if (name === "atourclinics") {
             setWhereBooking("atourclinics");
-            values.userData[0].Booking = "atourclinics";
+            values.userData[0].billing.booking = "atourclinics";
 
         } else {
             setWhereBooking("housecall");
-            values.userData[0].Booking = "housecall";
+            values.userData[0].billing.booking = "housecall";
         }
         // scroll to element with id 'user-detail'
         const element = document.getElementById('user-detail-section');

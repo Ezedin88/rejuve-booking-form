@@ -62,7 +62,7 @@ function ChooseTreatments({
                                   ...remainingLineItems,
                                   {
                                     userIndex: index,
-                                    price: dataValues?.userData?.[index]?.Booking === 'housecall' ? inHousePrice : treatment?.price,
+                                    price: dataValues?.userData?.[index]?.billing?.booking === 'housecall' ? inHousePrice : treatment?.price,
                                     product_id: treatment.id,
                                     productName: treatment?.name,
                                     quantity: 1,
@@ -87,7 +87,7 @@ function ChooseTreatments({
                                 userIndex: index,
                                 product_id: treatment.id,
                                 productName: treatment?.name,
-                                price: dataValues?.userData?.[index]?.Booking === 'housecall' && inHousePrice || treatment?.price,
+                                price: dataValues?.userData?.[index]?.billing?.booking === 'housecall' && inHousePrice || treatment?.price,
                                 quantity: 1,
                                 metaData: []
                               }]);
@@ -102,7 +102,7 @@ function ChooseTreatments({
                   <div className='accordion-item-price'
                   >
                     <p className='price-tag'>
-                      $ {dataValues?.userData?.[index]?.Booking === 'housecall' && inHousePrice || treatment?.price}
+                      $ {dataValues?.userData?.[index]?.billing?.booking === 'housecall' && inHousePrice || treatment?.price}
                     </p>
                   </div>
                 </div>
