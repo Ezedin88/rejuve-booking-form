@@ -71,6 +71,10 @@
     margin-top: 2px;
 }
 
+.error-clinic-selection{
+    text-align:left;
+}
+
 .choose-tip-amount{
     text-align: left;
 }

@@ -204,11 +204,25 @@ color: #333746;
     margin: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
     padding: 25px 0px 33px 0px;
     box-sizing: border-box;
     border-radius: 12px;
+}
+
+.add-another-person-main .another-person-info-error .fill-all-fields{
+    /* Please fill your information before adding another person. */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+color: #AFB1B2 !important;
+}
+
+.another-person-info-error {
+    display: flex;
+    gap: 10px;
 }
 
 .add-another-person-button {

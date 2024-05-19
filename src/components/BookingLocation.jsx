@@ -7,6 +7,7 @@ function BookingLocation({
   values,
   setWhereBooking,
 }) {
+  console.log('vals==>',values)
   return (
     <div>
       <div className='selection-wrapper'>
@@ -27,22 +28,25 @@ function BookingLocation({
       {
         values?.userData?.[index]?.Booking === 'atourclinics' &&
         (
-        <>
+        <div className='select-clinic-wrapper'>
         <Field
           className="select-location-dropdown"
           as="select" name={
           `userData[${index}].clinic`
         }
         >
-          <option className='select-location-dropdown' value="">Select a clinic</option>
+          <option className='select-location-dropdown' value="">
+          <p>Select a clinic</p>
+          </option>
           <option
           className='select-location-dropdown' value="Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403"
           >
             Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403
           </option>
         </Field>
-        {/* <ErrorMessage name={`userData[${index}].clinic`} component="div" className="error" /> */}
-        </>
+          <img className='location-icon' src="/src/assets/location-icon.svg" /> 
+        <ErrorMessage name={`userData[${index}].clinic`} component="div" className="error-clinic-selection input-box-error-message" />
+        </div>
         ) || <div className='address-wrapper'>
           <CustomInput label="Your Address" name={`userData[${index}].billing.address_1`}
             type="text" />

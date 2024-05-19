@@ -10,6 +10,8 @@ export const initialValues = {
                 "city": "",
                 "state": "",
                 "postcode": "",
+                "address_1": "",
+                "address_2": "",
             },
             "Booking": "atourclinics",
             "clinic": "",

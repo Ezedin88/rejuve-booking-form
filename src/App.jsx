@@ -245,10 +245,10 @@ function organizeItems(user, lineItems, userIndex,values) {
     line_items:item?.line_items,
     fee_lines
   }));
-console.log('datatosend-->',dataToSend)
+console.log('sent',dataToSend)
   if(dataToSend){
     // createorder
-    client.createOrder(dataToSend)
+    // client.createOrder(dataToSend)
   }
 
   }

@@ -59,7 +59,9 @@ function FormSection({
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        {({ values, errors, setValues }) => (
+        {({ values, errors, setValues }) => {
+          console.log('the errors',errors)
+          return(
           <Form style={{ marginBottom: '60px' }}>
             <>
               <ProductHero
@@ -167,10 +169,15 @@ function FormSection({
 
             </FieldArray>
             <div className='add-another-person-main'>
-              {fieldsAreEmptyForUpdate &&
+              {/* {fieldsAreEmptyForUpdate && */}
+              <div className="another-person-info-error">
+              <img src="/src/assets/info.svg" />    
                 <p
-                  className='fill-all-fields'
-                  style={{ color: 'red', fontSize: '16px' }}>Please fill all fields</p>}
+                  className='fill-all-fields'>
+                    Please fill your information before adding another person
+                    </p>
+                    </div>
+                    {/* } */}
               <button type="button"
                 className='add-another-person-button'
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}
@@ -305,7 +312,7 @@ function FormSection({
             <div className="book-and-pay-btn-wrapper">
               <button type="submit"
                 className={`book-and-pay-btn ${Object.keys(errors).length > 0 ? 'disabled-btn' : ''}`}
-                // disabled={Object.keys(errors).length > 0}
+                disabled={Object.keys(errors).length > 0}
                 onClick={() => {
                   Object.keys(errors).length == 0 &&
                     submitForm(values)
@@ -313,7 +320,7 @@ function FormSection({
             </div>
             {Object.keys(errors).length > 0 && <small style={{ color: 'red', fontSize: '16px' }}>Please fill all fields</small>}
           </Form>
-        )}
+        )}}
       </Formik>
     </>
   )
