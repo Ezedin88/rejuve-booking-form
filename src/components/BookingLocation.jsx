@@ -6,8 +6,13 @@ function BookingLocation({
   index,
   values,
   setWhereBooking,
+  userDataErrors,
+  setRefactoredErrors
 }) {
-  console.log('vals==>',values)
+  // const {bookingAddress,billing} = userDataErrors[index];
+  console.log('user errors',userDataErrors)
+  // const {billing} = userDataErrors?.[index]||{};
+  
   return (
     <div>
       <div className='selection-wrapper'>

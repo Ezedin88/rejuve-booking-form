@@ -23,8 +23,10 @@ export const initialValues = {
                 "state": "",
                 "postcode": "",
             },
-        }
+        },
     ],
+    bookingDate: "",
+    bookingTime: "",
     provider: "Any",
     paymentMethod: 'creditCard',
 }

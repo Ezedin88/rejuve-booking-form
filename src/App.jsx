@@ -193,7 +193,6 @@ function organizeItems(user, lineItems, userIndex,values) {
     return;
   }
   user.line_items = lineItems.map((item) => {
-    console.log('values-->',`on index ${userIndex}`,values?.userData?.[userIndex]?.Booking==='housecall'?'house':'clinic')
     const bookingPlace = values?.userData?.[userIndex]?.Booking==='housecall'?'house':'clinic';
     if (bookingPlace === 'clinic') {
       const fieldsToDelete = ['address_1', 'address_2', 'city', 'state', 'postcode'];

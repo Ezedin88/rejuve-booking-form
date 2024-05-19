@@ -13,14 +13,16 @@ function Agreement({
     <div className='agreement-container-wrapper'>
       <div>
         <div className='agreement-wrapper-label'>
-          {/* <Field type="checkbox" name="terms"
-            checked={agreeToTos}
-            onChange={() => setAgreeToTos(!agreeToTos)}
-            required
-          /> */}
-          <input 
-          className='agreement-checkbox-input'
-          type="checkbox" name="terms" id="terms" value="terms" checked={agreeToTos} onChange={() => setAgreeToTos(!agreeToTos)} required />
+        <Field 
+  type="checkbox" 
+  name="terms" 
+  id="terms" 
+  // value="terms" 
+  // checked={agreeToTos} 
+  // onChange={() => setAgreeToTos(!agreeToTos)} 
+  className='agreement-checkbox-input' 
+  required 
+/>
        <p className='agreement-description'>   I agree to the ToS, Privacy Policy, Consent To Treat, and and Cancellation Policy *</p>
         </div>
       </div>

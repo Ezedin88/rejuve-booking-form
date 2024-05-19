@@ -368,3 +368,20 @@ color: #fff;
 .disabled-btn{
 background-color: gray;
 }
+
+/* agreement */
+
+.click-agree-reminder-wrapper{
+    max-width: 1257px;
+    margin: auto;
+    display: flex;
+    gap: 8px;
+}
+.agree-to-tos-info {
+font-family: 'Inter';
+font-weight: 400;
+display: flex;
+align-items: center;
+font-feature-settings: 'tnum' on, 'lnum' on;
+color: #AFB1B3 !important;
+}

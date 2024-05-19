@@ -24,9 +24,12 @@ export const billingSchema = yup.object().shape({
 export const handleValidation = yup.object().shape({
     userData: yup.array().of(
         yup.object().shape({
+            Booking: yup.string().required('Booking1 is required'),
             billing: billingSchema,
-            Booking: yup.string().required('Booking is required'),
             clinic:yup.string().required('Clinic is required'),
         })
-    )
+    ),
+    bookingDate: yup.string().required('Booking date is required'),
+    bookingTime: yup.string().required('Booking time is required'),
+    terms: yup.boolean().oneOf([true], 'You must accept the terms and conditions'),
 });

@@ -52,6 +52,8 @@ function FormSection({
   const selectIvTherapies = treatments.filter(item => item.categories.some(category => category.slug === 'iv-treatment'));
   const currentProductPrice = Number(currentProduct?.price) || 0;
   const totalCalculation = lineItems.reduce((acc, item) => acc + Number(item.price), 0);
+const [refactoredErrors,setRefactoredErrors]=useState([]);
+
   return (
     <>
       <Formik
@@ -60,7 +62,8 @@ function FormSection({
         onSubmit={handleSubmit}
       >
         {({ values, errors, setValues }) => {
-          console.log('the errors',errors)
+          // distructure the errors on errors change
+  const {terms:termsError,userData:userDataErrors} = errors || {};
           return(
           <Form style={{ marginBottom: '60px' }}>
             <>
@@ -106,6 +109,8 @@ function FormSection({
                           index={index}
                           values={values}
                           setWhereBooking={setWhereBooking}
+                          userDataErrors={userDataErrors}
+                          setRefactoredErrors={setRefactoredErrors}
                         />
                       </div>
                       <div className='choose-treatments-main' id="choose-treatments-main">
@@ -311,14 +316,21 @@ function FormSection({
             {/* submit button */}
             <div className="book-and-pay-btn-wrapper">
               <button type="submit"
-                className={`book-and-pay-btn ${Object.keys(errors).length > 0 ? 'disabled-btn' : ''}`}
-                disabled={Object.keys(errors).length > 0}
+                className={`book-and-pay-btn`}
+                // disabled={Object.keys(errors).length > 0}
                 onClick={() => {
-                  Object.keys(errors).length == 0 &&
+                  // Object.keys(errors).length == 0 &&
                     submitForm(values)
-                }}>Book and Pay</button>
+                }}>
+              <div><img src="/src/assets/lock-icon.svg" alt="" /></div>
+                <p style={{margin:0}}>  Book and Pay</p>
+                  </button>
             </div>
-            {Object.keys(errors).length > 0 && <small style={{ color: 'red', fontSize: '16px' }}>Please fill all fields</small>}
+            {/* {Object.keys(errors).length > 0 && <small style={{ color: 'red', fontSize: '16px' }}>Please fill all fields</small>} */}
+          {termsError&&  <div className='click-agree-reminder-wrapper'>
+                <img src="/src/assets/info.svg"/>
+              <p className="agree-to-tos-info">
+                 You need to read and agree to our Tos, Privacy Policy , Consent To Treat and Cancellation Policy to continue booking.</p></div>}
           </Form>
         )}}
       </Formik>
