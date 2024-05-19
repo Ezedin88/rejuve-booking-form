@@ -18,30 +18,37 @@ export const billingSchema = yup.object().shape({
     booking: yup.string().required('Booking is required'),
     address_1: yup.string().when("booking",{
         is:(val)=>{
-            return val === 'atourclinics'
+            return val === 'housecall'
         },
         then:(s)=>s.required('Address is required'),
         otherwise: yup.string().notRequired()
     }),
     city: yup.string().when("booking",{
         is:(val)=>{
-            return val === 'atourclinics'
+            return val === 'housecall'
         },
         then:(s)=>s.required('Address is required'),
         otherwise: yup.string().notRequired()
     }),
     state: yup.string().when("booking",{
         is:(val)=>{
-            return val === 'atourclinics'
+            return val === 'housecall'
         },
         then:(s)=>s.required('state is required'),
         otherwise: yup.string().notRequired()
     }),
     postcode: yup.string().when("booking",{
         is:(val)=>{
-            return val === 'atourclinics'
+            return val === 'housecall'
         },
         then:(s)=>s.required('postcode is required'),
+        otherwise: yup.string().notRequired()
+    }),
+    clinic: yup.string().when("booking",{
+        is:(val)=>{
+            return val === 'atourclinics'
+        },
+        then:(s)=>s.required('clinic is required'),
         otherwise: yup.string().notRequired()
     }),
 });
@@ -51,7 +58,6 @@ export const handleValidation = yup.object().shape({
         yup.object().shape({
             Booking: yup.string().required('Booking1 is required'),
             billing: billingSchema,
-            clinic:yup.string().required('Clinic is required'),
         })
     ),
     bookingDate: yup.string().required('Booking date is required'),

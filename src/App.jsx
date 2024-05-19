@@ -201,7 +201,7 @@ function organizeItems(user, lineItems, userIndex,values) {
           delete user.billing[field];
       });
   
-      user.billing.clinicChoice = values?.userData?.[userIndex]?.clinic;
+      user.billing.clinicChoice = values?.userData?.[userIndex]?.booking.clinic;
   }
   
     return {
@@ -227,7 +227,7 @@ function organizeItems(user, lineItems, userIndex,values) {
         },
         bookingPlace==='clinic'&&{
           key:'Clinic Choice',
-          value:values?.userData?.[userIndex]?.clinic
+          value:values?.userData?.[userIndex]?.booking.clinic
         }
       ]
     };

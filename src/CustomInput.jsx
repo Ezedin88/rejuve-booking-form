@@ -3,9 +3,12 @@ import {ErrorMessage,useField} from "formik";
 
 const CustomInput = ({label,placeholder,cityStateZip,...props},ref)=>{
     const [field] = useField(props);
+   
+
     return(
         <>
-        {props.type==='radio'&&
+        {
+        props.type==='radio'&&
             <div className="radio-input-wrapper">
                 <div className="radio-box">
                     <input {...field} {...props} autoComplete="true" className='payment-radio-input'/>
