@@ -125,7 +125,6 @@ const {values} = useFormik({initialValues})
         city: '',
         state: '',
         postcode: '',
-        country: ''
       },
       Booking: 'atourclinics',
       clinic: '',
@@ -135,7 +134,6 @@ const {values} = useFormik({initialValues})
         city: '',
         state: '',
         postcode: '',
-        country: ''
       },
       line_items: [],
       paymentMethod: 'creditCard'
@@ -195,12 +193,24 @@ function organizeItems(user, lineItems, userIndex,values) {
     return;
   }
   user.line_items = lineItems.map((item) => {
+    console.log('values-->',`on index ${userIndex}`,values?.userData?.[userIndex]?.Booking==='housecall'?'house':'clinic')
+    const bookingPlace = values?.userData?.[userIndex]?.Booking==='housecall'?'house':'clinic';
+    if (bookingPlace === 'clinic') {
+      const fieldsToDelete = ['address_1', 'address_2', 'city', 'state', 'postcode'];
+      
+      fieldsToDelete.forEach(field => {
+          delete user.billing[field];
+      });
+  
+      user.billing.clinicChoice = values?.userData?.[userIndex]?.clinic;
+  }
+  
     return {
       ...item,
       meta_data: [
         {
           key: 'type',
-          value: values.Booking,
+          value: values?.userData?.[userIndex]?.Booking==='housecall'?'house call':'clinic',
         },
         {
           key:'Provider',
@@ -212,6 +222,14 @@ function organizeItems(user, lineItems, userIndex,values) {
               `${user.billing.first_name} ${user.billing.last_name}`,
             )
           : meta(item.userIndex),
+        {
+          key:'Booking',
+          value:bookingPlace
+        },
+        bookingPlace==='clinic'&&{
+          key:'Clinic Choice',
+          value:values?.userData?.[userIndex]?.clinic
+        }
       ]
     };
   });
@@ -227,7 +245,7 @@ function organizeItems(user, lineItems, userIndex,values) {
     line_items:item?.line_items,
     fee_lines
   }));
-
+console.log('datatosend-->',dataToSend)
   if(dataToSend){
     // createorder
     client.createOrder(dataToSend)
@@ -244,7 +262,6 @@ function organizeItems(user, lineItems, userIndex,values) {
   const allPriceForTipPercentage = lineItems.reduce((acc, item) => {
     return acc + (item.price * item.quantity);
   }, 0);
-  
   const [productPrice, setProductPrice] = useState(allPriceForTipPercentage.price || 0);
   const handlePercentageChange = (value) => {
     if (value === "custom") {
@@ -261,14 +278,14 @@ function organizeItems(user, lineItems, userIndex,values) {
   const handleCustomTipChange = (e) => {
     document.querySelectorAll('input[type="radio"].tip-radio').forEach(radio => {
       radio.checked = false;
-  });
+    });
 
     setCustomTip(e.target.value);
     setDefaultTip(null);
     handlePercentageChange("custom");
   }
-
-  const calculatedTipAmount = Number(customTip) || (Number(productPrice) * Number(percentageTip)) / 100;
+  
+  const calculatedTipAmount = Number(customTip) || (Number(allPriceForTipPercentage) * Number(percentageTip)) / 100;
   return (
     <section>
       <FormSection

@@ -44,15 +44,14 @@ function BookingLocation({
         {/* <ErrorMessage name={`userData[${index}].clinic`} component="div" className="error" /> */}
         </>
         ) || <div className='address-wrapper'>
-          <CustomInput label="Your Address" name={`userData[${index}].bookingAddress.address_1`}
+          <CustomInput label="Your Address" name={`userData[${index}].billing.address_1`}
             type="text" />
-          <CustomInput label="Your Address2" name={`userData[${index}].bookingAddress.address_2`}
+          <CustomInput label="Your Address2" name={`userData[${index}].billing.address_2`}
             type="text" />
             <div className="zip-city-wrapper" style={{display:'flex'}}>
-          <CustomInput cityStateZip label="City" name={`userData[${index}].bookingAddress.city`} type="text" />
-          <CustomInput cityStateZip label="State" name={`userData[${index}].bookingAddress.state`} type="text" />
-          <CustomInput cityStateZip label="Postcode" name={`userData[${index}].bookingAddress.postcode`} type="text" />
-          {/* <CustomInput label="Country" name={`userData[${index}].bookingAddress.country`} type="text" /> */}
+          <CustomInput cityStateZip label="City" name={`userData[${index}].billing.city`} type="text" />
+          <CustomInput cityStateZip label="State" name={`userData[${index}].billing.state`} type="text" />
+          <CustomInput cityStateZip label="Postcode" name={`userData[${index}].billing.postcode`} type="text" />
           </div>
         </div>
       }

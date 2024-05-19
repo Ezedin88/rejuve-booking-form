@@ -10,7 +10,6 @@ export const initialValues = {
                 "city": "",
                 "state": "",
                 "postcode": "",
-                "country": ""
             },
             "Booking": "atourclinics",
             "clinic": "",
@@ -21,7 +20,6 @@ export const initialValues = {
                 "city": "",
                 "state": "",
                 "postcode": "",
-                "country": ""
             },
         }
     ],

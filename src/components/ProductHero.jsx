@@ -30,7 +30,6 @@ function ProductHero({ currentProduct, setProductPrice,setWhereBooking, isFetchi
 
     useEffect(()=>{
         setLineItems(updatedLineItems);
-        console.log('rerendering')
     },[
         values.userData.map(user=>user.Booking).join(''),
     ])
@@ -38,7 +37,6 @@ function ProductHero({ currentProduct, setProductPrice,setWhereBooking, isFetchi
     const {bookHouseCall,bookInClinic,largeHeroImage,name,short_description,smallHeroImage} = getProductPrice({ product: currentProduct, isFetchingProduct })||{};
 
     const onChangeHandler = (name) => {
-        console.log({values})
         if (name === "atourclinics") {
             setWhereBooking("atourclinics");
             values.userData[0].Booking = "atourclinics";

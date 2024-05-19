@@ -45,6 +45,7 @@ function ChooseTreatments({
                           type={'radio'}
                           name={`userData[${index}].line_items[${index}].product_id`}
                           value={treatment.id}
+                          checked={lineItems.some(item => index === item.userIndex && item.product_id === treatment.id)}
                           onChange={e => {
                             if (e.target.checked) {
                               setCurrentProduct(treatment);
