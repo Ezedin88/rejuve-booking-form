@@ -67,7 +67,10 @@ function FormSection({
                 currentProduct={heroCurrentProduct}
                 setProductPrice={setProductPrice}
                 setWhereBooking={setWhereBooking}
+                lineItems={lineItems}
+                setLineItems={setlineItems}
                 values={values}
+                treatmentChoices={treatments}
               />
             </>
             <FieldArray name="userData">
@@ -100,11 +103,13 @@ function FormSection({
                         <BookingLocation
                           index={index}
                           values={values}
+                          setWhereBooking={setWhereBooking}
                         />
                       </div>
                       <div className='choose-treatments-main' id="choose-treatments-main">
                         <p className="form-main-titles">Choose Treatments</p>
                         <ChooseTreatments
+                          dataValues={values}
                           treatmentChoices={selectIvTherapies}
                           index={index}
                           lineItems={lineItems}
@@ -117,30 +122,35 @@ function FormSection({
                           isFetchingProduct={isFetchingProduct}
                         />
                         <ChooseTreatments
+                          dataValues={values}
                           treatmentChoices={selectNad}
                           index={index}
                           lineItems={lineItems}
                           setlineItems={setlineItems}
                           title={selectNad?.[0]?.categories[0]?.name} />
                         <ChooseTreatments
+                          dataValues={values}
                           treatmentChoices={selectAdons}
                           index={index}
                           lineItems={lineItems}
                           setlineItems={setlineItems}
                           title={selectAdons?.[0]?.categories[0]?.name} />
                         <ChooseTreatments
+                          dataValues={values}
                           treatmentChoices={selectBooster}
                           index={index}
                           lineItems={lineItems}
                           setlineItems={setlineItems}
                           title={selectBooster?.[0]?.categories[0]?.name} />
                         <ChooseTreatments
+                          dataValues={values}
                           treatmentChoices={selectVitaminInjections}
                           index={index}
                           lineItems={lineItems}
                           setlineItems={setlineItems}
                           title={selectVitaminInjections?.[0]?.categories[0]?.name} />
                         <ChooseTreatments
+                          dataValues={values}
                           treatmentChoices={selectAdvancedTherapies}
                           index={index}
                           lineItems={lineItems}

@@ -5,6 +5,7 @@ import FormSection from './components/FormSection';
 import ProductHero from './components/ProductHero';
 import { Formik, useFormik } from 'formik';
 import { initialValues } from './initialValues';
+import { getProductPrice } from './utils/getProductPrice';
 function App() {
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState('');
@@ -13,6 +14,8 @@ function App() {
   const [customTip, setCustomTip] = useState(0);
   const [address1, setAddress1] = useState('');
   const [isFetchingProduct, setIsFetchingProduct] = useState(false);
+  const [whereBooking, setWhereBooking] = useState('atourclinics');
+
   // const dataPage = document.querySelector('[data-page_id]').getAttribute('data-page_id');
   useEffect(() => {
     const script = document.createElement('script');
@@ -59,9 +62,9 @@ function App() {
 
   }, [fieldsAreEmpty, fieldsAreEmptyForUpdate]);
 
-
+const {values} = useFormik({initialValues})
   useEffect(() => {
-
+    const {bookHouseCall,bookInClinic} = getProductPrice({ product: currentProduct, isFetchingProduct })||{};
     const fetchTreatments = async () => {
       const data = await client.getAllTreatments();
       setTreatments(data);
@@ -79,7 +82,7 @@ function App() {
         userIndex: 0,
         product_id: data.id,
         productName: data.name,
-        price: data.price,
+        price: whereBooking === 'housecall' ? bookHouseCall : data.price,
         quantity: 1,
         metaData: []
       }]);
@@ -143,6 +146,7 @@ function App() {
 
     });
   }
+
 
   function organizeLineItems(data) {
     // Ensure userData array exists and is not empty
@@ -242,21 +246,23 @@ function organizeItems(user, lineItems, userIndex,values) {
   }, 0);
   
   const [productPrice, setProductPrice] = useState(allPriceForTipPercentage.price || 0);
-  const [whereBooking, setWhereBooking] = useState('atourclinics');
-  const selectIvTherapies = treatments.filter(item => item.categories.some(category => category.slug === 'iv-treatment'));
-
   const handlePercentageChange = (value) => {
     if (value === "custom") {
       return customTip;
     } else {
+      // target input called tip-input and set the value to 0
+      document.getElementById('tip-input').value = 'tip'; 
       setPercentageTip(value);
       setDefaultTip(value);
+      setCustomTip(0);
     }
   }
+  
   const handleCustomTipChange = (e) => {
-    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+    document.querySelectorAll('input[type="radio"].tip-radio').forEach(radio => {
       radio.checked = false;
-    });
+  });
+
     setCustomTip(e.target.value);
     setDefaultTip(null);
     handlePercentageChange("custom");
@@ -291,7 +297,7 @@ function organizeItems(user, lineItems, userIndex,values) {
         currentProduct={currentProductCopy}
         currentMainProduct={currentProductCopy}
         heroCurrentProduct={currentProduct}
-        setCurrentProduct={setCurrentProductCopy}
+        setCurrentProduct={setCurrentProduct}
         setProductPrice={setProductPrice}
         setWhereBooking={setWhereBooking}
         whereBooking={whereBooking}

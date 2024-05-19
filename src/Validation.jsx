@@ -38,8 +38,8 @@ export const handleValidation = yup.object().shape({
     userData: yup.array().of(
         yup.object().shape({
             billing: billingSchema,
-            bookingAddress: bookingAddressSchema,
-    clinic: yup.string().required('Clinic is required')
+            // bookingAddress: bookingAddressSchema,
+    // clinic: yup.string().required('Clinic is required')
         })
     )
 });

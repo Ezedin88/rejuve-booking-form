@@ -1,32 +1,51 @@
 import '../ProductHero.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { getProductPrice } from '../utils/getProductPrice';
 
-function ProductHero({ currentProduct, setProductPrice,setWhereBooking, isFetchingProduct, values }) {
+function ProductHero({ currentProduct, setProductPrice,setWhereBooking, isFetchingProduct, values,lineItems,setLineItems,treatmentChoices }) {
+    const arrObj = useMemo(() => {
+        return treatmentChoices?.map(items => {
+            const { id, bookHouseCall, bookInClinic } = getProductPrice({ product: items, isFetchingProduct });
+            return { id, bookHouseCall, bookInClinic };
+        });
+    }, [treatmentChoices, isFetchingProduct]);
+    
+       const updatedLineItems = lineItems.map(lineItem => {
+        const { userIndex, product_id } = lineItem;
+        const userBooking = values.userData[userIndex].Booking;
+    
+        // Find the price entry in arrObj corresponding to the product_id
+        const priceEntry = arrObj.find(price => price.id === product_id);
+    
+        if (priceEntry) {
+            if (userBooking === 'housecall'&&priceEntry.bookHouseCall!==null) {
+                lineItem.price = priceEntry.bookHouseCall;
+            } else {
+                lineItem.price = priceEntry.bookInClinic;
+            }
+        }
+    
+        return lineItem;
+    });
 
-    const { images, name, id, price, short_description, price_html = 0, slug } = currentProduct || {};
-    const pricePattern = /<bdi><span class="woocommerce-Price-currencySymbol">&#36;<\/span>(\d+(?:,\d+)*)<\/bdi>/g;
-    const matches =!isFetchingProduct&&price_html&& [...price_html.matchAll(pricePattern)];
-    let largeHeroImage = images && images[0].src || '';
-    let smallHeroImage = images && images[1].src || '';
-    const prices = !isFetchingProduct && price_html && matches?.map(match => match[1].replace(/,/g, '')) || 0;
-    let bookInClinic = null;
-    let bookHouseCall = null;
+    useEffect(()=>{
+        setLineItems(updatedLineItems);
+        console.log('rerendering')
+    },[
+        values.userData.map(user=>user.Booking).join(''),
+    ])
 
-    if (prices.length === 1) {
-        bookInClinic = parseFloat(prices[0]);
-    } else if (prices.length >= 2) {
-        bookInClinic = parseFloat(prices[0]);
-        bookHouseCall = parseFloat(prices[1]);
-    }
-
+    const {bookHouseCall,bookInClinic,largeHeroImage,name,short_description,smallHeroImage} = getProductPrice({ product: currentProduct, isFetchingProduct })||{};
 
     const onChangeHandler = (name) => {
+        console.log({values})
         if (name === "atourclinics") {
             setWhereBooking("atourclinics");
-            values.Booking = "atourclinics";
+            values.userData[0].Booking = "atourclinics";
+
         } else {
             setWhereBooking("housecall");
-            values.Booking = "housecall";
+            values.userData[0].Booking = "housecall";
         }
         // scroll to element with id 'user-detail'
         const element = document.getElementById('user-detail-section');

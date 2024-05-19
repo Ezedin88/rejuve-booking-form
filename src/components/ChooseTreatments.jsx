@@ -1,145 +1,116 @@
-import { useState } from 'react';
 import TwistAccordion from '../Accordion/AccordionComponent';
 
 function ChooseTreatments({
-    index,
-    lineItems,
-    setlineItems,
-    treatmentChoices,
-    ivTherapy,
-    whereBooking='atourclinics',
-    isFetchingProduct,
-    currentProduct,
-    setCurrentProduct
+  index,
+  lineItems,
+  setlineItems,
+  treatmentChoices,
+  ivTherapy,
+  isFetchingProduct,
+  setCurrentProduct, 
+  dataValues
 }) {
 
   return (
     <>
-    <TwistAccordion title={treatmentChoices?.[0]?.categories?.[0]?.name}
-    userIndex={index}
-    lineItems={lineItems}
-    setLineItems={setlineItems}
-    treatmentChoices={treatmentChoices}
-    >
-      <div className='treatments-wrapper'>
-                        {treatmentChoices.map(treatment => {
-                          
-    const { id, price, price_html = 0} = treatment || {};
+      <TwistAccordion title={treatmentChoices?.[0]?.categories?.[0]?.name}
+        userIndex={index}
+        lineItems={lineItems}
+        setLineItems={setlineItems}
+        treatmentChoices={treatmentChoices}
+      >
+        <div className='treatments-wrapper'>
+          {treatmentChoices.map(treatment => {
 
-    const pricePattern = /<bdi><span class="woocommerce-Price-currencySymbol">&#36;<\/span>(\d+(?:,\d+)*)<\/bdi>/g;
+            const { price_html = 0 } = treatment || {};
 
-    const matches = !isFetchingProduct&&price_html&& [...price_html.matchAll(pricePattern)];
+            const pricePattern = /<bdi><span class="woocommerce-Price-currencySymbol">&#36;<\/span>(\d+(?:,\d+)*)<\/bdi>/g;
 
-    const prices1 = matches?.map(match => match[1].replace(/,/g, ''));
+            const matches = !isFetchingProduct && price_html && [...price_html.matchAll(pricePattern)];
 
-    let inClinicPrice = null;
-    let inHousePrice = null;
-
-    if (prices1.length === 1) {
-        inClinicPrice = parseFloat(prices1[0]);
-    } else if (prices1.length >= 2) {
-        inClinicPrice = parseFloat(prices1[0]);
-        inHousePrice = parseFloat(prices1[1]);
-    }
-console.log({inClinicPrice,inHousePrice,treatment:treatment.name,price_html,whereBooking})
-                       
-                          return(
-                        <div key={treatment.id} className='check-box-price-wrapper'>
-                          <div className='accordion-inner-wrapper'>
-                          <div className="checkbox-title">
-                            {
-                              // ivTherapy?
-                            // <input
-                            // checked={currentProduct?.id === treatment.id}
-                            // className='accordion-checkbox-details iv-therapy-checkbox'
-                            // style={{cursor:'pointer'}}
-                            //   type={'radio'}
-                            //   name={`userData[${index}].line_items[${index}].product_id`}
-                            //   value={treatment.id}
-                            //   onChange={e => {
-                            //     if (e.target.checked) {
-                            //         setCurrentProduct(treatment);
-                            //         setlineItems([...lineItems,{
-                            //             userIndex: index,
-                            //             price:treatment?.price,
-                            //             product_id: treatment.id,
-                            //             productName: treatment?.name,
-                            //             quantity: 1,
-                            //             metaData: []
-                            //         }]);
-                            //     } else {
-                            //         setlineItems(lineItems.filter(item => item.product_id !== treatment.id));
-                            //     }
-                            // }}
-                            // />
-                            // <input
-                            // className='accordion-checkbox-details'
-                            // style={{cursor:'pointer'}}
-                            //   type="checkbox"
-                            //   name={`userData[${index}].line_items[${index}].product_id`}
-                            //   value={treatment.id}
-                            //   checked={lineItems.some(item => item.product_id === treatment.id)}
-                            //   onChange={e => {
-                            //     if (e.target.checked) {
-                            //         setlineItems([...lineItems,{
-                            //            userIndex: index,
-                            //             product_id: treatment.id,
-                            //             productName: treatment?.name,
-                            //             price: treatment?.price,
-                            //             quantity: 1,
-                            //             metaData: []
-                            //         }]);
-                            //     } else {
-                            //       console.log({
-                            //         targetValue:e.target.value,
-                            //         currentProduct:currentProduct?.id,
-                            //       })
-                            //         setlineItems(lineItems.filter(item => item.product_id !== treatment.id));
-                            //     }
-                            // }}
-                            // />
-                            
-                            // :
-                            <input
-                          className='accordion-checkbox-details'
-                          style={{cursor:'pointer'}}
-                            type="checkbox"
-                            name={`userData[${index}].line_items[${index}].product_id`}
-                            value={treatment.id}
-                            // checked={lineItems.some(item => index===0&&item.product_id === treatment.id)}
-                            checked={lineItems.some(item=>index===item.userIndex&&item.product_id===treatment.id)}
-                            defaultChecked={lineItems.some(item=>index===0&&item.product_id===treatment.id)}
-                            onChange={e => {
-                              if (e.target.checked) {
-                                  setlineItems([...lineItems,{
-                                     userIndex: index,
-                                      product_id: treatment.id,
-                                      productName: treatment?.name,
-                                      // price: treatment?.price,
-                                      price:ivTherapy&&whereBooking==='housecall'&& inHousePrice||treatment?.price,
-                                      quantity: 1,
-                                      metaData: []
-                                  }]);
-                              } else {
-                                  setlineItems(lineItems.filter(item => item.product_id !== treatment.id));
-                              }
+            const prices1 = !isFetchingProduct && matches?.map(match => match[1].replace(/,/g, ''));
+            let inHousePrice = null;
+            if (prices1.length >= 2) {
+              inHousePrice = parseFloat(prices1[1]);
+            }
+            return (
+              <div key={treatment.id} className='check-box-price-wrapper'>
+                <div className='accordion-inner-wrapper'>
+                  <div className="checkbox-title">
+                    {
+                      ivTherapy ?
+                        <input
+                          className='accordion-checkbox-details iv-therapy-checkbox'
+                          style={{ cursor: 'pointer' }}
+                          type={'radio'}
+                          name={`userData[${index}].line_items[${index}].product_id`}
+                          value={treatment.id}
+                          onChange={e => {
+                            if (e.target.checked) {
+                              setCurrentProduct(treatment);
+                              setlineItems(prevLineItems => {
+                                const ivTreatmentIds = treatmentChoices
+                                  .filter(treatment => treatment.categories[0].name === 'IV Treatment')
+                                  .map(treatment => treatment.id);
+                                  const remainingLineItems = prevLineItems.filter(item => {
+                                    if (item.userIndex !== index) {
+                                      return true;
+                                    }
+                                    return !ivTreatmentIds.includes(item.product_id);
+                                  });                                return [
+                                  ...remainingLineItems,
+                                  {
+                                    userIndex: index,
+                                    price: dataValues?.userData?.[index]?.Booking === 'housecall' ? inHousePrice : treatment?.price,
+                                    product_id: treatment.id,
+                                    productName: treatment?.name,
+                                    quantity: 1,
+                                    metaData: []
+                                  }
+                                ];
+                              });
+                            }
                           }}
-                          />}
-                          {treatment?.name}
-                          </div>
-                          {/* price */}
-                          <div className='accordion-item-price'
-                          >
-                            <p className='price-tag'>
-                           $ {ivTherapy&&whereBooking==='housecall'&& inHousePrice||treatment?.price}
-                            </p>
-                          </div>
-                          </div>
-                        </div>
-                      )})}
-                      </div>
-                      </TwistAccordion>
-                      </>
+                        />
+                        :
+                        <input
+                          className='accordion-checkbox-details'
+                          style={{ cursor: 'pointer' }}
+                          type="checkbox"
+                          name={`userData[${index}].line_items[${index}].product_id`}
+                          value={treatment.id}
+                          checked={lineItems.some(item => index === item.userIndex && item.product_id === treatment.id)}
+                          onChange={e => {
+                            if (e.target.checked) {
+                              setlineItems([...lineItems, {
+                                userIndex: index,
+                                product_id: treatment.id,
+                                productName: treatment?.name,
+                                price: dataValues?.userData?.[index]?.Booking === 'housecall' && inHousePrice || treatment?.price,
+                                quantity: 1,
+                                metaData: []
+                              }]);
+                            } else {
+                              setlineItems(lineItems.filter(item => item.product_id !== treatment.id));
+                            }
+                          }}
+                        />}
+                    {treatment?.name}
+                  </div>
+                  {/* price */}
+                  <div className='accordion-item-price'
+                  >
+                    <p className='price-tag'>
+                      $ {dataValues?.userData?.[index]?.Booking === 'housecall' && inHousePrice || treatment?.price}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </TwistAccordion>
+    </>
   )
 }
 

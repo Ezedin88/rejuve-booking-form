@@ -9,6 +9,7 @@ function AlmostDoneSection({
   handleCustomTipChange,
   calculatedTipAmount
 }) {
+  // const calculatedTipAmount = Number(customTip) || (Number(productPrice) * Number(percentageTip)) / 100;
   return (
     <div>
       <>
@@ -43,11 +44,13 @@ function AlmostDoneSection({
               {[0, 5, 10, 15, 20].map((percentage) => (
                 <div className="tip-choice-group" key={percentage}>
                   <input
+                  className='tip-radio'
                     type="radio"
+                    defaultChecked={Number(percentage) === Number(defaultTip)}
                     id={`${Number(percentage)}%`}
                     name="tip"
                     onChange={() => handlePercentageChange(Number(percentage))}
-                    checked={(Number(percentage) === Number(defaultTip))}
+                    // checked={(Number(percentage) === Number(defaultTip))}
                   />
                   <label htmlFor={`${Number(percentage)}%`}>{`${Number(percentage)}%`}</label>
                 </div>
@@ -57,7 +60,7 @@ function AlmostDoneSection({
           {/* add a custom tip amount */}
 
           <div className="tip-input-and-dollar-wrapper">
-            <input type="number" placeholder="Custom Tip" className="tip-input input-box"
+            <input type="number" placeholder="Custom Tip" id='tip-input' className="tip-input input-box"
             style={{marginTop: '30px'}}
               onChange={handleCustomTipChange}
             />

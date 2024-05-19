@@ -5,19 +5,21 @@ import CustomInput from "../CustomInput";
 function BookingLocation({
   index,
   values,
+  setWhereBooking,
 }) {
   return (
     <div>
       <div className='selection-wrapper'>
         <div className="choose-radio-wrapper">
           <div className='where-span'>
-            <Field className="location-radios" type="radio" name={`userData[${index}].Booking`} value="atourclinics" />
+            <Field className="location-radios" type="radio" name={`userData[${index}].Booking`} value="atourclinics"
+            />
            <p className='location-where'> At Our Clinics  <span className='location-span'>At our locations</span></p>
           </div>
         </div>
         <div className="choose-radio-wrapper">
           <div className='where-span'>
-            <Field className="location-radios" type="radio" name={`userData[${index}].Booking`} value="wecometoyou" />
+            <Field className="location-radios" type="radio" name={`userData[${index}].Booking`} value="housecall" />
          <p className='location-where'>   We Come to You <span className='location-span'>We come to you</span></p>
           </div>
         </div>
