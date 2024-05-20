@@ -26,7 +26,7 @@ const filteredCheckedItems = currentAccordionCheckedItems.filter(item => treatme
                 setLineItems(lineItems.filter(product =>product.product_id!==item.product_id))
               }}
               >
-                <img src='/src/assets/close-icon.svg' alt='close-icon' />
+                <img src='http://rejuve.md/wp-content/uploads/2024/05/close-icon-1.svg' alt='close-icon' />
               </button>
             </div>
           )

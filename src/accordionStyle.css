@@ -4,8 +4,14 @@
     margin-top: 10px !important;
     /* width: 100%; */
   }
+  
+  .accordion-main-wrapper.open{
+    padding-bottom: 40px !important;
+  }
+  
   .accordion-main-wrapper{
     margin-top: 32px !important;
+    /* padding-bottom: 40px !important; */
     background-color: #D0F4F7;
     max-width: 1240px;
     border-radius: 8px;
@@ -69,7 +75,7 @@
 
   .treatments-wrapper{
     display: flex;
-    gap: 20px;
+    gap: 35px;
     justify-content: space-between;
     align-items: center;
     padding: 0 75px 0 75px;
@@ -124,6 +130,7 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 22px;
+    margin-bottom: 0px !important;
 }
 
 .checkbox-title{
@@ -140,6 +147,7 @@ input.accordion-checkbox-details{
 }
 
 input.accordion-checkbox-details {
+  padding:unset !important;
   appearance: none;
   box-sizing: border-box;
   border: 1px solid rgba(192, 196, 204, 0.47);
@@ -150,6 +158,7 @@ input.accordion-checkbox-details {
 }
 
 input.accordion-checkbox-details::before {
+  padding:unset !important;
   content: "";
   position: absolute;
   width: 10px;
@@ -164,6 +173,7 @@ input.accordion-checkbox-details::before {
 
 /* for radio */
 input.accordion-checkbox-details.iv-therapy-checkbox {
+  padding:unset !important;
   appearance: none;
   box-sizing: border-box;
   border: 1px solid rgba(192, 196, 204, 0.47);
@@ -175,6 +185,7 @@ input.accordion-checkbox-details.iv-therapy-checkbox {
 }
 
 input.accordion-checkbox-details.iv-therapy-checkbox::before {
+  padding:unset !important;
   content: "";
   position: absolute;
   width: 10px;
@@ -189,6 +200,7 @@ input.accordion-checkbox-details.iv-therapy-checkbox::before {
 }
 
 input.accordion-checkbox-details:checked::before {
+  padding:unset !important;
   opacity: 1;
 }
 
@@ -239,4 +251,8 @@ input.accordion-checkbox-details:checked::before {
 .close-icon img{
   width: 20px;
   height: 20px;
+}
+
+.close-icon{
+  cursor: pointer !important;
 }

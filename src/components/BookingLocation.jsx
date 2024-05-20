@@ -49,7 +49,7 @@ function BookingLocation({
             Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403
           </option>
         </Field>
-          <img className='location-icon' src="/src/assets/location-icon.svg" /> 
+          <img className='location-icon' src="http://rejuve.md/wp-content/uploads/2024/05/location-icon-1.svg" /> 
         <ErrorMessage name={`userData[${index}].clinic`} component="div" className="error-clinic-selection input-box-error-message" />
         </div>
         ) || <div className='address-wrapper'>

@@ -29,6 +29,7 @@ font-weight: 400;
 font-size: 14px;
 line-height: 22px;
 color: #5A5F73;
+margin-bottom: 0 !important;
 }
 
 .location-span{
@@ -43,6 +44,7 @@ color: #5A5F73;
 }
 
 .location-radios,.provider-input{
+    padding: 0 !important;
     appearance: none;
     box-sizing: border-box;
     border: 1px solid rgba(192, 196, 204, 0.47);
@@ -83,6 +85,7 @@ color: #5A5F73;
     width: 563px;
     height: 44px;
     border: 1px solid rgba(192, 196, 204, 0.47);
+    background-color: #fff !important;
     border-radius: 4px;
     outline: none;
 }
@@ -110,6 +113,7 @@ color: #5A5F73;
     }
 
     .select-location-dropdown{
+        background-color: #fff !important;
         padding: 9px 12px;
         width: 350px;
         margin: auto;

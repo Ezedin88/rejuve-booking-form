@@ -98,6 +98,7 @@ color: #282D41;
 .total-calculation{
 box-sizing: border-box;
 border-top: 0.8px solid rgba(40, 45, 65, 0.22);
+padding-top: 5px !important;
 }
 
 .total-calculation-label,.total-calculation-price{
@@ -113,8 +114,17 @@ color: #282D41;
 
 /* summary till this */
 
-.user-detail-main,.booking-location-main,.choose-providers,.order-summary-main {
-    margin-top: 61px !important;
+.booking-location-main,.choose-providers,.order-summary-main {
+    /* margin-top: 61px !important; */
+    max-width: 1257px;
+    margin: auto;
+    background-color: #E3FAFF;
+    padding: 25px 0px 33px 25px;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+
+.user-detail-main{
     max-width: 1257px;
     margin: auto;
     background-color: #E3FAFF;
@@ -237,6 +247,7 @@ font-weight: 600;
 font-size: 16px;
 line-height: 19px;
 color: #FFFFFF;
+cursor:pointer !important;
 }
 
 .add-another-person-button:hover {
@@ -312,9 +323,15 @@ padding-left: 25px;
     display: flex;
     align-items: start;
     justify-content: space-between;
+    padding:unset !important;
+}
+
+.radio-input-label {
+    margin-bottom: 0 !important;
 }
 
 .payment-radio-input{
+    padding:0 !important;
     appearance: none;
     box-sizing: border-box;
     border: 1px solid rgba(192, 196, 204, 0.47);
@@ -397,4 +414,8 @@ display: flex;
 align-items: center;
 font-feature-settings: 'tnum' on, 'lnum' on;
 color: #AFB1B3 !important;
+}
+
+.agreement-description{
+    margin-bottom: 0 !important;
 }

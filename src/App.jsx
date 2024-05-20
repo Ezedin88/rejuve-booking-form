@@ -19,7 +19,7 @@ function App() {
   // const dataPage = document.querySelector('[data-page_id]').getAttribute('data-page_id');
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBiMgA18QMFdnj67qadAYRk816SdI8c8ag&libraries=places`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=&libraries=places`;
     script.async = true;
     script.defer = true;
     script.addEventListener('load', () => {
@@ -247,7 +247,7 @@ function organizeItems(user, lineItems, userIndex,values) {
 console.log('sent',dataToSend)
   if(dataToSend){
     // createorder
-    // client.createOrder(dataToSend)
+    client.createOrder(dataToSend)
   }
 
   }
