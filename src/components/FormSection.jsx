@@ -87,7 +87,7 @@ function FormSection({
                 {() =>
                   values.userData.map((item, index) => {
                     return (
-                      <div key={index}>
+                      <div className='user_wrapper' key={index}>
                         {/* button to remove added item */}
                         {
                           values.userData.length > 1 && index !== 0 && (
@@ -201,140 +201,154 @@ function FormSection({
                   Add Another Person</button>
               </div>
               {/* Choose Providers */}
-              <div className="choose-providers" id="choose-providers">
-                <p className="form-main-titles">Choose Provider</p>
-                <Providers
-                  providers={providers}
-                  handleProviderChange={handleProviderChange}
-                  selectedProvider={selectedProvider}
-                  values={values}
-                />
+              <div className="choose_providers_wrapper">
+                <div className="choose-providers" id="choose-providers">
+                  <p className="form-main-titles">Choose Provider</p>
+                  <Providers
+                    providers={providers}
+                    handleProviderChange={handleProviderChange}
+                    selectedProvider={selectedProvider}
+                    values={values}
+                  />
+                </div>
               </div>
               {/* booking date and time preference */}
-              <div className="choose-providers" id="choose-providers">
-                <p className="form-main-titles">Booking Date and Time Preference</p>
-                <BookingDateTime />
+              <div className="choose_providers_wrapper">
+                <div className="choose-providers" id="choose-providers">
+                  <p className="form-main-titles">Booking Date and Time Preference</p>
+                  <BookingDateTime />
+                </div>
               </div>
               {/* almost done */}
-              <div className="choose-providers" id="choose-providers">
-                <p className="form-main-titles">Almost Done</p>
-                <AlmostDoneSection
-                  calculatedTipAmount={calculatedTipAmount}
-                  handleCustomTipChange={handleCustomTipChange}
-                  handlePercentageChange={handlePercentageChange}
-                  defaultTip={defaultTip}
-                  values={values}
-                  setValues={setValues}
-                />
+              <div className="choose_providers_wrapper">
+                <div className="choose-providers" id="choose-providers">
+                  <p className="form-main-titles">Almost Done</p>
+                  <AlmostDoneSection
+                    calculatedTipAmount={calculatedTipAmount}
+                    handleCustomTipChange={handleCustomTipChange}
+                    handlePercentageChange={handlePercentageChange}
+                    defaultTip={defaultTip}
+                    values={values}
+                    setValues={setValues}
+                  />
+                </div>
               </div>
               {/* order summary */}
-              <div className="order-summary-main" id="order-summary-main">
-                <p className="form-main-titles">Order Summary</p>
-                <div className="order-summary-main-inner" id="order-summary-main-in">
-                  {
-                    values?.userData?.length > 0 && values?.userData.map((item, userIndex) => {
-                      return (
-                        <div key={userIndex} className='personWrapper'>
-                          <p className="form-main-inner-title">{
-                            userIndex === 0 ? item?.billing?.first_name + ' ' + item?.billing?.last_name :
-                              'Person' + userIndex + 1}({item?.billing?.booking === 'atourclinics' ? 'house call' : 'clinic'})</p>
-                          <div className="item-price-summary-wrapper">
-                            {
-                              lineItems.length > 0 && lineItems.map((lineItem, index) => {
-                                return (
-                                  lineItem?.userIndex === userIndex &&
-                                  <div key={index} className="item-price-summary">
-                                    <p className='product-name-summary'>{
-                                      lineItem?.userIndex === userIndex &&
-                                      lineItem?.productName}</p>
-                                    <p className='product-price-summary'>${lineItem?.price}</p>
-                                  </div>
-                                )
+              <div className="choose_providers_wrapper">
+                <div className="order-summary-main" id="order-summary-main">
+                  <p className="form-main-titles">Order Summary</p>
+                  <div className="order-summary-main-inner" id="order-summary-main-in">
+                    {
+                      values?.userData?.length > 0 && values?.userData.map((item, userIndex) => {
+                        return (
+                          <div key={userIndex} className='personWrapper'>
+                            <p className="form-main-inner-title">{
+                              userIndex === 0 ? item?.billing?.first_name + ' ' + item?.billing?.last_name :
+                                'Person' + userIndex + 1}({item?.billing?.booking === 'atourclinics' ? 'house call' : 'clinic'})</p>
+                            <div className="item-price-summary-wrapper">
+                              {
+                                lineItems.length > 0 && lineItems.map((lineItem, index) => {
+                                  return (
+                                    lineItem?.userIndex === userIndex &&
+                                    <div key={index} className="item-price-summary">
+                                      <p className='product-name-summary'>{
+                                        lineItem?.userIndex === userIndex &&
+                                        lineItem?.productName}</p>
+                                      <p className='product-price-summary'>${lineItem?.price}</p>
+                                    </div>
+                                  )
 
+                                }
+                                ) ||
+                                <div className="item-price-summary">
+                                  <p className='product-name-summary'>No item selected</p>
+                                  <p className='product-price-summary'>$0.00</p>
+                                </div>
                               }
-                              ) ||
-                              <div className="item-price-summary">
-                                <p className='product-name-summary'>No item selected</p>
-                                <p className='product-price-summary'>$0.00</p>
-                              </div>
-                            }
+                            </div>
                           </div>
-                        </div>
-                      )
-                    })
-                  }
+                        )
+                      })
+                    }
 
-                  <div className="total-summary-whole-wrapper">
-                    <div className="sub-total-summary">
-                      <div className="total-label-price">
-                        <p className="sub-total-summary-label">
-                          Subtotal
-                        </p>
-                        <p className="sub-total-summary-price">
-                          ${totalCalculation.toFixed(2)}
-                        </p>
-                      </div>
-                      <div className="total-label-price">
-                        <p className="sub-total-summary-label">
-                          Tip({tips?.customTip ? `${Number(tips?.customTip)} $` : `${Number(tips?.percentageTip)}%`})
-                        </p>
-                        <p className="sub-total-summary-price">
-                          ${Number(calculatedTipAmount).toFixed(2)}
-                        </p>
-                      </div>
-                      <div className="total-label-price total-calculation">
-                        <p className="total-calculation-label">Total</p>
-                        <p className="total-calculation-price">${
-                          (totalCalculation + Number(calculatedTipAmount)).toFixed(2)
-                        }</p>
+                    <div className="total-summary-whole-wrapper">
+                      <div className="sub-total-summary">
+                        <div className="total-label-price">
+                          <p className="sub-total-summary-label">
+                            Subtotal
+                          </p>
+                          <p className="sub-total-summary-price">
+                            ${totalCalculation.toFixed(2)}
+                          </p>
+                        </div>
+                        <div className="total-label-price">
+                          <p className="sub-total-summary-label">
+                            Tip({tips?.customTip ? `${Number(tips?.customTip)} $` : `${Number(tips?.percentageTip)}%`})
+                          </p>
+                          <p className="sub-total-summary-price">
+                            ${Number(calculatedTipAmount).toFixed(2)}
+                          </p>
+                        </div>
+                        <div className="total-label-price total-calculation">
+                          <p className="total-calculation-label">Total</p>
+                          <p className="total-calculation-price">${
+                            (totalCalculation + Number(calculatedTipAmount)).toFixed(2)
+                          }</p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className='choose-providers' id="credit-card-section">
-                <p className="form-main-titles">Choose your desired payment method:</p>
-                <div className="payment-cards-wrapper">
-                  <CustomInput
-                    label="Card Number"
-                    name="paymentMethod"
-                    type="radio"
-                    value="creditCard"
-                  />
-                  <CustomInput
-                    label="Pay at Location"
-                    name="paymentMethod"
-                    type="radio"
-                    value="payAtLocation"
+              <div className="choose_providers_wrapper">
+                <div className='choose-providers' id="credit-card-section">
+                  <p className="form-main-titles">Choose your desired payment method:</p>
+                  <div className="payment-cards-wrapper">
+                    <CustomInput
+                      label="Card Number"
+                      name="paymentMethod"
+                      type="radio"
+                      value="creditCard"
+                    />
+                    <CustomInput
+                      label="Pay at Location"
+                      name="paymentMethod"
+                      type="radio"
+                      value="payAtLocation"
+                    />
+                  </div>
+                  <CardPaymentMethod
+                    values={values}
                   />
                 </div>
-                <CardPaymentMethod
-                  values={values}
-                />
               </div>
               {/* Payment Method */}
-              <div className='agreement-wrapper-main' id="credit-card-section">
-                <Agreement
-                  agreeToTos={agreeToTos}
-                  setAgreeToTos={setAgreeToTos}
-                  agreeToCreateAccount={agreeToCreateAccount}
-                  setAgreeToCreateAccount={setAgreeToCreateAccount}
-                  agreeToSignUp={agreeToSignUp}
-                  setAgreeToSignUp={setAgreeToSignUp}
-                />
+              <div className="choose_providers_wrapper">
+                <div className='agreement-wrapper-main' id="credit-card-section">
+                  <Agreement
+                    agreeToTos={agreeToTos}
+                    setAgreeToTos={setAgreeToTos}
+                    agreeToCreateAccount={agreeToCreateAccount}
+                    setAgreeToCreateAccount={setAgreeToCreateAccount}
+                    agreeToSignUp={agreeToSignUp}
+                    setAgreeToSignUp={setAgreeToSignUp}
+                  />
+                </div>
               </div>
               {/* submit button */}
-              <div className="book-and-pay-btn-wrapper">
-                <button type="submit"
-                  className={hasAnyErrors ? 'book-and-pay-btn-disabled' : 'book-and-pay-btn'}
-                  disabled={hasAnyErrors}
-                  onClick={() => {
-                    hasAnyErrors &&
-                      submitForm(values)
-                  }}>
-                  <div><img src="http://rejuve.md/wp-content/uploads/2024/05/lock-icon-1.svg" alt="" /></div>
-                  <p style={{ margin: 0 }}>  Book and Pay</p>
-                </button>
+              <div className="choose_providers_wrapper">
+                <div className="book-and-pay-btn-wrapper">
+                  <button type="submit"
+                    className={hasAnyErrors ? 'book-and-pay-btn-disabled' : 'book-and-pay-btn'}
+                    disabled={hasAnyErrors}
+                    onClick={() => {
+                      hasAnyErrors &&
+                        submitForm(values)
+                    }}>
+                    <div><img src="http://rejuve.md/wp-content/uploads/2024/05/lock-icon-1.svg" alt="" /></div>
+                    <p style={{ margin: 0 }}>  Book and Pay</p>
+                  </button>
+                </div>
               </div>
               {/* {Object.keys(errors).length > 0 && <small style={{ color: 'red', fontSize: '16px' }}>Please fill all fields</small>} */}
               {termsError && <div className='click-agree-reminder-wrapper'>

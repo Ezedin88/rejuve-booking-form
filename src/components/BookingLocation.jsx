@@ -14,7 +14,7 @@ function BookingLocation({
   // const {billing} = userDataErrors?.[index]||{};
   
   return (
-    <div>
+    <div className='selection_wrapper'>
       <div className='selection-wrapper'>
         <div className="choose-radio-wrapper">
           <div className='where-span'>
