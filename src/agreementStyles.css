@@ -34,10 +34,17 @@ input.agreement-checkbox-input{
    appearance: none;
    box-sizing: border-box;
    border: 1px solid #32C0CC;
-   width: 20px;
-   height: 20px;
+   min-width: 20px;
+   min-height: 20px;
    position: relative;
    background-color: white;
+ }
+
+ @media screen and (max-width: 768px) {
+  .input.agreement-checkbox-input{
+    min-width: 20px;
+    min-height: 20px;
+  }
  }
  
  input.agreement-checkbox-input::before {

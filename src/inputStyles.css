@@ -26,25 +26,25 @@
     background-color: #ffffff !important;
 }
 
-.zip-city-wrapper{
+.zip-city-wrapper {
     margin-top: 32px;
     width: 100%;
     gap: 32px;
     /* justify-content: space-between; */
 }
 
-.cityStateZip .input-box{
+.cityStateZip .input-box {
     max-width: 365px !important;
     padding: 9px 12px;
 }
 
 /* small screen */
 @media (max-width: 900px) {
-   .zip-city-wrapper{
-         flex-direction: column !important;
-         justify-content: center;
-         align-items: center;
-   }
+    .zip-city-wrapper {
+        flex-direction: column !important;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .input-box-label {
@@ -64,6 +64,7 @@
     width: 10%;
     position: relative;
 }
+
 @media screen and (max-width: 900px) {
     .label-input-wrapper {
         width: 100%;
@@ -77,13 +78,13 @@
     margin-top: 2px;
 }
 
-.error-clinic-selection{
-    text-align:left;
+.error-clinic-selection {
+    text-align: left;
     margin-top: 0px !important;
     position: absolute;
 }
 
-.choose-tip-amount{
+.choose-tip-amount {
     text-align: left;
     color: #282D41 !important;
 }
@@ -91,14 +92,16 @@
 /* target small screen */
 @media (max-width: 900px) {
     .user-input-wrapper {
+        width: 100%;
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
         justify-content: center !important;
     }
+
     .input-box {
-    padding: 9px 12px;
-    width: 100% !important;
+        padding: 9px 12px;
+        width: 100% !important;
     }
 
     .input-box-wrapper {

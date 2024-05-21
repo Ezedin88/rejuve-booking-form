@@ -405,11 +405,11 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
               </div>
               {/* {Object.keys(errors).length > 0 && <small style={{ color: 'red', fontSize: '16px' }}>Please fill all fields</small>} */}
               {termsError && <div className='click-agree-reminder-wrapper'>
-                <img src="/src/assets/info.svg" />
+                <img src="http://rejuve.md/wp-content/uploads/2024/05/info-1.svg" /> 
                 <p className="agree-to-tos-info">
                   You need to read and agree to our Tos, Privacy Policy , Consent To Treat and Cancellation Policy to continue booking.</p></div>}
                   {hasUserDataErrors && <div className='click-agree-reminder-wrapper'>
-                <img src="/src/assets/info.svg" />
+                <img src="http://rejuve.md/wp-content/uploads/2024/05/info-1.svg" />
                 <p className="agree-to-tos-info">
                 Fill all required fields to continue booking. 
                  </p></div>}
