@@ -1,5 +1,5 @@
 import '../mainStyles.css';
-import { Field, FieldArray, Form, Formik } from "formik"
+import { Field, FieldArray, Form, Formik, useFormikContext,setNestedObjectValues } from "formik"
 import { handleValidation } from "../Validation"
 import { initialValues } from "../initialValues"
 import UserDetail from "./UserDetail"
@@ -53,21 +53,52 @@ function FormSection({
   const currentProductPrice = Number(currentProduct?.price) || 0;
   const totalCalculation = lineItems.reduce((acc, item) => acc + Number(item.price), 0);
   const [refactoredErrors, setRefactoredErrors] = useState([]);
-
+  const [termsError,setTermsError] = useState(false);
+  const [hasAnyErrors,setHasAnyErrors] = useState(false);
+const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
   return (
     <>
       <Formik
         validationSchema={handleValidation}
         initialValues={initialValues}
-        validateOnMount
+        validateOnChange
+        validateOnBlur
         onSubmit={handleSubmit}
       >
-        {({ values, errors, setValues }) => {
-          console.log('all errors==>', errors)
+        {({ values, errors, setValues,setTouched,validateForm,isValid }) => {
+           const hasErrors = Object.keys(errors).filter(key => key !== 'terms').length > 0;
+           if (!hasErrors) {
+             setHasAnyErrors(false);
+           }
+           console.log('values==>',values)
           const { terms: termsError, userData: userDataErrors } = errors || {};
           const areThereUserDataErrors = userDataErrors && userDataErrors.length > 0;
-          const hasUserDataErrors = !!(errors && errors.userData);
-          const hasAnyErrors = !!(errors && Object.keys(errors).length > 0);
+
+          const checkForAnyErrors = async () => {
+            setTouched(setNestedObjectValues(values, true));
+            const formErrors = await validateForm();
+            const filteredFormErrors = Object.keys(formErrors).filter(key => key !== 'terms').reduce((obj, key) => {
+              obj[key] = formErrors[key];
+              return obj;
+            }, {});
+            const hasErrors = filteredFormErrors && Object.keys(filteredFormErrors).length > 0;
+            setHasUserDataErrors(hasErrors);
+            return hasErrors;
+          };
+
+    const handleAddUserValidation = async () => {
+      const formErrors = await validateForm();
+      const { userData:userDataErrors,bookingAddressErrors,clinicChoiceErrors } = formErrors||{};
+        const userErrorExists = userDataErrors && Object.keys(userDataErrors).length > 0||bookingAddressErrors && Object.keys(bookingAddressErrors).length > 0||clinicChoiceErrors;
+        setHasUserDataErrors(userErrorExists);
+        return userErrorExists;
+    };
+
+    const checkAgreementErrors = async()=>{
+      const formErrors = await validateForm();
+      const {terms:termsError} = formErrors||{};
+      return termsError;
+    }
 
           return (
             <Form style={{ marginBottom: '60px' }}>
@@ -176,7 +207,6 @@ function FormSection({
                     )
                   })
                 }
-
               </FieldArray>
               <div className='add-another-person-main'>
                 {areThereUserDataErrors &&
@@ -189,13 +219,15 @@ function FormSection({
                   </div>
                 }
                 <button type="button"
-                  className='add-another-person-button'
+                  className={areThereUserDataErrors ? 'add-another-person-button btn-disabled' : 'add-another-person-button'}
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}
-                  disabled={hasUserDataErrors}
                   onClick={() => {
-                    if (!hasUserDataErrors) {
-                      updateForm(values, setValues);
-                    }
+                    handleAddUserValidation().then((userErrorExists) => {
+                      if (!userErrorExists) {
+                        setHasUserDataErrors(false);
+                        updateForm(values, setValues);
+                      }
+                    });
                   }}>
                   <img src="http://rejuve.md/wp-content/uploads/2024/05/personIcon-1.svg" />
                   Add Another Person</button>
@@ -237,7 +269,7 @@ function FormSection({
                         <div key={userIndex} className='personWrapper'>
                           <p className="form-main-inner-title">{
                             userIndex === 0 ? item?.billing?.first_name + ' ' + item?.billing?.last_name :
-                              'Person' + userIndex + 1}({item?.billing?.booking === 'atourclinics' ? 'house call' : 'clinic'})</p>
+                              'Person' + userIndex + 1}({values?.bookingChoice === 'atourclinics' ? 'house call' : 'clinic'})</p>
                           <div className="item-price-summary-wrapper">
                             {
                               lineItems.length > 0 && lineItems.map((lineItem, index) => {
@@ -325,22 +357,49 @@ function FormSection({
               </div>
               {/* submit button */}
               <div className="book-and-pay-btn-wrapper">
-                <button type="submit"
-                  className={hasAnyErrors ? 'book-and-pay-btn-disabled' : 'book-and-pay-btn'}
-                  disabled={hasAnyErrors}
-                  onClick={() => {
-                    hasAnyErrors &&
-                      submitForm(values)
-                  }}>
+              <button type="submit"
+  // className={hasAnyErrors ? 'book-and-pay-btn-disabled' : 'book-and-pay-btn'}
+  // className={'book-and-pay-btn'}
+  className={hasAnyErrors ? 'book-and-pay-btn disabled' : 'book-and-pay-btn'}
+  // disabled={hasAnyErrors}
+  onClick={(e) => {
+    e.preventDefault();
+    // hasAnyErrors &&
+    checkAgreementErrors().then((termsError) => {
+      if (termsError) {
+        setTermsError(true);
+        return;
+      }
+      setTermsError(false);
+    });
+    checkForAnyErrors().then((hasErrors) => {
+      if (hasErrors) {
+        setHasAnyErrors(true);
+        return;
+      }
+      setHasAnyErrors(false);
+      submitForm(values);
+    });
+
+
+    submitForm(values);
+  }}
+>
                   <div><img src="http://rejuve.md/wp-content/uploads/2024/05/lock-icon-1.svg" alt="" /></div>
                   <p style={{ margin: 0 }}>  Book and Pay</p>
                 </button>
+                 
               </div>
               {/* {Object.keys(errors).length > 0 && <small style={{ color: 'red', fontSize: '16px' }}>Please fill all fields</small>} */}
               {termsError && <div className='click-agree-reminder-wrapper'>
                 <img src="/src/assets/info.svg" />
                 <p className="agree-to-tos-info">
                   You need to read and agree to our Tos, Privacy Policy , Consent To Treat and Cancellation Policy to continue booking.</p></div>}
+                  {hasUserDataErrors && <div className='click-agree-reminder-wrapper'>
+                <img src="/src/assets/info.svg" />
+                <p className="agree-to-tos-info">
+                Fill all required fields to continue booking. 
+                 </p></div>}
             </Form>
           )
         }}

@@ -1,6 +1,6 @@
-
+import propTypes from 'prop-types';
 import '../providerStyles.css';
-function Providers({providers,handleProviderChange,selectedProvider,values}) {
+function Providers({providers,values}) {
   return (
     <>
      <div className="provider-input-label-wrapper">
@@ -11,11 +11,13 @@ function Providers({providers,handleProviderChange,selectedProvider,values}) {
                     id="any"
                     name="provider"
                     value="Any"
-                    checked={selectedProvider==="Any"}
-                    onChange={handleProviderChange} 
+                    defaultChecked
+                    onChange={ (e)=>values.provider=e.target.value}
                     required
                 />
-                <label htmlFor="any">Any</label>
+                <label htmlFor="any"
+                className='provider-name-label'
+                >Any</label>
             </div>
             <div className="provider-group-wrapper">
     {
@@ -28,11 +30,14 @@ function Providers({providers,handleProviderChange,selectedProvider,values}) {
                     id={providerItem?.name}
                     name="provider"
                     value={providerItem?.name}
-                    checked={providerItem?.name === selectedProvider}
-                    onChange={handleProviderChange} 
+                    onChange={
+                        (e)=>values.provider=e.target.value
+                    }
                     required
                 />
-                <label htmlFor={providerItem?.name}>{providerItem?.name}</label>
+                <label htmlFor={providerItem?.name}
+                className='provider-name-label'
+                >{providerItem?.name}</label>
             </div>
         );
     })
@@ -43,3 +48,8 @@ function Providers({providers,handleProviderChange,selectedProvider,values}) {
 }
 
 export default Providers;
+
+Providers.propTypes = {
+    providers: propTypes.array,
+    values: propTypes.object
+    }

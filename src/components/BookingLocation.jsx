@@ -1,66 +1,128 @@
 import '../bookingLocationStyle.css';
-import { ErrorMessage, Field } from "formik";
+import propTypes from 'prop-types';
+import { ErrorMessage, Field, useField, useFormikContext } from "formik";
 import CustomInput from "../CustomInput";
+import PlacesAutocomplete from 'react-places-autocomplete';
+import useLocationAutoComplete from '../hooks/LocationAutoComplete';
+import { useEffect } from 'react';
 
-function BookingLocation({
-  index,
-  values,
-  setWhereBooking,
-  userDataErrors,
-  setRefactoredErrors
-}) {
-  // const {bookingAddress,billing} = userDataErrors[index];
-  console.log('user errors',userDataErrors)
-  // const {billing} = userDataErrors?.[index]||{};
-  
+function BookingLocation({ values }) {  
+  const { address, handleChange, handleSelect, formattedAddress } = useLocationAutoComplete();
+  const { address: extractedAddress, city, state, zip } = address || {};
+  const { setFieldValue, setFieldTouched, errors } = useFormikContext();
+
+  useEffect(() => {
+    if (extractedAddress) {
+      setFieldValue('bookingAddress.address_1', extractedAddress);
+      setFieldTouched('bookingAddress.address_1', true);
+    }
+    if (city) {
+      setFieldValue('bookingAddress.city', city);
+    }
+    if (state) {
+      setFieldValue('bookingAddress.state', state);
+    }
+    if (zip) {
+      setFieldValue('bookingAddress.postcode', zip);
+    }
+  }, [extractedAddress, city, state, zip, setFieldValue, setFieldTouched]);
+
+  const handleClinicChoiceBlur = () => {
+    setFieldTouched('clinicChoice', true);
+  }
+
+  const [field] = useField('clinicChoice');
+
   return (
     <div>
       <div className='selection-wrapper'>
         <div className="choose-radio-wrapper">
           <div className='where-span'>
-            <Field className="location-radios" type="radio" name={`userData[${index}].billing.booking`} value="atourclinics"
-            />
-           <p className='location-where'> At Our Clinics  <span className='location-span'>At our locations</span></p>
+            <Field className="location-radios" type="radio" name="bookingChoice" value="atourclinics" />
+            <p className='location-where'> At Our Clinics  <span className='location-span'>At our locations</span></p>
           </div>
         </div>
         <div className="choose-radio-wrapper">
           <div className='where-span'>
-            <Field className="location-radios" type="radio" name={`userData[${index}].billing.booking`} value="housecall" />
-         <p className='location-where'>   We Come to You <span className='location-span'>We come to you</span></p>
+            <Field className="location-radios" type="radio" name="bookingChoice" value="housecall" />
+            <p className='location-where'>   We Come to You <span className='location-span'>We come to you</span></p>
           </div>
         </div>
       </div>
       {
-        values?.userData?.[index]?.billing.booking === 'atourclinics' &&
+        values?.bookingChoice === 'atourclinics' &&
         (
-        <div className='select-clinic-wrapper'>
-        <Field
-          className="select-location-dropdown"
-          as="select" name={
-          `userData[${index}].clinic`
-        }
-        >
-          <option className='select-location-dropdown' value="">
-          <p>Select a clinic</p>
-          </option>
-          <option
-          className='select-location-dropdown' value="Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403"
+          <div className='select-clinic-wrapper'>
+            <select
+              className="select-location-dropdown"
+              name='clinicChoice'
+              value={field.value}
+              onChange={field.onChange}
+              onBlur={handleClinicChoiceBlur}
+              onClick={handleClinicChoiceBlur}
+            >
+              <option className='select-location-dropdown' name="clinicChoice" value="">
+                Select a clinic
+              </option>
+              <option
+                className='select-location-dropdown' value="Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403"
+              >
+                Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403
+              </option>
+            </select>
+            <img className='location-icon' src="http://rejuve.md/wp-content/uploads/2024/05/location-icon-1.svg" />
+            <ErrorMessage name='clinicChoice' component="div" className="error-clinic-selection input-box-error-message" />
+          </div>
+        ) || 
+        <div className='address-wrapper'>
+          <PlacesAutocomplete
+            value={typeof address === 'string' ? address : extractedAddress || formattedAddress}
+            onChange={handleChange}
+            onSelect={handleSelect}
           >
-            Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403
-          </option>
-        </Field>
-          <img className='location-icon' src="http://rejuve.md/wp-content/uploads/2024/05/location-icon-1.svg" /> 
-        <ErrorMessage name={`userData[${index}].clinic`} component="div" className="error-clinic-selection input-box-error-message" />
-        </div>
-        ) || <div className='address-wrapper'>
-          <CustomInput label="Your Address" name={`userData[${index}].billing.address_1`}
-            type="text" />
-          <CustomInput label="Your Address2" name={`userData[${index}].billing.address_2`}
-            type="text" />
-            <div className="zip-city-wrapper" style={{display:'flex'}}>
-          <CustomInput cityStateZip label="City" name={`userData[${index}].billing.city`} type="text" />
-          <CustomInput cityStateZip label="State" name={`userData[${index}].billing.state`} type="text" />
-          <CustomInput cityStateZip label="Postcode" name={`userData[${index}].billing.postcode`} type="text" />
+            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+              <div>
+                <CustomInput
+                  label="Your Address" 
+                  name='bookingAddress.address_1'
+                  type="text"
+                  {...getInputProps({
+                    placeholder: 'Search Places ...',
+                    className: 'location-search-input',
+                    onBlur: () => setFieldTouched('bookingAddress.address_1', true)
+                  })}
+                />
+                <div className="autocomplete-dropdown-container">
+                  {loading && <div>Loading...</div>}
+                  {suggestions.map(suggestion => {
+                    const className = suggestion.active
+                      ? 'suggestion-item--active input-box'
+                      : 'suggestion-item input-box';
+                    const style = suggestion.active
+                      ? { backgroundColor: '#fafafa', cursor: 'pointer', color: '#000' }
+                      : { backgroundColor: '#ffffff', cursor: 'pointer', color: '#000' };
+                    return (
+                      <div
+                        key={suggestion.placeId}
+                        {...getSuggestionItemProps(suggestion, {
+                          className,
+                          style,
+                        })}
+                      >
+                        <span>{suggestion.description}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </PlacesAutocomplete>
+          
+          <CustomInput label="Your Address2" name='bookingAddress.address_2' type="text" />
+          <div className="zip-city-wrapper" style={{ display: 'flex' }}>
+            <CustomInput cityStateZip label="City" name='bookingAddress.city' type="text" value={city || values.bookingAddress.city} />
+            <CustomInput cityStateZip label="State" name='bookingAddress.state' type="text" value={state || values.bookingAddress.state} />
+            <CustomInput cityStateZip label="zipcode" name='bookingAddress.postcode' type="text" value={zip || values.bookingAddress.postcode} />
           </div>
         </div>
       }
@@ -69,3 +131,7 @@ function BookingLocation({
 }
 
 export default BookingLocation;
+
+BookingLocation.propTypes = {
+  values: propTypes.object.isRequired,
+};

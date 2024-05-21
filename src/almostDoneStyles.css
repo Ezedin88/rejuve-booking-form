@@ -17,6 +17,10 @@
     border-radius: 4px;
 }
 
+.gift-card-label{
+    color: #000000 !important;
+}
+
 .promo-and-gift{
     flex-grow: 1;
 }

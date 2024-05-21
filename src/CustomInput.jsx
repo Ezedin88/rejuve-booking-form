@@ -1,13 +1,14 @@
+import propTypes from 'prop-types';
+import {ErrorMessage,useField, useFormikContext} from "formik";
+import CustomDatepicker from './components/CustomDatepicker';
+import TimePicker from './components/CustomTimepicker';
 
-import {ErrorMessage,useField} from "formik";
-
-const CustomInput = ({label,placeholder,cityStateZip,...props},ref)=>{
-    const [field] = useField(props);
-   
-
+const CustomInput = ({label,placeholder,cityStateZip,...props})=>{
+    const [field,meta] = useField(props);
     return(
         <>
         {
+            // if radio
         props.type==='radio'&&
             <div className="radio-input-wrapper">
                 <div className="radio-box">
@@ -17,6 +18,7 @@ const CustomInput = ({label,placeholder,cityStateZip,...props},ref)=>{
                     {label}
                 </p>
             </div>
+            // if text area
             ||props.type==='textArea' &&
             <div className="text-area-wrapper-input">
                 <div className='text-area-label' htmlFor={field.name}>{label}</div>
@@ -24,11 +26,28 @@ const CustomInput = ({label,placeholder,cityStateZip,...props},ref)=>{
             </div>
         }
         <div className={cityStateZip?'cityStateZip':'input-box-wrapper'}>
-            {props.type!=='radio'&&props.type!=='textArea'&&<div className="label-input-wrapper">   
-            <label className='input-box-label' htmlFor={field.name}>{label}</label>        
+            {props.type!=='radio'&&props.type!=='textArea'&& props.type!=='date'&&
+            props.type!=='time'&&
+            <div className="label-input-wrapper">   
+            <label className='input-box-label' htmlFor={field.name}>{label}</label>       
             <input placeholder={placeholder} {...field} {...props} autoComplete="true" className='input-box'/>
             </div>}
-            <ErrorMessage className='input-box-error-message' component="div" name={field.name} style={errorMessage}/>
+            {
+                props.type === 'time'&&
+                <div className="label-input-wrapper">   
+                <label className='input-box-label' htmlFor={field.name}>{label}</label>       
+                <TimePicker htmlFor={field.name} {...field} {...props}/>
+                </div>
+            }
+            {
+                props.type === 'date'&&
+                <div className="label-input-wrapper">   
+                <label className='input-box-label' htmlFor={field.name}>{label}</label>       
+                <CustomDatepicker htmlFor={field.name} {...field} {...props}/>
+                </div>
+            }
+            <ErrorMessage 
+            className='input-box-error-message' component="div" name={field.name} style={errorMessage}/>
         </div>
         </>
     )
@@ -41,3 +60,12 @@ const errorMessage = {
 }
 
 export default CustomInput;
+
+CustomInput.propTypes = {
+    label:propTypes.string.isRequired,
+    placeholder:propTypes.string,
+    cityStateZip:propTypes.bool,
+    props:propTypes.object,
+    ref:propTypes.object,
+    type:propTypes.string
+}

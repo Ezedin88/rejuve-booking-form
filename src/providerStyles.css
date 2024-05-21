@@ -16,6 +16,10 @@
     gap:10px;
 }
 
+.provider-name-label{
+    color: black !important;
+}
+
 .provider-group-wrapper {
     margin-top: 32px;
     display: flex;

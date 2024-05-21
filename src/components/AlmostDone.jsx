@@ -18,7 +18,7 @@ function AlmostDoneSection({
           <p className="do-you-have-promo">Do you have a Promo Code ?</p>
           <div className="promo-checkbox-and-label">
             <Field className="promo-check-box" id="giftCard" type="checkbox" name="giftCard" />
-            <label htmlFor="giftCard">Gift Card</label>
+            <label htmlFor="giftCard" className='gift-card-label'>Gift Card</label>
           </div>
           <div className="promo-discount-button-wrapper">
             <input className="enter-promo-discount"
@@ -41,7 +41,7 @@ function AlmostDoneSection({
           <p className='choose-tip-amount'>Choose a tip amount</p>
           <div className="tips-and-inbox">
             <div className="flex-tips-wrapper">
-              {[0, 5, 10, 15, 20].map((percentage) => (
+              {[ 5, 10, 15, 20].map((percentage) => (
                 <div className="tip-choice-group" key={percentage}>
                   <input
                   className='tip-radio'

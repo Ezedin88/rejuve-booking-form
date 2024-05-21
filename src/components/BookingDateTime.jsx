@@ -9,7 +9,6 @@ function BookingDateTime() {
     }}>
         <CustomInput label="Booking Date" name="bookingDate" type="date" />
             <CustomInput label="Booking Time" name="bookingTime" type="time" />
-          
     </div>
   )
 }

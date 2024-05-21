@@ -5,14 +5,14 @@ import { getProductPrice } from '../utils/getProductPrice';
 function ProductHero({ currentProduct, setProductPrice,setWhereBooking, isFetchingProduct, values,lineItems,setLineItems,treatmentChoices }) {
     const arrObj = useMemo(() => {
         return treatmentChoices?.map(items => {
-            const { id, bookHouseCall, bookInClinic } = getProductPrice({ product: items, isFetchingProduct });
-            return { id, bookHouseCall, bookInClinic };
+            const everyproduct =  getProductPrice({ product: items, isFetchingProduct });
+            const { id, bookHouseCall, bookInClinic,variations } = getProductPrice({ product: items, isFetchingProduct });
+            return { id, bookHouseCall, bookInClinic,variations };
         });
     }, [treatmentChoices, isFetchingProduct]);
-    
        const updatedLineItems = lineItems.map(lineItem => {
-        const { userIndex, product_id } = lineItem;
-        const userBooking = values.userData[userIndex]?.billing?.booking;
+        const { product_id } = lineItem;
+        const userBooking = values.bookingChoice;
     
         // Find the price entry in arrObj corresponding to the product_id
         const priceEntry = arrObj.find(price => price.id === product_id);
@@ -20,6 +20,7 @@ function ProductHero({ currentProduct, setProductPrice,setWhereBooking, isFetchi
         if (priceEntry) {
             if (userBooking === 'housecall'&&priceEntry.bookHouseCall!==null) {
                 lineItem.price = priceEntry.bookHouseCall;
+                lineItem.variation_id = 'housecall'? priceEntry?.variations[1] : priceEntry?.variations[0]; 
             } else {
                 lineItem.price = priceEntry.bookInClinic;
             }
@@ -30,20 +31,18 @@ function ProductHero({ currentProduct, setProductPrice,setWhereBooking, isFetchi
 
     useEffect(()=>{
         setLineItems(updatedLineItems);
-    },[
-        values.userData.map(user=>user?.billing.booking).join(''),
-    ])
+    },[values.bookingChoice])
 
     const {bookHouseCall,bookInClinic,largeHeroImage,name,short_description,smallHeroImage} = getProductPrice({ product: currentProduct, isFetchingProduct })||{};
 
     const onChangeHandler = (name) => {
         if (name === "atourclinics") {
             setWhereBooking("atourclinics");
-            values.userData[0].billing.booking = "atourclinics";
+            values.bookingChoice = "atourclinics";
 
         } else {
             setWhereBooking("housecall");
-            values.userData[0].billing.booking = "housecall";
+            values.bookingChoice = "housecall";
         }
         // scroll to element with id 'user-detail'
         const element = document.getElementById('user-detail-section');

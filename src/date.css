@@ -1,0 +1,212 @@
+/* DatePicker styling */
+.date-picker {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 9px 12px 9px 40px;
+  gap: 10px;
+  width: 563px !important;
+  height: 44px !important;
+  border: 1px solid rgba(192, 196, 204, 0.47);
+  border-radius: 4px;
+  outline: none;
+  background-color: #ffffff !important;
+  color:#333 !important;
+}
+
+
+.date-picker:hover {
+  border-color: #32c0cc;
+  color: #32c0cc;
+  box-shadow: 0 0 5px rgba(63, 196, 208, 0.5);
+}
+
+.date-picker:focus {
+  border-color: #32c0cc;
+  box-shadow: 0 0 5px rgba(63, 196, 208, 0.5);
+  outline: none;
+}
+
+.date-picker-container {
+  position: relative;
+  display: flex;
+}
+
+.react-datepicker__header {
+  background: transparent;
+  border: none;
+  padding: 10px;
+}
+
+.calendar-icon {
+  position: absolute;
+  color: #32c0cc;
+  z-index: 10;
+  font-size: 1.2rem;
+  left: 15px;
+  top: 25%;
+}
+
+.custom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.2rem;
+  background: transparent;
+  border: none;
+}
+
+.custom-header button {
+  background: none;
+  border: none;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  color: #32c0cc;
+}
+
+.custom-header select {
+  background: rgb(241, 241, 241);
+  border-radius: 0.2rem;
+  border: 1px solid rgb(185, 185, 185);
+  font-size: 1rem;
+  color: #32c0cc;
+  padding: 0.1rem;
+  &:active {
+    outline: none;
+  }
+}
+
+.custom-calendar .react-datepicker__day-name,
+.custom-calendar .react-datepicker__day,
+.custom-calendar .react-datepicker__time-name {
+  width: calc(100% / 9);
+  display: inline-block;
+  text-align: center;
+  margin: 0 5px;
+  padding: 3px 4px;
+  box-sizing: border-box;
+}
+
+.react-datepicker__day {
+  border-radius: 50%;
+  &:hover {
+    background-color: #c7f7fb;
+    color: #333;
+    border-radius: 50%;
+  }
+}
+.react-datepicker__day--selected {
+  background-color: #32c0cc;
+  border-radius: 50%;
+  padding: 0;
+  color: #fff;
+  &:hover {
+    background-color: #c7f7fb;
+    color: #333;
+    border-radius: 50%;
+  }
+}
+
+.custom-calendar .react-datepicker__day--outside-month {
+  visibility: hidden;
+}
+
+/* TimePicker styling */
+.time-picker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.7rem;
+  width: 300px;
+  font-size: 1rem;
+  background: #fff;
+  border-radius: 0.3rem;
+  color: #333;
+  position: relative;
+  height: 40px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.time-picker:hover {
+  border-color: #32c0cc;
+  color: #32c0cc;
+  box-shadow: 0 0 5px rgba(63, 196, 208, 0.5);
+}
+
+.time-picker {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 9px 12px 9px 40px;
+  gap: 10px;
+  width: 524px !important;
+  height: 44px !important;
+  border: 1px solid rgba(192, 196, 204, 0.47);
+  border-radius: 4px;
+  outline: none;
+  background-color: #ffffff !important;
+  color:#333 !important;
+}
+
+.time-picker-select{
+  width:100%;
+}
+
+.clock-icon {
+  position: absolute;
+  color: #32c0cc;
+  font-size: 1.2rem;
+  left: 18px;
+  top: 25%;
+  z-index: 20;
+  padding: 0.1rem;
+  background: #fff;
+}
+
+.time-picker-checkbox {
+  appearance: none !important;
+  background-color: #fff;
+  border: 1px solid #c6c6c6;
+  padding: 7px;
+  margin-right: 5px;
+  display: inline-block;
+  position: relative;
+}
+
+.time-picker-checkbox:checked {
+  background-color: #fff;
+  border: 1px solid #32c0cc;
+}
+
+.time-picker-checkbox:checked:after {
+  content: '';
+  display: flex !important;
+  width: 7px !important;
+  height: 6px !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background-color: #32c0cc !important;
+  border: 1px solid #32c0cc !important;
+}
+
+  @media(max-width:900px){
+    .date-picker{
+      max-width: 350px !important;
+    }
+  
+    .time-picker-select,.time-picker{
+      max-width: 350px !important;
+    }
+
+    .time-picker{
+      padding: 9px 12px 9px 40px;
+    }
+  
+  }

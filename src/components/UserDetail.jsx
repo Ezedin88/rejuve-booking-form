@@ -1,4 +1,3 @@
-import React from 'react'
 import '../inputStyles.css';
 import CustomInput from '../CustomInput'
 

@@ -19,7 +19,7 @@ function App() {
   // const dataPage = document.querySelector('[data-page_id]').getAttribute('data-page_id');
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=&libraries=places`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBiMgA18QMFdnj67qadAYRk816SdI8c8ag&libraries=places`;
     script.async = true;
     script.defer = true;
     script.addEventListener('load', () => {
@@ -45,7 +45,7 @@ function App() {
   const selectNad = treatments.filter(item => item.categories.some(category => category.slug === 'nad'));
  
 
-  const providerId = providers.find(provider => provider.name === selectedProvider)?.id;
+  // const providerId = providers.find(provider => provider.name === selectedProvider)?.id;
 
   useEffect(() => {
     if (fieldsAreEmpty) {
@@ -82,6 +82,7 @@ const {values} = useFormik({initialValues})
         userIndex: 0,
         product_id: data.id,
         productName: data.name,
+        variation_id: whereBooking === 'housecall' ? data?.variations[1]: data?.variations[0],
         price: whereBooking === 'housecall' ? bookHouseCall : data.price,
         quantity: 1,
         metaData: []
@@ -120,23 +121,8 @@ const {values} = useFormik({initialValues})
         email: '',
         phone: '',
         dateOfBirth: '',
-        address_1: '',
-        address_2: '',
-        city: '',
-        state: '',
-        postcode: '',
-      },
-      Booking: 'atourclinics',
-      clinic: '',
-      bookingAddress: {
-        address_1: '',
-        address_2: '',
-        city: '',
-        state: '',
-        postcode: '',
       },
       line_items: [],
-      paymentMethod: 'creditCard'
     });
     setValues({
       ...values, userData
@@ -145,95 +131,105 @@ const {values} = useFormik({initialValues})
     });
   }
 
-
   function organizeLineItems(data) {
     // Ensure userData array exists and is not empty
+    const providerId = providers.find(provider => provider.name === data?.values?.provider)?.id;
     if (!data.values.userData || data.values.userData.length === 0) {
         return;
     }
+
     data.values.userData.forEach((user, index) => {
-        organizeItems(user, data.lineItems, index,data.values);
+        organizeItems(user, data.lineItems, index, data.values);
     });
 
-    return {...data,...{
-      fee_lines:[
-        {
-          name:'Tip',
-          tax_class:'',
-          tax_status:'taxable',
-          total: String(calculatedTipAmount)
-        }
-      ],
-      meta_data:[
-        {
-          key:'providerinfo',
-          value:{
-            id:providerId,
-            time:data?.values?.bookingTime,
-            date:data?.values?.bookingDate
-          }
-        }
-      ]
-    }};
-}
-function organizeItems(user, lineItems, userIndex,values) {
-  const meta = (index, name) => ({
-    key: 'Name',
-    value: name || `Person ${index + 1} Person ${index + 1}`,
-  });
-  if (userIndex) {
-    user.line_items = lineItems
-      .filter((item) => item.userIndex == userIndex)
-      .map((item) => {
-        return {
-          ...item,
-          meta_data: [meta(0)],
-        };
-      });
-    return;
-  }
-  user.line_items = lineItems.map((item) => {
-    const bookingPlace = values?.userData?.[userIndex]?.billing?.booking==='housecall'?'house':'clinic';
-    if (bookingPlace === 'clinic') {
-      const fieldsToDelete = ['address_1', 'address_2', 'city', 'state', 'postcode'];
-      
-      fieldsToDelete.forEach(field => {
-          delete user.billing[field];
-      });
-  
-      user.billing.clinicChoice = values?.userData?.[userIndex]?.booking.clinic;
-  }
-  
     return {
-      ...item,
-      meta_data: [
-        {
-          key: 'type',
-          value: values?.userData?.[userIndex]?.billing?.booking==='housecall'?'house call':'clinic',
-        },
-        {
-          key:'Provider',
-          value:selectedProvider
-        },
-        userIndex === item.userIndex
-          ? meta(
-              0,
-              `${user.billing.first_name} ${user.billing.last_name}`,
-            )
-          : meta(item.userIndex),
-        {
-          key:'Booking',
-          value:bookingPlace
-        },
-        bookingPlace==='clinic'&&{
-          key:'Clinic Choice',
-          value:values?.userData?.[userIndex]?.booking.clinic
-        }
-      ]
+        ...data,
+        fee_lines: [
+            {
+                name: 'Tip',
+                tax_class: '',
+                tax_status: 'taxable',
+                total: String(calculatedTipAmount)
+            }
+        ],
+        meta_data: [
+            {
+                key: 'providerinfo',
+                value: {
+                    id: providerId,
+                    time: data?.values?.bookingTime,
+                    date: data?.values?.bookingDate
+                }
+            }
+        ]
     };
-  });
-  return;
 }
+
+function organizeItems(user, lineItems, userIndex, values) {
+    const meta = (index, name) => ({
+        key: 'Name',
+        value: name || `Person ${index + 1} Person ${index + 1}`
+    });
+
+    if (userIndex) {
+        user.line_items = lineItems
+            .filter((item) => item.userIndex == userIndex)
+            .map((item) => {
+                return {
+                    ...item,
+                    meta_data: [meta(0)],
+                };
+            });
+        return;
+    }
+
+    user.line_items = lineItems.map((item) => {
+        const bookingPlace = values?.bookingChoice === 'housecall' ? 'house' : 'clinic';
+
+        if (bookingPlace === 'clinic') {
+            const fieldsToDelete = ['address_1', 'address_2', 'city', 'state', 'postcode'];
+            fieldsToDelete.forEach(field => {
+                delete user.billing[field];
+            });
+        }
+
+        const metaDataArray = [
+            {
+                key: 'type',
+                value: values?.bookingChoice === 'housecall' ? 'house call' : 'clinic',
+            },
+            {
+                key: 'Provider',
+                value: values?.provider
+            },
+            userIndex === item.userIndex
+                ? meta(0, `${user.billing.first_name} ${user.billing.last_name}`)
+                : meta(item.userIndex),
+            {
+                key: 'Booking',
+                value: bookingPlace
+            }
+        ];
+
+        if (bookingPlace === 'clinic') {
+            metaDataArray.push({
+                key: 'Clinic Choice',
+                value: values?.clinicChoice
+            });
+        }
+
+        // Filter out any falsy values from meta_data array
+        const filteredMetaData = metaDataArray.filter(Boolean);
+
+        return {
+            ...item,
+            meta_data: filteredMetaData
+        };
+    });
+
+    return;
+}
+
 
   const submitForm = (values) => {
   const transformedData = organizeLineItems({values,lineItems})
@@ -244,9 +240,9 @@ function organizeItems(user, lineItems, userIndex,values) {
     line_items:item?.line_items,
     fee_lines
   }));
-console.log('sent',dataToSend)
   if(dataToSend){
     // createorder
+    
     client.createOrder(dataToSend)
   }
 
@@ -277,6 +273,8 @@ console.log('sent',dataToSend)
   const handleCustomTipChange = (e) => {
     document.querySelectorAll('input[type="radio"].tip-radio').forEach(radio => {
       radio.checked = false;
+      radio.value = '';
+      setPercentageTip(null);
     });
 
     setCustomTip(e.target.value);
@@ -289,7 +287,7 @@ console.log('sent',dataToSend)
     <section>
       <FormSection
       tips={{
-        customTip,
+        customTip, 
         percentageTip
       }}
         lineItems={lineItems}
