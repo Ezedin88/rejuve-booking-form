@@ -7,6 +7,12 @@
     margin: auto;
 }
 
+@media screen and (max-width: 768px) {
+    .text-area-wrapper-input{
+        width: 100%;
+    }
+}
+
 .special-instructions-text-area {
     /* Text Input */
     background:#fff !important;

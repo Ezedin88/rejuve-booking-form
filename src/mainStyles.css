@@ -1,6 +1,19 @@
-.user-detail-main,.booking-location-main,.choose-treatments-main,.choose-providers,.order-summary-main {
+.user-detail-main,
+.booking-location-main,
+.choose-treatments-main,
+.choose-providers,
+.order-summary-main {
     margin-top: 100px !important;
     position: relative;
+}
+
+@media screen and (max-width: 768px) {
+
+    .user_wrapper,
+    .choose_providers_wrapper {
+        padding: 0 15px;
+    }
+
 }
 
 .form-main-titles {
@@ -16,8 +29,16 @@
     left: 0;
 }
 
-.form-main-inner-title{
-     font-family: 'Inter';
+@media screen and (max-width: 768px) {
+    .form-main-titles {
+        left: 50%;
+        transform: translateX(-50%);
+        width: max-content;
+    }
+}
+
+.form-main-inner-title {
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
@@ -30,91 +51,94 @@
 }
 
 /* summary */
-.item-price-summary-wrapper{
+.item-price-summary-wrapper {
     margin-top: 32px;
     background-color: #FBF2DD;
     padding: 32px;
 }
 
-.product-name-summary{
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 22px;
-color: #282D41;
+.product-name-summary {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #282D41;
 }
 
-.product-price-summary{
-font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 14px;
-line-height: 22px;
-color: #282D41;
+.product-price-summary {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+    color: #282D41;
 }
 
-.item-price-summary{
+.item-price-summary {
     display: flex;
     justify-content: space-between;
 }
 
-.total-summary-whole-wrapper{
+.total-summary-whole-wrapper {
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
 }
 
-.sub-total-summary{
+.sub-total-summary {
     width: 100%;
     max-width: 300px;
     display: flex;
     flex-direction: column;
 }
 
-.total-label-price{
+.total-label-price {
     display: flex;
     justify-content: space-between;
 }
 
-.sub-total-summary-label{
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 22px;
-color: #282D41;
+.sub-total-summary-label {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #282D41;
 }
 
-.sub-total-summary-price{
-font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 14px;
-line-height: 22px;
-color: #282D41;
+.sub-total-summary-price {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+    color: #282D41;
 }
 
-.total-calculation{
-box-sizing: border-box;
-border-top: 0.8px solid rgba(40, 45, 65, 0.22);
-padding-top: 5px !important;
+.total-calculation {
+    box-sizing: border-box;
+    border-top: 0.8px solid rgba(40, 45, 65, 0.22);
+    padding-top: 5px !important;
 }
 
-.total-calculation-label,.total-calculation-price{
-font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 18px;
-line-height: 22px;
-display: flex;
-align-items: center;
-color: #282D41;
+.total-calculation-label,
+.total-calculation-price {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    color: #282D41;
 }
 
 /* summary till this */
 
-.booking-location-main,.choose-providers,.order-summary-main {
+.booking-location-main,
+.choose-providers,
+.order-summary-main {
     /* margin-top: 61px !important; */
     max-width: 1257px;
     margin: auto;
@@ -124,7 +148,7 @@ color: #282D41;
     border-radius: 12px;
 }
 
-.user-detail-main{
+.user-detail-main {
     max-width: 1257px;
     margin: auto;
     background-color: #E3FAFF;
@@ -143,19 +167,19 @@ color: #282D41;
     padding-top: 32px;
 }
 
-.person-to-remove{
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-line-height: 22px;
-color: #333746;
+.person-to-remove {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #333746;
 }
 
-.remove-person-button{
+.remove-person-button {
     background-color: transparent;
     border: 1px solid #ff0000;
-    color:  #ff0000;
+    color: #ff0000;
     /* padding: 10px 0px !important; */
     height: 32px;
     display: flex;
@@ -164,23 +188,23 @@ color: #333746;
     outline: none !important;
 }
 
-.remove-person-button:hover{
+.remove-person-button:hover {
     background-color: #fff4f4;
     border: 1px solid #ff0000;
     /* color: white; */
 }
 
-.remove-person-button:active{
+.remove-person-button:active {
     background-color: #ffffff;
     border: 1px solid #ff0000;
 }
 
-.order-summary-main{
+.order-summary-main {
     padding: unset;
     padding: 33px 50px;
 }
 
-.order-summary-main-inner{
+.order-summary-main-inner {
     position: relative;
     /* background-color: #FBF2DD; */
     max-width: 1137px;
@@ -188,7 +212,7 @@ color: #333746;
     margin: auto;
 }
 
-.order-summary-main{
+.order-summary-main {
     background-color: #FFF9EB;
 }
 
@@ -201,6 +225,12 @@ color: #333746;
     border-radius: 12px;
 }
 
+@media screen and (max-width: 768px) {
+    .agreement-wrapper-main {
+        padding: 25px 10px;
+    }
+}
+
 .choose-treatments-main {
     max-width: 1257px;
     margin: auto;
@@ -208,7 +238,13 @@ color: #333746;
     border-radius: 12px;
 }
 
-.add-another-person-main{
+@media screen and (max-width: 900px) {
+    .choose-treatments-main {
+        padding: 0px 10px;
+    }
+}
+
+.add-another-person-main {
     margin-top: 10px !important;
     position: relative;
     max-width: 1257px;
@@ -222,13 +258,13 @@ color: #333746;
     border-radius: 12px;
 }
 
-.add-another-person-main .another-person-info-error .fill-all-fields{
+.add-another-person-main .another-person-info-error .fill-all-fields {
     /* Please fill your information before adding another person. */
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-color: #AFB1B2 !important;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #AFB1B2 !important;
 }
 
 .another-person-info-error{
@@ -242,19 +278,18 @@ color: #AFB1B2 !important;
 }
 
 .add-another-person-button {
-padding: 10px 20px;
-width: 250px;
-height: 55px;
-background: #32C0CC;
-border-radius: 5px;
-border: none;
-outline: none !important;
-font-weight: 600;
-font-size: 16px;
-line-height: 19px;
-color: #FFFFFF;
-margin-top: 20px;
-cursor:pointer !important;
+    padding: 10px 20px;
+    width: 250px;
+    height: 55px;
+    background: #32C0CC;
+    border-radius: 5px;
+    border: none;
+    outline: none !important;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+    cursor: pointer !important;
 }
 
 .add-another-person-button.btn-disabled {
@@ -271,11 +306,13 @@ cursor:pointer !important;
 }
 
 @media (max-width: 900px) {
-    .user-detail-main,.booking-location-main {
+
+    .user-detail-main,
+    .booking-location-main {
         display: flex !important;
         flex-wrap: wrap;
         flex-direction: column;
-        padding: 33px 50px;
+        padding: 33px 15px;
         max-width: 90%;
     }
 
@@ -288,54 +325,69 @@ cursor:pointer !important;
         margin: auto;
         padding-top: 32px;
     }
-    
+
 }
 
 /* small screen */
 @media (max-width: 768px) {
-    .user-detail-main,.booking-location-main,.choose-providers {
+
+    .user-detail-main,
+    .booking-location-main,
+    .choose-providers {
         /* padding: 33px 20px; */
-        width: 500px;
+        width: 100%;
+        max-width: 95%;
+        padding: 25px;
+
     }
-    .payment-cards-wrapper{
+
+    .payment-cards-wrapper {
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 32px;
     }
-    .add-another-person-main{
+
+    .add-another-person-main {
         align-items: flex-start;
+        padding: 20px 25px;
     }
 }
 
 /* credit pay at location wrapper */
 /* payment radio inputs */
 
-.payment-cards-wrapper{
+.payment-cards-wrapper {
     display: flex;
     gap: 32px;
 }
 
-.radio-input-wrapper{
+.radio-input-wrapper {
     display: flex !important;
     align-items: center;
     justify-content: flex-start;
     background-color: #fff;
-
-gap: 12px;
-width: 563.5px;
-height: 44px;
-margin:0;
-padding: 0;
-box-sizing: border-box;
-padding-left: 25px;
+    gap: 12px;
+    width: 563.5px;
+    height: 44px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    padding-left: 25px;
 }
 
-.payment-radio-input{
+@media screen and (max-width: 768px) {
+    .radio-input-wrapper {
+        width: 100% !important;
+        padding: 0px 15px;
+    }
+}
+
+.payment-radio-input {
     display: flex;
     align-items: start;
     justify-content: space-between;
-    padding:unset !important;
+    padding: unset !important;
 }
 
 .radio-input-label {
@@ -343,8 +395,8 @@ padding-left: 25px;
     color: #282D41 !important;
 }
 
-.payment-radio-input{
-    padding:0 !important;
+.payment-radio-input {
+    padding: 0 !important;
     appearance: none;
     box-sizing: border-box;
     border: 1px solid rgba(192, 196, 204, 0.47);
@@ -375,7 +427,7 @@ padding-left: 25px;
 
 /* submit button */
 
-.book-and-pay-btn-wrapper{
+.book-and-pay-btn-wrapper {
     max-width: 1257px;
     margin: auto;
     box-sizing: border-box;
@@ -406,26 +458,61 @@ cursor:pointer !important;
 .book-and-pay-btn.disabled{
     background-color: #32bfcc50 !important;
     cursor: not-allowed !important;
+@media screen and (max-width: 768px) {
+    .book-and-pay-btn-wrapper {
+        padding: 0px 10px;
+    }
+}
+
+.book-and-pay-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 19px 40px;
+    gap: 10px;
+    width: 221.15px;
+    background: #32C0CC;
+    border-radius: 5px;
+    color: #fff;
+    outline: none !important;
+    border: none !important;
+}
+
+.book-and-pay-btn-disabled {
+    background: #3fcad6;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 19px 40px;
+    gap: 10px;
+    width: 221.15px;
+    border-radius: 5px;
+    color: #fff;
+    outline: none !important;
+    border: none !important;
 }
 
 /* agreement */
 
-.click-agree-reminder-wrapper{
+.click-agree-reminder-wrapper {
     max-width: 1257px;
     margin: auto;
     display: flex;
     gap: 8px;
 }
+
 .agree-to-tos-info {
-font-family: 'Inter';
-font-weight: 400;
-display: flex;
-align-items: center;
-font-feature-settings: 'tnum' on, 'lnum' on;
-color: #AFB1B3 !important;
+    font-family: 'Inter';
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    font-feature-settings: 'tnum' on, 'lnum' on;
+    color: #AFB1B3 !important;
 }
 
-.agreement-description{
+.agreement-description {
     margin-bottom: 0 !important;
 }
 

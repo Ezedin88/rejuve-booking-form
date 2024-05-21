@@ -111,17 +111,20 @@ margin-bottom: 0 !important;
         align-items: center;
         gap: 32px;
     }
+    .selection_wrapper{
+        width: 100%;
+    }
     .selection-wrapper{
         justify-content: center !important;
         align-items: center;
-        width: 350px;
+        width: 100%;
         margin: auto;
     }
 
     .select-location-dropdown{
         background-color: #fff !important;
-        padding: 9px 12px;
-        width: 350px;
+        padding: 9px 27px;
+        width: 100%;
         margin: auto;
     }
 

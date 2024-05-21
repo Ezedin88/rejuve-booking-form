@@ -64,6 +64,11 @@
     width: 10%;
     position: relative;
 }
+@media screen and (max-width: 900px) {
+    .label-input-wrapper {
+        width: 100%;
+    }
+}
 
 .input-box-error-message {
     color: red;
@@ -93,10 +98,11 @@
     }
     .input-box {
     padding: 9px 12px;
-    width: 350px;
+    width: 100% !important;
     }
 
     .input-box-wrapper {
-        margin-top: 20px;
+        /* margin-top: 20px; */
+        width: 100%;
     }
 }
