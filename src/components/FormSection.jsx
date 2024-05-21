@@ -118,7 +118,7 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
                 {() =>
                   values.userData.map((item, index) => {
                     return (
-                      <div key={index}>
+                      <div key={index} className='user_wrapper'>
                         {/* button to remove added item */}
                         {
                           values.userData.length > 1 && index !== 0 && (
@@ -233,6 +233,7 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
                   Add Another Person</button>
               </div>
               {/* Choose Providers */}
+              <div className="choose_providers_wrapper">
               <div className="choose-providers" id="choose-providers">
                 <p className="form-main-titles">Choose Provider</p>
                 <Providers
@@ -242,12 +243,16 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
                   values={values}
                 />
               </div>
+              </div>
               {/* booking date and time preference */}
+              <div className="choose_providers_wrapp">
               <div className="choose-providers" id="choose-providers">
                 <p className="form-main-titles">Booking Date and Time Preference</p>
                 <BookingDateTime />
               </div>
+              </div>
               {/* almost done */}
+              <div className="choose_providers_wrapper">
               <div className="choose-providers" id="choose-providers">
                 <p className="form-main-titles">Almost Done</p>
                 <AlmostDoneSection
@@ -259,7 +264,9 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
                   setValues={setValues}
                 />
               </div>
+              </div>
               {/* order summary */}
+              <div className="choose_providers_wrapper">
               <div className="order-summary-main" id="order-summary-main">
                 <p className="form-main-titles">Order Summary</p>
                 <div className="order-summary-main-inner" id="order-summary-main-in">
@@ -324,6 +331,8 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
                   </div>
                 </div>
               </div>
+              </div>
+              <div className="choose_providers_wrapper">
               <div className='choose-providers' id="credit-card-section">
                 <p className="form-main-titles">Choose your desired payment method:</p>
                 <div className="payment-cards-wrapper">
@@ -344,7 +353,9 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
                   values={values}
                 />
               </div>
+              </div>
               {/* Payment Method */}
+              <div className="choose_providers_wrapper">
               <div className='agreement-wrapper-main' id="credit-card-section">
                 <Agreement
                   agreeToTos={agreeToTos}
@@ -355,7 +366,9 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
                   setAgreeToSignUp={setAgreeToSignUp}
                 />
               </div>
+              </div>
               {/* submit button */}
+              <div className="choose_providers_wrapper">
               <div className="book-and-pay-btn-wrapper">
               <button type="submit"
   // className={hasAnyErrors ? 'book-and-pay-btn-disabled' : 'book-and-pay-btn'}
@@ -388,7 +401,7 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
                   <div><img src="http://rejuve.md/wp-content/uploads/2024/05/lock-icon-1.svg" alt="" /></div>
                   <p style={{ margin: 0 }}>  Book and Pay</p>
                 </button>
-                 
+                 </div>
               </div>
               {/* {Object.keys(errors).length > 0 && <small style={{ color: 'red', fontSize: '16px' }}>Please fill all fields</small>} */}
               {termsError && <div className='click-agree-reminder-wrapper'>
