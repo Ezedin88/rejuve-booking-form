@@ -81,7 +81,7 @@ function BookingLocation({ values }) {
             onSelect={handleSelect}
           >
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-              <div>
+              <div className='address_wrapper'>
                 <CustomInput
                   label="Your Address" 
                   name='bookingAddress.address_1'
