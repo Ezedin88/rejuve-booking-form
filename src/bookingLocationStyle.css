@@ -105,6 +105,12 @@ margin-bottom: 0 !important;
         align-items: center;
         gap: 32px;
     }
+    .address_wrapper{
+        width: 100% !important;
+    }
+    .cityStateZip{
+        width: 100%;
+    }
     .selection_wrapper{
         width: 100%;
     }
