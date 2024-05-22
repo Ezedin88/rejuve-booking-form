@@ -13,6 +13,7 @@ import ChooseTreatments from "./ChooseTreatments"
 import BookingLocation from "./BookingLocation"
 import ProductHero from "./ProductHero"
 import CustomInput from '../CustomInput';
+import WhyRejuve from './WhyRejuve';
 
 function FormSection({
   lineItems,
@@ -112,6 +113,9 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
                   values={values}
                   treatmentChoices={treatments}
                 />
+                        {/* <div className="user-detail-main" id='user-detail-section'> */}
+                          <WhyRejuve/>
+                {/* </div> */}
               </>
               <FieldArray name="userData">
                 {() =>
