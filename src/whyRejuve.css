@@ -61,82 +61,82 @@ color: #5A5F73 !important;
 /* book weight loss section */
 .iv-therapy-context,.book-weight-loss-metabolic,.returning-customer,.click-to-login{margin:0}
 .book-weight-loss-section{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 100px;
-  gap:16px;
-  margin-bottom: 100px;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-top: 100px !important;
+  gap:16px !important;
+  margin-bottom: 100px !important;
 }
 
 .book-weight-loss-section > .iv-therapy-top .iv-therapy-context{
-max-width: 359px;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 20px;
-line-height: 150%;
-text-align: center;
+max-width: 359px !important;
+font-family: 'Inter' !important;
+font-style: normal !important;
+font-weight: 600 !important;
+font-size: 20px !important;
+line-height: 150% !important;
+text-align: center !important;
 /* Text/Dark Primary */
 color: #282D41 !important;
 }
 
 .middle-main .book-weight-loss-metabolic {
-max-width: 1218px;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 48px;
+max-width: 1218px !important;
+font-family: 'Inter' !important;
+font-style: normal !important;
+font-weight: 700 !important;
+font-size: 48px !important;
 /* identical to box height, or 58px */
-text-align: center;
+text-align: center !important;
 /* Text/Dark Primary */
 color: #282D41 !important;
 }
 
 .returning-customer-context > .returning-customer {
   /* Returning customer? Click here to login */
-max-width: 1218px;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 24px;
-line-height: 150%;
+max-width: 1218px !important;
+font-family: 'Inter' !important;
+font-style: normal !important;
+font-weight: 400 !important;
+font-size: 24px !important;
+line-height: 150% !important;
 /* identical to box height, or 36px */
-text-align: center;
+text-align: center !important;
 /* Text/Dark Secondary */
-color: #5A5F73 !important;
+color: #5A5F73 !important ;
 }
 
 .click-to-login > a{
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 150%;
+font-family: 'Inter' !important;
+font-style: normal !important;
+font-weight: 700 !important;
+font-size: 24px !important;
+line-height: 150% !important;
 /* identical to box height, or 36px */
-text-align: center;
+text-align: center !important;
 /* Main */
 color: #32C0CC !important;
-text-decoration: none !important;
+text-decoration: none !important ;
 }
 
 .returning-customer-context{
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
 }
 
 /* small screen */
 @media (max-width: 768px) {
  /* weight-loss-section */
   .product-section{
-    max-width: 360px !important;
-    padding:0 12px !important;
+    max-width: 360px !important ;
+    padding:0 12px  !important;
     margin: auto !important;
     display: flex !important;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: column !important;
+    justify-content: center !important;
   }
 
 p{
