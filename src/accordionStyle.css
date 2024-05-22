@@ -263,6 +263,11 @@ input.accordion-checkbox-details:checked::before {
   align-items: center;
   gap: 40px;
 }
+@media screen and (max-width: 390px){
+  .checked-items-wrapper{
+    margin-right: 15px;
+  }
+}
 
 .checked-items-wrapper p {
   margin: 0;
