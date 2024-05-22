@@ -58,18 +58,19 @@ const CustomDatepicker = (props) => {
               <FaChevronLeft />
             </button>
             <select
-              value={date.getFullYear()}
-              onChange={({ target: { value } }) => changeYear(value)}
-            >
-              {Array.from(
-                { length: 30 },
-                (_, i) => i + (new Date().getFullYear() - 15)
-              ).map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              ))}
-            </select>
+  value={date.getFullYear()}
+  onChange={({ target: { value } }) => changeYear(value)}
+>
+  {Array.from(
+    { length: new Date().getFullYear() + 1 }, // Calculate the number of years since 1970
+    (_, i) => new Date().getFullYear() - i // Generate years dynamically
+  ).map((year) => (
+    <option key={year} value={year}>
+      {year}
+    </option>
+  ))}
+</select>
+
             <select
               value={date.getMonth()}
               onChange={({ target: { value } }) => changeMonth(value)}

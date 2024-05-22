@@ -40,11 +40,15 @@
 
 /* small screen */
 @media (max-width: 900px) {
-    .zip-city-wrapper {
-        flex-direction: column !important;
-        justify-content: center;
-        align-items: center;
-    }
+   .zip-city-wrapper{
+         flex-direction: column !important;
+         justify-content: center;
+         align-items: center;
+   }
+.user-input-wrapper{
+    width:100% !important;
+}   
+
 }
 
 .input-box-label {
@@ -78,15 +82,12 @@
     margin-top: 2px;
 }
 
-.error-clinic-selection {
-    text-align: left;
-    margin-top: 0px !important;
-    position: absolute;
+.error-clinic-selection{
+    text-align:left;
 }
 
 .choose-tip-amount {
     text-align: left;
-    color: #282D41 !important;
 }
 
 /* target small screen */

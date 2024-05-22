@@ -71,9 +71,8 @@ const timeOptions = [
 
 const TimePicker = (props) => {
   const [selectedTime, setSelectedTime] = React.useState(null);
-  console.log('selectedtime==>',selectedTime)
   const {setFieldTouched,setFieldValue} = useFormikContext();
-
+  
   const {name,onBlur} = props;
   const Option = (props) => {
     return (
@@ -106,19 +105,22 @@ const TimePicker = (props) => {
       </div>
     );
   };
-
+  
   return (
     <div className="time-picker">
       <FaRegClock className="clock-icon" />
       <Select
         blurInputOnSelect={true}
-        onBlur={()=>setFieldTouched(name,true,true)}
+        onBlur={() => setFieldTouched(name, true)}
+        // onFocus={() => setFieldTouched(name, true)}
+        // onInputChange={() => setFieldTouched(name, true)}
+        isOptionSelected={(value)=>!value&&setFieldTouched(name,true)}
         name={name}
         value={selectedTime}
-        onChange={(selectedOption)=>{
+        onChange={(selectedOption) => {
           setSelectedTime(selectedOption);
-          console.log('selectedtime==>',selectedOption)
-          setFieldValue(name,selectedOption?.label);
+          setFieldValue(name, selectedOption.value);
+          // setFieldTouched(name, true);
         }}
         options={
           filterPassedTime(timeOptions[0]) ? timeOptions : timeOptions.slice(1)

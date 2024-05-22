@@ -16,7 +16,7 @@ function App() {
   const [isFetchingProduct, setIsFetchingProduct] = useState(false);
   const [whereBooking, setWhereBooking] = useState('atourclinics');
 
-  const dataPage = document.querySelector('[data-page_id]').getAttribute('data-page_id');
+  // const dataPage = document.querySelector('[data-page_id]').getAttribute('data-page_id');
   useEffect(() => {
     const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBiMgA18QMFdnj67qadAYRk816SdI8c8ag&libraries=places`;
@@ -75,7 +75,7 @@ const {values} = useFormik({initialValues})
     }
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
-      const data = await client.getProductById(dataPage);
+      const data = await client.getProductById(108);
       setCurrentProduct(data);
       setCurrentProductCopy(data);
       setlineItems([{
@@ -285,6 +285,10 @@ function organizeItems(user, lineItems, userIndex, values) {
   const calculatedTipAmount = Number(customTip) || (Number(allPriceForTipPercentage) * Number(percentageTip)) / 100;
   return (
     <section>
+    
+      {/* <article className='spinning-image'>
+      <img src="http://rejuve.md/wp-content/themes/rejuve/assets/images/Pill-spinning.gif"></img>
+      </article>|| */}
       <FormSection
       tips={{
         customTip, 
