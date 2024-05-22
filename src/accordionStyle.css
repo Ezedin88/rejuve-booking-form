@@ -12,7 +12,7 @@
 .accordion-main-wrapper {
   margin-top: 32px !important;
   /* padding-bottom: 40px !important; */
-  background-color: #D0F4F7;
+  background-color: #E3FAFF;
   max-width: 1240px;
   border-radius: 8px;
   margin: auto;
@@ -35,7 +35,7 @@
   padding: 0;
   background-color: transparent;
   padding: 25px;
-  background-color: #D0F4F7;
+  background-color: #E3FAFF;
   border: none;
   outline: none !important;
 }
@@ -73,7 +73,7 @@
 }
 
 .arrow {
-  border: solid black;
+  border: solid #32C0CC;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
@@ -133,6 +133,23 @@
     align-items: center;
     width: 100%;
   }
+
+  .accordion-main-wrapper .accordion-title{
+  flex-direction: column !important;
+  align-items: start !important;
+  gap:5px !important;
+  }
+
+  .accordion-main-wrapper.open .accordion-title{
+    gap:20px !important;
+  }
+
+  
+
+  .checked-items-wrapper {
+    gap:22px !important;
+  }
+
 }
 
 .accordion-inner-wrapper {
@@ -157,6 +174,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  color: #282D41 !important
 }
 
 /* acc checkbox style */
@@ -234,6 +252,7 @@ input.accordion-checkbox-details:checked::before {
   padding: 0;
   margin: 0;
   text-align: left;
+  color: #282D41 !important;
 }
 
 .checked-items-wrapper {

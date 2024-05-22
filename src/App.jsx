@@ -7,16 +7,16 @@ import { Formik, useFormik } from 'formik';
 import { initialValues } from './initialValues';
 import { getProductPrice } from './utils/getProductPrice';
 function App() {
+  const [isCreatingOrder, setIsCreatingOrder] = useState(false);
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
-  const [selectedAddress, setSelectedAddress] = useState('');
-  const [defaultTip, setDefaultTip] = useState(5);
-  const [percentageTip, setPercentageTip] = useState(5);
+  const [selectedTipOption, setSelectedTipOption] = useState('others');
+  const [defaultTip, setDefaultTip] = useState(0);
+  const [percentageTip, setPercentageTip] = useState(0);
   const [customTip, setCustomTip] = useState(0);
-  const [address1, setAddress1] = useState('');
   const [isFetchingProduct, setIsFetchingProduct] = useState(false);
   const [whereBooking, setWhereBooking] = useState('atourclinics');
 
-  // const dataPage = document.querySelector('[data-page_id]').getAttribute('data-page_id');
+  const dataPage = document.querySelector('[data-page_id]').getAttribute('data-page_id');
   useEffect(() => {
     const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBiMgA18QMFdnj67qadAYRk816SdI8c8ag&libraries=places`;
@@ -75,7 +75,7 @@ const {values} = useFormik({initialValues})
     }
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
-      const data = await client.getProductById(108);
+      const data = await client.getProductById(dataPage);
       setCurrentProduct(data);
       setCurrentProductCopy(data);
       setlineItems([{
@@ -230,23 +230,38 @@ function organizeItems(user, lineItems, userIndex, values) {
     return;
 }
 
+const changeCreatingOrderStatus = (status) => {
+  setIsCreatingOrder(status);
+}
 
-  const submitForm = (values) => {
-  const transformedData = organizeLineItems({values,lineItems})
-  const {values:dataValues,meta_data,fee_lines} = transformedData||{};
-  const dataToSend = dataValues?.userData?.map((item,key)=>({
+const submitForm = async (values) => {
+  const transformedData = organizeLineItems({ values, lineItems });
+  const { values: dataValues, meta_data, fee_lines } = transformedData || {};
+  const dataToSend = dataValues?.userData?.map((item, key) => ({
     meta_data,
-    billing:item?.billing,
-    line_items:item?.line_items,
+    billing: item?.billing,
+    line_items: item?.line_items,
     fee_lines
   }));
-  if(dataToSend){
-    // createorder
-    
-    client.createOrder(dataToSend)
+  
+  if (dataToSend) {
+    try {
+      // Set order status to creating
+      changeCreatingOrderStatus(true);
+      
+      // Create the order
+      await client.createOrder(dataToSend);
+      
+      // Set order status to not creating after successful order creation
+      changeCreatingOrderStatus(false);
+      window.location.href = 'https://rejuve.md/order-confirmation/';
+    } catch (error) {
+      // Set order status to not creating in case of an error
+      changeCreatingOrderStatus(false);
+      console.error("Error creating order:", error);
+    }
   }
-
-  }
+};
 
 
   const handleSubmit = (values,options) => {
@@ -258,38 +273,42 @@ function organizeItems(user, lineItems, userIndex, values) {
     return acc + (item.price * item.quantity);
   }, 0);
   const [productPrice, setProductPrice] = useState(allPriceForTipPercentage.price || 0);
+
   const handlePercentageChange = (value) => {
-    if (value === "custom") {
-      return customTip;
-    } else {
-      // target input called tip-input and set the value to 0
-      document.getElementById('tip-input').value = 'tip'; 
-      setPercentageTip(value);
-      setDefaultTip(value);
-      setCustomTip(0);
-    }
-  }
+    setSelectedTipOption(value);
+    setPercentageTip(value);
+    setDefaultTip(value);
+    setCustomTip(0); // Reset custom tip when a predefined percentage is selected
+    // reset the value of the input field
+    document.getElementById('tip-input').value = '';
+  };
   
   const handleCustomTipChange = (e) => {
-    document.querySelectorAll('input[type="radio"].tip-radio').forEach(radio => {
-      radio.checked = false;
-      radio.value = '';
-      setPercentageTip(null);
-    });
-
-    setCustomTip(e.target.value);
+    const value = e.target.value === '' ? 0 : Number(e.target.value); // Ensure 0 if empty input
+    setSelectedTipOption('others');
+    setCustomTip(value);
+    setPercentageTip(0);
     setDefaultTip(null);
-    handlePercentageChange("custom");
-  }
-  
+  };
+
   const calculatedTipAmount = Number(customTip) || (Number(allPriceForTipPercentage) * Number(percentageTip)) / 100;
   return (
     <section>
-    
-      {/* <article className='spinning-image'>
-      <img src="http://rejuve.md/wp-content/themes/rejuve/assets/images/Pill-spinning.gif"></img>
-      </article>|| */}
-      <FormSection
+      {isCreatingOrder&&
+      <div className="loading-rejuve-spinner"
+      style={{
+        height: '100vh',
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        maxWidth: '100%',
+        mixBlendMode: 'multiply',
+        borderRadius: '500px',
+      }}
+      >
+    <img src="http://rejuve.md/wp-content/themes/rejuve/assets/images/Pill-spinning.gif"/>
+      </div>
+      || <FormSection
       tips={{
         customTip, 
         percentageTip
@@ -319,7 +338,12 @@ function organizeItems(user, lineItems, userIndex, values) {
         setProductPrice={setProductPrice}
         setWhereBooking={setWhereBooking}
         whereBooking={whereBooking}
+        tipOptions={{
+          selectedTipOption,
+          customTip,
+        }}
       />
+      }
     </section>
   )
 }

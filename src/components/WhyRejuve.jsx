@@ -1,32 +1,49 @@
 import '../whyRejuve.css';
 
-function WhyRejuve() {
+function WhyRejuve({currentProduct}) {
+  const {meta_data} = currentProduct ||{};
+
+const convenience_section_title = meta_data?.find(({key}) => key==='convenience_section_title')?.value;
+
+const convenience_list_0_convenience_title = meta_data?.find(({key}) => key==='convenience_list_0_convenience_title')?.value;
+
+const convenience_list_0_convenience_dscription = meta_data?.find(({key}) => key==='convenience_list_0_convenience_dscription')?.value;
+
+const convenience_list_1_convenience_title = meta_data?.find(({key}) => key==='convenience_list_1_convenience_title')?.value;
+
+const convenience_list_1_convenience_dscription = meta_data?.find(({key}) => key==='convenience_list_1_convenience_dscription')?.value;
+
+const convenience_list_2_convenience_title = meta_data?.find(({key}) => key==='convenience_list_2_convenience_title')?.value;
+
+const convenience_list_2_convenience_dscription = meta_data?.find(({key}) => key==='convenience_list_2_convenience_dscription')?.value;
+
+
   return (
     <>
-     <section className='product-section'>
-      <h1 className='product-section-title'>Why Rejuve for IV Therapy?</h1>
+     <section className='product-section' id='product-section-id'>
+      <h1 className='product-section-title'>{convenience_section_title}</h1>
       <div className='product-section-cards' >
         <div className='product-section-card'>
           <img src="http://rejuve.md/wp-content/uploads/2024/01/Frame_9.svg" alt="placeholder" />
-          <h1 className="product-section-card-h1">The Right Team of Doctor</h1>
+          <h1 className="product-section-card-h1">{convenience_list_0_convenience_title}</h1>
           <p
             className='why-rejuve-description'
-          >Whether you are looking to recover from a hangover, boost your performance, or improve your overall wellness, we have just what the doctor ordered!</p>
+          >{convenience_list_0_convenience_dscription}</p>
         </div>
         <div className='product-section-card'>
           <img src="http://rejuve.md/wp-content/uploads/2024/01/Frame_8.svg" alt="placeholder" />
           <h1 
-            className='product-section-card-h1'>Long-Lasting Effects</h1>
+            className='product-section-card-h1'>{convenience_list_1_convenience_title}</h1>
           <p
             className='why-rejuve-description'  
-          >In the short term, you can expect to feel a difference from your IV therapy for at least 3 or 4 days after your section. Regular IV therapy sessions will contribute to enhanced health in the long term.</p>
+          >{convenience_list_1_convenience_dscription}</p>
         </div>
         <div className='product-section-card'>
           <img src="http://rejuve.md/wp-content/uploads/2024/01/Frame_10.svg" alt="placeholder" />
-          <h1 className='product-section-card-h1'>Wide Section Range of IV Drips</h1>
+          <h1 className='product-section-card-h1'>{convenience_list_2_convenience_title}</h1>
           <p
             className='why-rejuve-description'
-          >In the short term, you can expect to feel a difference from your IV therapy for at least 3 or 4 days after your session. Regular IV therapy sections will contribute to enhanced health in the long term.</p>
+          >{convenience_list_2_convenience_dscription}</p>
         </div>
       </div>
     </section>
@@ -35,7 +52,7 @@ function WhyRejuve() {
         <p className="iv-therapy-context">IV Therapy</p>
       </div>
       <div className="middle-main">
-        <p className="book-weight-loss-metabolic">
+        <p className="book-weight-loss-metabolic" id='book-weight-loss-metabolic-id'>
           Book Weight Loss-Metabolic
         </p>
       </div>

@@ -14,7 +14,7 @@ export const billingSchema = yup.object().shape({
         .required('Email is required')
         .matches(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/, 'Invalid email address'),
     phone: yup.string().required('Phone number is required'),
-    dateOfBirth: yup.string().required('Date of birth is required'),
+    // dateOfBirth: yup.string().required('Date of birth is required'),
     // booking: yup.string().required('Booking is required'),
 });
 

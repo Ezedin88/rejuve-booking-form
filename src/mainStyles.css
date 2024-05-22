@@ -84,6 +84,7 @@
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
+    margin-top: 15px;
 }
 
 .sub-total-summary {
@@ -268,12 +269,6 @@
     margin-bottom: 0px !important;
 }
 
-.another-person-info-error {
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px;
-}
-
 .add-another-person-button {
     padding: 10px 20px;
     width: 250px;
@@ -443,9 +438,23 @@
     cursor: not-allowed !important;
 }
 
+/* time left indicator vertical line */
+.css-1u9des2-indicatorSeparator{
+    display: none !important;
+}
+
 @media screen and (max-width: 768px) {
     .book-and-pay-btn-wrapper {
         padding: 0px 10px;
+    }
+    
+    /* custom time picker */
+    .css-1xc3v61-indicatorContainer{
+        position: relative !important;
+        left: 20px !important;
+        margin:auto !important;
+        bottom:5px !important;
+        color:#32c0cc !important;
     }
 }
 
@@ -488,15 +497,24 @@
     margin: auto;
     display: flex;
     gap: 8px;
+    align-items: center;
+    margin-top: 10px !important;
 }
 
 .agree-to-tos-info {
-    font-family: 'Inter';
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    font-feature-settings: 'tnum' on, 'lnum' on;
-    color: #AFB1B3 !important;
+    /* You need to read and agree to our Tos, Privacy Policy , Consent To Treat and Cancellation Policy to continue booking. */
+max-width: 887px !important;
+text-align: left !important;
+font-family: 'Inter' !important;
+font-style: normal !important;
+font-weight: 400 !important;
+font-size: 16px !important;
+line-height: 22px !important;
+/* identical to box height, or 138% */
+display: flex;
+align-items: center;
+font-feature-settings: 'tnum' on, 'lnum' on;
+color: #AFB1B3;
 }
 
 .agreement-description {
@@ -526,5 +544,26 @@
         top:13px;
         left:14px;
     }
+    
+    .item-price-summary{
+        display:flex !important;
+        flex-direction: column !important;
+        gap:15px !important;
+    }
+
+    .sub-total-summary {
+        gap:20px !important;
+    }
+
+    .css-hp2wzz {
+        width:403px
+    }
+    
 }
 
+.another-person-info-error {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px;
+    margin-bottom: 12px !important;
+}

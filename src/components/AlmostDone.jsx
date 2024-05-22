@@ -7,7 +7,8 @@ function AlmostDoneSection({
   defaultTip,
   handlePercentageChange,
   handleCustomTipChange,
-  calculatedTipAmount
+  calculatedTipAmount,
+  tipOptions
 }) {
   // const calculatedTipAmount = Number(customTip) || (Number(productPrice) * Number(percentageTip)) / 100;
   return (
@@ -46,16 +47,33 @@ function AlmostDoneSection({
                   <input
                   className='tip-radio'
                     type="radio"
-                    defaultChecked={Number(percentage) === Number(defaultTip)}
+                    // defaultChecked={Number(percentage) === Number(defaultTip)}
                     id={`${Number(percentage)}%`}
                     name="tip"
-                    onChange={() => handlePercentageChange(Number(percentage))}
+          onChange={() => handlePercentageChange(percentage)}
+          checked={tipOptions.selectedTipOption === percentage}
                     // checked={(Number(percentage) === Number(defaultTip))}
                   />
                   <label htmlFor={`${Number(percentage)}%`}>{`${Number(percentage)}%`}</label>
                 </div>
               ))}
             </div>
+            <div className="flex-tips-wrapper">
+            <div className="tip-choice-group" 
+            key="others">
+            <input
+              className='tip-radio'
+              type="radio"
+              style={{maxWidth:'200px'}}
+              defaultChecked
+              id="others"
+              name="tip"
+              onChange={() => handlePercentageChange('others')}
+              checked={tipOptions.selectedTipOption === 'others'}
+            />
+            <label htmlFor="others">Others</label>
+          </div>
+          </div>
           </div>
           {/* add a custom tip amount */}
 
@@ -72,7 +90,7 @@ function AlmostDoneSection({
             <div style={{ display: 'flex', gap: 5 }}>
               <p className="tipTotalPrice">$</p>
               <p className="tipTotalPrice">
-                {Number(calculatedTipAmount)}
+                {Number(calculatedTipAmount||0).toFixed(2)}
               </p>
             </div>
           </div>

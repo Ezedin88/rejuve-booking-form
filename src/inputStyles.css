@@ -26,6 +26,13 @@
     background-color: #ffffff !important;
 }
 
+.input-box.your_address_style{
+    height: fit-content !important;
+    text-align: left;
+    width:563px !important;
+    height:44px !important;
+}
+
 .zip-city-wrapper {
     margin-top: 32px;
     width: 100%;

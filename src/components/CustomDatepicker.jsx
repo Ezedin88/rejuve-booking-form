@@ -14,7 +14,7 @@ const customLocale = {
   localize: {
     ...enUS.localize,
     day: (n) => {
-      const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'SAT', 'SUN'];
+      const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
       return dayNames[n];
     },
   },
@@ -27,10 +27,89 @@ const customLocale = {
 registerLocale('custom', customLocale);
 
 const CustomDatepicker = (props) => {
-  const [selectedDate, setSelectedDate] = useState('');
-  const {setFieldTouched,setFieldValue} = useFormikContext();
-  const {name,onBlur} = props;
+  const [selectedDate, setSelectedDate] = useState(null);
+  const { setFieldTouched, setFieldValue } = useFormikContext();
+  const { name, onBlur } = props;
+
+  const parseDate = (inputDate) => {
+    // Assuming inputDate is in the format DDMMYYYY or MM/DD/YYYY or MM-DD-YYYY
+    const parts = inputDate.split(/[\/-]/);
+    let month, day, year;
+    
+    if (parts.length === 1) {
+        // If only numbers provided without separators, assuming MMDDYYYY format
+        if (inputDate.length === 8) {
+            month = parseInt(inputDate.substring(0, 2), 10);
+            day = parseInt(inputDate.substring(2, 4), 10);
+            year = parseInt(inputDate.substring(4), 10);
+        } else if (inputDate.length === 7) {
+            // Assuming MDYYYY format, where the month is one digit and day is two digits
+            month = parseInt(inputDate.substring(0, 1), 10);
+            day = parseInt(inputDate.substring(1, 3), 10);
+            year = parseInt(inputDate.substring(3), 10);
+        } else if (inputDate.length === 6) {
+            // Assuming DYYYY format, where both month and day are one digit each
+            month = parseInt(inputDate.substring(0, 1), 10);
+            day = parseInt(inputDate.substring(1, 2), 10);
+            year = parseInt(inputDate.substring(2), 10);
+        } else {
+            // Invalid input format
+            return null;
+        }
+    } else if (parts.length === 3) {
+        // If input is in the format MM/DD/YYYY or MM-DD-YYYY
+        month = parseInt(parts[0], 10);
+        day = parseInt(parts[1], 10);
+        year = parseInt(parts[2], 10);
+    } else {
+        // Invalid input format
+        return null;
+    }
+
+    // Checking for valid date
+    if (isNaN(month) || isNaN(day) || isNaN(year)) {
+        return null;
+    }
+
+    // Creating a date object
+    const date = new Date(year, month - 1, day);
+
+    // Check if date object corresponds to the input date
+    if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
+        return null;
+    }
+
+    return date;
+  };
   
+  const handleDateChange = (date) => {
+    const inputDate = date instanceof Date ? date : parseDate(date);
+    setSelectedDate(inputDate);
+    setFieldValue(name, inputDate ? format(inputDate, 'MM/dd/yyyy') : '');
+    setFieldTouched(name, true, true);
+  };
+
+  const handleRawChange = (e) => {
+    const rawValue = e.target.value;
+    if (/^\d{1,8}$/.test(rawValue)) {
+      // Handle raw input of up to 8 digits
+      if (rawValue.length === 8) {
+        // If the input matches the format DDMMYYYY, parse the date
+        const parsedDate = parseDate(rawValue);
+        setSelectedDate(parsedDate);
+        setFieldValue(name, parsedDate ? format(parsedDate, 'MM/dd/yyyy') : '');
+        setFieldTouched(name, true, true);
+      } else {
+        setSelectedDate(null);
+        setFieldValue(name, rawValue);
+      }
+    } else if (rawValue === '') {
+      setSelectedDate(null);
+      setFieldValue(name, '');
+      setFieldTouched(name, true, true);
+    }
+  };
+
   return (
     <div className="date-picker-container">
       <MdOutlineCalendarToday className="calendar-icon" />
@@ -40,10 +119,8 @@ const CustomDatepicker = (props) => {
         value={selectedDate}
         selected={selectedDate}
         onBlur={onBlur}
-        onChange={(date) => {setSelectedDate(date);
-          setFieldValue(name,format(date, 'dd/MM/yyyy'))
-        }}
-        onChangeRaw={()=>setFieldTouched(name,true,true)}
+        onChange={handleDateChange}
+        onChangeRaw={handleRawChange}
         renderCustomHeader={({
           date,
           changeYear,
@@ -58,19 +135,18 @@ const CustomDatepicker = (props) => {
               <FaChevronLeft />
             </button>
             <select
-  value={date.getFullYear()}
-  onChange={({ target: { value } }) => changeYear(value)}
->
-  {Array.from(
-    { length: new Date().getFullYear() + 1 }, // Calculate the number of years since 1970
-    (_, i) => new Date().getFullYear() - i // Generate years dynamically
-  ).map((year) => (
-    <option key={year} value={year}>
-      {year}
-    </option>
-  ))}
-</select>
-
+              value={date.getFullYear()}
+              onChange={({ target: { value } }) => changeYear(value)}
+            >
+              {Array.from(
+                { length: new Date().getFullYear() + 1 },
+                (_, i) => new Date().getFullYear() - i
+              ).map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
             <select
               value={date.getMonth()}
               onChange={({ target: { value } }) => changeMonth(value)}

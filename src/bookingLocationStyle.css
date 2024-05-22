@@ -82,13 +82,14 @@ margin-bottom: 0 !important;
     padding: 13px 12px 9px 30px;
     gap: 10px;
     margin-top: 32px !important;
-    width: 563px;
+    width: 563px !important;
     height: 44px;
     border: 1px solid rgba(192, 196, 204, 0.47);
     background-color: #fff !important;
     border-radius: 4px;
     outline: none;
 }
+
 
 .address-wrapper{
     display: flex;
@@ -124,9 +125,14 @@ margin-bottom: 0 !important;
     .select-location-dropdown{
         background-color: #fff !important;
         padding: 9px 27px;
-        width: 100%;
+        width: 350px !important;
         margin: auto;
     }
+
+    
+#clinic-location-dropdown {
+    width:350px !important;
+}
 
     .choose-radio-wrapper {
     padding: 9px 12px;
@@ -143,4 +149,23 @@ margin-bottom: 0 !important;
     top: 0;
     left: 0;
     top: 5px;
+}
+
+.autocomplete-dropdown-container{
+    position: absolute !important;
+    z-index: 10;
+    width:53px;
+ }
+
+.location-search-input,
+.location-search-input:focus,
+.location-search-input:active {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  border: honeydew;
+  display: block;
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  border-radius: 2px;
+  outline: none;
 }

@@ -98,6 +98,7 @@
     padding: 8px 18px;
     border-radius: 5px;
     color: #000000;
+    min-width: 100px !important;
 }
 
 .tip-choice-group input[type="radio"] {
@@ -169,6 +170,20 @@
 
 /* small screen 768px */
 @media (max-width: 768px) {
+    .tip-choice-group {
+        width:100% !important;
+    }
+    
+    .promo-and-gift {
+        display: flex;
+        flex-direction: column;
+        gap: 17px;
+    }
+
+    div.tip-wrapper{
+        margin-top: 15px !important;
+    }
+    
     .promo-wrapper {
         display: block;
         padding: 20px 10px;

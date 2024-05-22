@@ -41,6 +41,7 @@ function FormSection({
   whereBooking,
   currentMainProduct,
   heroCurrentProduct,
+  tipOptions,
   tips
 }) {
   const [agreeToTos, setAgreeToTos] = useState(false);
@@ -114,7 +115,7 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
                   treatmentChoices={treatments}
                 />
                         {/* <div className="user-detail-main" id='user-detail-section'> */}
-                          <WhyRejuve/>
+                          <WhyRejuve currentProduct={heroCurrentProduct}/>
                 {/* </div> */}
               </>
               <FieldArray name="userData">
@@ -265,6 +266,7 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
                   defaultTip={defaultTip}
                   values={values}
                   setValues={setValues}
+                  tipOptions={tipOptions}
                 />
               </div>
               </div>
@@ -374,35 +376,34 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
               <div className="choose_providers_wrapper">
               <div className="book-and-pay-btn-wrapper">
               <button type="submit"
-  // className={hasAnyErrors ? 'book-and-pay-btn-disabled' : 'book-and-pay-btn'}
-  // className={'book-and-pay-btn'}
-  className={hasAnyErrors ? 'book-and-pay-btn disabled' : 'book-and-pay-btn'}
-  // disabled={hasAnyErrors}
-  onClick={(e) => {
+  className={hasAnyErrors||termsError ? 'book-and-pay-btn disabled' : 'book-and-pay-btn'}
+  onClick={async (e) => {
     e.preventDefault();
-    // hasAnyErrors &&
-    checkAgreementErrors().then((termsError) => {
-      if (termsError) {
-        setTermsError(true);
-        return;
-      }
+
+    const termsError = await checkAgreementErrors();
+    if (termsError) {
+      setTermsError(true);
+      return; // Stop execution if there's a terms error
+    } else {
       setTermsError(false);
-    });
-    checkForAnyErrors().then((hasErrors) => {
-      if (hasErrors) {
-        setHasAnyErrors(true);
-        return;
-      }
+    }
+
+    const hasErrors = await checkForAnyErrors();
+    if (hasErrors) {
+      setHasAnyErrors(true);
+      return; // Stop execution if there are any other errors
+    } else {
       setHasAnyErrors(false);
-      submitForm(values);
-    });
+      setTermsError(false);
+    }
 
-
+    // If no errors, submit the form
     submitForm(values);
   }}
 >
-                  <div><img src="http://rejuve.md/wp-content/uploads/2024/05/lock-icon-1.svg" alt="" /></div>
-                  <p style={{ margin: 0 }}>  Book and Pay</p>
+
+                  <div><img src="http://rejuve.md/wp-content/uploads/2024/05/lock-icon-1.svg" alt="locked icon" /></div>
+                  <p style={{ margin: 0 }}>Book and Pay</p>
                 </button>
                  </div>
               </div>

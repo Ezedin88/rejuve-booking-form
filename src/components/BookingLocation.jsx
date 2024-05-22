@@ -55,6 +55,7 @@ function BookingLocation({ values }) {
           <div className='select-clinic-wrapper'>
             <select
               className="select-location-dropdown"
+              id="clinic-location-dropdown"
               name='clinicChoice'
               value={field.value}
               onChange={field.onChange}

@@ -30,7 +30,7 @@ const CustomInput = ({label,placeholder,cityStateZip,...props})=>{
             props.type!=='time'&&
             <div className="label-input-wrapper">   
             <label className='input-box-label' htmlFor={field.name}>{label}</label>       
-            <input placeholder={placeholder} {...field} {...props} autoComplete="true" className='input-box'/>
+            <input placeholder={placeholder} {...field} {...props} autoComplete="true" className={props.name==='bookingAddress.address_1'? 'input-box your_address_style':'input-box'} />
             </div>}
             {
                 props.type === 'time'&&

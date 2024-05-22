@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../accordionStyle.css';
 const TwistAccordion = ({ title,userIndex,ivTherapy, children,setLineItems,lineItems,treatmentChoices }) => {
   const [isOpen, setIsOpen] = useState(false);
