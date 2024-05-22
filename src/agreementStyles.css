@@ -55,6 +55,7 @@ input.agreement-checkbox-input{
  /* checked */
     input.agreement-checkbox-input:checked::before {
     opacity: 1;
+    border-radius: 100px !important;
     }
 
  .agreement-wrapper-label{

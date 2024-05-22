@@ -70,7 +70,6 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
            if (!hasErrors) {
              setHasAnyErrors(false);
            }
-           console.log('vals==>',values)
           const { terms: termsError, userData: userDataErrors } = errors || {};
           const areThereUserDataErrors = userDataErrors && userDataErrors.length > 0;
 

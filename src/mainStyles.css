@@ -177,6 +177,7 @@
 }
 
 .remove-person-button {
+    cursor: pointer !important;
     background-color: transparent;
     border: 1px solid #ff0000;
     color: #ff0000;
@@ -246,7 +247,6 @@
 
 .add-another-person-main {
     margin-top: 10px !important;
-    position: relative;
     max-width: 1257px;
     margin: auto;
     display: flex;
@@ -267,18 +267,13 @@
     color: #AFB1B2 !important;
 }
 
-.another-person-info-error{
-    position: absolute;
-    top: 0;    
-}
-
 .another-person-info-error {
-    display: flex;
+    display: flex !important;
+    align-items: center !important;
     gap: 10px;
 }
 
 .add-another-person-button {
-    margin-top: 20px;
     padding: 10px 20px;
     width: 250px;
     height: 55px;
@@ -291,11 +286,6 @@
     line-height: 19px;
     color: #FFFFFF;
     cursor: pointer !important;
-}
-
-.add-another-person-button.btn-disabled {
-    background-color: #32bfcc50 !important;
-    cursor: not-allowed !important;
 }
 
 .add-another-person-button:hover {
@@ -340,6 +330,13 @@
         max-width: 95%;
         padding: 25px;
 
+    }
+
+    .click-agree-reminder-wrapper {
+        max-width:95% !important;
+        margin: auto;
+        display: flex;
+        gap: 8px;
     }
 
     .payment-cards-wrapper {
@@ -393,7 +390,6 @@
 
 .radio-input-label {
     margin-bottom: 0 !important;
-    color: #282D41 !important;
 }
 
 .payment-radio-input {
@@ -435,30 +431,6 @@
     border-radius: 12px;
 }
 
-.book-and-pay-btn{
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 19px 40px;
-gap: 10px;
-width: 221.15px;
-background: #32C0CC;
-border-radius: 5px;
-color: #fff;
-outline:none !important;
-border: none !important;
-cursor:pointer !important;
-}
-
-.book-and-pay-btn:active{
-    transform: scale(0.98);
-    background-color: #3cbecc;
-}
-
-.book-and-pay-btn.disabled{
-    background-color: #32bfcc50 !important;
-    cursor: not-allowed !important;
 @media screen and (max-width: 768px) {
     .book-and-pay-btn-wrapper {
         padding: 0px 10px;
@@ -478,10 +450,11 @@ cursor:pointer !important;
     color: #fff;
     outline: none !important;
     border: none !important;
+    cursor:pointer !important;
 }
 
-.book-and-pay-btn-disabled {
-    background: #3fcad6;
+.book-and-pay-btn.disabled {
+    background: #3fcad640;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -493,6 +466,7 @@ cursor:pointer !important;
     color: #fff;
     outline: none !important;
     border: none !important;
+    cursor: not-allowed !important;
 }
 
 /* agreement */
@@ -517,15 +491,28 @@ cursor:pointer !important;
     margin-bottom: 0 !important;
 }
 
-.autocomplete-dropdown-container{
-    color:#000 !important;
-    position: absolute;
-    z-index: 1;
-    width: 563px !important;
+.date-picker-container{
+    position:relative !important;
 }
 
-@media (max-width: 900px) {
-    .input-box{
-        width:350px !important;
+.agreement-checkbox-input{
+    border-radius: 100%;
+}
+
+.spinning-image {
+    height:95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+/* target small screen */
+@media screen and (max-width: 768px) {
+    .calendar-icon {
+        position:absolute !important;
+        top:13px;
+        left:14px;
     }
 }
+

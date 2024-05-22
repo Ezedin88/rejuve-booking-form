@@ -196,6 +196,27 @@
   border: 1px solid #32c0cc !important;
 }
 
+.react-datepicker__input-container{
+  width:unset !important;
+}
+
+.react-datepicker-popper .react-datepicker .react-datepicker__header button::after{
+  display: none !important;
+}
+.react-datepicker__header.react-datepicker__header--custom
+.custom-header select:first-child{
+  width:100px !important;
+}
+
+@media screen and (max-width: 768px) {
+  .date-picker,.react-datepicker__input-container{
+    width:100% !important;
+  }
+}
+
+/* small screens */
+
+
   @media(max-width:900px){
     .date-picker{
       max-width: 350px !important;

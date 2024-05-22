@@ -45,6 +45,10 @@
          justify-content: center;
          align-items: center;
    }
+.user-input-wrapper{
+    width:100% !important;
+}   
+
 }
 
 .input-box-label {
@@ -79,13 +83,10 @@
 
 .error-clinic-selection{
     text-align:left;
-    margin-top: 0px !important;
-    position: absolute;
 }
 
 .choose-tip-amount{
     text-align: left;
-    color: #282D41 !important;
 }
 
 /* target small screen */
