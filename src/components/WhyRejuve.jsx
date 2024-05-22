@@ -30,6 +30,20 @@ function WhyRejuve() {
         </div>
       </div>
     </section>
+    <section className="book-weight-loss-section">
+      <div className="iv-therapy-top">
+        <p className="iv-therapy-context">IV Therapy</p>
+      </div>
+      <div className="middle-main">
+        <p className="book-weight-loss-metabolic">
+          Book Weight Loss-Metabolic
+        </p>
+      </div>
+      <div className="returning-customer-context">
+        <p className="returning-customer">Returning customer?</p>
+        <p className="click-to-login"><a href="">Click here to login</a></p>
+      </div>
+    </section>
     </>
   )
 }
