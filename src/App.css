@@ -16,8 +16,9 @@
   .react-datepicker-popper {
     left: 0;
   }
-  
+
 }
+
 .react-datepicker-wrapper .react-datepicker__input-container input {
   padding-left: 65px !important;
 }
@@ -28,21 +29,38 @@
     left: 190px !important;
   }
 
-  .react-datepicker-wrapper .react-datepicker__input-container:after {
+}
+
+.css-1xc3v61-indicatorContainer svg {
+  right: -170px !important;
+}
+@media screen and (min-width: 768px) {
+.react-datepicker-wrapper .react-datepicker__input-container:after {
+  right: 20px !important;
+}
+}
+@media screen and (max-width: 768px) {
+  /* .react-datepicker-wrapper .react-datepicker__input-container:after {
     right: -487px !important;
+  } */
+
+  .css-1xc3v61-indicatorContainer svg {
+    right: 37px !important;
   }
 }
-.react-datepicker-popper .react-datepicker .react-datepicker__header select{
+
+.react-datepicker-popper .react-datepicker .react-datepicker__header select {
   padding: 0 20px !important;
 }
-.react-datepicker-popper .react-datepicker .react-datepicker__header button:after{
+
+.react-datepicker-popper .react-datepicker .react-datepicker__header button:after {
   border: none !important;
 }
 
-@media screen and (max-width: 390px){ 
-  .time-picker-select svg{
+@media screen and (max-width: 390px) {
+  .time-picker-select svg {
     right: 60px !important;
-}
+  }
 
 }
 

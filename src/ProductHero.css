@@ -233,7 +233,7 @@ color: #282D41;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 437px;
+    /* width: 437px; */
     padding: 10px;
 }
     .product-description {
