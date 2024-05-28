@@ -1,7 +1,7 @@
 .user-input-wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: 32px;
+    gap: 24px;
     justify-content: flex-start;
     align-items: center;
 }

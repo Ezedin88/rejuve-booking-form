@@ -167,6 +167,10 @@
     .autocomplete-dropdown-container {
         width: 86% !important;
     }
+    /* target children of autocomplete-dropdown-container */
+    .autocomplete-dropdown-container > div {
+        height: fit-content !important;
+    }
 }
 .location-search-input,
 .location-search-input:focus,

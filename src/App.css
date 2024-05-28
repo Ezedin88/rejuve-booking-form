@@ -19,6 +19,10 @@
 
 }
 
+  .react-datepicker-wrapper{
+    width: 100% !important;  
+  }
+
 .react-datepicker-wrapper .react-datepicker__input-container input {
   padding-left: 65px !important;
 }
@@ -51,6 +55,7 @@
 
 .react-datepicker-popper .react-datepicker .react-datepicker__header select {
   padding: 0 20px !important;
+  min-width: 100px !important;
 }
 
 .react-datepicker-popper .react-datepicker .react-datepicker__header button:after {

@@ -1,22 +1,27 @@
 import '../whyRejuve.css';
 
 function WhyRejuve({currentProduct}) {
-  const {meta_data} = currentProduct ||{};
+  const {meta_data, name:theProductName} = currentProduct ||{};
 
 const convenience_section_title = meta_data?.find(({key}) => key==='convenience_section_title')?.value;
 
 const convenience_list_0_convenience_title = meta_data?.find(({key}) => key==='convenience_list_0_convenience_title')?.value;
+const convenience_list_0_title = meta_data?.find(({key}) => key==='convenience_list_0_title')?.value;
 
 const convenience_list_0_convenience_dscription = meta_data?.find(({key}) => key==='convenience_list_0_convenience_dscription')?.value;
+const convenience_list_0_description = meta_data?.find(({key}) => key==='convenience_list_0_description')?.value;
 
 const convenience_list_1_convenience_title = meta_data?.find(({key}) => key==='convenience_list_1_convenience_title')?.value;
+const convenience_list_1_title = meta_data?.find(({key}) => key==='convenience_list_1_title')?.value;
 
 const convenience_list_1_convenience_dscription = meta_data?.find(({key}) => key==='convenience_list_1_convenience_dscription')?.value;
+const convenience_list_1_description = meta_data?.find(({key}) => key==='convenience_list_1_description')?.value;
 
 const convenience_list_2_convenience_title = meta_data?.find(({key}) => key==='convenience_list_2_convenience_title')?.value;
+const convenience_list_2_title = meta_data?.find(({key}) => key==='convenience_list_2_title')?.value;
 
 const convenience_list_2_convenience_dscription = meta_data?.find(({key}) => key==='convenience_list_2_convenience_dscription')?.value;
-
+const convenience_list_2_description = meta_data?.find(({key}) => key==='convenience_list_2_description')?.value;
 
   return (
     <>
@@ -25,25 +30,25 @@ const convenience_list_2_convenience_dscription = meta_data?.find(({key}) => key
       <div className='product-section-cards' >
         <div className='product-section-card'>
           <img src="http://rejuve.md/wp-content/uploads/2024/01/Frame_9.svg" alt="placeholder" />
-          <h1 className="product-section-card-h1">{convenience_list_0_convenience_title}</h1>
+          <h1 className="product-section-card-h1">{convenience_list_0_convenience_title || convenience_list_0_title}</h1>
           <p
             className='why-rejuve-description'
-          >{convenience_list_0_convenience_dscription}</p>
+          >{convenience_list_0_convenience_dscription || convenience_list_0_description}</p>
         </div>
         <div className='product-section-card'>
           <img src="http://rejuve.md/wp-content/uploads/2024/01/Frame_8.svg" alt="placeholder" />
           <h1 
-            className='product-section-card-h1'>{convenience_list_1_convenience_title}</h1>
+            className='product-section-card-h1'>{convenience_list_1_convenience_title   || convenience_list_1_title}</h1>
           <p
             className='why-rejuve-description'  
-          >{convenience_list_1_convenience_dscription}</p>
+          >{convenience_list_1_convenience_dscription || convenience_list_1_description}</p>
         </div>
         <div className='product-section-card'>
           <img src="http://rejuve.md/wp-content/uploads/2024/01/Frame_10.svg" alt="placeholder" />
-          <h1 className='product-section-card-h1'>{convenience_list_2_convenience_title}</h1>
+          <h1 className='product-section-card-h1'>{convenience_list_2_convenience_title || convenience_list_2_title}</h1>
           <p
             className='why-rejuve-description'
-          >{convenience_list_2_convenience_dscription}</p>
+          >{convenience_list_2_convenience_dscription || convenience_list_2_description}</p>
         </div>
       </div>
     </section>
@@ -53,7 +58,7 @@ const convenience_list_2_convenience_dscription = meta_data?.find(({key}) => key
       </div>
       <div className="middle-main">
         <p className="book-weight-loss-metabolic" id='book-weight-loss-metabolic-id'>
-          Book Weight Loss-Metabolic
+          Book {theProductName}
         </p>
       </div>
       <div className="returning-customer-context">

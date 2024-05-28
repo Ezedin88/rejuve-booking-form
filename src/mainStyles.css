@@ -1,3 +1,4 @@
+
 .user-detail-main,
 .booking-location-main,
 .choose-treatments-main,
@@ -5,6 +6,10 @@
 .order-summary-main {
     margin-top: 100px !important;
     position: relative;
+}
+
+.css-1xc3v61-indicatorContainer{
+    display: none !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -24,16 +29,19 @@
     line-height: 22px;
     color: #282D41;
     text-align: left;
-    position: absolute;
-    top: -65px;
-    left: 0;
 }
 
 @media screen and (max-width: 768px) {
     .form-main-titles {
-        left: 50%;
-        transform: translateX(-50%);
-        width: max-content;
+        /* left: 50%; */
+        /* transform: translateX(-50%); */
+        line-height: 130% !important;
+        margin-bottom: 16px !important;
+        width:100%;
+    }
+
+    .personWrapper {
+        margin-top: unset !important;
     }
 }
 
@@ -41,7 +49,7 @@
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 22px;
     color: #282D41;
     text-align: left;
@@ -51,8 +59,13 @@
 }
 
 /* summary */
+
+.personWrapper {
+    margin-top: 32px;;
+}
+
 .item-price-summary-wrapper {
-    margin-top: 32px;
+    margin-top: 16px;
     background-color: #FBF2DD;
     padding: 32px;
 }
@@ -84,7 +97,7 @@
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
-    margin-top: 15px;
+    margin-top: 30px;
 }
 
 .sub-total-summary {
@@ -203,7 +216,7 @@
 
 .order-summary-main {
     padding: unset;
-    padding: 33px 50px;
+    padding: 16px 50px 33px;
 }
 
 .order-summary-main-inner {
@@ -231,6 +244,11 @@
     .agreement-wrapper-main {
         padding: 25px 10px;
     }
+
+    .order-summary-main {
+        padding: 33px 18px !important;
+    }
+
 }
 
 .choose-treatments-main {
@@ -515,6 +533,8 @@ display: flex;
 align-items: center;
 font-feature-settings: 'tnum' on, 'lnum' on;
 color: #AFB1B3;
+margin-top: 0 !important;
+margin-bottom: 0 !important;
 }
 
 .agreement-description {
@@ -547,12 +567,13 @@ color: #AFB1B3;
     
     .item-price-summary{
         display:flex !important;
-        flex-direction: column !important;
-        gap:15px !important;
+        /* flex-direction: column !important; */
+        /* justify-content: space-between; */
+        /* gap:unset !important; */
     }
 
     .sub-total-summary {
-        gap:20px !important;
+        gap:30px !important;
     }
 
     .css-hp2wzz {

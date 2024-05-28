@@ -38,13 +38,17 @@ function BookingLocation({ values }) {
       <div className='selection-wrapper'>
         <div className="choose-radio-wrapper">
           <div className='where-span'>
+            <div className="radio-circle" style={{display:'flex',alignItems:'center'}}>
             <Field className="location-radios" type="radio" name="bookingChoice" value="atourclinics" />
+            </div>
             <p className='location-where'> At Our Clinics  <span className='location-span'>At our locations</span></p>
           </div>
         </div>
         <div className="choose-radio-wrapper">
-          <div className='where-span'>
+          <div className='where-span' style={{display:'flex',alignItems:'center'}}>
+          <div className="radio-circle">
             <Field className="location-radios" type="radio" name="bookingChoice" value="housecall" />
+            </div>
             <p className='location-where'>   We Come to You <span className='location-span'>We come to you</span></p>
           </div>
         </div>

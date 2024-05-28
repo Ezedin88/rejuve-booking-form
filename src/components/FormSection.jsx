@@ -281,7 +281,7 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
                         <div key={userIndex} className='personWrapper'>
                           <p className="form-main-inner-title">{
                             userIndex === 0 ? item?.billing?.first_name + ' ' + item?.billing?.last_name :
-                              'Person' + userIndex + 1}({values?.bookingChoice === 'atourclinics' ? 'house call' : 'clinic'})</p>
+                              'Person' + userIndex}({values?.bookingChoice === 'atourclinics' ? 'house call' : 'clinic'})</p>
                           <div className="item-price-summary-wrapper">
                             {
                               lineItems.length > 0 && lineItems.map((lineItem, index) => {
@@ -293,14 +293,14 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
                                       lineItem?.productName}</p>
                                     <p className='product-price-summary'>${lineItem?.price}</p>
                                   </div>
+                                  ||
+                                  <div className="item-price-summary">
+                                    <p className='product-name-summary'>No item selected</p>
+                                    <p className='product-price-summary'>$0.00</p>
+                                  </div>
                                 )
-
                               }
-                              ) ||
-                              <div className="item-price-summary">
-                                <p className='product-name-summary'>No item selected</p>
-                                <p className='product-price-summary'>$0.00</p>
-                              </div>
+                              ) 
                             }
                           </div>
                         </div>
@@ -320,16 +320,17 @@ const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
                       </div>
                       <div className="total-label-price">
                         <p className="sub-total-summary-label">
-                          Tip({tips?.customTip ? `${Number(tips?.customTip)} $` : `${Number(tips?.percentageTip)}%`})
+                          Tip({tips?.customTip ? `${Number(tips?.customTip)} $` :typeof tips?.percentageTip === 'number'
+                          && `${Number(tips?.percentageTip)}%`||0})
                         </p>
                         <p className="sub-total-summary-price">
-                          ${Number(calculatedTipAmount).toFixed(2)}
+                          ${Number(calculatedTipAmount||0).toFixed(2)}
                         </p>
                       </div>
                       <div className="total-label-price total-calculation">
                         <p className="total-calculation-label">Total</p>
                         <p className="total-calculation-price">${
-                          (totalCalculation + Number(calculatedTipAmount)).toFixed(2)
+                          (totalCalculation + Number(calculatedTipAmount||0)).toFixed(2)
                         }</p>
                       </div>
                     </div>

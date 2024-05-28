@@ -16,7 +16,7 @@ function App() {
   const [isFetchingProduct, setIsFetchingProduct] = useState(false);
   const [whereBooking, setWhereBooking] = useState('atourclinics');
 
-  const dataPage = document.querySelector('[data-page_id]').getAttribute('data-page_id');
+  // const dataPage = document.querySelector('[data-page_id]').getAttribute('data-page_id');
   useEffect(() => {
     const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBiMgA18QMFdnj67qadAYRk816SdI8c8ag&libraries=places`;
@@ -75,7 +75,7 @@ const {values} = useFormik({initialValues})
     }
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
-      const data = await client.getProductById(dataPage);
+      const data = await client.getProductById(108);
       setCurrentProduct(data);
       setCurrentProductCopy(data);
       setlineItems([{
@@ -186,12 +186,12 @@ function organizeItems(user, lineItems, userIndex, values) {
     user.line_items = lineItems.map((item) => {
         const bookingPlace = values?.bookingChoice === 'housecall' ? 'house' : 'clinic';
 
-        if (bookingPlace === 'clinic') {
-            const fieldsToDelete = ['address_1', 'address_2', 'city', 'state', 'postcode'];
-            fieldsToDelete.forEach(field => {
-                delete user.billing[field];
-            });
-        }
+        // if (bookingPlace === 'clinic') {
+        //     const fieldsToDelete = ['address_1', 'address_2', 'city', 'state', 'postcode'];
+        //     fieldsToDelete.forEach(field => {
+        //         delete user.billing[field];
+        //     });
+        // }
 
         const metaDataArray = [
             {
@@ -238,20 +238,21 @@ const submitForm = async (values) => {
   const transformedData = organizeLineItems({ values, lineItems });
   const { values: dataValues, meta_data, fee_lines } = transformedData || {};
   const dataToSend = dataValues?.userData?.map((item, key) => ({
+    status:"processing",
+    payment_method: dataValues.paymentMethod === 'creditCard' ? 'credit card' : 'house',
     meta_data,
-    billing: item?.billing,
-    line_items: item?.line_items,
+    billing: {...item.billing, ...dataValues.bookingAddress},
+    line_items: item.line_items,
     fee_lines
   }));
   
   if (dataToSend) {
     try {
       // Set order status to creating
+      window.scrollTo(0, 0);
       changeCreatingOrderStatus(true);
-      
       // Create the order
       await client.createOrder(dataToSend);
-      
       // Set order status to not creating after successful order creation
       changeCreatingOrderStatus(false);
       window.location.href = 'https://rejuve.md/order-confirmation/';

@@ -1,133 +1,145 @@
-.product-section{
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    flex-direction: column !important;
-    margin-top: 60px !important;
-    margin-bottom: 40px !important;
-    /* margin-bottom: 7rem !important; */
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding:unset !important;
-  }
-  
-  section#product-section-id{
-    margin: auto !important;
-  }
-
-.why-rejuve-description{
-max-width: 540px !important;
-font-family: 'Inter' !important;
-font-style: normal !important;
-font-weight: 400 !important;
-font-size: 16px !important;
-line-height: 150% !important;
-text-align: center !important;
-color: #5A5F73 !important;
+.product-section {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
+  margin-top: 60px !important;
+  margin-bottom: 40px !important;
+  /* margin-bottom: 7rem !important; */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: unset !important;
+  max-width: 1718px !important;
 }
-  
-  .product-section-title{
-    font-family: Inter !important;
-    font-style: normal !important;
-    font-weight: 700 !important;
-    font-size: 2rem !important;
-    text-align: center !important;
-    color: #282D41 !important;
-    margin: 70px auto 65px !important;
-  }
-  .product-section-cards{
-    width: 100% !important;
-    display: flex !important;
-    flex-wrap: wrap !important;
-    align-content: center !important;
-    justify-content: center !important;
-    flex-direction: row !important;
-    gap: 1rem !important;
-  }
-  
-  .product-section-card{
-    width: 400px !important;
-    display: flex !important;
-    text-align: center !important;
-    align-items: center !important;
-    flex-direction: column !important;
-  }
-  
-  .product-section-card-h1{
-    font-family: Inter !important;
-    font-style: normal !important;
-    font-weight: 700 !important;
-    font-size: 2rem !important;
-    line-height: 3rem !important;
-    text-align: center !important;
-    color: #282D41 !important;
-    width: 75% !important;
-  }
+
+section#product-section-id {
+  margin: auto !important;
+}
+
+.why-rejuve-description {
+  max-width: 540.67px !important;
+  font-family: 'Inter' !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 150% !important;
+  text-align: center !important;
+  color: #5A5F73 !important;
+}
+
+.product-section-title {
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 2rem !important;
+  text-align: center !important;
+  color: #282D41 !important;
+  margin: 70px auto 65px !important;
+}
+
+.product-section-cards {
+  width: 100% !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-content: center !important;
+  justify-content: center !important;
+  flex-direction: row !important;
+  gap: 1rem !important;
+}
+
+.product-section-card {
+  max-width: 420.67px;
+  width: 100% !important;
+  display: flex !important;
+  text-align: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
+}
+
+.product-section-card-h1 {
+  /* Long-Lasting Effects */
+  margin-bottom: 24px !important;
+  max-width: 300.67px !important;
+  font-family: 'Inter' !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 32px !important;
+  line-height: 39px !important;
+  text-align: center !important;
+  color: #282D41 !important;
+
+}
 
 /* book weight loss section */
-.iv-therapy-context,.book-weight-loss-metabolic,.returning-customer,.click-to-login{margin:0}
-.book-weight-loss-section{
+.iv-therapy-context,
+.book-weight-loss-metabolic,
+.returning-customer,
+.click-to-login {
+  margin: 0
+}
+
+.book-weight-loss-section {
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
   align-items: center !important;
   margin-top: 100px !important;
-  gap:16px !important;
+  gap: 16px !important;
   margin-bottom: 100px !important;
 }
 
-.book-weight-loss-section > .iv-therapy-top .iv-therapy-context{
-max-width: 359px !important;
-font-family: 'Inter' !important;
-font-style: normal !important;
-font-weight: 600 !important;
-font-size: 20px !important;
-line-height: 150% !important;
-text-align: center !important;
-/* Text/Dark Primary */
-color: #282D41 !important;
+.book-weight-loss-section>.iv-therapy-top .iv-therapy-context {
+  max-width: 359px !important;
+  font-family: 'Inter' !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 20px !important;
+  line-height: 150% !important;
+  text-align: center !important;
+  /* Text/Dark Primary */
+  color: #282D41 !important;
 }
 
 .middle-main .book-weight-loss-metabolic {
-max-width: 1218px !important;
-font-family: 'Inter' !important;
-font-style: normal !important;
-font-weight: 700 !important;
-font-size: 48px !important;
-/* identical to box height, or 58px */
-text-align: center !important;
-/* Text/Dark Primary */
-color: #282D41 !important;
+  max-width: 1218px !important;
+  font-family: 'Inter' !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 48px !important;
+  /* identical to box height, or 58px */
+  text-align: center !important;
+  /* Text/Dark Primary */
+  color: #282D41 !important;
 }
 
-.returning-customer-context > .returning-customer {
+.returning-customer-context>.returning-customer {
   /* Returning customer? Click here to login */
-max-width: 1218px !important;
-font-family: 'Inter' !important;
-font-style: normal !important;
-font-weight: 400 !important;
-font-size: 24px !important;
-line-height: 150% !important;
-/* identical to box height, or 36px */
-text-align: center !important;
-/* Text/Dark Secondary */
-color: #5A5F73 !important ;
+  max-width: 1218px !important;
+  font-family: 'Inter' !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 24px !important;
+  line-height: 150% !important;
+  /* identical to box height, or 36px */
+  text-align: center !important;
+  /* Text/Dark Secondary */
+  color: #5A5F73 !important;
 }
 
-.click-to-login > a{
-font-family: 'Inter' !important;
-font-style: normal !important;
-font-weight: 700 !important;
-font-size: 24px !important;
-line-height: 150% !important;
-/* identical to box height, or 36px */
-text-align: center !important;
-/* Main */
-color: #32C0CC !important;
-text-decoration: none !important ;
+.click-to-login>a {
+  font-family: 'Inter' !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 24px !important;
+  line-height: 150% !important;
+  /* identical to box height, or 36px */
+  text-align: center !important;
+  /* Main */
+  color: #32C0CC !important;
+  text-decoration: none !important;
 }
 
-.returning-customer-context{
+.returning-customer-context {
   display: flex !important;
   align-items: center !important;
   gap: 5px !important;
@@ -135,10 +147,11 @@ text-decoration: none !important ;
 
 /* small screen */
 @media (max-width: 768px) {
- /* weight-loss-section */
-  .product-section{
-    max-width: 360px !important ;
-    padding:0 12px  !important;
+
+  /* weight-loss-section */
+  .product-section {
+    max-width: 360px !important;
+    padding: 0 12px !important;
     margin-top: 50px !important;
     margin: auto !important;
     display: flex !important;
@@ -146,75 +159,96 @@ text-decoration: none !important ;
     justify-content: center !important;
   }
 
-p{
-  margin: 0 !important;
-}
- .book-weight-loss-section {
-  margin-top: 50px !important;
-  margin-bottom: 100px !important;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
- }
-
- .returning-customer-context{
-  flex-direction: column;
- }
-
-  .click-to-login > a{
-/* Returning customer? Click here to login. */
-max-width: 359px;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 16px;
-line-height: 150%;
-text-align: center;
+  p {
+    margin: 0 !important;
   }
 
-  .returning-customer-context > .returning-customer {
+  .book-weight-loss-section {
+    margin-top: 50px !important;
+    margin-bottom: 100px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .returning-customer-context {
+    flex-direction: column;
+  }
+
+  .click-to-login>a {
     /* Returning customer? Click here to login. */
-max-width: 359px;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 150%;
-text-align: center;
+    max-width: 359px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
   }
 
- p#book-weight-loss-metabolic-id {
-  /* Book Weight Loss-Metabolic */
-max-width: 359px;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 120%;
-/* identical to box height, or 29px */
-text-align: center;
-/* Text/Dark Primary */
-color: #282D41 !important;
- }
+  .returning-customer-context>.returning-customer {
+    /* Returning customer? Click here to login. */
+    max-width: 359px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+  }
 
-  .product-section{
+  p#book-weight-loss-metabolic-id {
+    /* Book Weight Loss-Metabolic */
+    max-width: 359px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 120%;
+    /* identical to box height, or 29px */
+    text-align: center;
+    /* Text/Dark Primary */
+    color: #282D41 !important;
+  }
+
+  .product-section {
     margin: 0 !important;
     padding: auto 120px !important;
   }
-    .product-section-card{
-        width: 100% !important;
-    }
-    .product-section-card-h1{
-        font-size: 1.2rem !important;
-        /* line-height: 1rem !important; */
-        margin:0 !important;
-    }
-    .product-section-title{
-        font-size: 1.5rem !important;
-        padding: 50px auto 45px !important;
-    }
-    .why-rejuve-description{
-        font-size: 1rem !important;
-    }
+
+  .product-section-card {
+    width: 100% !important;
+    margin-top: 32px !important;
+  }
+
+  .product-section-card:first-child {
+    margin-top: 0 !important;
+  }
+
+  .product-section-card-h1 {
+    max-width: 351px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+  }
+
+  .product-section-title {
+    margin: 0px !important;
+    margin-top: 110px !important;
+    margin-bottom: 32px !important;
+    font-family: 'Inter';
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 32px !important;
+    line-height: 130% !important;
+    text-align: center;
+  }
+
+  .why-rejuve-description {
+    font-size: 1rem !important;
+  }
 
 }

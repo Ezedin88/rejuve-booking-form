@@ -28,7 +28,7 @@ registerLocale('custom', customLocale);
 
 const CustomDatepicker = (props) => {
   const [selectedDate, setSelectedDate] = useState(null);
-  const { setFieldTouched, setFieldValue } = useFormikContext();
+  const { setFieldTouched, setFieldValue,values } = useFormikContext();
   const { name, onBlur } = props;
 
   const parseDate = (inputDate) => {
@@ -86,7 +86,7 @@ const CustomDatepicker = (props) => {
     const inputDate = date instanceof Date ? date : parseDate(date);
     setSelectedDate(inputDate);
     setFieldValue(name, inputDate ? format(inputDate, 'MM/dd/yyyy') : '');
-    setFieldTouched(name, true, true);
+    // setFieldTouched(name, true, true);
   };
 
   const handleRawChange = (e) => {
@@ -98,15 +98,17 @@ const CustomDatepicker = (props) => {
         const parsedDate = parseDate(rawValue);
         setSelectedDate(parsedDate);
         setFieldValue(name, parsedDate ? format(parsedDate, 'MM/dd/yyyy') : '');
-        setFieldTouched(name, true, true);
+        values.bookingDate = parsedDate ? format(parsedDate, 'MM/dd/yyyy') : '';
+        // setFieldTouched(name, true, true);
       } else {
         setSelectedDate(null);
+        values.bookingDate = rawValue;
         setFieldValue(name, rawValue);
       }
     } else if (rawValue === '') {
       setSelectedDate(null);
       setFieldValue(name, '');
-      setFieldTouched(name, true, true);
+      // setFieldTouched(name, true, true);
     }
   };
 

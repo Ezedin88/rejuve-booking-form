@@ -4,7 +4,7 @@ function Providers({providers,values}) {
   return (
     <>
      <div className="provider-input-label-wrapper">
-        {/* <div className='radio-input-wrapper'></div> */}
+        <div className='circle-radios'>
                 <input
                     className='provider-input'
                     type="radio"
@@ -15,6 +15,7 @@ function Providers({providers,values}) {
                     onChange={ (e)=>values.provider=e.target.value}
                     required
                 />
+                </div>
                 <label htmlFor="any"
                 className='provider-name-label'
                 >Any</label>
@@ -23,7 +24,8 @@ function Providers({providers,values}) {
     {
     providers?.map((providerItem, index) => {
         return (
-            <div key={index} className="provider-input-label-wrapper provider-group">
+            <div key={index} className="provider-input-label-wrapper provider-group" style={{display:'flex',alignItems:'center'}}>
+        <div className='circle-radios'>
                 <input
                     className='provider-input'
                     type="radio"
@@ -35,6 +37,7 @@ function Providers({providers,values}) {
                     }
                     required
                 />
+                </div>
                 <label htmlFor={providerItem?.name}
                 className='provider-name-label'
                 >{providerItem?.name}</label>

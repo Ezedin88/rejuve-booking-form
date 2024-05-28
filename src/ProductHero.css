@@ -1,4 +1,4 @@
-.product-hero-main-wrapper{
+.product-hero-main-wrapper {
     background: #E3FAFF;
     padding: 0 10px;
 }
@@ -7,7 +7,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding:75px 73px;
+    padding: 75px 73px;
 }
 
 .product-image {
@@ -16,15 +16,15 @@
 
 .image-container {
     /* width: 90%; */
-    background: rgb(255,255,255);
-    background: radial-gradient(circle, rgba(255,255,255,1) 37%, rgba(2,0,36,0) 60%);
+    background: rgb(255, 255, 255);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 37%, rgba(2, 0, 36, 0) 60%);
 }
 
-.image-container.large-hero-image{
+.image-container.large-hero-image {
     display: block;
 }
 
-.image-container.small-hero-image{
+.image-container.small-hero-image {
     display: none;
 }
 
@@ -50,41 +50,41 @@
 }
 
 .product-name {
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 48px;
-line-height: 130%;
-color: #282D41 !important;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 130%;
+    color: #282D41 !important;
 
-/* margin: 0; */
+    /* margin: 0; */
 }
 
 .product-cite {
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 15px;
-line-height: 150%;
-color: #5A5F73;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 150%;
+    color: #5A5F73;
 }
 
 .product-description {
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 150%;
-text-align: left !important;
-/* Text/Dark Secondary */
-color: #5A5F73;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: left !important;
+    /* Text/Dark Secondary */
+    color: #5A5F73;
 }
 
-.product-price-buttons-wrapper{
-    display:flex;
+.product-price-buttons-wrapper {
+    display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap:99px;
+    gap: 99px;
 }
 
 .book-button {
@@ -94,7 +94,7 @@ color: #5A5F73;
     text-align: center;
     border-radius: 5px;
     cursor: pointer;
-    border:none;
+    border: none;
     width: 190px;
     margin-bottom: 5px !important;
     outline: none !important;
@@ -110,30 +110,34 @@ color: #5A5F73;
 
 /* tablet size */
 @media (max-width: 900px) {
-    .product-price-buttons-wrapper{
-        gap:50px;
+    .product-price-buttons-wrapper {
+        gap: 50px;
     }
+
     .product-description-wrapper {
         padding: 15px 0px;
-      
+
     }
-    .book-button{
+
+    .book-button {
         /* width: 180px; */
-    }   
+    }
+
     .product-hero-wrapper {
         flex-direction: column;
 
         padding: 0 12px;
     }
 
-    .product-price{
+    .product-price {
         text-align: center !important;
         width: 100%;
     }
-    .product-name{
-font-weight: 700;
-text-align: center;
-color: #282D41;
+
+    .product-name {
+        font-weight: 700;
+        text-align: center;
+        color: #282D41;
     }
 
     .product-hero-wrapper {
@@ -148,78 +152,87 @@ color: #282D41;
         justify-content: center;
         align-items: flex-start;
     }
-    
-.product-description-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-}
+
+    .product-description-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+
     .product-description {
         text-align: center !important;
         line-height: 150% !important;
-        }
+    }
 }
 
-.where-to-book{
+.where-to-book {
     /* *At our locations */
-font-family: 'Inter';
-font-style: normal;
-font-weight: 500;
-font-size: 14px;
-line-height: 17px;
-/* identical to box height */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
 
-color: rgba(90, 95, 115, 0.6);
+    color: rgba(90, 95, 115, 0.6);
 }
 
-.product-price{
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 29px;
-text-align: center;
-color: #32C0CC;
+.product-price {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #32C0CC;
 }
 
 /* Styles for small screens */
 @media (max-width: 768px) {
-    
-    .product-price{
+
+    .product-price {
         text-align: center;
     }
-    .image-container.large-hero-image{
+
+    .image-container.large-hero-image {
         display: none;
     }
-    .image-container.small-hero-image{
-        display: block;
-    }
-    .product-name{
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 120%;
-text-align: center;
 
-/* Text/Dark Primary */
-color: #282D41;
+    .image-container.small-hero-image {
+        display: block;
+        display:flex !important;
+        justify-content: center !important;
     }
+
+    .product-name {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 120%;
+        text-align: center;
+
+        /* Text/Dark Primary */
+        color: #282D41;
+    }
+
     .product-hero-wrapper {
         flex-direction: column;
 
         padding: 0 12px;
     }
-    .product-price-buttons-wrapper{
+
+    .product-price-buttons-wrapper {
         width: 100%;
-        display:flex;
+        display: flex;
         flex-direction: column;
         align-items: center;
-        gap:unset;
+        gap: unset;
     }
+
     .booking-buttons {
         display: flex;
         flex-direction: column;
@@ -227,15 +240,17 @@ color: #282D41;
         align-items: flex-start;
         margin-bottom: 20px !important;
     }
-    
-.product-description-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* width: 437px; */
-    padding: 10px;
-}
+
+    .product-description-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 437px;
+        width: 100%;
+        padding: 10px;
+    }
+
     .product-description {
         font-family: 'Inter';
         font-style: normal;
@@ -245,14 +260,37 @@ color: #282D41;
         color: #5A5F73;
         text-align: center;
         margin-bottom: 28px !important;
-        }
-     .product-description h4 {
+    }
+
+    .product-hero-wrapper .product-description-wrapper>p>h4 {
+        max-width: 437px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 150%;
+        text-align: center;
+        margin-top: 28px !important;
+        /* Text/Dark Secondary */
+        color: #5A5F73;
+    }
+
+    .product-hero-wrapper .product-description-wrapper>p>p {
+        max-width: 437px !important;
+        font-family: 'Inter' !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        font-size: 12px !important;
+        line-height: 150% !important;
+        text-align: center !important;
+        color: #5A5F73 !important;
+    }
+
+    .product-description h4 {
         margin: 10px auto !important;
-     }   
+    }
 }
 
 
 /* style for tablet devices */
-@media (min-width: 600px) and (max-width: 1024px) {
-    
-}
+@media (min-width: 600px) and (max-width: 1024px) {}

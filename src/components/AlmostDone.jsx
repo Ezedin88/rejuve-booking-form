@@ -71,7 +71,7 @@ function AlmostDoneSection({
               onChange={() => handlePercentageChange('others')}
               checked={tipOptions.selectedTipOption === 'others'}
             />
-            <label htmlFor="others">Others</label>
+            <label htmlFor="others">Other</label>
           </div>
           </div>
           </div>
