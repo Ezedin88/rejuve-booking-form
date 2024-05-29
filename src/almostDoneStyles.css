@@ -1,27 +1,202 @@
 .promo-discount-button-wrapper {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
 }
 
 .enter-promo-discount {
-    width: 50% !important;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 11px 12px;
-    gap: 10px;
-    background: #FFFFFF;
-    border: 1px solid #C0C4CC;
-    border-radius: 4px;
+  width: 50% !important;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 11px 12px;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid #c0c4cc;
+  border-radius: 4px;
 }
 
-.promo-and-gift{
-    flex-grow: 1;
+.promo-and-gift {
+  flex-grow: 1;
 }
 
 .apply-promo-btn {
+  /* Auto layout */
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 11px 12px;
+  height: 44px;
+  background: #32c0cc;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+
+  /* Label */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+}
+
+.promo-wrapper {
+  padding: 20px 20px;
+  display: flex;
+  gap: 50px;
+  justify-content: space-between;
+}
+
+.do-you-have-promo,
+.tip {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  color: #282d41;
+}
+
+.do-you-have-promo {
+  margin-bottom: 15px;
+}
+
+.promo-checkbox-and-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.promo-check-box {
+  transform: scale(1.5);
+}
+
+.tips-and-inbox {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.flex-tips-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+.tip-choice-group {
+  background: #fcffff;
+  padding: 8px 18px;
+  border-radius: 5px;
+  color: #000000;
+  min-width: 133px !important;
+}
+
+.tip-choice-group input[type='radio'] {
+  width: 100%;
+  max-width: 20px;
+  height: 20px;
+}
+
+.tip-choice-group input[type='radio'] {
+  display: none;
+}
+
+.tip-choice-group input[type='radio'] + label {
+  position: relative;
+  padding-left: 40px;
+  /* increased from 30px to 40px */
+  cursor: pointer;
+  display: inline-block;
+}
+
+.tip-choice-group input[type='radio'] + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #32c0cc;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.tip-choice-group input[type='radio']:checked + label:after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 7px;
+  width: 10px;
+  height: 10px;
+  background-color: #32c0cc;
+  border-radius: 50%;
+}
+
+.tip-input-and-dollar-wrapper {
+  display: flex;
+}
+
+.tipTotalLabel {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600 !important;
+  font-size: 16px;
+  line-height: 22px;
+  /* Text/Dark Primary */
+  color: #282d41;
+}
+
+.tipTotalPrice {
+  color: #32c0cc !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+
+.inner-tip-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px !important;
+}
+
+/* small screen 768px */
+@media (max-width: 768px) {
+  .tip-choice-group {
+    width: 100% !important;
+  }
+
+  .promo-and-gift {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+  }
+
+  div.tip-wrapper {
+    margin-top: 15px !important;
+  }
+
+  .promo-wrapper {
+    display: block;
+    padding: 20px 10px;
+  }
+  .promo-discount-button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  .enter-promo-discount {
+  }
+
+  .apply-promo-btn {
     /* Auto layout */
     width: 50%;
     display: flex;
@@ -29,7 +204,7 @@
     align-items: center;
     padding: 11px 12px;
     height: 44px;
-    background: #32C0CC;
+    background: #32c0cc;
     border-radius: 4px;
     border: none;
     color: #fff;
@@ -42,180 +217,5 @@
     line-height: 19px;
     display: flex;
     align-items: center;
-}
-
-.promo-wrapper {
-    padding: 20px 20px;
-    display: flex;
-    gap: 50px;
-    justify-content: space-between;
-}
-
-.do-you-have-promo,
-.tip {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
-    display: flex;
-    align-items: center;
-    font-feature-settings: 'tnum' on, 'lnum' on;
-    color: #282D41;
-}
-
-.do-you-have-promo{
-    margin-bottom: 15px;
-}
-
-.promo-checkbox-and-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.promo-check-box {
-    transform: scale(1.5);
-}
-
-.tips-and-inbox {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.flex-tips-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: start;
-}
-
-
-.tip-choice-group {
-    background: #fcffff;
-    padding: 8px 18px;
-    border-radius: 5px;
-    color: #000000;
-    min-width: 100px !important;
-}
-
-.tip-choice-group input[type="radio"] {
-    width: 100%;
-    max-width: 20px;
-    height: 20px;
-}
-
-.tip-choice-group input[type="radio"] {
-    display: none;
-}
-
-.tip-choice-group input[type="radio"]+label {
-    position: relative;
-    padding-left: 40px;
-    /* increased from 30px to 40px */
-    cursor: pointer;
-    display: inline-block;
-}
-
-.tip-choice-group input[type="radio"]+label:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #32C0CC;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.tip-choice-group input[type="radio"]:checked+label:after {
-    content: "";
-    position: absolute;
-    left: 7px;
-    top: 7px;
-    width: 10px;
-    height: 10px;
-    background-color: #32C0CC;
-    border-radius: 50%;
-}
-
-.tip-input-and-dollar-wrapper {
-    display: flex;
-}
-
-.tipTotalLabel {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600 !important;
-    font-size: 16px;
-    line-height: 22px;
-    /* Text/Dark Primary */
-    color: #282D41;
-}
-
-.tipTotalPrice {
-    color: #32C0CC !important;
-    font-size: 16px !important;
-    font-weight: 600 !important;
-}
-
-.inner-tip-wrapper{
-    display: flex;
-    flex-direction: column;
-    gap:10px !important;
-}
-
-/* small screen 768px */
-@media (max-width: 768px) {
-    .tip-choice-group {
-        width:100% !important;
-    }
-    
-    .promo-and-gift {
-        display: flex;
-        flex-direction: column;
-        gap: 17px;
-    }
-
-    div.tip-wrapper{
-        margin-top: 15px !important;
-    }
-    
-    .promo-wrapper {
-        display: block;
-        padding: 20px 10px;
-    }
-    .promo-discount-button-wrapper {
-        display: flex;
-        justify-content: space-between;
-        gap: 15px;
-    }
-    .enter-promo-discount {
-    }
-
-    .apply-promo-btn {
-        /* Auto layout */
-        width: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 11px 12px;
-        height: 44px;
-        background: #32C0CC;
-        border-radius: 4px;
-        border: none;
-        color: #fff;
-    
-        /* Label */
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 19px;
-        display: flex;
-        align-items: center;
-    }
+  }
 }

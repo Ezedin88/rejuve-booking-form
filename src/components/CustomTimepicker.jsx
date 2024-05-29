@@ -27,6 +27,7 @@ const customStyles = {
   singleValue: (provided) => ({
     ...provided,
     color: '#333',
+    margin: 'unset !important',
   }),
   menu: (provided) => ({
     ...provided,
@@ -34,18 +35,6 @@ const customStyles = {
     position: 'absolute',
     left: 0,
   }),
-};
-
-const filterPassedTime = (time) => {
-  const currentDate = new Date();
-  const selectedDate = new Date();
-  const [hours, minutes] = time.value.split(':');
-  selectedDate.setHours(hours);
-  selectedDate.setMinutes(minutes);
-  return {
-    ...time,
-    isDisabled: currentDate.getTime() >= selectedDate.getTime(),
-  };
 };
 
 const timeOptions = [
@@ -67,12 +56,12 @@ const timeOptions = [
   { value: '18:00', label: '6:00 PM' },
   { value: '18:30', label: '6:30 PM' },
   { value: '19:00', label: '7:00 PM' },
-].map(filterPassedTime);
+];
 
 const TimePicker = (props) => {
   const [selectedTime, setSelectedTime] = React.useState(null);
-  const {setFieldTouched,setFieldValue,values} = useFormikContext();
-  const {name,onBlur} = props;
+  const { setFieldTouched, setFieldValue, values } = useFormikContext();
+  const { name } = props;
   const Option = (props) => {
     return (
       <components.Option {...props}>
@@ -104,14 +93,14 @@ const TimePicker = (props) => {
       </div>
     );
   };
-  
+
   return (
     <div className="time-picker">
       <FaRegClock className="clock-icon" />
       <Select
         blurInputOnSelect={true}
         onBlur={() => setFieldTouched(name, true)} // Ensure field is touched on blur
-        isOptionSelected={(value) =>!value && setFieldTouched(name, true)} // Correct usage of isOptionSelected
+        isOptionSelected={(value) => !value && setFieldTouched(name, true)} // Correct usage of isOptionSelected
         name={name}
         value={selectedTime}
         onChange={(selectedOption) => {
@@ -120,7 +109,7 @@ const TimePicker = (props) => {
           setFieldValue(name, selectedOption.value);
           values.bookingTime = selectedOption.value;
         }}
-        options={filterPassedTime(timeOptions[0])? timeOptions : timeOptions.slice(1)}
+        options={timeOptions}
         className="time-picker-select"
         placeholder="HH:MM AM/PM"
         styles={customStyles}

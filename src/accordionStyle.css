@@ -12,14 +12,15 @@
 .accordion-main-wrapper {
   margin-top: 32px !important;
   /* padding-bottom: 40px !important; */
-  background-color: #E3FAFF;
-  max-width: 1240px;
+  background-color: #e3faff;
+  max-width: 1257px;
   border-radius: 8px;
   margin: auto;
 }
 
 .content {
   margin-top: 5px;
+  justify-content: unset !important;
 }
 
 .open.arrow {
@@ -35,13 +36,13 @@
   padding: 0;
   background-color: transparent;
   padding: 25px;
-  background-color: #E3FAFF;
+  background-color: #e3faff;
   border: none;
   outline: none !important;
 }
 
-@media screen and (max-width: 900px){
-  .accordion-btn{
+@media screen and (max-width: 900px) {
+  .accordion-btn {
     padding: 25px 0px;
   }
 }
@@ -73,7 +74,7 @@
 }
 
 .arrow {
-  border: solid #32C0CC;
+  border: solid #32c0cc;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
@@ -134,34 +135,31 @@
     width: 100%;
   }
 
-  .accordion-main-wrapper .accordion-title{
-  flex-direction: column !important;
-  align-items: start !important;
-  gap:5px !important;
+  .accordion-main-wrapper .accordion-title {
+    flex-direction: column !important;
+    align-items: start !important;
+    gap: 5px !important;
   }
 
-  .accordion-main-wrapper.open .accordion-title{
-    gap:20px !important;
+  .accordion-main-wrapper.open .accordion-title {
+    gap: 20px !important;
   }
-
-  
 
   .checked-items-wrapper {
-    gap:22px !important;
+    gap: 22px !important;
   }
-
 }
 
 .accordion-inner-wrapper {
-  min-width: 400px;
-  display: flex;
-  justify-content: space-between;
+  min-width: 497px !important;
+  display: flex !important;
+  justify-content: space-between !important;
   align-items: center;
   width: 100%;
 }
 
 .accordion-item-price .price-tag {
-  color: #32C0CC !important;
+  color: #32c0cc !important;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
@@ -174,13 +172,13 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  color: #282D41 !important
+  color: #282d41 !important;
 }
 
 /* acc checkbox style */
 input.accordion-checkbox-details {
   box-sizing: border-box;
-  background-color: #32C0CC;
+  background-color: #32c0cc;
   border: 1px solid rgba(192, 196, 204, 0.47);
 }
 
@@ -197,12 +195,12 @@ input.accordion-checkbox-details {
 
 input.accordion-checkbox-details::before {
   padding: unset !important;
-  content: "";
+  content: '';
   position: absolute;
   width: 10px;
   height: 10px;
   border: 1px solid rgba(192, 196, 204, 0.47);
-  background-color: #32C0CC;
+  background-color: #32c0cc;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -224,13 +222,13 @@ input.accordion-checkbox-details.iv-therapy-checkbox {
 
 input.accordion-checkbox-details.iv-therapy-checkbox::before {
   padding: unset !important;
-  content: "";
+  content: '';
   position: absolute;
   width: 10px;
   height: 10px;
   border-radius: 10px;
   border: 1px solid rgba(192, 196, 204, 0.47);
-  background-color: #32C0CC;
+  background-color: #32c0cc;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -248,11 +246,12 @@ input.accordion-checkbox-details:checked::before {
 }
 
 .accordion-the-title {
-  min-width: 180px;
+  white-space: nowrap;
   padding: 0;
   margin: 0;
+  margin-right: 18px !important;
   text-align: left;
-  color: #282D41 !important;
+  color: #282d41 !important;
 }
 
 .checked-items-wrapper {
@@ -263,15 +262,15 @@ input.accordion-checkbox-details:checked::before {
   align-items: center;
   gap: 40px;
 }
-@media screen and (max-width: 390px){
-  .checked-items-wrapper{
+@media screen and (max-width: 390px) {
+  .checked-items-wrapper {
     margin-right: 15px;
   }
 }
 
 .checked-items-wrapper p {
   margin: 0;
-  color: #32C0CC;
+  color: #32c0cc;
 }
 
 .checked-item {

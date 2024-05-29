@@ -7,7 +7,6 @@
 }
 
 @media screen and (max-width: 768px) {
-
   .product-description .responsiveGrid,
   .responsiveGrid {
     grid-template-columns: repeat(1, 1fr);
@@ -16,32 +15,29 @@
   .react-datepicker-popper {
     left: 0;
   }
-
 }
 
-  .react-datepicker-wrapper{
-    width: 100% !important;  
-  }
+.react-datepicker-wrapper {
+  width: 100% !important;
+}
 
 .react-datepicker-wrapper .react-datepicker__input-container input {
-  padding-left: 65px !important;
+  padding-left: 45px !important;
 }
-
 
 @media screen and (min-width: 768px) {
   .react-datepicker-popper {
     left: 190px !important;
   }
-
 }
 
 .css-1xc3v61-indicatorContainer svg {
   right: -170px !important;
 }
 @media screen and (min-width: 768px) {
-.react-datepicker-wrapper .react-datepicker__input-container:after {
-  right: 20px !important;
-}
+  .react-datepicker-wrapper .react-datepicker__input-container:after {
+    right: 20px !important;
+  }
 }
 @media screen and (max-width: 768px) {
   /* .react-datepicker-wrapper .react-datepicker__input-container:after {
@@ -58,7 +54,10 @@
   min-width: 100px !important;
 }
 
-.react-datepicker-popper .react-datepicker .react-datepicker__header button:after {
+.react-datepicker-popper
+  .react-datepicker
+  .react-datepicker__header
+  button:after {
   border: none !important;
 }
 
@@ -66,9 +65,7 @@
   .time-picker-select svg {
     right: 60px !important;
   }
-
 }
-
 
 .all-wrapper {
   padding: 10px;

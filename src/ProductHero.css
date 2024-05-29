@@ -1,296 +1,300 @@
 .product-hero-main-wrapper {
-    background: #E3FAFF;
-    padding: 0 10px;
+  background: #e3faff;
+  padding: 0 10px;
 }
 
 .product-hero-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 75px 73px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 75px 73px;
 }
 
 .product-image {
-    flex: 1;
+  flex: 1;
 }
 
 .image-container {
-    /* width: 90%; */
-    background: rgb(255, 255, 255);
-    background: radial-gradient(circle, rgba(255, 255, 255, 1) 37%, rgba(2, 0, 36, 0) 60%);
+  /* width: 90%; */
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 37%,
+    rgba(2, 0, 36, 0) 60%
+  );
 }
 
 .image-container.large-hero-image {
-    display: block;
+  display: block;
 }
 
 .image-container.small-hero-image {
-    display: none;
+  display: none;
 }
 
 .image {
-    width: 90%;
-    height: auto;
+  width: 90%;
+  height: auto;
 }
 
 /* add * before it */
 .where-to-book::before {
-    content: "*";
-    font-size: 20px;
-    margin-left: 5px;
+  content: '*';
+  font-size: 20px;
+  margin-left: 5px;
 }
 
 .product-description-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: flex-start;
-    padding-left: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  padding-left: 20px;
 }
 
 .product-name {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 130%;
-    color: #282D41 !important;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 130%;
+  color: #282d41 !important;
 
-    /* margin: 0; */
+  /* margin: 0; */
 }
 
 .product-cite {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 150%;
-    color: #5A5F73;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 150%;
+  color: #5a5f73;
 }
 
 .product-description {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
-    text-align: left !important;
-    /* Text/Dark Secondary */
-    color: #5A5F73;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: left !important;
+  /* Text/Dark Secondary */
+  color: #5a5f73;
 }
 
 .product-price-buttons-wrapper {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 99px;
+  display: flex;
+  justify-content: flex-start !important;
+  align-items: center;
+  gap: 99px;
+  width: 100% !important;
 }
 
 .book-button {
-    background-color: #32C0CC;
-    padding: 20px 30px;
-    color: white;
-    text-align: center;
-    border-radius: 5px;
-    cursor: pointer;
-    border: none;
-    width: 190px;
-    margin-bottom: 5px !important;
-    outline: none !important;
+  background-color: #32c0cc;
+  padding: 20px 30px;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  width: 190px;
+  margin-bottom: 5px !important;
+  outline: none !important;
 }
 
 .book-button:hover {
-    background-color: #24b8c5;
+  background-color: #24b8c5;
 }
 
 .book-button:active {
-    background-color: #27c1c9;
+  background-color: #27c1c9;
 }
 
 /* tablet size */
 @media (max-width: 900px) {
-    .product-price-buttons-wrapper {
-        gap: 50px;
-    }
+  .product-price-buttons-wrapper {
+    gap: 50px;
+  }
 
-    .product-description-wrapper {
-        padding: 15px 0px;
+  .product-description-wrapper {
+    padding: 15px 0px;
+  }
 
-    }
+  .book-button {
+    /* width: 180px; */
+  }
 
-    .book-button {
-        /* width: 180px; */
-    }
+  .product-hero-wrapper {
+    flex-direction: column;
 
-    .product-hero-wrapper {
-        flex-direction: column;
+    padding: 0 12px;
+  }
 
-        padding: 0 12px;
-    }
+  .product-price {
+    text-align: center !important;
+    width: 100%;
+  }
 
-    .product-price {
-        text-align: center !important;
-        width: 100%;
-    }
+  .product-name {
+    font-weight: 700;
+    text-align: center;
+    color: #282d41;
+  }
 
-    .product-name {
-        font-weight: 700;
-        text-align: center;
-        color: #282D41;
-    }
+  .product-hero-wrapper {
+    flex-direction: column;
 
-    .product-hero-wrapper {
-        flex-direction: column;
+    padding: 24px 24px !important;
+  }
 
-        padding: 24px 24px !important;
-    }
+  .booking-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
 
-    .booking-buttons {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-    }
+  .product-description-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
 
-    .product-description-wrapper {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 10px;
-    }
-
-    .product-description {
-        text-align: center !important;
-        line-height: 150% !important;
-    }
+  .product-description {
+    text-align: center !important;
+    line-height: 150% !important;
+  }
 }
 
 .where-to-book {
-    /* *At our locations */
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-    /* identical to box height */
+  /* *At our locations */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: left !important;
+  /* identical to box height */
 
-    color: rgba(90, 95, 115, 0.6);
+  color: rgba(90, 95, 115, 0.6);
 }
 
 .product-price {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 29px;
-    text-align: center;
-    color: #32C0CC;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: left !important;
+  color: #32c0cc;
 }
 
 /* Styles for small screens */
 @media (max-width: 768px) {
+  .product-price {
+    text-align: center;
+  }
 
-    .product-price {
-        text-align: center;
-    }
+  .image-container.large-hero-image {
+    display: none;
+  }
 
-    .image-container.large-hero-image {
-        display: none;
-    }
+  .image-container.small-hero-image {
+    display: block;
+    display: flex !important;
+    justify-content: center !important;
+  }
 
-    .image-container.small-hero-image {
-        display: block;
-        display:flex !important;
-        justify-content: center !important;
-    }
+  .product-name {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 120%;
+    text-align: center;
 
-    .product-name {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 24px;
-        line-height: 120%;
-        text-align: center;
+    /* Text/Dark Primary */
+    color: #282d41;
+  }
 
-        /* Text/Dark Primary */
-        color: #282D41;
-    }
+  .product-hero-wrapper {
+    flex-direction: column;
 
-    .product-hero-wrapper {
-        flex-direction: column;
+    padding: 0 12px;
+  }
 
-        padding: 0 12px;
-    }
+  .product-price-buttons-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: unset;
+  }
 
-    .product-price-buttons-wrapper {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: unset;
-    }
+  .booking-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 20px !important;
+  }
 
-    .booking-buttons {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        margin-bottom: 20px !important;
-    }
+  .product-description-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 437px;
+    width: 100%;
+    padding: 10px;
+  }
 
-    .product-description-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        max-width: 437px;
-        width: 100%;
-        padding: 10px;
-    }
+  .product-description {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #5a5f73;
+    text-align: center;
+    margin-bottom: 28px !important;
+  }
 
-    .product-description {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 150%;
-        color: #5A5F73;
-        text-align: center;
-        margin-bottom: 28px !important;
-    }
+  .product-hero-wrapper .product-description-wrapper > p > h4 {
+    max-width: 437px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    margin-top: 28px !important;
+    /* Text/Dark Secondary */
+    color: #5a5f73;
+  }
 
-    .product-hero-wrapper .product-description-wrapper>p>h4 {
-        max-width: 437px;
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 12px;
-        line-height: 150%;
-        text-align: center;
-        margin-top: 28px !important;
-        /* Text/Dark Secondary */
-        color: #5A5F73;
-    }
+  .product-hero-wrapper .product-description-wrapper > p > p {
+    max-width: 437px !important;
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 12px !important;
+    line-height: 150% !important;
+    text-align: center !important;
+    color: #5a5f73 !important;
+  }
 
-    .product-hero-wrapper .product-description-wrapper>p>p {
-        max-width: 437px !important;
-        font-family: 'Inter' !important;
-        font-style: normal !important;
-        font-weight: 400 !important;
-        font-size: 12px !important;
-        line-height: 150% !important;
-        text-align: center !important;
-        color: #5A5F73 !important;
-    }
-
-    .product-description h4 {
-        margin: 10px auto !important;
-    }
+  .product-description h4 {
+    margin: 10px auto !important;
+  }
 }
 
-
 /* style for tablet devices */
-@media (min-width: 600px) and (max-width: 1024px) {}
+@media (min-width: 600px) and (max-width: 1024px) {
+}

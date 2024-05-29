@@ -1,186 +1,184 @@
 .selection-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 32px;
-    justify-content: flex-start;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .choose-radio-wrapper {
-    background-color: #fff !important;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 9px 12px;
-    gap: 10px;
-    width: 563px;
-    height: 44px;
-    border: 1px solid rgba(192, 196, 204, 0.47);
-    border-radius: 4px;
-    outline: none;
+  background-color: #fff !important;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 9px 12px;
+  gap: 10px;
+  width: 563px;
+  height: 44px;
+  border: 1px solid rgba(192, 196, 204, 0.47);
+  border-radius: 4px;
+  outline: none;
 }
 
 .location-where {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 22px;
-    color: #5A5F73;
-    margin-bottom: 0 !important;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #5a5f73;
+  margin-bottom: 0 !important;
 }
 
 .location-span {
-    color: #F6D66F;
+  color: #f6d66f;
 }
 
 .where-span {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    gap: 5;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  gap: 5;
 }
 
 .location-radios,
 .provider-input {
-    padding: 0 !important;
-    appearance: none;
-    box-sizing: border-box;
-    border: 1px solid rgba(192, 196, 204, 0.47);
-    width: 20px;
-    border-radius: 10px;
-    height: 20px;
-    position: relative;
-    background-color: white;
+  padding: 0 !important;
+  appearance: none;
+  box-sizing: border-box;
+  border: 1px solid rgba(192, 196, 204, 0.47);
+  width: 20px;
+  border-radius: 10px;
+  height: 20px;
+  position: relative;
+  background-color: white;
 }
 
 .location-radios::before,
 .provider-input::before {
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border: 1px solid rgba(192, 196, 204, 0.47);
-    background-color: #32C0CC;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(192, 196, 204, 0.47);
+  background-color: #32c0cc;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
 }
 
 .location-radios:checked::before,
 .provider-input:checked::before {
-    opacity: 1;
+  opacity: 1;
 }
 
 .select-location-dropdown {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 13px 12px 9px 30px;
-    gap: 10px;
-    margin-top: 32px !important;
-    width: 563px !important;
-    height: 44px;
-    border: 1px solid rgba(192, 196, 204, 0.47);
-    background-color: #fff !important;
-    border-radius: 4px;
-    outline: none;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 9px 12px 9px 30px !important;
+  gap: 10px;
+  margin-top: 32px !important;
+  width: 1157px !important;
+  height: 44px;
+  border: 1px solid rgba(192, 196, 204, 0.47);
+  background-color: #fff !important;
+  border-radius: 4px;
+  outline: none;
 }
 
-
 .address-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px;
 }
 
 /* target small screen */
 @media (max-width: 900px) {
-    .address-wrapper {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 32px;
-    }
+  .address-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 32px;
+  }
 
-    .address_wrapper {
-        width: 100% !important;
-    }
+  .address_wrapper {
+    width: 100% !important;
+  }
 
-    .cityStateZip {
-        width: 100%;
-    }
+  .cityStateZip {
+    width: 100%;
+  }
 
-    .selection_wrapper {
-        width: 100%;
-    }
+  .selection_wrapper {
+    width: 100%;
+  }
 
-    .selection-wrapper {
-        justify-content: center !important;
-        align-items: center;
-        width: 100%;
-        margin: auto;
-    }
+  .selection-wrapper {
+    justify-content: center !important;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+  }
 
-    .select-location-dropdown {
-        background-color: #fff !important;
-        padding: 9px 27px;
-        width: 350px !important;
-        margin: auto;
-    }
+  .select-location-dropdown {
+    background-color: #fff !important;
+    padding: 9px 27px;
+    width: 350px !important;
+    margin: auto;
+  }
 
+  #clinic-location-dropdown {
+    width: 100% !important;
+  }
 
-    #clinic-location-dropdown {
-        width: 100% !important;
-    }
-
-    .choose-radio-wrapper {
-        padding: 9px 12px;
-        width: 350px;
-    }
+  .choose-radio-wrapper {
+    padding: 9px 12px;
+    width: 350px;
+  }
 }
 
 .select-clinic-wrapper {
-    position: relative;
+  position: relative;
 }
 
 .location-icon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    top: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  top: 5px;
 }
 
 .autocomplete-dropdown-container {
-    position: absolute !important;
-    z-index: 10;
-    /* width: 53px; */
+  position: absolute !important;
+  z-index: 10;
+  /* width: 53px; */
 }
 @media screen and (max-width: 767px) {
-    .autocomplete-dropdown-container {
-        width: 86% !important;
-    }
-    /* target children of autocomplete-dropdown-container */
-    .autocomplete-dropdown-container > div {
-        height: fit-content !important;
-    }
+  .autocomplete-dropdown-container {
+    width: 86% !important;
+  }
+  /* target children of autocomplete-dropdown-container */
+  .autocomplete-dropdown-container > div {
+    height: fit-content !important;
+  }
 }
 .location-search-input,
 .location-search-input:focus,
 .location-search-input:active {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
-    border: honeydew;
-    display: block;
-    width: 100%;
-    padding: 16px;
-    font-size: 16px;
-    border-radius: 2px;
-    outline: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  border: honeydew;
+  display: block;
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  border-radius: 2px;
+  outline: none;
 }
