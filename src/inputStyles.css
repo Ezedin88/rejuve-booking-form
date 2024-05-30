@@ -1,119 +1,178 @@
 .user-input-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    justify-content: flex-start;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .input-box-wrapper {
-    margin-top: 32px;
+  margin-top: 32px;
 }
 
 .input-box {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 9px 12px;
-    gap: 10px;
-    width: 563px !important;
-    height: 44px !important;
-    border: 1px solid rgba(192, 196, 204, 0.47);
-    border-radius: 4px;
-    outline: none;
-    background-color: #ffffff !important;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 9px 12px;
+  gap: 10px;
+  width: 563px !important;
+  height: 44px !important;
+  border: 1px solid rgba(192, 196, 204, 0.47);
+  border-radius: 4px;
+  outline: none;
+  background-color: #ffffff !important;
 }
 
-.input-box.your_address_style{
-    height: fit-content !important;
-    text-align: left;
-    width:563px !important;
-    height:44px !important;
+.input-box.your_address_style {
+  height: fit-content !important;
+  text-align: left;
+  width: 563px !important;
+  height: 44px !important;
 }
 
 .zip-city-wrapper {
-    margin-top: 32px;
-    width: 100%;
-    gap: 32px;
-    /* justify-content: space-between; */
+  margin-top: 32px;
+  width: 100%;
+  gap: 32px;
+  /* justify-content: space-between; */
 }
 
 .cityStateZip .input-box {
-    max-width: 365px !important;
-    padding: 9px 12px;
+  max-width: 365px !important;
+  padding: 9px 12px;
+}
+
+.card-elements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 22px;
+}
+
+.card-number {
+  display: flex;
+  flex-direction: column;
+  width: 563.5px;
+  height: 71px;
+}
+
+.card-number .StripeElement {
+  max-width: 545px;
+  height: 44px;
+  padding: 9px 12px 9px 10px;
+  margin: unset;
+  outline: none;
+  background-color: #ffffff !important;
+}
+
+.card-label {
+  text-align: left;
+  margin-bottom: 5px;
+  color: #282d41;
+}
+
+.card-info {
+  max-width: 563.5px;
+  width: 100%;
+  overflow: hidden;
+  height: 71px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.expiry-date,
+.cvc {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  height: 71px;
+}
+
+.expiry-date .StripeElement,
+.cvc .StripeElement {
+  width: 100% !important;
+  height: 44px !important;
+  outline: none;
+  padding: 9px !important;
+  background-color: #ffffff !important;
 }
 
 /* small screen */
 @media (max-width: 900px) {
-   .zip-city-wrapper{
-         flex-direction: column !important;
-         justify-content: center;
-         align-items: center;
-   }
-.user-input-wrapper{
-    width:100% !important;
-}   
-
+  .zip-city-wrapper {
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+  }
+  .user-input-wrapper {
+    width: 100% !important;
+  }
 }
 
 .input-box-label {
-    position: absolute;
-    left: 0;
-    top: -25px;
-    width: 100%;
-    text-align: left;
-    min-width: 100px;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    color: #282D41;
+  position: absolute;
+  left: 0;
+  top: -25px;
+  width: 100%;
+  text-align: left;
+  min-width: 100px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #282d41;
 }
 
 .label-input-wrapper {
-    width: 10%;
-    position: relative;
+  width: 10%;
+  position: relative;
 }
 
 @media screen and (max-width: 900px) {
-    .label-input-wrapper {
-        width: 100%;
-    }
+  .label-input-wrapper {
+    width: 100%;
+  }
 }
 
 .input-box-error-message {
-    color: red;
-    font-size: 13px !important;
-    font-weight: 500;
-    margin-top: 2px;
+  color: red;
+  font-size: 13px !important;
+  font-weight: 500;
+  margin-top: 2px;
 }
 
-.error-clinic-selection{
-    text-align:left;
+.error-clinic-selection {
+  text-align: left;
 }
 
 .choose-tip-amount {
-    text-align: left;
+  text-align: left;
 }
 
 /* target small screen */
 @media (max-width: 900px) {
-    .user-input-wrapper {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        justify-content: center !important;
-    }
+  .user-input-wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center !important;
+  }
 
-    .input-box {
-        padding: 9px 12px;
-        width: 100% !important;
-    }
+  .input-box {
+    padding: 9px 12px;
+    width: 100% !important;
+  }
 
-    .input-box-wrapper {
-        /* margin-top: 20px; */
-        width: 100%;
-    }
+  .input-box-wrapper {
+    /* margin-top: 20px; */
+    width: 100%;
+  }
 }
