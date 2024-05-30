@@ -23,6 +23,7 @@ const convenience_list_2_title = meta_data?.find(({key}) => key==='convenience_l
 const convenience_list_2_convenience_dscription = meta_data?.find(({key}) => key==='convenience_list_2_convenience_dscription')?.value;
 const convenience_list_2_description = meta_data?.find(({key}) => key==='convenience_list_2_description')?.value;
 
+const mainHeroTitle = convenience_list_0_convenience_title || convenience_list_0_title;
   return (
     <>
      <section className='product-section' id='product-section-id'>
@@ -30,7 +31,10 @@ const convenience_list_2_description = meta_data?.find(({key}) => key==='conveni
       <div className='product-section-cards' >
         <div className='product-section-card'>
           <img src="http://rejuve.md/wp-content/uploads/2024/01/Frame_9.svg" alt="placeholder" />
-          <h1 className="product-section-card-h1">{convenience_list_0_convenience_title || convenience_list_0_title}</h1>
+          <h1 
+      className="product-section-card-h1" 
+      dangerouslySetInnerHTML={{ __html: mainHeroTitle }}
+    />
           <p
             className='why-rejuve-description'
           >{convenience_list_0_convenience_dscription || convenience_list_0_description}</p>

@@ -7,7 +7,7 @@ import { enUS } from 'date-fns/locale';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { MdOutlineCalendarToday } from 'react-icons/md';
 import { useFormikContext } from 'formik';
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
 
 const customLocale = {
   ...enUS,
@@ -26,49 +26,50 @@ const customLocale = {
 
 registerLocale('custom', customLocale);
 
-const CustomDatepicker = (props) => {
+const CustomDatepicker = ({dateOfBirth},props) => {
   const [selectedDate, setSelectedDate] = useState(null);
-  const { setFieldTouched, setFieldValue,values } = useFormikContext();
+  const { setFieldTouched, setFieldValue, values } = useFormikContext();
   const { name, onBlur } = props;
+  const today = new Date();
 
   const parseDate = (inputDate) => {
     // Assuming inputDate is in the format DDMMYYYY or MM/DD/YYYY or MM-DD-YYYY
     const parts = inputDate.split(/[\/-]/);
     let month, day, year;
-    
+
     if (parts.length === 1) {
-        // If only numbers provided without separators, assuming MMDDYYYY format
-        if (inputDate.length === 8) {
-            month = parseInt(inputDate.substring(0, 2), 10);
-            day = parseInt(inputDate.substring(2, 4), 10);
-            year = parseInt(inputDate.substring(4), 10);
-        } else if (inputDate.length === 7) {
-            // Assuming MDYYYY format, where the month is one digit and day is two digits
-            month = parseInt(inputDate.substring(0, 1), 10);
-            day = parseInt(inputDate.substring(1, 3), 10);
-            year = parseInt(inputDate.substring(3), 10);
-        } else if (inputDate.length === 6) {
-            // Assuming DYYYY format, where both month and day are one digit each
-            month = parseInt(inputDate.substring(0, 1), 10);
-            day = parseInt(inputDate.substring(1, 2), 10);
-            year = parseInt(inputDate.substring(2), 10);
-        } else {
-            // Invalid input format
-            return null;
-        }
-    } else if (parts.length === 3) {
-        // If input is in the format MM/DD/YYYY or MM-DD-YYYY
-        month = parseInt(parts[0], 10);
-        day = parseInt(parts[1], 10);
-        year = parseInt(parts[2], 10);
-    } else {
+      // If only numbers provided without separators, assuming MMDDYYYY format
+      if (inputDate.length === 8) {
+        month = parseInt(inputDate.substring(0, 2), 10);
+        day = parseInt(inputDate.substring(2, 4), 10);
+        year = parseInt(inputDate.substring(4), 10);
+      } else if (inputDate.length === 7) {
+        // Assuming MDYYYY format, where the month is one digit and day is two digits
+        month = parseInt(inputDate.substring(0, 1), 10);
+        day = parseInt(inputDate.substring(1, 3), 10);
+        year = parseInt(inputDate.substring(3), 10);
+      } else if (inputDate.length === 6) {
+        // Assuming DYYYY format, where both month and day are one digit each
+        month = parseInt(inputDate.substring(0, 1), 10);
+        day = parseInt(inputDate.substring(1, 2), 10);
+        year = parseInt(inputDate.substring(2), 10);
+      } else {
         // Invalid input format
         return null;
+      }
+    } else if (parts.length === 3) {
+      // If input is in the format MM/DD/YYYY or MM-DD-YYYY
+      month = parseInt(parts[0], 10);
+      day = parseInt(parts[1], 10);
+      year = parseInt(parts[2], 10);
+    } else {
+      // Invalid input format
+      return null;
     }
 
     // Checking for valid date
     if (isNaN(month) || isNaN(day) || isNaN(year)) {
-        return null;
+      return null;
     }
 
     // Creating a date object
@@ -76,12 +77,17 @@ const CustomDatepicker = (props) => {
 
     // Check if date object corresponds to the input date
     if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
-        return null;
+      return null;
+    }
+
+    // Check if date is in the past
+    if (date < today) {
+      return null;
     }
 
     return date;
   };
-  
+
   const handleDateChange = (date) => {
     const inputDate = date instanceof Date ? date : parseDate(date);
     setSelectedDate(inputDate);
@@ -169,6 +175,7 @@ const CustomDatepicker = (props) => {
         showPopperArrow={false}
         calendarClassName="custom-calendar"
         locale="custom"
+        minDate={!dateOfBirth&&today}
       />
     </div>
   );
