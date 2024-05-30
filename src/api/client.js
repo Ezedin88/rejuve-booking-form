@@ -1,3 +1,7 @@
+import Stripe from "stripe";
+
+const stripe = new Stripe('sk_test_51HFQsEF7hHoyPJTdMELQKrMh7K41sNmrb6yf9D53PmUIQNOm6P4WrLxOMTS6K1mEUdxqsIW443yp9Zrw4e3lKymv00859FkIfv');
+
 export const client = {
     getProductById: async (product_id) => {
         const apiUrl = `https://rejuve.md/wp-json/wc/v3/products/${product_id}`;
@@ -91,6 +95,21 @@ export const client = {
             return results;
         } catch (error) {
             console.error("Error fetching data:", error);
+            throw error;
+        }
+    },
+    handlePaymentIntent: async (theTotalPriceAmount) => {
+        try {
+            const paymentIntent = await stripe.paymentIntents.create({
+                amount: theTotalPriceAmount * 100,
+                currency: 'usd',
+                payment_method_types: ['card'],
+            });
+            console.log('payment intent==>', paymentIntent);
+            const { id: paymentIntentId, client_secret } = paymentIntent;
+            return { paymentIntentId, client_secret };
+        } catch (error) {
+            console.error('Error creating payment intent:', error);
             throw error;
         }
     }

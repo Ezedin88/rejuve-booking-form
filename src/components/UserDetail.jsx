@@ -8,7 +8,7 @@ function UserDetail({index}) {
             <CustomInput placeholder='Smith' label="Last Name" name={`userData[${index}].billing.last_name`} type="text" />
             <CustomInput placeholder='jonathan.s@gmail.com' label="Email" name={`userData[${index}].billing.email`} type="email" />
             <CustomInput placeholder='Phone number' label="Phone" name={`userData[${index}].billing.phone`} type="text" />
-            <CustomInput placeholder='07/19/19' label="Date of Birth" name={`userData[${index}].billing.dateOfBirth`} type="date" />
+            <CustomInput placeholder='07/19/19' label="Date of Birth" name={`userData[${index}].billing.dateOfBirth`} type="date" dateOfBirth/>
 
         </div>
     )

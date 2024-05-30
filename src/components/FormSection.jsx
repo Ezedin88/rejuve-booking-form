@@ -140,12 +140,14 @@ function FormSection({
                 <ProductHero
                   isFetchingProduct={isFetchingProduct}
                   currentProduct={heroCurrentProduct}
+                  setCurrentProduct={setCurrentProduct}
                   setProductPrice={setProductPrice}
                   setWhereBooking={setWhereBooking}
                   lineItems={lineItems}
                   setLineItems={setlineItems}
                   values={values}
                   treatmentChoices={treatments}
+                  selectNad = {selectNad} 
                 />
                 {/* <div className="user-detail-main" id='user-detail-section'> */}
                 <WhyRejuve currentProduct={heroCurrentProduct} />
