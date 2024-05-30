@@ -147,7 +147,7 @@ function FormSection({
                   setLineItems={setlineItems}
                   values={values}
                   treatmentChoices={treatments}
-                  selectNad = {selectNad} 
+                  selectNad={selectNad}
                 />
                 {/* <div className="user-detail-main" id='user-detail-section'> */}
                 <WhyRejuve currentProduct={heroCurrentProduct} />
