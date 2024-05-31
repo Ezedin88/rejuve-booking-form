@@ -7,7 +7,7 @@ import { enUS } from 'date-fns/locale';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { MdOutlineCalendarToday } from 'react-icons/md';
 import { useFormikContext } from 'formik';
-import { format, parse } from 'date-fns';
+import { format } from 'date-fns';
 
 const customLocale = {
   ...enUS,
@@ -26,7 +26,7 @@ const customLocale = {
 
 registerLocale('custom', customLocale);
 
-const CustomDatepicker = ({dateOfBirth},props) => {
+const CustomDatepicker = (props) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const { setFieldTouched, setFieldValue, values } = useFormikContext();
   const { name, onBlur } = props;
@@ -76,12 +76,11 @@ const CustomDatepicker = ({dateOfBirth},props) => {
     const date = new Date(year, month - 1, day);
 
     // Check if date object corresponds to the input date
-    if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
-      return null;
-    }
-
-    // Check if date is in the past
-    if (date < today) {
+    if (
+      date.getFullYear() !== year ||
+      date.getMonth() !== month - 1 ||
+      date.getDate() !== day
+    ) {
       return null;
     }
 
@@ -175,7 +174,7 @@ const CustomDatepicker = ({dateOfBirth},props) => {
         showPopperArrow={false}
         calendarClassName="custom-calendar"
         locale="custom"
-        minDate={!dateOfBirth&&today}
+        minDate={!props.dateOfBirth && today}
       />
     </div>
   );

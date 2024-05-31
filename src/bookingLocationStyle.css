@@ -76,6 +76,11 @@
   opacity: 1;
 }
 
+.select-clinic-wrapper {
+  position: relative;
+  display: block;
+}
+
 .select-location-dropdown {
   box-sizing: border-box;
   display: flex;
@@ -91,12 +96,29 @@
   background-color: #fff !important;
   border-radius: 4px;
   outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .address-wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 36px;
+}
+
+.drop-down-icon {
+  font-size: 16px;
+  position: absolute;
+  right: 90px;
+  top: 12px;
+}
+
+/* target large screen */
+@media screen and (max-width: 1200px) {
+  .drop-down-icon {
+    right: 10px;
+  }
 }
 
 /* target small screen */
@@ -156,12 +178,21 @@
   top: 5px;
 }
 
+.drop-down-icon {
+  right: 10px;
+}
+
 .autocomplete-dropdown-container {
   position: absolute !important;
   z-index: 10;
   /* width: 53px; */
 }
+
 @media screen and (max-width: 767px) {
+  .drop-down-icon {
+    right: 10px;
+  }
+
   .autocomplete-dropdown-container {
     width: 86% !important;
   }

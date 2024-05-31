@@ -6,6 +6,20 @@
   align-items: center;
 }
 
+.input-box-label {
+  display: flex;
+  white-space: nowrap;
+  gap: 3px;
+}
+
+.input-box-wrapper label::after {
+  content: '*';
+  display: flex;
+  width: 10px;
+  height: 10px;
+  color: #32c0cc;
+}
+
 .input-box-wrapper {
   margin-top: 32px;
 }
