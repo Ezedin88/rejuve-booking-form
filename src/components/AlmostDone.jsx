@@ -80,7 +80,6 @@ function AlmostDoneSection({
                     className="tip-radio"
                     type="radio"
                     style={{ maxWidth: '100px' }}
-                    defaultChecked
                     id="others"
                     name="tip"
                     onChange={() => handlePercentageChange('others')}

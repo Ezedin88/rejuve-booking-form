@@ -22,10 +22,22 @@ function Agreement({
             // onChange={() => setAgreeToTos(!agreeToTos)}
             className="agreement-checkbox-input"
           />
-          <p className="agreement-description">
-            I agree to the ToS, Privacy Policy, Consent To Treat, and and
-            Cancellation Policy *
-          </p>
+          <p className="agreement-description"
+  style={{ cursor: 'pointer' }}
+  onClick={() => setAgreeToTos(!agreeToTos)}
+>
+  I agree to the ToS, 
+  <a 
+    href="https://rejuve.md/privacy-policy/" 
+    style={{ textDecoration: 'none', color: '#32c0cc' }}
+    onClick={e => e.stopPropagation()}  // Prevents toggling agreeToTos when clicking the link
+  >
+    Privacy Policy
+  </a>, 
+  Consent To Treat, and 
+  Cancellation Policy *
+</p>
+
         </div>
       </div>
       <div>
@@ -44,7 +56,10 @@ function Agreement({
             checked={agreeToCreateAccount}
             onChange={() => setAgreeToCreateAccount(!agreeToCreateAccount)}
           />
-          <p className="agreement-description">
+          <p className="agreement-description"
+          style={{cursor:'pointer'}}
+          onClick={() => setAgreeToCreateAccount(!agreeToCreateAccount)}
+          >
             {' '}
             Create an account for me and send me secure login details to my
             e-mail. (recommended)
@@ -68,7 +83,9 @@ function Agreement({
             checked={agreeToSignUp}
             onChange={() => setAgreeToSignUp(!agreeToSignUp)}
           />
-          <p className="agreement-description">
+          <p className="agreement-description"
+          style={{cursor:'pointer'}}
+          >
             Sign-up to receiving exclusive offers and service updates!
             (recommended)
           </p>

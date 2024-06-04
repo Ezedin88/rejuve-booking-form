@@ -112,6 +112,7 @@
   position: absolute;
   right: 90px;
   top: 12px;
+  display: none !important;
 }
 
 /* target large screen */

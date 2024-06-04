@@ -14,7 +14,10 @@ const CustomInput = ({ label, placeholder, cityStateZip,dateOfBirth, ...props })
                     <div className="radio-box">
                         <input {...field} {...props} autoComplete="true" className='payment-radio-input' />
                     </div>
-                    <p className="radio-input-label">
+                    <p className="radio-input-label"
+                        onClick={() => field.onChange({ target: { name: field.name, value: field.value } })}
+                        style={{cursor:'pointer'}}
+                    >
                         {label}
                     </p>
                 </div>

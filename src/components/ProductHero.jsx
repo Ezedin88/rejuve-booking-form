@@ -15,6 +15,8 @@ function ProductHero({
   setCurrentProduct,
 }) {
   const isCurrentNadType = currentProduct?.categories?.[0]?.slug === 'nad';
+  const isDecolletage = currentProduct?.slug === 'decolletage';
+  const isBeautyCategory = currentProduct?.categories?.[0]?.slug === 'beauty-treatments';
   const arrObj = useMemo(() => {
     return treatmentChoices?.map((items) => {
       const everyproduct = getProductPrice({
@@ -28,6 +30,7 @@ function ProductHero({
       return { id, bookHouseCall, bookInClinic, variations };
     });
   }, [treatmentChoices, isFetchingProduct]);
+
   const updatedLineItems = lineItems.map((lineItem) => {
     const { product_id } = lineItem;
     const userBooking = values.bookingChoice;
@@ -89,7 +92,7 @@ function ProductHero({
               <img src={largeHeroImage} alt="product" className="image" />
             </div>
             <div className="image-container small-hero-image">
-              <img src={smallHeroImage} alt="product" className="image" />
+              <img src={isDecolletage&&largeHeroImage||smallHeroImage} alt="product" className="image" />
             </div>
           </section>
           {/* content section */}

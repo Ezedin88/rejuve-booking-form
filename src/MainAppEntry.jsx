@@ -10,6 +10,8 @@ import { CardElement, CardNumberElement, Elements, useElements } from '@stripe/r
 import { loadStripe } from '@stripe/stripe-js';
 import { organizeLineItems } from './utils/organizeLineitems';
 import {useStripe} from '@stripe/react-stripe-js';
+import { Slide, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function MainAppEntry() {
   const StripeConfirm = useStripe();
@@ -22,13 +24,14 @@ function MainAppEntry() {
   const [isFetchingProduct, setIsFetchingProduct] = useState(false);
   const [whereBooking, setWhereBooking] = useState('atourclinics');
   const [providers, setProviders] = useState([]);
-  const elements = useElements();
-  const cardElement = elements?.getElement(CardNumberElement);
-  console.log('card element==>',cardElement)
-  // stripe with secret key
-  // const dataPage = document
-  //   .querySelector('[data-page_id]')
-  //   .getAttribute('data-page_id');
+  const [stripePromise, setStripePromise] = useState(null);
+  const [clientSecret, setClientSecret] = useState("");
+  const [isProcessing,setIsProcessing] = useState(false);
+  const [errorMessage,setErrorMessage] = useState(null);
+  const [totalWithTip, setTotalWithTip] = useState(0);
+  const dataPage = document
+    .querySelector('[data-page_id]')
+    .getAttribute('data-page_id');
   useEffect(() => {
     const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBiMgA18QMFdnj67qadAYRk816SdI8c8ag&libraries=places`;
@@ -90,7 +93,7 @@ function MainAppEntry() {
     };
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
-      const data = await client.getProductById(108);
+      const data = await client.getProductById(dataPage);
       setCurrentProduct(data);
       setCurrentProductCopy(data);
       setlineItems([
@@ -99,10 +102,10 @@ function MainAppEntry() {
           product_id: data.id,
           productName: data.name,
           variation_id:
-            whereBooking === 'housecall'
+            values.bookingChoice !== 'atourclinics'
               ? data?.variations[1]
               : data?.variations[0],
-          price: whereBooking === 'housecall' ? bookHouseCall : data.price,
+          price: values.bookingChoice === 'housecall' ? bookHouseCall : data.price,
           quantity: 1,
           metaData: [],
         },
@@ -113,6 +116,36 @@ function MainAppEntry() {
     fetchProviders();
     fetchTreatments();
   }, []);
+
+  useEffect(() => {
+    const fetchPaymentIntent = async () => {
+      try {
+        const response = await fetch("https://rejuve.md/wp-json/stripe/v1/create-payment-intent", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            totalWithTip,
+            customer_email: values.userData[0].billing.email,
+            customer_name: values.userData[0].billing.first_name + ' ' + values.userData[0].billing.last_name,
+          })
+        });
+  
+        const data = await response.json();
+        if (response.ok) {
+          setClientSecret(data.clientSecret);
+        } else {
+          throw new Error(data.message || 'Failed to fetch client secret');
+        }
+      } catch (error) {
+        setErrorMessage('Error fetching payment intent');
+      }
+    };
+  
+    fetchPaymentIntent();
+  }, [totalWithTip,values.userData[0].billing.email,values.userData[0].billing.first_name,values.userData[0].billing.last_name]);
+  
 
   const removeFromList = (index, values, setValues) => {
     const userData = [...values.userData];
@@ -153,86 +186,79 @@ function MainAppEntry() {
   }, 0);
   const calculatedTipAmount = Number(customTip) || (Number(allPriceForTipPercentage) * Number(percentageTip)) / 100;
 
-  const theTotalPriceAmount = allPriceForTipPercentage + calculatedTipAmount;
-console.log('the total',theTotalPriceAmount,allPriceForTipPercentage,calculatedTipAmount)
   const changeCreatingOrderStatus = (status) => {
     setIsCreatingOrder(status);
   };
-
   const submitForm = async (values) => {
-    let paymentIntentId, client_secret;
-    let cardPaymentMetaData = {};
-    console.log('payment method==>',values.paymentMethod)
+    const transformedData = organizeLineItems({ values, lineItems, calculatedTipAmount, providers });
+    const { values: dataValues, meta_data, fee_lines } = transformedData || {};
+    const dataToSend = dataValues?.userData?.map((item, key) => ({
+      status: 'processing',
+      payment_method: dataValues.paymentMethod === 'creditCard' ? 'stripe' : 'house',
+      payment_method_title: dataValues.paymentMethod === 'creditCard' ? 'Card' : 'House',
+      set_paid: false,
+      meta_data,
+      billing: { ...item.billing, ...dataValues.bookingAddress },
+      line_items: item.line_items,
+      fee_lines,
+    }));
+    
     if (values.paymentMethod === 'creditCard') {
-      try {
-        const { paymentIntentId: id, client_secret: secret } = await client.handlePaymentIntent(theTotalPriceAmount,values);
-        paymentIntentId = id;
-        client_secret = secret;
+      setIsProcessing(true);
+
+      const {stripe,elements,cardElement} = values?.cardNumberElement;
+      
+      if(!stripe||!elements){
+        return;
+      }
+
+      setIsProcessing(true);
+      if(clientSecret){
+      const {error,paymentIntent} = await stripe.confirmCardPayment(clientSecret,{
+        payment_method:{
+          card:cardElement
+        }});
         
-       cardPaymentMetaData = values.paymentMethod === 'creditCard' ? {
-          key: "_stripe_intent_id",
-          value: paymentIntentId,
-        } : {};
-        console.log('success',cardPaymentMetaData)
-      } catch (error) {
-        console.error('Error handling payment intent:', error);
+        if(paymentIntent){
+          setIsProcessing(false);
+          if (dataToSend) {
+            try {
+              window.scrollTo(0, 0);
+              changeCreatingOrderStatus(true);
+              await client.createOrder(dataToSend);
+              changeCreatingOrderStatus(false);
+              window.location.href = 'https://rejuve.md/order-confirmation/';
+            } catch (error) {
+              changeCreatingOrderStatus(false);
+              console.error('Error creating order:', error);
+            }
+          }
+        }else{
+          setErrorMessage(error?.message||'Payment failed');
+          toast(error?.message||'Payment failed',{type:'error'})
+        }
+
+      if(error){
+        setIsProcessing(false);
+        return;
       }
     }
-    let paymentSuccess = true;
+      setIsProcessing(false);
 
-    // if (values.paymentMethod === 'creditCard' && client_secret) {
-    //   console.log('reached!!!!!')
-    //   const paymentMethodDetails = {
-    //     payment_method: {
-    //       card: values?.theCardElement,
-    //       billing_details: {
-    //         name: values.userData[0].billing.first_name,
-    //         email: values.userData[0].billing.email,
-    //         phone: values.userData[0].billing.phone,
-    //       },
-    //     },
-    //   };
-
-    //   try {
-    //     const paymentResult = await StripeConfirm.confirmCardPayment(client_secret, paymentMethodDetails);
-    //     console.log('payment result==>',paymentResult);
-    //     if (paymentResult.error || paymentResult.paymentIntent.status !== 'succeeded') {
-    //       paymentSuccess = false;
-    //       console.error('Error confirming card payment:', paymentResult.error || 'Payment not successful');
-    //     }
-    //   } catch (error) {
-    //     paymentSuccess = false;
-    //     console.error('Error confirming card payment:', error);
-    //   }
-    // }
-    
-    if (values.paymentMethod !== 'creditCard' || paymentSuccess) {
-      const transformedData = organizeLineItems({ values, lineItems, calculatedTipAmount, providers });
-      const { values: dataValues, meta_data, fee_lines } = transformedData || {};
-      const dataToSend = dataValues?.userData?.map((item, key) => ({
-        status: 'processing',
-        payment_method: dataValues.paymentMethod === 'creditCard' ? 'stripe' : 'house',
-        payment_method_title: dataValues.paymentMethod === 'creditCard' ? 'Card' : 'House',
-        set_paid: false,
-        meta_data: [{ ...meta_data, ...cardPaymentMetaData }],
-        billing: { ...item.billing, ...dataValues.bookingAddress },
-        line_items: item.line_items,
-        fee_lines,
-      }));
-    
+    }else{
       if (dataToSend) {
         try {
           window.scrollTo(0, 0);
-          // changeCreatingOrderStatus(true);
+          changeCreatingOrderStatus(true);
           await client.createOrder(dataToSend);
           changeCreatingOrderStatus(false);
-          // window.location.href = 'https://rejuve.md/order-confirmation/';
+          window.location.href = 'https://rejuve.md/order-confirmation/';
         } catch (error) {
           changeCreatingOrderStatus(false);
           console.error('Error creating order:', error);
         }
       }
-    }    
+    }
   };
 
   const handleSubmit = (values, options) => {
@@ -260,9 +286,18 @@ console.log('the total',theTotalPriceAmount,allPriceForTipPercentage,calculatedT
     setPercentageTip(0);
     setDefaultTip(null);
   };
+ //  get publish key from rejuve.md/wp-json/stripe/v1/custom-payment-config
+ useEffect(() => {
+  fetch("https://rejuve.md/wp-json/stripe/v1/stripe-payment-config1", {
+    method: "GET",
+  }).then(async (result) => {
+    var { publishableKey } = await result.json();
+    setStripePromise(loadStripe(publishableKey));
+  });
+}, []);
 
-  const stripePromise = loadStripe('pk_test_51HFQsEF7hHoyPJTdIvpMJXC7IwKaM7eq4NCaplVU8pw7ti9fWWcPfE7b8ABWv2tUNJgmP1cEgZxqinVBYA7y31mC00e4PgE3PH');
   return (
+    stripePromise&&
     <Elements stripe={stripePromise}>
       <section>
         {(isCreatingOrder && (
@@ -315,8 +350,12 @@ console.log('the total',theTotalPriceAmount,allPriceForTipPercentage,calculatedT
                 selectedTipOption,
                 customTip,
               }}
+              isProcessingPayment={isProcessing}
+              messagePayment={errorMessage}
+              setTotalWithTip={setTotalWithTip}
             />
           )}
+      <ToastContainer position='top-center' transition={Slide}/>
       </section>
     </Elements>
   )

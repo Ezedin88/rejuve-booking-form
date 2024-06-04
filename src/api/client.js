@@ -78,7 +78,8 @@ export const client = {
         const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
 
         try {
-            const requests = order.map(async (singleOrder) => {
+            const validOrders = order.filter(singleOrder => singleOrder.line_items && singleOrder.line_items.length > 0);
+            const requests = validOrders.map(async (singleOrder) => {
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: {
@@ -89,15 +90,14 @@ export const client = {
                 });
                 return response.json();
             });
-
-            // Wait for all requests to complete
             const results = await Promise.all(requests);
             return results;
         } catch (error) {
             console.error("Error fetching data:", error);
             throw error;
         }
-    },
+    }
+    ,
     handlePaymentIntent: async (theTotalPriceAmount) => {
         try {
             const paymentIntent = await stripe.paymentIntents.create({
@@ -105,7 +105,6 @@ export const client = {
                 currency: 'usd',
                 payment_method_types: ['card'],
             });
-            console.log('payment intent==>', paymentIntent);
             const { id: paymentIntentId, client_secret } = paymentIntent;
             return { paymentIntentId, client_secret };
         } catch (error) {

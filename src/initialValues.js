@@ -25,6 +25,7 @@ export const initialValues = {
     provider: "",
     terms: false,
     paymentMethod: 'creditCard',
+    cardNumberElement: {},
 }
 
 

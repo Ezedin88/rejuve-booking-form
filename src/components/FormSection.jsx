@@ -15,7 +15,7 @@ import BookingDateTime from './BookingDateTime';
 import AlmostDoneSection from './AlmostDone';
 import CardPaymentMethod from './CardPaymentMethod';
 import Agreement from './Agreement';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ChooseTreatments from './ChooseTreatments';
 import BookingLocation from './BookingLocation';
 import ProductHero from './ProductHero';
@@ -50,6 +50,12 @@ function FormSection({
   heroCurrentProduct,
   tipOptions,
   tips,
+  // payment related
+  messagePayment,
+  isProcessingPayment,
+  setTheCardNumberElement,
+  setTheClientSecret,
+  setTotalWithTip,
 }) {
   const [agreeToTos, setAgreeToTos] = useState(false);
   const [agreeToCreateAccount, setAgreeToCreateAccount] = useState(true);
@@ -74,6 +80,10 @@ function FormSection({
     (acc, item) => acc + Number(item.price),
     0
   );
+
+  useEffect(() => {
+    setTotalWithTip(totalCalculation + Number(calculatedTipAmount || 0));
+  }, [totalCalculation, calculatedTipAmount]);
   const [refactoredErrors, setRefactoredErrors] = useState([]);
   const [termsError, setTermsError] = useState(false);
   const [hasAnyErrors, setHasAnyErrors] = useState(false);
@@ -88,11 +98,13 @@ function FormSection({
         onSubmit={handleSubmit}
       >
         {({ values, errors, setValues, setTouched, validateForm, isValid }) => {
-          const hasErrors =
+
+      const hasErrors =
             Object.keys(errors).filter((key) => key !== 'terms').length > 0;
           if (!hasErrors) {
             setHasAnyErrors(false);
           }
+          
           const { terms: termsError, userData: userDataErrors } = errors || {};
           const areThereUserDataErrors =
             userDataErrors && userDataErrors.length > 0;
@@ -350,6 +362,7 @@ function FormSection({
                   >
                     {values?.userData?.length > 0 &&
                       values?.userData.map((item, userIndex) => {
+  const selectedItems = lineItems.filter(lineItem => lineItem?.userIndex === userIndex);
                         return (
                           <div key={userIndex} className="personWrapper">
                             <p className="form-main-inner-title">
@@ -360,39 +373,28 @@ function FormSection({
                                 : 'Person' + userIndex}
                               (
                               {values?.bookingChoice === 'atourclinics'
-                                ? 'house call'
-                                : 'clinic'}
+                                ? 'clinic'
+                                : 'house call'}
                               )
                             </p>
                             <div className="item-price-summary-wrapper">
-                              {lineItems.length > 0 &&
-                                lineItems.map((lineItem, index) => {
-                                  return (
-                                    (lineItem?.userIndex === userIndex && (
-                                      <div
-                                        key={index}
-                                        className="item-price-summary"
-                                      >
-                                        <p className="product-name-summary">
-                                          {lineItem?.userIndex === userIndex &&
-                                            lineItem?.productName}
-                                        </p>
-                                        <p className="product-price-summary">
-                                          ${lineItem?.price}
-                                        </p>
-                                      </div>
-                                    )) || (
-                                      <div className="item-price-summary">
-                                        <p className="product-name-summary">
-                                          No item selected
-                                        </p>
-                                        <p className="product-price-summary">
-                                          $0.00
-                                        </p>
-                                      </div>
-                                    )
-                                  );
-                                })}
+                            {selectedItems.length > 0 ? (
+      selectedItems.map((lineItem, index) => (
+        <div key={index} className="item-price-summary">
+          <p className="product-name-summary">
+            {lineItem?.productName}
+          </p>
+          <p className="product-price-summary">
+            ${lineItem?.price}
+          </p>
+        </div>
+      ))
+    ) : (
+      <div className="item-price-summary">
+        <p className="product-name-summary">No item selected</p>
+        <p className="product-price-summary">$0.00</p>
+      </div>
+    )}
                             </div>
                           </div>
                         );
@@ -454,7 +456,12 @@ function FormSection({
                       value="payAtLocation"
                     />
                   </div>
-                  <CardPaymentMethod values={values} />
+                  <CardPaymentMethod values={values} 
+                      messagePayment={messagePayment}
+                      isProcessingPayment={isProcessingPayment}
+                      setTheCardNumberElement={setTheCardNumberElement}
+                      setTheClientSecret={setTheClientSecret}
+                  />
                 </div>
               </div>
               {/* Payment Method */}
@@ -506,6 +513,7 @@ function FormSection({
                       // If no errors, submit the form
                       submitForm(values);
                     }}
+                    disabled={isProcessingPayment && true}
                   >
                     <div>
                       <img
@@ -513,7 +521,9 @@ function FormSection({
                         alt="locked icon"
                       />
                     </div>
-                    <p style={{ margin: 0 }}>Book and Pay</p>
+                    <p style={{ margin: 0 }}>{
+                    isProcessingPayment ? 'Processing Payment...' : 'Book and Pay'
+                    }</p>
                   </button>
                 </div>
               </div>

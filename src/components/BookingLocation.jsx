@@ -50,7 +50,10 @@ function BookingLocation({ values }) {
                 value="atourclinics"
               />
             </div>
-            <p className="location-where">
+            <p className="location-where"
+            onClick={() => setFieldValue('bookingChoice', 'atourclinics')}
+            style={{cursor:'pointer'}}
+            >
               {' '}
               At Our Clinics{' '}
               <span className="location-span">At our locations</span>
@@ -70,7 +73,10 @@ function BookingLocation({ values }) {
                 value="housecall"
               />
             </div>
-            <p className="location-where">
+            <p className="location-where"
+            onClick={() => setFieldValue('bookingChoice', 'housecall')}
+            style={{cursor:'pointer'}}
+            >
               {' '}
               We Come to You{' '}
               <span className="location-span">We come to you</span>

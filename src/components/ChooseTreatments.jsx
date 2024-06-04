@@ -7,9 +7,56 @@ function ChooseTreatments({
   treatmentChoices,
   ivTherapy,
   isFetchingProduct,
-  setCurrentProduct, 
+  setCurrentProduct,
   dataValues
 }) {
+
+  // when not iv therapy
+  const handleCheckboxChangeNotIvTherapy = (checked, treatment, inHousePrice) => {
+    if (checked) {
+      setlineItems([...lineItems, {
+        userIndex: index,
+        product_id: treatment.id,
+        productName: treatment?.name,
+        price: dataValues?.bookingChoice === 'housecall' ? inHousePrice : treatment?.price,
+        quantity: 1,
+        metaData: []
+      }]);
+    } else {
+      setlineItems(lineItems.filter(item => item.product_id !== treatment.id));
+    }
+  };
+
+  // when iv therapy
+  const handleCheckboxChangeIvTherapy = (checked, treatment, inHousePrice) => {
+    if (checked) {
+      if (index === 0) {
+        setCurrentProduct(treatment);
+      }
+      setlineItems(prevLineItems => {
+        const ivTreatmentIds = treatmentChoices
+          .filter(treatment => treatment.categories[0].name === 'IV Treatment')
+          .map(treatment => treatment.id);
+        const remainingLineItems = prevLineItems.filter(item => {
+          if (item.userIndex !== index) {
+            return true;
+          }
+          return !ivTreatmentIds.includes(item.product_id);
+        });
+        return [
+          ...remainingLineItems,
+          {
+            userIndex: index,
+            price: dataValues?.bookingChoice === 'housecall' ? inHousePrice : treatment?.price,
+            product_id: treatment.id,
+            productName: treatment?.name,
+            quantity: 1,
+            metaData: []
+          }
+        ];
+      });
+    }
+  };
 
   return (
     <>
@@ -46,32 +93,11 @@ function ChooseTreatments({
                           name={`userData[${index}].line_items[${index}].product_id`}
                           value={treatment.id}
                           checked={lineItems.some(item => index === item.userIndex && item.product_id === treatment.id)}
-                          onChange={e => {
-                            if (e.target.checked) {
-                              setCurrentProduct(treatment);
-                              setlineItems(prevLineItems => {
-                                const ivTreatmentIds = treatmentChoices
-                                  .filter(treatment => treatment.categories[0].name === 'IV Treatment')
-                                  .map(treatment => treatment.id);
-                                  const remainingLineItems = prevLineItems.filter(item => {
-                                    if (item.userIndex !== index) {
-                                      return true;
-                                    }
-                                    return !ivTreatmentIds.includes(item.product_id);
-                                  });                                return [
-                                  ...remainingLineItems,
-                                  {
-                                    userIndex: index,
-                                    price: dataValues?.bookingChoice === 'housecall' ? inHousePrice : treatment?.price,
-                                    product_id: treatment.id,
-                                    productName: treatment?.name,
-                                    quantity: 1,
-                                    metaData: []
-                                  }
-                                ];
-                              });
+                          onChange={
+                            (e) => {
+                              handleCheckboxChangeIvTherapy(e.target.checked, treatment, inHousePrice)
                             }
-                          }}
+                          }
                         />
                         :
                         <input
@@ -81,22 +107,20 @@ function ChooseTreatments({
                           name={`userData[${index}].line_items[${index}].product_id`}
                           value={treatment.id}
                           checked={lineItems.some(item => index === item.userIndex && item.product_id === treatment.id)}
-                          onChange={e => {
-                            if (e.target.checked) {
-                              setlineItems([...lineItems, {
-                                userIndex: index,
-                                product_id: treatment.id,
-                                productName: treatment?.name,
-                                price: dataValues?.bookingChoice === 'housecall' && inHousePrice || treatment?.price,
-                                quantity: 1,
-                                metaData: []
-                              }]);
-                            } else {
-                              setlineItems(lineItems.filter(item => item.product_id !== treatment.id));
+                          onChange={
+                            (e) => {
+                              handleCheckboxChangeNotIvTherapy(e.target.checked, treatment, inHousePrice)
                             }
-                          }}
+                          }
                         />}
-                    {treatment?.name}
+                    <p
+                      onClick={() => !ivTherapy && handleCheckboxChangeNotIvTherapy(!lineItems.some(item => index === item.userIndex && item.product_id === treatment.id), treatment, inHousePrice)||
+                      ivTherapy && handleCheckboxChangeIvTherapy(!lineItems.some(item => index === item.userIndex && item.product_id === treatment.id), treatment, inHousePrice)
+                      }
+                      style={{cursor:'pointer',margin:0}}
+                    >
+                      {treatment?.name}
+                    </p>
                   </div>
                   {/* price */}
                   <div className='accordion-item-price'

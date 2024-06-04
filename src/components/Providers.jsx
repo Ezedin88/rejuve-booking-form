@@ -39,6 +39,7 @@ function Providers({providers,values}) {
                 />
                 </div>
                 <label htmlFor={providerItem?.name}
+                style={{cursor:'pointer'}}
                 className='provider-name-label'
                 >{providerItem?.name}</label>
             </div>

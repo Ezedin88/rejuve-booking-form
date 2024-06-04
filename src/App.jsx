@@ -1,11 +1,4 @@
-import { useEffect, useState } from 'react';
 import './App.css';
-import { client } from './api/client';
-import FormSection from './components/FormSection';
-import ProductHero from './components/ProductHero';
-import { Formik, useFormik } from 'formik';
-import { initialValues } from './initialValues';
-import { getProductPrice } from './utils/getProductPrice';
 import { Elements } from '@stripe/react-stripe-js';
 import MainAppEntry from './MainAppEntry';
 import { loadStripe } from '@stripe/stripe-js';

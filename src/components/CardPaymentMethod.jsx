@@ -2,23 +2,19 @@ import '../paymentMethod.css';
 import CustomInput from '../CustomInput';
 import {
   CardCvcElement,
-  CardElement,
   CardExpiryElement,
   CardNumberElement,
   useElements,
   useStripe,
 } from '@stripe/react-stripe-js';
-import { useState } from 'react';
 
 function CardPaymentMethod({ values }) {
+  const stripe = useStripe();
   const elements = useElements();
   const cardElement = elements?.getElement(CardNumberElement);
-  values.theCardElement = cardElement;
-  const stripe = useStripe();
-  console.log('the element==>', cardElement);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
+
+
+  values.cardNumberElement = {stripe,elements,cardElement};
 
   const CARD_ELEMENT_OPTIONS = {
     style: {

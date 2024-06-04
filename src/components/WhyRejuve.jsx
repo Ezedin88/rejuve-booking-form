@@ -24,7 +24,10 @@ const convenience_list_2_convenience_dscription = meta_data?.find(({key}) => key
 const convenience_list_2_description = meta_data?.find(({key}) => key==='convenience_list_2_description')?.value;
 
 const mainHeroTitle = convenience_list_0_convenience_title || convenience_list_0_title;
+const secondHeroTitle = convenience_list_1_convenience_title || convenience_list_1_title;
+const thirdHeroTitle = convenience_list_2_convenience_title || convenience_list_2_title;
   return (
+    convenience_section_title?
     <>
      <section className='product-section' id='product-section-id'>
       <h1 className='product-section-title'>{convenience_section_title}</h1>
@@ -41,15 +44,14 @@ const mainHeroTitle = convenience_list_0_convenience_title || convenience_list_0
         </div>
         <div className='product-section-card'>
           <img src="http://rejuve.md/wp-content/uploads/2024/01/Frame_8.svg" alt="placeholder" />
-          <h1 
-            className='product-section-card-h1'>{convenience_list_1_convenience_title   || convenience_list_1_title}</h1>
+         <h1 className="product-section-card-h1" dangerouslySetInnerHTML={{ __html: secondHeroTitle }} />
           <p
             className='why-rejuve-description'  
           >{convenience_list_1_convenience_dscription || convenience_list_1_description}</p>
         </div>
         <div className='product-section-card'>
           <img src="http://rejuve.md/wp-content/uploads/2024/01/Frame_10.svg" alt="placeholder" />
-          <h1 className='product-section-card-h1'>{convenience_list_2_convenience_title || convenience_list_2_title}</h1>
+          <h1 className="product-section-card-h1" dangerouslySetInnerHTML={{ __html: thirdHeroTitle }} />
           <p
             className='why-rejuve-description'
           >{convenience_list_2_convenience_dscription || convenience_list_2_description}</p>
@@ -70,7 +72,7 @@ const mainHeroTitle = convenience_list_0_convenience_title || convenience_list_0
         <p className="click-to-login"><a href="">Click here to login</a></p>
       </div>
     </section>
-    </>
+    </>:null
   )
 }
 

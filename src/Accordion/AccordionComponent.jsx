@@ -9,7 +9,9 @@ const filteredCheckedItems = currentAccordionCheckedItems.filter(item => treatme
   return (
     <div className={`accordion-section ${isOpen? 'open' : ''} accordion-main-wrapper`}
     >
-      <button onClick={(e) => {e.preventDefault();setIsOpen(!isOpen)}} className='accordion-btn'>
+      <button onClick={(e) => {e.preventDefault();setIsOpen(!isOpen)}} className='accordion-btn'
+    style={{cursor:'pointer'}}
+      >
        <div style={{display:'flex'}} className='accordion-title-shower-wrapper'>
         <div className='accordion-title'>
        <p style={{margin:'0px !important'}} className='accordion-the-title'>{title}</p> 
