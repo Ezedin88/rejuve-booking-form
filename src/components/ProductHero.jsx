@@ -16,6 +16,11 @@ function ProductHero({
 }) {
   const isCurrentNadType = currentProduct?.categories?.[0]?.slug === 'nad';
   const isDecolletage = currentProduct?.slug === 'decolletage';
+  const {meta_data} = currentProduct||{};
+const product_benefit_title = meta_data?.find(({key}) => key==="benefits_of_product_content_title")?.value;
+const product_benefit_description = meta_data?.find(({key}) => key==="benefits_of_product_content_description")?.value;
+const benefits_of_product_content = meta_data?.find(({key}) => key==="benefits_of_product_content_content")?.value;
+
   const isBeautyCategory = currentProduct?.categories?.[0]?.slug === 'beauty-treatments';
   const arrObj = useMemo(() => {
     return treatmentChoices?.map((items) => {
@@ -82,26 +87,95 @@ function ProductHero({
     setProductPrice(Number(bookHouseCall));
   }, [bookHouseCall, isFetchingProduct]);
 
+  const products = useMemo(() => {
+    return treatmentChoices?.filter((item) => {
+      const { id, bookHouseCall, bookInClinic, variations } = getProductPrice({
+        product: item,
+        isFetchingProduct,
+      });
+      // return items whose categories[0]?.name is 'Botox Products'
+      return item.categories[0]?.name === 'Botox Products';
+    });
+  }, [treatmentChoices, isFetchingProduct]);
+  
+
+  console.log('products==>',products);
+
   return (
     <>
       <section className="product-hero-main-wrapper">
-        <section className="product-hero-wrapper">
+        {
+          isDecolletage&&
+          <section className="decolletage_wrapper_header beauty_description_decolletage" style={{color:'black'}}>
+            <h2 className='botox-page-title'>{product_benefit_title}</h2>
+            <h4 className='botox-page-title-description'>{product_benefit_description}</h4>
+            <h4 className='botox-page-description-content'>{benefits_of_product_content}</h4>
+          </section>
+        }
+
+        <section className={`product-hero-wrapper ${isDecolletage ? 'hero-decolattege' : ''}`}>
           {/* image section*/}
           <section className="product-image">
-            <div className="image-container large-hero-image">
+            {/* <div className="image-container large-hero-image"> */}
+            <div className={`product-image ${isDecolletage ? 'decolattege-image' : ''}`}>
               <img src={largeHeroImage} alt="product" className="image" />
+              {
+                isDecolletage&&
+                <div className="face-buttons-wrapper">
+                  <section className="forehead-button-wrapper">
+                    <button className="forehead-button face-circle-buttons" type="button">
+                      {/* Forehead */}
+                    </button>
+                  </section>
+                  <section className="eye-brow-button-wrapper">
+                    <button className="eye-brow-button face-circle-buttons" type="button">
+                      {/* Eye Brow */}
+                    </button>
+                  </section>
+                  <section className="crow-feet-button-wrapper">
+                    <button className="crow-feet-button face-circle-buttons" type="button">
+                      {/* Crow's Feet */}
+                      </button>
+                  </section>
+                  <section className="lip-top-button-wrapper">
+                    <button className="lip-top-button face-circle-buttons" type="button">
+                      {/* Lip Top */}
+                    </button>
+                    </section>
+                    <section className="gummy-smile-button-wrapper">
+                    <button className="gummy-smile-button face-circle-buttons" type="button">
+                      {/* Gummy Smile */}
+                    </button>
+                    </section>
+                    <section className="orange-peel-chin-button-wrapper">
+                    <button className="orange-peel-chin-button face-circle-buttons" type="button">
+                      {/* Orange Peel Chin */}
+                    </button>
+                    </section>
+                    <section className="neck-bands-button-wrapper">
+                    <button className="neck-bands-button face-circle-buttons" type="button">
+                      {/* Neck Bands */}
+                    </button>
+                    </section>
+                </div>
+              }
             </div>
+              {!isDecolletage&&
             <div className="image-container small-hero-image">
-              <img src={isDecolletage&&largeHeroImage||smallHeroImage} alt="product" className="image" />
+              <img src={smallHeroImage} alt="product" className="image" />
             </div>
+            }
           </section>
           {/* content section */}
+          {!isDecolletage&&
           <section className="product-description-wrapper">
             <p className="product-name">{name}</p>
             <p
               className="product-description"
               dangerouslySetInnerHTML={{ __html: short_description }}
             />
+            {/* booking sections */}
+
             <div className="product-price-buttons-wrapper">
               {!isCurrentNadType && (
                 <div className="booking-buttons">
@@ -189,6 +263,7 @@ function ProductHero({
               )}
             </div>
           </section>
+            }
         </section>
       </section>
     </>
