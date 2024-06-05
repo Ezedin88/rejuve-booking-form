@@ -1,20 +1,17 @@
-import { useEffect, useState } from 'react';
 import './App.css';
+import { useEffect, useState } from 'react';
 import { client } from './api/client';
 import FormSection from './components/FormSection';
-import ProductHero from './components/ProductHero';
-import { Formik, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import { initialValues } from './initialValues';
 import { getProductPrice } from './utils/getProductPrice';
-import { CardElement, CardNumberElement, Elements, useElements } from '@stripe/react-stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { organizeLineItems } from './utils/organizeLineitems';
-import {useStripe} from '@stripe/react-stripe-js';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function MainAppEntry() {
-  const StripeConfirm = useStripe();
   const [isCreatingOrder, setIsCreatingOrder] = useState(false);
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
   const [selectedTipOption, setSelectedTipOption] = useState('others');
@@ -79,9 +76,8 @@ function MainAppEntry() {
   }, [fieldsAreEmpty, fieldsAreEmptyForUpdate]);
 
   const { values } = useFormik({ initialValues });
-
   useEffect(() => {
-    const { bookHouseCall, bookInClinic } =
+    const { bookHouseCall } =
       getProductPrice({ product: currentProduct, isFetchingProduct }) || {};
     const fetchTreatments = async () => {
       const data = await client.getAllTreatments();
@@ -96,7 +92,7 @@ function MainAppEntry() {
       const data = await client.getProductById(582);
       setCurrentProduct(data);
       setCurrentProductCopy(data);
-      setlineItems([
+    data?.id!==582 && setlineItems([
         {
           userIndex: 0,
           product_id: data.id,
@@ -156,8 +152,6 @@ function MainAppEntry() {
   const handleProviderChange = (e) => {
     setSelectedProvider(e.target.value);
   };
-
-  const checkEmptyFields = async (values) => { };
 
   const updateForm = (values, setValues) => {
     // if (!isFormFilled(values)) {

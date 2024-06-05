@@ -8,6 +8,7 @@ function ChooseTreatments({
   ivTherapy,
   isFetchingProduct,
   setCurrentProduct,
+  isDecolettage,
   dataValues
 }) {
 
@@ -26,11 +27,10 @@ function ChooseTreatments({
       setlineItems(lineItems.filter(item => item.product_id !== treatment.id));
     }
   };
-
   // when iv therapy
   const handleCheckboxChangeIvTherapy = (checked, treatment, inHousePrice) => {
     if (checked) {
-      if (index === 0) {
+      if (index === 0 && !isDecolettage) {
         setCurrentProduct(treatment);
       }
       setlineItems(prevLineItems => {

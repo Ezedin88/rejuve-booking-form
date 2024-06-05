@@ -2,6 +2,18 @@ import '../ProductHero.css';
 import { useEffect, useMemo, useState } from 'react';
 import { getProductPrice } from '../utils/getProductPrice';
 
+const decodeHtmlEntities = (str) => {
+  const txt = document.createElement('textarea');
+  txt.innerHTML = str;
+  return txt.value;
+};
+
+const extractRelevantTags = (htmlString) => {
+  const regex = /<(h2|h4)[^>]*>.*?<\/\1>/gi;
+  const matches = htmlString.match(regex);
+  return matches ? matches.join('') : '';
+};
+
 function ProductHero({
   currentProduct,
   setProductPrice,
@@ -16,11 +28,11 @@ function ProductHero({
 }) {
   const isCurrentNadType = currentProduct?.categories?.[0]?.slug === 'nad';
   const isDecolletage = currentProduct?.slug === 'decolletage';
-  const {meta_data} = currentProduct||{};
+  const {meta_data, description} = currentProduct||{};
 const product_benefit_title = meta_data?.find(({key}) => key==="benefits_of_product_content_title")?.value;
 const product_benefit_description = meta_data?.find(({key}) => key==="benefits_of_product_content_description")?.value;
 const benefits_of_product_content = meta_data?.find(({key}) => key==="benefits_of_product_content_content")?.value;
-
+console.log('current product===>',currentProduct);
   const isBeautyCategory = currentProduct?.categories?.[0]?.slug === 'beauty-treatments';
   const arrObj = useMemo(() => {
     return treatmentChoices?.map((items) => {
@@ -87,7 +99,7 @@ const benefits_of_product_content = meta_data?.find(({key}) => key==="benefits_o
     setProductPrice(Number(bookHouseCall));
   }, [bookHouseCall, isFetchingProduct]);
 
-  const products = useMemo(() => {
+  const botoxProducts = useMemo(() => {
     return treatmentChoices?.filter((item) => {
       const { id, bookHouseCall, bookInClinic, variations } = getProductPrice({
         product: item,
@@ -97,20 +109,43 @@ const benefits_of_product_content = meta_data?.find(({key}) => key==="benefits_o
       return item.categories[0]?.name === 'Botox Products';
     });
   }, [treatmentChoices, isFetchingProduct]);
-  
+  console.log('botox products===>',botoxProducts);
+  console.log('values==>',values)
 
-  console.log('products==>',products);
+  const handleCheckboxChange = (checked, treatment) => {
+    if (checked) {
+      setLineItems([
+        ...lineItems,
+        {
+          userIndex:0,
+          product_id: treatment.id,
+          productName: treatment?.name,
+          price: treatment?.price,
+          quantity: 1,
+          metaData: [],
+        },
+      ]);
+    } else {
+      setLineItems(lineItems.filter((item) => item.product_id !== treatment.id));
+    }
+  }
 
+   // Decode the HTML entities
+   const decodedDescription = decodeHtmlEntities(description);
+
+   // Extract only the relevant <h2> and <h4> tags
+   const extractedContent = extractRelevantTags(decodedDescription);
+console.log('extracted content===>',extractedContent)
   return (
     <>
       <section className="product-hero-main-wrapper">
         {
           isDecolletage&&
-          <section className="decolletage_wrapper_header beauty_description_decolletage" style={{color:'black'}}>
-            <h2 className='botox-page-title'>{product_benefit_title}</h2>
-            <h4 className='botox-page-title-description'>{product_benefit_description}</h4>
-            <h4 className='botox-page-description-content'>{benefits_of_product_content}</h4>
-          </section>
+          <section 
+      className="decolletage_wrapper_header beauty_description_decolletage" 
+      style={{ color: 'black' }}
+      dangerouslySetInnerHTML={{ __html: extractedContent }}
+    />
         }
 
         <section className={`product-hero-wrapper ${isDecolletage ? 'hero-decolattege' : ''}`}>
@@ -122,41 +157,24 @@ const benefits_of_product_content = meta_data?.find(({key}) => key==="benefits_o
               {
                 isDecolletage&&
                 <div className="face-buttons-wrapper">
-                  <section className="forehead-button-wrapper">
-                    <button className="forehead-button face-circle-buttons" type="button">
-                      {/* Forehead */}
-                    </button>
-                  </section>
-                  <section className="eye-brow-button-wrapper">
-                    <button className="eye-brow-button face-circle-buttons" type="button">
-                      {/* Eye Brow */}
-                    </button>
-                  </section>
-                  <section className="crow-feet-button-wrapper">
-                    <button className="crow-feet-button face-circle-buttons" type="button">
-                      {/* Crow's Feet */}
-                      </button>
-                  </section>
-                  <section className="lip-top-button-wrapper">
-                    <button className="lip-top-button face-circle-buttons" type="button">
-                      {/* Lip Top */}
-                    </button>
-                    </section>
-                    <section className="gummy-smile-button-wrapper">
-                    <button className="gummy-smile-button face-circle-buttons" type="button">
-                      {/* Gummy Smile */}
-                    </button>
-                    </section>
-                    <section className="orange-peel-chin-button-wrapper">
-                    <button className="orange-peel-chin-button face-circle-buttons" type="button">
-                      {/* Orange Peel Chin */}
-                    </button>
-                    </section>
-                    <section className="neck-bands-button-wrapper">
-                    <button className="neck-bands-button face-circle-buttons" type="button">
-                      {/* Neck Bands */}
-                    </button>
-                    </section>
+                  {
+                    botoxProducts.map((item, index) => {
+                      return(
+                        <section
+                        key={index}
+                        className={`${item?.slug}-button-wrapper botox-check-box-wrapper`}
+                        >
+                          <input
+                            type="checkbox"
+                            className={`${item?.slug}-button botox-check-box-button face-circle-buttons`}
+                            value={item?.id}
+                            checked={lineItems.some((lineItem) => lineItem.product_id === item.id)}
+                            onChange={(e) => handleCheckboxChange(e.target.checked, item)}
+                          />
+                        </section>
+                      )
+                    })
+                  }
                 </div>
               }
             </div>

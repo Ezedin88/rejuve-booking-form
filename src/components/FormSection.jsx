@@ -75,6 +75,9 @@ function FormSection({
   const selectIvTherapies = treatments.filter((item) =>
     item.categories.some((category) => category.slug === 'iv-treatment')
   );
+  const selectDecolettage = treatments.filter((item) =>
+    item.categories[0]?.name==='Botox Products'
+  );
   const currentProductPrice = Number(currentProduct?.price) || 0;
   const totalCalculation = lineItems.reduce(
     (acc, item) => acc + Number(item.price),
@@ -145,7 +148,9 @@ function FormSection({
             const { terms: termsError } = formErrors || {};
             return termsError;
           };
-
+          
+          const isDecolettage = currentProduct?.slug === 'decolletage';
+          console.log('selecte decolettage===>',selectDecolettage);
           return (
             <Form style={{ marginBottom: '60px' }}>
               <>
@@ -225,11 +230,23 @@ function FormSection({
                             setlineItems={setlineItems}
                             title={selectIvTherapies?.[0]?.categories[0]?.name}
                             ivTherapy
-                            currentProduct={currentProduct}
+                            isDecolettage={isDecolettage}
                             setCurrentProduct={setCurrentProduct}
                             whereBooking={whereBooking}
                             isFetchingProduct={isFetchingProduct}
                           />
+                          {
+                            isDecolettage &&  (
+                              <ChooseTreatments
+                                dataValues={values}
+                                treatmentChoices={selectDecolettage}
+                                index={index}
+                                lineItems={lineItems}
+                                setlineItems={setlineItems}
+                                title={selectDecolettage?.[0]?.categories[0]?.name}
+                              />
+                            )
+                          }
                           <ChooseTreatments
                             dataValues={values}
                             treatmentChoices={selectNad}

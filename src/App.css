@@ -169,7 +169,7 @@ section.product-hero-wrapper.hero-decolattege {
 }
 
 /* eye-brow */
-section.eye-brow-button-wrapper button.eye-brow-button {
+section.eye-brow-button-wrapper input.eye-brow-button {
   background: skyblue;
   position: relative;
   left: 6.09%;
@@ -177,7 +177,7 @@ section.eye-brow-button-wrapper button.eye-brow-button {
 }
 
 /* crow's feet */
-section.crow-feet-button-wrapper button.crow-feet-button {
+section.crow-feet-button-wrapper input.crow-feet-button {
   background: skyblue;
   position: relative;
   right: 6.9%;
@@ -186,28 +186,28 @@ section.crow-feet-button-wrapper button.crow-feet-button {
 
 
 /* lip top */
-section.lip-top-button-wrapper button.lip-top-button {
+section.lip-top-button-wrapper input.lip-top-button {
   background: rgb(9, 174, 240);
   position: relative;
   top:75px;
 }
 
 /* gummy smile */
-section.gummy-smile-button-wrapper button.gummy-smile-button {
+section.gummy-smile-button-wrapper input.gummy-smile-button {
   background: rgb(150, 127, 93);
   position: relative;
   top: 65px;
 }
 
 /* orange peel chin */
-section.orange-peel-chin-button-wrapper button.orange-peel-chin-button {
+section.orange-peel-chin-button-wrapper input.orange-peel-chin-button {
   background: rgb(136, 255, 0);
   position: relative;
   top: 78px;
 }
 
 /* neck bands */
-section.neck-bands-button-wrapper button.neck-bands-button {
+section.neck-bands-button-wrapper input.neck-bands-button {
   background: rgb(0, 110, 255);
   position: relative;
   top: 120px;
@@ -241,8 +241,40 @@ section.neck-bands-button-wrapper button.neck-bands-button {
 .forehead-button {
   background-color: rgb(14, 60, 90) !important;
   position: relative;
-  /* top:-10px; */
 }
+
+
+/* fore head checkbox customization */
+
+.botox-check-box-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.botox-check-box-button {
+  appearance: none !important;
+  /* width: 30px; */
+  /* height: 30px; */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.botox-check-box-button:checked::before {
+  content: 'X';
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  position:relative;
+  top:-2px;
+  left:-2px;
+}
+
+
+/* end of fore head checkbox customization */
 
 /* Define the pulsating animation */
 @keyframes pulsate {
@@ -290,36 +322,36 @@ section.product-hero-wrapper.hero-decolattege {
 }
 
 /* crow's feet */
-section.crow-feet-button-wrapper button.crow-feet-button {
+section.crow-feet-button-wrapper input.crow-feet-button {
   top:-25px;
 }
 
 /* eyebrow button */
-section.eye-brow-button-wrapper button.eye-brow-button {
+section.eye-brow-button-wrapper input.eye-brow-button {
   top:-22px;
 }
 
 /* lip top */
-section.lip-top-button-wrapper button.lip-top-button {
+section.lip-top-button-wrapper input.lip-top-button {
   top:-15px;
   width: 20px;
   height:15px;
 }
 
 /* gummy smile */
-section.gummy-smile-button-wrapper button.gummy-smile-button {
+section.gummy-smile-button-wrapper input.gummy-smile-button {
   top: -63px;
   width: 20px;
 }
 
 /* orange peel chin */
-section.orange-peel-chin-button-wrapper button.orange-peel-chin-button {
+section.orange-peel-chin-button-wrapper input.orange-peel-chin-button {
   top: -80px;
   width: 20px;
 }
 
 /* neck bands */
-section.neck-bands-button-wrapper button.neck-bands-button {
+section.neck-bands-button-wrapper input.neck-bands-button {
   top: -88px;
   width: 20px;
   height:20px;
@@ -334,7 +366,7 @@ section.neck-bands-button-wrapper button.neck-bands-button {
   }
 
   /* eyebrow button */
-section.eye-brow-button-wrapper button.eye-brow-button {
+section.eye-brow-button-wrapper input.eye-brow-button {
   background: skyblue;
   position: relative;
   left: 6.09%;
@@ -342,7 +374,7 @@ section.eye-brow-button-wrapper button.eye-brow-button {
 }
 
 /* crow's feet */
-section.crow-feet-button-wrapper button.crow-feet-button {
+section.crow-feet-button-wrapper input.crow-feet-button {
   position: relative;
   right: 6.9%;
   top:-18px;
@@ -352,7 +384,7 @@ section.crow-feet-button-wrapper button.crow-feet-button {
 /* small 4150 */
 @media screen and (max-width: 415px) {
   /* crow's feet */
-section.crow-feet-button-wrapper button.crow-feet-button {
+section.crow-feet-button-wrapper input.crow-feet-button {
   top:-26 px;
 }
 }
@@ -362,19 +394,19 @@ section.crow-feet-button-wrapper button.crow-feet-button {
     top:30% !important;
   }
 
-  section.eye-brow-button-wrapper button.eye-brow-button {
+  section.eye-brow-button-wrapper input.eye-brow-button {
     top:-16px;
   }
 
   /* crow's feet */
-section.crow-feet-button-wrapper button.crow-feet-button {
+section.crow-feet-button-wrapper input.crow-feet-button {
   position: relative;
   right: 6.9%;
   top:-34px;
 }
 
 /* lip top */
-section.lip-top-button-wrapper button.lip-top-button {
+section.lip-top-button-wrapper input.lip-top-button {
   background: rgb(9, 174, 240);
   position: relative;
   /* left: 6.09%; */
