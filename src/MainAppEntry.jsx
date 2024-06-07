@@ -26,9 +26,10 @@ function MainAppEntry() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [totalWithTip, setTotalWithTip] = useState(0);
-  const dataPage = document
-    .querySelector('[data-page_id]')
-    .getAttribute('data-page_id');
+  // const dataPage = document
+  //   .querySelector('[data-page_id]')
+  //   .getAttribute('data-page_id');
+  
   useEffect(() => {
     const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBiMgA18QMFdnj67qadAYRk816SdI8c8ag&libraries=places`;
@@ -47,10 +48,10 @@ function MainAppEntry() {
     );
   };
 
-  const checkMenuTreatments = JSON.parse(
-    localStorage.getItem('selectedTreatments')
-  );
-  const [lineItems, setlineItems] = useState(checkMenuTreatments || []);
+
+ const checkMenuTreatments = JSON.parse(localStorage.getItem('selectedTreatments'));
+console.log('check treatments===>',checkMenuTreatments);
+  const [lineItems, setlineItems] = useState(checkMenuTreatments||[]);
   const [fieldsAreEmptyForUpdate, setFieldsAreEmptyForUpdate] = useState(false);
   const [fieldsAreEmpty, setFieldsAreEmpty] = useState(false);
   const [treatments, setTreatments] = useState([]);
@@ -93,7 +94,8 @@ function MainAppEntry() {
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
       const data = await client.getProductById(
-        dataPage || checkMenuTreatments[0]?.product_id
+        // dataPage || checkMenuTreatments[0]?.product_id
+        108
       );
       setCurrentProduct(data);
       setCurrentProductCopy(data);
@@ -120,6 +122,12 @@ function MainAppEntry() {
     fetchProductById();
     fetchProviders();
     fetchTreatments();
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem('selectedTreatments');
+    };
   }, []);
 
   useEffect(() => {
