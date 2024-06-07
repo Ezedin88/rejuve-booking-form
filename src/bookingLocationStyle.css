@@ -30,6 +30,7 @@
   line-height: 22px;
   color: #5a5f73;
   margin-bottom: 0 !important;
+  margin-top: 0 !important;
 }
 
 .location-span {
@@ -105,6 +106,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 36px;
+  margin-top: 25px;
 }
 
 .drop-down-icon {
@@ -197,11 +199,13 @@
   .autocomplete-dropdown-container {
     width: 86% !important;
   }
+
   /* target children of autocomplete-dropdown-container */
-  .autocomplete-dropdown-container > div {
+  .autocomplete-dropdown-container>div {
     height: fit-content !important;
   }
 }
+
 .location-search-input,
 .location-search-input:focus,
 .location-search-input:active {

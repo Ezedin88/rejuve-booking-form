@@ -3,7 +3,6 @@
   flex-wrap: wrap;
   gap: 24px;
   justify-content: flex-start;
-  align-items: center;
 }
 
 .input-box-label {
@@ -20,8 +19,8 @@
   color: #32c0cc;
 }
 
-.input-box-wrapper {
-  margin-top: 32px;
+.input-box-error-message {
+  text-align: left;
 }
 
 .input-box {
@@ -48,7 +47,7 @@
 }
 
 .zip-city-wrapper {
-  margin-top: 32px;
+  margin-top: -10px;
   width: 100%;
   gap: 32px;
   /* justify-content: space-between; */
@@ -125,17 +124,15 @@
     flex-direction: column !important;
     justify-content: center;
     align-items: center;
+    margin: unset !important;
   }
+
   .user-input-wrapper {
     width: 100% !important;
   }
 }
 
 .input-box-label {
-  position: absolute;
-  left: 0;
-  top: -25px;
-  width: 100%;
   text-align: left;
   min-width: 100px;
   font-style: normal;
@@ -159,7 +156,7 @@
   color: red;
   font-size: 13px !important;
   font-weight: 500;
-  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 .error-clinic-selection {
