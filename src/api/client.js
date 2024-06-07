@@ -42,9 +42,9 @@ export const client = {
         }
     },
     async getAllProviders() {
-        const url = `https://rejuve.md/wp-json/wp/v2/provider`;
-        const username = 'ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb';
-        const password = 'cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e';
+        const url = `https://rejuve.md/wp-json/wp/v2/provider/?status=publish`;
+        const username = 'ck_fc0b9c9746fdf1fbabcb01d6cf35f7e577c349d2';
+        const password = 'cs_4ba59ff35428397bbebc94ce42425deeeff5cc9d';
         const encodedCredentials = btoa(`${username}:${password}`);
         try {
             const response = await fetch(url, {
@@ -56,12 +56,14 @@ export const client = {
             const data = await response.json();
             if (data) {
                 const formattedProviders = data.map(provider => {
-                    const { id, date } = provider;
+                    const { id, date, acf } = provider;
+                    const { booking_options } = acf || {};
                     return {
                         id,
                         name: provider.title.rendered,
                         date: new Date(date).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }),
-                        time: new Date(date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+                        time: new Date(date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }),
+                        bookingOptions: booking_options
                     };
                 });
                 return formattedProviders;
@@ -71,6 +73,86 @@ export const client = {
             throw error;
         }
     },
+    async getSelectedProviderTimeAndDate(props) {
+        const { providerId, values, providers } = props || {};
+        const { bookingChoice } = values || {};
+        const url = `https://rejuve.md/wp-json/wc/v3/orders`;
+        const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
+        const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
+        const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
+
+        try {
+
+            const response = await fetch(url, {
+                headers: {
+                    Authorization: `Basic ${encodedCredentials}`,
+                    "Content-Type": "application/json"
+                },
+            });
+            const data = await response.json();
+
+            if (data) {
+                // filter datas only whose status is processing
+                const processingOrders = data.filter(order => order.status === 'processing');
+
+                // meta data array
+                const metaDataArray = processingOrders.map(({ meta_data }) => meta_data);
+                const providerInfos = metaDataArray.map(metaData => metaData.find(({ key }) => key === 'providerinfo'));
+                const validProviderInfos = providerInfos.filter(providerInfo => providerInfo);
+
+                const takenTimes = [];
+                const takenDates = [];
+
+                if (providerId) {
+                    const periodsForCurrentProvider = validProviderInfos.filter(({ value }) => value.id === providerId);
+
+                    periodsForCurrentProvider.forEach(({ value }) => {
+                        const { time, date } = value;
+                        takenDates.push(date);
+                        takenTimes.push(time);
+                    });
+                }
+
+                const providersWithCurrentId = providers?.filter(provider => provider.id === providerId);
+                const { bookingOptions } = providersWithCurrentId?.[0] || {};
+                const { available_date, available_date_house_call, select_available_time__clinic_, select_available_time__housecall__ } = bookingOptions || {};
+
+                const select_available_dates_house_call = available_date_house_call?.map(date => date.select_available_date__house_call_);
+
+                const select_available_dates_at_clinic = available_date?.map(date => date.select_available_date__clinic_);
+
+                const select_available_time__house_call_ = select_available_time__housecall__?.map(time => time.select_available_time__house_call_);
+
+                const select_available_time__at_clinic__ = select_available_time__clinic_?.map(time => time.select_available_time);
+
+                // get all times
+                if (bookingChoice === 'atourclinics' && providerId) {
+                    return {
+                        takenDates,
+                        takenTimes,
+                        select_available_time__at_clinic__,
+                        select_available_dates_at_clinic
+                    }
+                } else if (providerId) {
+                    return {
+                        takenDates,
+                        takenTimes,
+                        select_available_time__house_call_,
+                        select_available_dates_house_call
+                    }
+                } else {
+                    return;
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            throw error;
+        }
+
+    }
+    ,
     async createOrder(order) {
         const url = `https://rejuve.md/wp-json/wc/v3/orders`;
         const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
@@ -111,5 +193,5 @@ export const client = {
             console.error('Error creating payment intent:', error);
             throw error;
         }
-    }
+    },
 };

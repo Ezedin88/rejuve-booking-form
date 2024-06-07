@@ -37,31 +37,30 @@ const customStyles = {
   }),
 };
 
-const timeOptions = [
-  { value: '10:30', label: '10:30 AM' },
-  { value: '11:00', label: '11:00 AM' },
-  { value: '11:30', label: '11:30 AM' },
-  { value: '12:00', label: '12:00 PM' },
-  { value: '12:30', label: '12:30 PM' },
-  { value: '13:00', label: '1:00 PM' },
-  { value: '13:30', label: '1:30 PM' },
-  { value: '14:00', label: '2:00 PM' },
-  { value: '14:30', label: '2:30 PM' },
-  { value: '15:00', label: '3:00 PM' },
-  { value: '15:30', label: '3:30 PM' },
-  { value: '16:00', label: '4:00 PM' },
-  { value: '16:30', label: '4:30 PM' },
-  { value: '17:00', label: '5:00 PM' },
-  { value: '17:30', label: '5:30 PM' },
-  { value: '18:00', label: '6:00 PM' },
-  { value: '18:30', label: '6:30 PM' },
-  { value: '19:00', label: '7:00 PM' },
-];
+const timeOptions = [];
+for (let i = 0; i < 24; i++) {
+  for (let j = 0; j < 60; j += 30) {
+    const hour = i % 12 || 12;
+    const period = i < 12 || i === 24 ? 'AM' : 'PM';
+    const label = `${hour}:${j.toString().padStart(2, '0')} ${period}`;
+    const value = label;
+    timeOptions.push({ value, label });
+  }
+}
+
+function formatTimes(times) {
+  return times?.map(time => ({
+      label: time,
+      value: time
+  }));
+}
 
 const TimePicker = (props) => {
   const [selectedTime, setSelectedTime] = React.useState(null);
   const { setFieldTouched, setFieldValue, values } = useFormikContext();
   const { name } = props;
+  const availableTimes = props?.availableTimes;
+  const formatedAvailableTimeOptions = formatTimes(availableTimes);
   const Option = (props) => {
     return (
       <components.Option {...props}>
@@ -109,7 +108,7 @@ const TimePicker = (props) => {
           setFieldValue(name, selectedOption.value);
           values.bookingTime = selectedOption.value;
         }}
-        options={timeOptions}
+        options={formatedAvailableTimeOptions?.length>0&&formatedAvailableTimeOptions||timeOptions}
         className="time-picker-select"
         placeholder="HH:MM AM/PM"
         styles={customStyles}

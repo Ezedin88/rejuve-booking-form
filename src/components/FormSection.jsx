@@ -1,10 +1,8 @@
 import '../mainStyles.css';
 import {
-  Field,
   FieldArray,
   Form,
   Formik,
-  useFormikContext,
   setNestedObjectValues,
 } from 'formik';
 import { handleValidation } from '../Validation';
@@ -15,13 +13,15 @@ import BookingDateTime from './BookingDateTime';
 import AlmostDoneSection from './AlmostDone';
 import CardPaymentMethod from './CardPaymentMethod';
 import Agreement from './Agreement';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ChooseTreatments from './ChooseTreatments';
 import BookingLocation from './BookingLocation';
 import ProductHero from './ProductHero';
 import CustomInput from '../CustomInput';
 import WhyRejuve from './WhyRejuve';
-
+import OrderSummary from './OrderSummary';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { toast } from 'react-toastify';
 function FormSection({
   lineItems,
   setlineItems,
@@ -83,14 +83,20 @@ function FormSection({
     (acc, item) => acc + Number(item.price),
     0
   );
+  const [recaptchaErrorMessage, setRecaptchaErrorMessage] = useState('');
+  const [availableBookingPeriods, setAvailableBookingPeriods] = useState([]);
 
   useEffect(() => {
     setTotalWithTip(totalCalculation + Number(calculatedTipAmount || 0));
   }, [totalCalculation, calculatedTipAmount]);
+  const rejuvehangoverId = '6LddwPIpAAAAAJW6Zt3K8FGZ5jD0ZsTdSYq_HP2l';
+
   const [refactoredErrors, setRefactoredErrors] = useState([]);
   const [termsError, setTermsError] = useState(false);
   const [hasAnyErrors, setHasAnyErrors] = useState(false);
   const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
+  const recaptchaRef = useRef(null);
+
   return (
     <>
       <Formik
@@ -150,7 +156,6 @@ function FormSection({
           };
           
           const isDecolettage = currentProduct?.slug === 'decolletage';
-          console.log('selecte decolettage===>',selectDecolettage);
           return (
             <Form style={{ marginBottom: '60px' }}>
               <>
@@ -342,6 +347,7 @@ function FormSection({
                     handleProviderChange={handleProviderChange}
                     selectedProvider={selectedProvider}
                     values={values}
+                    setAvailableBookingPeriods={setAvailableBookingPeriods}
                   />
                 </div>
               </div>
@@ -351,7 +357,9 @@ function FormSection({
                   <p className="form-main-titles">
                     Booking Date and Time Preference
                   </p>
-                  <BookingDateTime />
+                  <BookingDateTime values={values} providers={providers} 
+                    availableBookingPeriods={availableBookingPeriods} 
+                  />
                 </div>
               </div>
               {/* almost done */}
@@ -370,90 +378,8 @@ function FormSection({
                 </div>
               </div>
               {/* order summary */}
-              <div className="choose_providers_wrapper">
-                <div className="order-summary-main" id="order-summary-main">
-                  <p className="form-main-titles">Order Summary</p>
-                  <div
-                    className="order-summary-main-inner"
-                    id="order-summary-main-in"
-                  >
-                    {values?.userData?.length > 0 &&
-                      values?.userData.map((item, userIndex) => {
-  const selectedItems = lineItems.filter(lineItem => lineItem?.userIndex === userIndex);
-                        return (
-                          <div key={userIndex} className="personWrapper">
-                            <p className="form-main-inner-title">
-                              {userIndex === 0
-                                ? item?.billing?.first_name +
-                                  ' ' +
-                                  item?.billing?.last_name
-                                : 'Person' + userIndex}
-                              (
-                              {values?.bookingChoice === 'atourclinics'
-                                ? 'clinic'
-                                : 'house call'}
-                              )
-                            </p>
-                            <div className="item-price-summary-wrapper">
-                            {selectedItems.length > 0 ? (
-      selectedItems.map((lineItem, index) => (
-        <div key={index} className="item-price-summary">
-          <p className="product-name-summary">
-            {lineItem?.productName}
-          </p>
-          <p className="product-price-summary">
-            ${lineItem?.price}
-          </p>
-        </div>
-      ))
-    ) : (
-      <div className="item-price-summary">
-        <p className="product-name-summary">No item selected</p>
-        <p className="product-price-summary">$0.00</p>
-      </div>
-    )}
-                            </div>
-                          </div>
-                        );
-                      })}
-
-                    <div className="total-summary-whole-wrapper">
-                      <div className="sub-total-summary">
-                        <div className="total-label-price">
-                          <p className="sub-total-summary-label">Subtotal</p>
-                          <p className="sub-total-summary-price">
-                            ${totalCalculation.toFixed(2)}
-                          </p>
-                        </div>
-                        <div className="total-label-price">
-                          <p className="sub-total-summary-label">
-                            Tip(
-                            {tips?.customTip
-                              ? `${Number(tips?.customTip)} $`
-                              : (typeof tips?.percentageTip === 'number' &&
-                                  `${Number(tips?.percentageTip)}%`) ||
-                                0}
-                            )
-                          </p>
-                          <p className="sub-total-summary-price">
-                            ${Number(calculatedTipAmount || 0).toFixed(2)}
-                          </p>
-                        </div>
-                        <div className="total-label-price total-calculation">
-                          <p className="total-calculation-label">Total</p>
-                          <p className="total-calculation-price">
-                            $
-                            {(
-                              totalCalculation +
-                              Number(calculatedTipAmount || 0)
-                            ).toFixed(2)}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <OrderSummary lineItems={lineItems} totalCalculation={totalCalculation} calculatedTipAmount={calculatedTipAmount} tips={tips} />
+              {/* Payment Method */}
               <div className="choose_providers_wrapper">
                 <div className="choose-providers" id="credit-card-section">
                   <p className="form-main-titles">
@@ -481,7 +407,7 @@ function FormSection({
                   />
                 </div>
               </div>
-              {/* Payment Method */}
+              {/* Choose Providers */}
               <div className="choose_providers_wrapper">
                 <div
                   className="agreement-wrapper-main"
@@ -501,6 +427,7 @@ function FormSection({
               <div className="choose_providers_wrapper">
                 <div className="book-and-pay-btn-wrapper">
                   <button
+                  style={{marginBottom:'15px'}}
                     type="submit"
                     className={
                       hasAnyErrors || termsError
@@ -509,7 +436,13 @@ function FormSection({
                     }
                     onClick={async (e) => {
                       e.preventDefault();
-
+                        const recaptchaToken = recaptchaRef.current ? recaptchaRef.current.getValue() : null;
+                        if (!recaptchaToken) {
+                          toast('Please verify the reCAPTCHA!',{type:'error'})
+                          return;
+                        } else {
+                          toast('Form submission successful!',{type:'info'})
+                        }
                       const termsError = await checkAgreementErrors();
                       if (termsError) {
                         setTermsError(true);
@@ -542,6 +475,7 @@ function FormSection({
                     isProcessingPayment ? 'Processing Payment...' : 'Book and Pay'
                     }</p>
                   </button>
+                  <ReCAPTCHA sitekey={rejuvehangoverId} ref={recaptchaRef} />
                 </div>
               </div>
               {/* {Object.keys(errors).length > 0 && <small style={{ color: 'red', fontSize: '16px' }}>Please fill all fields</small>} */}

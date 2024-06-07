@@ -28,18 +28,9 @@ function ProductHero({
 }) {
   const isCurrentNadType = currentProduct?.categories?.[0]?.slug === 'nad';
   const isDecolletage = currentProduct?.slug === 'decolletage';
-  const {meta_data, description} = currentProduct||{};
-const product_benefit_title = meta_data?.find(({key}) => key==="benefits_of_product_content_title")?.value;
-const product_benefit_description = meta_data?.find(({key}) => key==="benefits_of_product_content_description")?.value;
-const benefits_of_product_content = meta_data?.find(({key}) => key==="benefits_of_product_content_content")?.value;
-console.log('current product===>',currentProduct);
-  const isBeautyCategory = currentProduct?.categories?.[0]?.slug === 'beauty-treatments';
+  const {description} = currentProduct||{};
   const arrObj = useMemo(() => {
     return treatmentChoices?.map((items) => {
-      const everyproduct = getProductPrice({
-        product: items,
-        isFetchingProduct,
-      });
       const { id, bookHouseCall, bookInClinic, variations } = getProductPrice({
         product: items,
         isFetchingProduct,
@@ -109,8 +100,6 @@ console.log('current product===>',currentProduct);
       return item.categories[0]?.name === 'Botox Products';
     });
   }, [treatmentChoices, isFetchingProduct]);
-  console.log('botox products===>',botoxProducts);
-  console.log('values==>',values)
 
   const handleCheckboxChange = (checked, treatment) => {
     if (checked) {
@@ -133,9 +122,8 @@ console.log('current product===>',currentProduct);
    // Decode the HTML entities
    const decodedDescription = decodeHtmlEntities(description);
 
-   // Extract only the relevant <h2> and <h4> tags
    const extractedContent = extractRelevantTags(decodedDescription);
-console.log('extracted content===>',extractedContent)
+
   return (
     <>
       <section className="product-hero-main-wrapper">
@@ -152,7 +140,8 @@ console.log('extracted content===>',extractedContent)
           {/* image section*/}
           <section className="product-image">
             {/* <div className="image-container large-hero-image"> */}
-            <div className={`product-image ${isDecolletage ? 'decolattege-image' : ''}`}>
+            {/* <div className={`product-image image-container large-hero-image ${isDecolletage ? 'decolattege-image' : ''}`}> */}
+            <div className={`product-image ${isDecolletage ? 'decolattege-image' : 'large-hero-image'}`}>
               <img src={largeHeroImage} alt="product" className="image" />
               {
                 isDecolletage&&

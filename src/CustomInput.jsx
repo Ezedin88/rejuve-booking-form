@@ -1,9 +1,9 @@
 import propTypes from 'prop-types';
-import { ErrorMessage, useField, useFormikContext } from "formik";
+import { ErrorMessage, useField } from "formik";
 import CustomDatepicker from './components/CustomDatepicker';
 import TimePicker from './components/CustomTimepicker';
 
-const CustomInput = ({ label, placeholder, cityStateZip,dateOfBirth, ...props }) => {
+const CustomInput = ({ label, placeholder, cityStateZip, dateOfBirth,availableDates,availableTimes, ...props }) => {
     const [field, meta] = useField(props);
     return (
         <>
@@ -42,7 +42,7 @@ const CustomInput = ({ label, placeholder, cityStateZip,dateOfBirth, ...props })
                 <div className={cityStateZip ? 'cityStateZip' : 'input-box-wrapper'}>
                     <div className="label-input-wrapper">
                         <label className='input-box-label' htmlFor={field.name}>{label}</label>
-                        <TimePicker htmlFor={field.name} {...field} {...props} />
+                        <TimePicker availableTimes={availableTimes} htmlFor={field.name} {...field} {...props} />
                     </div>
                     <ErrorMessage className='input-box-error-message' component="div" name={field.name} style={errorMessage} />
                 </div>
@@ -52,7 +52,7 @@ const CustomInput = ({ label, placeholder, cityStateZip,dateOfBirth, ...props })
                 <div className={cityStateZip ? 'cityStateZip' : 'input-box-wrapper'}>
                     <div className="label-input-wrapper">
                         <label className='input-box-label' htmlFor={field.name}>{label}</label>
-                        <CustomDatepicker dateOfBirth={dateOfBirth} htmlFor={field.name} {...field} {...props} />
+                        <CustomDatepicker availableDates={availableDates} dateOfBirth={dateOfBirth} htmlFor={field.name} {...field} {...props} />
                     </div>
                     <ErrorMessage className='input-box-error-message' component="div" name={field.name} style={errorMessage} />
                 </div>

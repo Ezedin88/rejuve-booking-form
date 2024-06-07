@@ -22,7 +22,7 @@ export const initialValues = {
     "clinicChoice": "",
     bookingDate: "",
     bookingTime: "",
-    provider: "",
+    provider: "Any",
     terms: false,
     paymentMethod: 'creditCard',
     cardNumberElement: {},
