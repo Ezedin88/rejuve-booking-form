@@ -111,7 +111,7 @@ const CustomInput = ({
       {props.type === 'date' && (
         <div className={cityStateZip ? 'cityStateZip' : 'input-box-wrapper'}>
           <div className="label-input-wrapper">
-            <label className="input-box-label" htmlFor={field.name}>
+            <label className={`input-box-label ${dateOfBirth && 'birth-date-label'}`} htmlFor={field.name}>
               {label}
             </label>
             <CustomDatepicker
