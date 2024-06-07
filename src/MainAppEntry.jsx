@@ -47,12 +47,14 @@ function MainAppEntry() {
     );
   };
 
-  const [lineItems, setlineItems] = useState([]);
+
+ const checkMenuTreatments = JSON.parse(localStorage.getItem('selectedTreatments'));
+console.log('check treatments===>',checkMenuTreatments);
+  const [lineItems, setlineItems] = useState(checkMenuTreatments);
   const [fieldsAreEmptyForUpdate, setFieldsAreEmptyForUpdate] = useState(false);
   const [fieldsAreEmpty, setFieldsAreEmpty] = useState(false);
   const [treatments, setTreatments] = useState([]);
   const [selectedProvider, setSelectedProvider] = useState('Any');
-  const [selectedProviderBookingPeriod, setSelectedProviderBookingPeriod] = useState(null);
 
   const [currentProduct, setCurrentProduct] = useState({});
   const [currentProductCopy, setCurrentProductCopy] = useState({});
@@ -90,10 +92,11 @@ function MainAppEntry() {
     };
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
-      const data = await client.getProductById(dataPage);
+      const data = await client.getProductById(dataPage||checkMenuTreatments[0]?.product_id);
       setCurrentProduct(data);
       setCurrentProductCopy(data);
     data?.id!==582 && setlineItems([
+      ...lineItems,
         {
           userIndex: 0,
           product_id: data.id,
@@ -218,6 +221,7 @@ function MainAppEntry() {
           setIsProcessing(false);
           if (dataToSend) {
             try {
+              localStorage.removeItem('selectedTreatments');
               window.scrollTo(0, 0);
               changeCreatingOrderStatus(true);
               await client.createOrder(dataToSend);
@@ -243,6 +247,7 @@ function MainAppEntry() {
     }else{
       if (dataToSend) {
         try {
+          localStorage.removeItem('selectedTreatments');
           window.scrollTo(0, 0);
           changeCreatingOrderStatus(true);
           await client.createOrder(dataToSend);

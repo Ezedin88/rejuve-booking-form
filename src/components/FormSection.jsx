@@ -107,7 +107,7 @@ function FormSection({
         onSubmit={handleSubmit}
       >
         {({ values, errors, setValues, setTouched, validateForm, isValid }) => {
-
+      
       const hasErrors =
             Object.keys(errors).filter((key) => key !== 'terms').length > 0;
           if (!hasErrors) {

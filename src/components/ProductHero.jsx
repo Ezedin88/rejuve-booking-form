@@ -141,7 +141,7 @@ function ProductHero({
           <section className="product-image">
             {/* <div className="image-container large-hero-image"> */}
             {/* <div className={`product-image image-container large-hero-image ${isDecolletage ? 'decolattege-image' : ''}`}> */}
-            <div className={`product-image ${isDecolletage ? 'decolattege-image' : 'large-hero-image'}`}>
+            <div className={`product-image ${isDecolletage ? 'decolattege-image' : 'image-container large-hero-image large-hero-image'}`}>
               <img src={largeHeroImage} alt="product" className="image" />
               {
                 isDecolletage&&
