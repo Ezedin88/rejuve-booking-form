@@ -22,9 +22,9 @@ function MainAppEntry() {
   const [whereBooking, setWhereBooking] = useState('atourclinics');
   const [providers, setProviders] = useState([]);
   const [stripePromise, setStripePromise] = useState(null);
-  const [clientSecret, setClientSecret] = useState("");
-  const [isProcessing,setIsProcessing] = useState(false);
-  const [errorMessage,setErrorMessage] = useState(null);
+  const [clientSecret, setClientSecret] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [totalWithTip, setTotalWithTip] = useState(0);
   const dataPage = document
     .querySelector('[data-page_id]')
@@ -47,10 +47,10 @@ function MainAppEntry() {
     );
   };
 
-
- const checkMenuTreatments = JSON.parse(localStorage.getItem('selectedTreatments'));
-console.log('check treatments===>',checkMenuTreatments);
-  const [lineItems, setlineItems] = useState(checkMenuTreatments);
+  const checkMenuTreatments = JSON.parse(
+    localStorage.getItem('selectedTreatments')
+  );
+  const [lineItems, setlineItems] = useState(checkMenuTreatments || []);
   const [fieldsAreEmptyForUpdate, setFieldsAreEmptyForUpdate] = useState(false);
   const [fieldsAreEmpty, setFieldsAreEmpty] = useState(false);
   const [treatments, setTreatments] = useState([]);
@@ -92,24 +92,28 @@ console.log('check treatments===>',checkMenuTreatments);
     };
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
-      const data = await client.getProductById(dataPage||checkMenuTreatments[0]?.product_id);
+      const data = await client.getProductById(
+        dataPage || checkMenuTreatments[0]?.product_id
+      );
       setCurrentProduct(data);
       setCurrentProductCopy(data);
-    data?.id!==582 && setlineItems([
-      ...lineItems,
-        {
-          userIndex: 0,
-          product_id: data.id,
-          productName: data.name,
-          variation_id:
-            values.bookingChoice !== 'atourclinics'
-              ? data?.variations[1]
-              : data?.variations[0],
-          price: values.bookingChoice === 'housecall' ? bookHouseCall : data.price,
-          quantity: 1,
-          metaData: [],
-        },
-      ]);
+      data?.id !== 582 &&
+        setlineItems([
+          ...lineItems,
+          {
+            userIndex: 0,
+            product_id: data.id,
+            productName: data.name,
+            variation_id:
+              values.bookingChoice !== 'atourclinics'
+                ? data?.variations[1]
+                : data?.variations[0],
+            price:
+              values.bookingChoice === 'housecall' ? bookHouseCall : data.price,
+            quantity: 1,
+            metaData: [],
+          },
+        ]);
       setIsFetchingProduct(false);
     };
 
@@ -121,18 +125,24 @@ console.log('check treatments===>',checkMenuTreatments);
   useEffect(() => {
     const fetchPaymentIntent = async () => {
       try {
-        const response = await fetch("https://rejuve.md/wp-json/stripe/v1/create-payment-intent", {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            totalWithTip,
-            customer_email: values.userData[0].billing.email,
-            customer_name: values.userData[0].billing.first_name + ' ' + values.userData[0].billing.last_name,
-          })
-        });
-  
+        const response = await fetch(
+          'https://rejuve.md/wp-json/stripe/v1/create-payment-intent',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              totalWithTip,
+              customer_email: values.userData[0].billing.email,
+              customer_name:
+                values.userData[0].billing.first_name +
+                ' ' +
+                values.userData[0].billing.last_name,
+            }),
+          }
+        );
+
         const data = await response.json();
         if (response.ok) {
           setClientSecret(data.clientSecret);
@@ -143,10 +153,14 @@ console.log('check treatments===>',checkMenuTreatments);
         setErrorMessage('Error fetching payment intent');
       }
     };
-  
+
     fetchPaymentIntent();
-  }, [totalWithTip,values.userData[0].billing.email,values.userData[0].billing.first_name,values.userData[0].billing.last_name]);
-  
+  }, [
+    totalWithTip,
+    values.userData[0].billing.email,
+    values.userData[0].billing.first_name,
+    values.userData[0].billing.last_name,
+  ]);
 
   const removeFromList = (index, values, setValues) => {
     const userData = [...values.userData];
@@ -180,21 +194,30 @@ console.log('check treatments===>',checkMenuTreatments);
       // , provider: selectedProvider
     });
   };
-  const allPriceForTipPercentage = lineItems.reduce((acc, item) => {
+  const allPriceForTipPercentage = lineItems?.reduce((acc, item) => {
     return acc + item.price * item.quantity;
   }, 0);
-  const calculatedTipAmount = Number(customTip) || (Number(allPriceForTipPercentage) * Number(percentageTip)) / 100;
+  const calculatedTipAmount =
+    Number(customTip) ||
+    (Number(allPriceForTipPercentage) * Number(percentageTip)) / 100;
 
   const changeCreatingOrderStatus = (status) => {
     setIsCreatingOrder(status);
   };
   const submitForm = async (values) => {
-    const transformedData = organizeLineItems({ values, lineItems, calculatedTipAmount, providers });
+    const transformedData = organizeLineItems({
+      values,
+      lineItems,
+      calculatedTipAmount,
+      providers,
+    });
     const { values: dataValues, meta_data, fee_lines } = transformedData || {};
     const dataToSend = dataValues?.userData?.map((item, key) => ({
       status: 'processing',
-      payment_method: dataValues.paymentMethod === 'creditCard' ? 'stripe' : 'house',
-      payment_method_title: dataValues.paymentMethod === 'creditCard' ? 'Card' : 'House',
+      payment_method:
+        dataValues.paymentMethod === 'creditCard' ? 'stripe' : 'house',
+      payment_method_title:
+        dataValues.paymentMethod === 'creditCard' ? 'Card' : 'House',
       set_paid: false,
       meta_data,
       billing: { ...item.billing, ...dataValues.bookingAddress },
@@ -204,20 +227,24 @@ console.log('check treatments===>',checkMenuTreatments);
     if (values.paymentMethod === 'creditCard') {
       setIsProcessing(true);
 
-      const {stripe,elements,cardElement} = values?.cardNumberElement;
-      
-      if(!stripe||!elements){
+      const { stripe, elements, cardElement } = values?.cardNumberElement;
+
+      if (!stripe || !elements) {
         return;
       }
 
       setIsProcessing(true);
-      if(clientSecret){
-      const {error,paymentIntent} = await stripe.confirmCardPayment(clientSecret,{
-        payment_method:{
-          card:cardElement
-        }});
-        
-        if(paymentIntent){
+      if (clientSecret) {
+        const { error, paymentIntent } = await stripe.confirmCardPayment(
+          clientSecret,
+          {
+            payment_method: {
+              card: cardElement,
+            },
+          }
+        );
+
+        if (paymentIntent) {
           setIsProcessing(false);
           if (dataToSend) {
             try {
@@ -232,19 +259,18 @@ console.log('check treatments===>',checkMenuTreatments);
               console.error('Error creating order:', error);
             }
           }
-        }else{
-          setErrorMessage(error?.message||'Payment failed');
-          toast(error?.message||'Payment failed',{type:'error'})
+        } else {
+          setErrorMessage(error?.message || 'Payment failed');
+          toast(error?.message || 'Payment failed', { type: 'error' });
         }
 
-      if(error){
-        setIsProcessing(false);
-        return;
+        if (error) {
+          setIsProcessing(false);
+          return;
+        }
       }
-    }
       setIsProcessing(false);
-
-    }else{
+    } else {
       if (dataToSend) {
         try {
           localStorage.removeItem('selectedTreatments');
@@ -264,7 +290,6 @@ console.log('check treatments===>',checkMenuTreatments);
   const handleSubmit = (values, options) => {
     const transformedData = organizeLineItems({ values, lineItems });
   };
-
 
   const [productPrice, setProductPrice] = useState(
     allPriceForTipPercentage.price || 0
@@ -286,36 +311,36 @@ console.log('check treatments===>',checkMenuTreatments);
     setPercentageTip(0);
     setDefaultTip(null);
   };
- //  get publish key from rejuve.md/wp-json/stripe/v1/custom-payment-config
- useEffect(() => {
-  fetch("https://rejuve.md/wp-json/stripe/v1/stripe-payment-config1", {
-    method: "GET",
-  }).then(async (result) => {
-    var { publishableKey } = await result.json();
-    setStripePromise(loadStripe(publishableKey));
-  });
-}, []);
+  //  get publish key from rejuve.md/wp-json/stripe/v1/custom-payment-config
+  useEffect(() => {
+    fetch('https://rejuve.md/wp-json/stripe/v1/stripe-payment-config1', {
+      method: 'GET',
+    }).then(async (result) => {
+      var { publishableKey } = await result.json();
+      setStripePromise(loadStripe(publishableKey));
+    });
+  }, []);
 
   return (
-    stripePromise&&
-    <Elements stripe={stripePromise}>
-      <section>
-        {(isCreatingOrder && (
-          <div
-            className="loading-rejuve-spinner"
-            style={{
-              height: '100vh',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              maxWidth: '100%',
-              mixBlendMode: 'multiply',
-              borderRadius: '500px',
-            }}
-          >
-            <img src="http://rejuve.md/wp-content/themes/rejuve/assets/images/Pill-spinning.gif" />
-          </div>
-        )) || (
+    stripePromise && (
+      <Elements stripe={stripePromise}>
+        <section>
+          {(isCreatingOrder && (
+            <div
+              className="loading-rejuve-spinner"
+              style={{
+                height: '100vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                maxWidth: '100%',
+                mixBlendMode: 'multiply',
+                borderRadius: '500px',
+              }}
+            >
+              <img src="http://rejuve.md/wp-content/themes/rejuve/assets/images/Pill-spinning.gif" />
+            </div>
+          )) || (
             <FormSection
               tips={{
                 customTip,
@@ -355,10 +380,11 @@ console.log('check treatments===>',checkMenuTreatments);
               setTotalWithTip={setTotalWithTip}
             />
           )}
-      <ToastContainer position='top-center' transition={Slide}/>
-      </section>
-    </Elements>
-  )
+          <ToastContainer position="top-center" transition={Slide} />
+        </section>
+      </Elements>
+    )
+  );
 }
 
-export default MainAppEntry
+export default MainAppEntry;
