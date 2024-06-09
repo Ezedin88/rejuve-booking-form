@@ -1,0 +1,61 @@
+.product-hero-wrapper.medical-service-menu {
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding-top: 100px;
+    padding-bottom: 123px;
+}
+
+.medical-service-menu-title {
+    max-width: 735px;
+    margin: auto !important;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 39px;
+    display: flex;
+    text-align: center;
+    color: #282D41;
+}
+
+.medical-service-menu-description {
+    max-width: 735px;
+    margin: auto !important;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: #282D41;
+}
+
+/* Specific style to prevent text breaking within span */
+.nowrap {
+    white-space: nowrap;
+}
+
+span a.click-here-service-menu {
+    color: #32C0CC !important;
+    text-decoration: none;
+}
+
+/* Additional media queries for better responsiveness */
+@media (max-width: 768px) {
+    .product-hero-wrapper.medical-service-menu {
+        flex-direction: column !important;
+        gap: 12px !important;
+        padding-top: 60px !important;
+        padding-bottom: 70px !important;
+    }
+
+    .medical-service-menu-title {
+        font-size: 28px;
+        line-height: 34px;
+    }
+
+    .medical-service-menu-description {
+        font-size: 18px;
+        line-height: 28px;
+    }
+}

@@ -106,8 +106,14 @@ function FormSection({
         validateOnBlur
         onSubmit={handleSubmit}
       >
-        {({ values, errors, setValues, setTouched, validateForm, isValid }) => {
-      
+        {({ values, errors, setValues, setTouched, validateForm,setFieldValue, isValid }) => {
+          // from localstorage get booking-location-choice item it's a string
+          const bookingLocationChoice = localStorage.getItem('booking-location-choice');
+          if(bookingLocationChoice){
+            values.bookingChoice = bookingLocationChoice;
+            setFieldValue('bookingChoice', bookingLocationChoice);
+          }
+          
       const hasErrors =
             Object.keys(errors).filter((key) => key !== 'terms').length > 0;
           if (!hasErrors) {
@@ -475,7 +481,7 @@ function FormSection({
                     isProcessingPayment ? 'Processing Payment...' : 'Book and Pay'
                     }</p>
                   </button>
-                  <ReCAPTCHA sitekey={rejuvehangoverId} ref={recaptchaRef} />
+                  <ReCAPTCHA sitekey={rejuvehangoverId} ref={recaptchaRef} style={{maxWidth:'320px !important'}}/>
                 </div>
               </div>
               {/* {Object.keys(errors).length > 0 && <small style={{ color: 'red', fontSize: '16px' }}>Please fill all fields</small>} */}

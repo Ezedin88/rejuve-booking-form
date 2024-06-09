@@ -27,7 +27,7 @@ const mainHeroTitle = convenience_list_0_convenience_title || convenience_list_0
 const secondHeroTitle = convenience_list_1_convenience_title || convenience_list_1_title;
 const thirdHeroTitle = convenience_list_2_convenience_title || convenience_list_2_title;
   return (
-    convenience_section_title?
+    convenience_section_title&&currentProduct?
     <>
      <section className='product-section' id='product-section-id'>
       <h1 className='product-section-title'>{convenience_section_title}</h1>

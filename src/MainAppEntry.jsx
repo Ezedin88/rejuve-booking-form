@@ -26,9 +26,9 @@ function MainAppEntry() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [totalWithTip, setTotalWithTip] = useState(0);
-  // const 108 = document
-  //   .querySelector('[data-page_id]')
-  //   .getAttribute('data-page_id');
+  const dataPage = document
+    .querySelector('[data-page_id]')
+    .getAttribute('data-page_id');
   
   useEffect(() => {
     const script = document.createElement('script');
@@ -93,7 +93,7 @@ console.log('check treatments===>',checkMenuTreatments);
     };
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
-      const data = await client.getProductById(108);
+      const data = await client.getProductById(dataPage);
       if(data){
       setCurrentProduct(data);
       setCurrentProductCopy(data);
@@ -130,6 +130,7 @@ console.log('check treatments===>',checkMenuTreatments);
       event.preventDefault();
       event.returnValue = ''; 
       localStorage.removeItem('selectedTreatments');
+      localStorage.removeItem('booking-location-choice');
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
