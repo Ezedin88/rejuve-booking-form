@@ -127,7 +127,7 @@ function ProductHero({
 
   return (
     <>
-      {currentProduct &&
+      {currentProduct && Object.keys(currentProduct).length > 0 &&
         <section className="product-hero-main-wrapper">
           {
             isDecolletage &&

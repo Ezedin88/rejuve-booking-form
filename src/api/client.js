@@ -9,6 +9,7 @@ export const client = {
         const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
         const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
         try {
+            if (!product_id) return;
             const response = await fetch(apiUrl, {
                 headers: {
                     Authorization: `Basic ${encodedCredentials}`,
