@@ -378,7 +378,7 @@ function FormSection({
                 </div>
               </div>
               {/* order summary */}
-              <OrderSummary lineItems={lineItems} totalCalculation={totalCalculation} calculatedTipAmount={calculatedTipAmount} tips={tips} />
+              <OrderSummary lineItems={lineItems} totalCalculation={totalCalculation} calculatedTipAmount={calculatedTipAmount} tips={tips} values={values}/>
               {/* Payment Method */}
               <div className="choose_providers_wrapper">
                 <div className="choose-providers" id="credit-card-section">

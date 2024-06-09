@@ -26,7 +26,7 @@ function MainAppEntry() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [totalWithTip, setTotalWithTip] = useState(0);
-  // const dataPage = document
+  // const 108 = document
   //   .querySelector('[data-page_id]')
   //   .getAttribute('data-page_id');
   
@@ -93,12 +93,12 @@ console.log('check treatments===>',checkMenuTreatments);
     };
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
-      const data = await client.getProductById(
-        // dataPage || checkMenuTreatments[0]?.product_id
-        108
-      );
+      const data = await client.getProductById(108);
+      if(data){
       setCurrentProduct(data);
       setCurrentProductCopy(data);
+      }
+      
       data?.id !== 582 &&
         setlineItems([
           ...lineItems,
@@ -124,9 +124,19 @@ console.log('check treatments===>',checkMenuTreatments);
     fetchTreatments();
   }, []);
 
+  // Remove item from localStorage when navigating away from the about page
   useEffect(() => {
-    return () => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = ''; 
       localStorage.removeItem('selectedTreatments');
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, []);
 
@@ -256,6 +266,7 @@ console.log('check treatments===>',checkMenuTreatments);
           setIsProcessing(false);
           if (dataToSend) {
             try {
+              window.onbeforeunload = null;
               localStorage.removeItem('selectedTreatments');
               window.scrollTo(0, 0);
               changeCreatingOrderStatus(true);
@@ -281,6 +292,7 @@ console.log('check treatments===>',checkMenuTreatments);
     } else {
       if (dataToSend) {
         try {
+          window.onbeforeunload = null;
           localStorage.removeItem('selectedTreatments');
           window.scrollTo(0, 0);
           changeCreatingOrderStatus(true);
