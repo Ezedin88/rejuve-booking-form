@@ -9,10 +9,14 @@ function Agreement({
   agreeToSignUp,
   setAgreeToSignUp,
 }) {
+  const handleCheckboxClick = (e) => {
+    e.stopPropagation();
+    setAgreeToCreateAccount(!agreeToCreateAccount);
+  };
   return (
     <div className="agreement-container-wrapper">
       <div>
-        <div className="agreement-wrapper-label">
+        <label className="agreement-wrapper-label" htmlFor="terms">
           <Field
             type="checkbox"
             name="terms"
@@ -22,52 +26,56 @@ function Agreement({
             // onChange={() => setAgreeToTos(!agreeToTos)}
             className="agreement-checkbox-input"
           />
-          <p className="agreement-description"
-  style={{ cursor: 'pointer' }}
-  onClick={() => setAgreeToTos(!agreeToTos)}
->
-  I agree to the ToS, 
-  <a 
-    href="https://rejuve.md/privacy-policy/" 
-    style={{ textDecoration: 'none', color: '#32c0cc' }}
-    onClick={e => e.stopPropagation()}  // Prevents toggling agreeToTos when clicking the link
-  >
-    Privacy Policy
-  </a>, 
-  Consent To Treat, and 
-  Cancellation Policy *
-</p>
-
-        </div>
+          <p
+            className="agreement-description"
+            style={{ cursor: 'pointer' }}
+            onClick={() => setAgreeToTos(!agreeToTos)}
+          >
+            I agree to the ToS,
+            <a
+              href="https://rejuve.md/privacy-policy/"
+              style={{ textDecoration: 'none', color: '#32c0cc' }}
+              onClick={(e) => e.stopPropagation()} // Prevents toggling agreeToTos when clicking the link
+            >
+              Privacy Policy
+            </a>
+            , Consent To Treat, and Cancellation Policy *
+          </p>
+        </label>
       </div>
+
       <div>
-        <div className="agreement-wrapper-label">
-          {/* <Field type="checkbox" name="createAccount"
-            checked={agreeToCreateAccount}
-            onChange={() => setAgreeToCreateAccount(!agreeToCreateAccount)}
-            required
-          /> */}
-          <input
-            className="agreement-checkbox-input"
+        <label className="agreement-wrapper-label" htmlFor="createAccounts">
+          <Field
             type="checkbox"
             name="createAccount"
-            id="createAccount"
+            checked={agreeToCreateAccount}
+            onChange={(e) => handleCheckboxClick(e)}
+            required
+            className="agreement-checkbox-input"
+          />
+          {/* <input
+            type="checkbox"
+            name="createAccount"
+            id="createAccounts"
             value="createAccount"
             checked={agreeToCreateAccount}
-            onChange={() => setAgreeToCreateAccount(!agreeToCreateAccount)}
-          />
-          <p className="agreement-description"
-          style={{cursor:'pointer'}}
-          onClick={() => setAgreeToCreateAccount(!agreeToCreateAccount)}
+            onChange={(e) => handleCheckboxClick(e)}
+          /> */}
+          <p
+            className="agreement-description"
+            style={{ cursor: 'pointer' }}
+            onClick={(e) => handleCheckboxClick(e)}
           >
             {' '}
             Create an account for me and send me secure login details to my
             e-mail. (recommended)
           </p>
-        </div>
+        </label>
       </div>
+
       <div>
-        <div className="agreement-wrapper-label">
+        <label className="agreement-wrapper-label" htmlFor="signUp">
           {/* <Field type="checkbox" name="signUp"
             checked={agreeToSignUp}
             onChange={() => setAgreeToSignUp(!agreeToSignUp)}
@@ -83,13 +91,11 @@ function Agreement({
             checked={agreeToSignUp}
             onChange={() => setAgreeToSignUp(!agreeToSignUp)}
           />
-          <p className="agreement-description"
-          style={{cursor:'pointer'}}
-          >
+          <p className="agreement-description" style={{ cursor: 'pointer' }}>
             Sign-up to receiving exclusive offers and service updates!
             (recommended)
           </p>
-        </div>
+        </label>
       </div>
     </div>
   );
