@@ -91,9 +91,10 @@ function MainAppEntry() {
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
       const data = await client.getProductById(dataPage);
+      if(data){
       setCurrentProduct(data);
       setCurrentProductCopy(data);
-      
+      }
       data?.id !== 582 &&
         setlineItems([
           ...lineItems,
