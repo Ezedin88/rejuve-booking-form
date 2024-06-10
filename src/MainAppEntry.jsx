@@ -95,13 +95,14 @@ function MainAppEntry() {
       setCurrentProduct(data);
       setCurrentProductCopy(data);
       }
+      if(data){
       data?.id !== 582 &&
         setlineItems([
           ...lineItems,
           {
             userIndex: 0,
-            product_id: data.id,
-            productName: data.name,
+            product_id: data?.id,
+            productName: data?.name,
             variation_id:
               values.bookingChoice !== 'atourclinics'
                 ? data?.variations[1]
@@ -111,7 +112,7 @@ function MainAppEntry() {
             quantity: 1,
             metaData: [],
           },
-        ]);
+        ])}
       setIsFetchingProduct(false);
     };
 
@@ -124,7 +125,6 @@ function MainAppEntry() {
   useEffect(() => {
     const handleBeforeUnload = (event) => {
       event.preventDefault();
-      event.returnValue = ''; 
       localStorage.removeItem('selectedTreatments');
       localStorage.removeItem('booking-location-choice');
     };
