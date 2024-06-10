@@ -103,10 +103,8 @@ export const client = {
 
                 const takenTimes = [];
                 const takenDates = [];
-
                 if (providerId) {
                     const periodsForCurrentProvider = validProviderInfos.filter(({ value }) => value.id === providerId);
-
                     periodsForCurrentProvider.forEach(({ value }) => {
                         const { time, date } = value;
                         takenDates.push(date);
@@ -116,11 +114,11 @@ export const client = {
 
                 const providersWithCurrentId = providers?.filter(provider => provider.id === providerId);
                 const { bookingOptions } = providersWithCurrentId?.[0] || {};
-                const { available_date, available_date_house_call, select_available_time__clinic_, select_available_time__housecall__ } = bookingOptions || {};
+                const { available_date__clinic_, available_date__housecall, select_available_time__clinic_, select_available_time__housecall__ } = bookingOptions || {};
 
-                const select_available_dates_house_call = available_date_house_call?.map(date => date.select_available_date__house_call_);
+                const select_available_dates_house_call = available_date__housecall?.map(date => date.select_available_date__housecall);
 
-                const select_available_dates_at_clinic = available_date?.map(date => date.select_available_date__clinic_);
+                const select_available_dates_at_clinic = available_date__clinic_?.map(date => date.select_available_date__clinic_);
 
                 const select_available_time__house_call_ = select_available_time__housecall__?.map(time => time.select_available_time__house_call_);
 

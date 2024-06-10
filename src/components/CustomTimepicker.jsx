@@ -108,7 +108,7 @@ const TimePicker = (props) => {
           setFieldValue(name, selectedOption.value);
           values.bookingTime = selectedOption.value;
         }}
-        options={formatedAvailableTimeOptions?.length>0&&formatedAvailableTimeOptions||timeOptions}
+        options={values.provider!=="Any" ? formatedAvailableTimeOptions?.length >0 && formatedAvailableTimeOptions || [] : timeOptions}
         className="time-picker-select"
         placeholder="HH:MM AM/PM"
         styles={customStyles}
