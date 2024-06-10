@@ -27,9 +27,7 @@ function MainAppEntry() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [totalWithTip, setTotalWithTip] = useState(0);
   const dataPage = document
-    .querySelector('[data-page_id]')
-    ?.getAttribute('data-page_id');
-  console.log('data page===>',dataPage)
+    .querySelector('[data-page_id]').getAttribute('data-page_id');
   useEffect(() => {
     const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBiMgA18QMFdnj67qadAYRk816SdI8c8ag&libraries=places`;
@@ -50,7 +48,6 @@ function MainAppEntry() {
 
 
  const checkMenuTreatments = JSON.parse(localStorage.getItem('selectedTreatments'));
-console.log('check treatments===>',checkMenuTreatments);
   const [lineItems, setlineItems] = useState(checkMenuTreatments||[]);
   const [fieldsAreEmptyForUpdate, setFieldsAreEmptyForUpdate] = useState(false);
   const [fieldsAreEmpty, setFieldsAreEmpty] = useState(false);
@@ -93,11 +90,9 @@ console.log('check treatments===>',checkMenuTreatments);
     };
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
-      const data = await client.getProductById(dataPage??null);
-      if(data){
+      const data = await client.getProductById(dataPage);
       setCurrentProduct(data);
       setCurrentProductCopy(data);
-      }
       
       data?.id !== 582 &&
         setlineItems([
