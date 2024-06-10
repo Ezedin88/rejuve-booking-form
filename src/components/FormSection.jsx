@@ -110,7 +110,7 @@ function FormSection({
           // from localstorage get booking-location-choice item it's a string
           const bookingLocationChoice = localStorage.getItem('booking-location-choice');
           if(bookingLocationChoice){
-            values.bookingChoice = bookingLocationChoice;
+            // values.bookingChoice = bookingLocationChoice;
             setFieldValue('bookingChoice', bookingLocationChoice);
           }
           
