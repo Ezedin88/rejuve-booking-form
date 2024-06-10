@@ -13,8 +13,7 @@ function CardPaymentMethod({ values }) {
   const elements = useElements();
   const cardElement = elements?.getElement(CardNumberElement);
 
-
-  values.cardNumberElement = {stripe,elements,cardElement};
+  values.cardNumberElement = { stripe, elements, cardElement };
 
   const CARD_ELEMENT_OPTIONS = {
     style: {
