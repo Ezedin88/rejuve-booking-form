@@ -27,7 +27,7 @@ function MainAppEntry() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [totalWithTip, setTotalWithTip] = useState(0);
   const dataPage = document
-    .querySelector('[data-page_id]').getAttribute('data-page_id');
+    .querySelector('[data-page_id]')?.getAttribute('data-page_id');
   useEffect(() => {
     const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBiMgA18QMFdnj67qadAYRk816SdI8c8ag&libraries=places`;
@@ -90,7 +90,7 @@ function MainAppEntry() {
     };
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
-      const data = await client.getProductById(dataPage);
+      const data = await client.getProductById(dataPage||null);
       if(data){
       setCurrentProduct(data);
       setCurrentProductCopy(data);

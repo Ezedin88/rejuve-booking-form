@@ -172,7 +172,13 @@ const CustomDatepicker = (props) => {
         minDate={!dateOfBirth&&new Date()}
         maxDate={dateOfBirth&&
           new Date(new Date().getFullYear() - 1, new Date().getMonth(), new Date().getDate())}
-          includeDates={!dateOfBirth && availableDates && availableDates.length > 0 && availableDates[0] !== 'undefined' && availableDates[0] !== undefined && availableDates.map(date => parse(date, 'MM/dd/yyyy', new Date()))}
+          includeDates={
+            !dateOfBirth && values.provider !== "Any"
+              ? availableDates && availableDates.length > 0 && availableDates[0] !== undefined
+                ? availableDates.map(date => parse(date, 'MM/dd/yyyy', new Date()))
+                : []
+              : undefined
+          }
           />
     </div>
   );

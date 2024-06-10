@@ -446,8 +446,6 @@ function FormSection({
                         if (!recaptchaToken) {
                           toast('Please verify the reCAPTCHA!',{type:'error'})
                           return;
-                        } else {
-                          toast('Form submission successful!',{type:'info'})
                         }
                       const termsError = await checkAgreementErrors();
                       if (termsError) {

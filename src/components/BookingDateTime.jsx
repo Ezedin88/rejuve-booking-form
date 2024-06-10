@@ -14,11 +14,11 @@ function BookingDateTime({ values, availableBookingPeriods }) {
     ;
 
     const availableDates = Array.isArray(availableDatesRaw)
-        ? availableDatesRaw.map(dateObj => dateObj.select_date).filter(date => !takenTimes.has(date))
+        ? availableDatesRaw.map(dateObj => dateObj.select_date).filter(date => !takenDates.has(date))
         : [];
 
     const availableTimes = Array.isArray(availableTimesRaw)
-        ? availableTimesRaw.filter(time => !takenDates.has(time))
+        ? availableTimesRaw.filter(time => !takenTimes.has(time))
         : [];
 
     return { availableDates, availableTimes };

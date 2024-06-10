@@ -25,7 +25,7 @@ function CardPaymentMethod({ values }) {
         fontFamily: 'Raleway, sans-serif',
         fontSmoothing: 'antialiased',
         '::placeholder': {
-          color: 'black',
+          color: '#c6c6c6',
         },
       },
       invalid: {
