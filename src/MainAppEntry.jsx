@@ -90,7 +90,7 @@ function MainAppEntry() {
     };
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
-      const data = await client.getProductById(dataPage||null);
+      const data = await client.getProductById(dataPage||null)??null;
       if(data){
       setCurrentProduct(data);
       setCurrentProductCopy(data);
@@ -108,7 +108,7 @@ function MainAppEntry() {
                 ? data?.variations[1]
                 : data?.variations[0],
             price:
-              values.bookingChoice === 'housecall' ? bookHouseCall : data.price,
+              values.bookingChoice === 'housecall' ? bookHouseCall : data?.price,
             quantity: 1,
             metaData: [],
           },
@@ -263,7 +263,7 @@ function MainAppEntry() {
           setIsProcessing(false);
           if (dataToSend) {
             try {
-              window.onbeforeunload = null;
+              window.removeEventListener('beforeunload', () => {});
               localStorage.removeItem('selectedTreatments');
               window.scrollTo(0, 0);
               changeCreatingOrderStatus(true);
@@ -289,7 +289,7 @@ function MainAppEntry() {
     } else {
       if (dataToSend) {
         try {
-          window.onbeforeunload = null;
+          window.removeEventListener('beforeunload', () => {});
           localStorage.removeItem('selectedTreatments');
           window.scrollTo(0, 0);
           changeCreatingOrderStatus(true);

@@ -106,12 +106,11 @@ function FormSection({
         validateOnBlur
         onSubmit={handleSubmit}
       >
-        {({ values, errors, setValues, setTouched, validateForm,setFieldValue, isValid }) => {
-          // from localstorage get booking-location-choice item it's a string
-          const bookingLocationChoice = localStorage.getItem('booking-location-choice');
+        {({ values, errors, setValues, setTouched, validateForm, isValid }) => {
+          let bookingLocationChoice;
+          bookingLocationChoice = localStorage.getItem('booking-location-choice')??null;
           if(bookingLocationChoice){
-            // values.bookingChoice = bookingLocationChoice;
-            setFieldValue('bookingChoice', bookingLocationChoice);
+            values.bookingChoice = bookingLocationChoice;
           }
           
       const hasErrors =

@@ -8,8 +8,8 @@ export const client = {
         const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
         const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
         const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
+        if (!product_id) return;
         try {
-            if (!product_id) return;
             const response = await fetch(apiUrl, {
                 headers: {
                     Authorization: `Basic ${encodedCredentials}`,
@@ -116,13 +116,12 @@ export const client = {
                 const { bookingOptions } = providersWithCurrentId?.[0] || {};
                 const { available_date__clinic_, available_date__housecall, select_available_time__clinic_, select_available_time__housecall__ } = bookingOptions || {};
 
-                const select_available_dates_house_call = available_date__housecall?.map(date => date.select_available_date__housecall);
+                const select_available_dates_house_call = (available_date__housecall || []).map(date => date.select_available_date__housecall);
+                const select_available_dates_at_clinic = (available_date__clinic_ || []).map(date => date.select_available_date__clinic_);
 
-                const select_available_dates_at_clinic = available_date__clinic_?.map(date => date.select_available_date__clinic_);
+                const select_available_time__house_call_ = (select_available_time__housecall__ || []).map(time => time.select_available_time__house_call_);
+                const select_available_time__at_clinic__ = (select_available_time__clinic_ || []).map(time => time.select_available_time);
 
-                const select_available_time__house_call_ = select_available_time__housecall__?.map(time => time.select_available_time__house_call_);
-
-                const select_available_time__at_clinic__ = select_available_time__clinic_?.map(time => time.select_available_time);
 
                 // get all times
                 if (bookingChoice === 'atourclinics' && providerId) {

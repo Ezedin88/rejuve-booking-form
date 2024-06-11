@@ -10,15 +10,25 @@ function Providers({ providers, values,setAvailableBookingPeriods }) {
     const {setFieldValue} = useFormikContext();
     useEffect(() => {
         const fetchSelectedProviderPeriod = async () => {
-            const data = await client.getSelectedProviderTimeAndDate({
-                providerId,
-                providers,
-                values
-            });
-            setAvailableBookingPeriods(data);
+            try {
+                console.log('Fetching data for provider:', { providerId, providers, values });
+                const data = await client.getSelectedProviderTimeAndDate({
+                    providerId,
+                    providers,
+                    values
+                });
+                console.log('Fetched data:', data);
+                setAvailableBookingPeriods(data);
+            } catch (error) {
+                console.error('Error fetching selected provider period:', error);
+            }
+        };
+    
+        if (providerId && providers && values) {
+            fetchSelectedProviderPeriod();
         }
-        fetchSelectedProviderPeriod();
-    }, [ values.provider,values.bookingChoice])
+    }, [providers, values.provider, values.bookingChoice, providerId]);
+    
 
     const onChangeHandler = (e) => {
         values.provider = e.target.value;

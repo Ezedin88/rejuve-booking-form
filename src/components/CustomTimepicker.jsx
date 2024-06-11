@@ -17,12 +17,14 @@ const customStyles = {
       ? '#eafdff'
       : '#fff',
     color: state.data.isDisabled ? '#aaa' : '#333',
+    cursor: state.isDisabled ? 'not-allowed' : 'pointer', // Update cursor style
   }),
   control: () => ({
     display: 'flex',
     width: 300,
     position: 'relative',
     paddingLeft: 25,
+    cursor: 'pointer',
   }),
   singleValue: (provided) => ({
     ...provided,
@@ -84,11 +86,11 @@ const TimePicker = (props) => {
   const DropdownIndicator = (props) => {
     return (
       <div style={{ width: '100%' }}>
-        <components.DropdownIndicator {...props}>
+        {/* <components.DropdownIndicator {...props}>
           <FaChevronDown
             style={{ position: 'absolute', right: 0, top: '30%' }}
           />
-        </components.DropdownIndicator>
+        </components.DropdownIndicator> */}
       </div>
     );
   };
@@ -97,6 +99,7 @@ const TimePicker = (props) => {
     <div className="time-picker">
       <FaRegClock className="clock-icon" />
       <Select
+        // isDisabled = {values.bookingDate ? false : true}
         blurInputOnSelect={true}
         onBlur={() => setFieldTouched(name, true)} // Ensure field is touched on blur
         isOptionSelected={(value) => !value && setFieldTouched(name, true)} // Correct usage of isOptionSelected
