@@ -3,7 +3,6 @@ import CustomInput from '../CustomInput'
 import { client } from '../api/client';
 
 function BookingDateTime({ values, availableBookingPeriods }) {
-  console.log('from booking date time===>',availableBookingPeriods)
   function getAvailableSlots(bookingPeriods) {
     const takenDates = new Set(bookingPeriods?.takenDates ?? []);
     const takenTimes = new Set(bookingPeriods?.takenTimes ?? []);
@@ -11,7 +10,6 @@ function BookingDateTime({ values, availableBookingPeriods }) {
     const availableDatesRaw = values.bookingChoice === 'atourclinics' 
         ? bookingPeriods?.select_available_dates_at_clinic ?? []
         : bookingPeriods?.select_available_dates_house_call ?? [];
-console.log('available dates',availableDatesRaw)
     const availableTimesRaw = values.bookingChoice === 'atourclinics'
         ? bookingPeriods?.select_available_time__at_clinic__ ?? []
         : bookingPeriods?.select_available_time__house_call_ ?? [];
@@ -26,11 +24,10 @@ console.log('available dates',availableDatesRaw)
         ? availableTimesRaw
         : availableTimesRaw.filter(time => !takenTimes.has(time));
 
+
     return { availableDates, availableTimes };
 }
-
 const availableSlots = getAvailableSlots(availableBookingPeriods);
-console.log('available slots===>',availableSlots);
   return (
     <div style={{
       display: 'flex',

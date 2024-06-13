@@ -51,10 +51,10 @@ for (let i = 0; i < 24; i++) {
 }
 
 function formatTimes(times) {
-  return times?.map(time => ({
+  return times?.length>0 && times?.map(time => ({
       label: time,
       value: time
-  }));
+  }))||[];
 }
 
 const TimePicker = (props) => {
@@ -111,7 +111,7 @@ const TimePicker = (props) => {
           setFieldValue(name, selectedOption.value);
           values.bookingTime = selectedOption.value;
         }}
-        options={values.provider!=="Any" ? formatedAvailableTimeOptions?.length >0 && formatedAvailableTimeOptions || [] : timeOptions}
+        options={ formatedAvailableTimeOptions?.length >0 && formatedAvailableTimeOptions || []}
         className="time-picker-select"
         placeholder="HH:MM AM/PM"
         styles={customStyles}

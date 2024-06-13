@@ -11,20 +11,18 @@ function Providers({ providers, values,setAvailableBookingPeriods }) {
     useEffect(() => {
         const fetchSelectedProviderPeriod = async () => {
             try {
-                console.log('Fetching data for provider:', { providerId, providers, values });
                 const data = await client.getSelectedProviderTimeAndDate({
                     providerId,
                     providers,
                     values
                 });
-                console.log('Fetched data:', data);
                 setAvailableBookingPeriods(data);
             } catch (error) {
                 console.error('Error fetching selected provider period:', error);
             }
         };
     
-        if (providerId && providers && values) {
+        if (providers && values) {
             fetchSelectedProviderPeriod();
         }
     }, [providers, values.provider, values.bookingChoice, providerId]);

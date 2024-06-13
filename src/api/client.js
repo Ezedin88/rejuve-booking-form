@@ -1,6 +1,6 @@
-import Stripe from "stripe";
+// import Stripe from "stripe";
 
-const stripe = new Stripe('sk_test_51HFQsEF7hHoyPJTdMELQKrMh7K41sNmrb6yf9D53PmUIQNOm6P4WrLxOMTS6K1mEUdxqsIW443yp9Zrw4e3lKymv00859FkIfv');
+// const stripe = new Stripe('sk_test_51HFQsEF7hHoyPJTdMELQKrMh7K41sNmrb6yf9D53PmUIQNOm6P4WrLxOMTS6K1mEUdxqsIW443yp9Zrw4e3lKymv00859FkIfv');
 
 export const client = {
     getProductById: async (product_id) => {
@@ -83,7 +83,6 @@ export const client = {
         const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
 
         try {
-
             const response = await fetch(url, {
                 headers: {
                     Authorization: `Basic ${encodedCredentials}`,
@@ -121,9 +120,23 @@ export const client = {
 
                 const select_available_time__house_call_ = (select_available_time__housecall__ || []).map(time => time.select_available_time__house_call_);
                 const select_available_time__at_clinic__ = (select_available_time__clinic_ || []).map(time => time.select_available_time);
+                // get all times between 10:30am - 6:30pm
+                const generateAllTimes = () => {
+                    const times = [];
+                    let currentTime = new Date();
+                    currentTime.setHours(10, 30, 0, 0);
 
+                    const endTime = new Date();
+                    endTime.setHours(18, 30, 0, 0);
 
-                // get all times
+                    while (currentTime <= endTime) {
+                        times.push(currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+                        currentTime.setMinutes(currentTime.getMinutes() + 30);
+                    }
+                    return times;
+                }
+
+                const allTimes = generateAllTimes();
                 if (bookingChoice === 'atourclinics' && providerId) {
                     return {
                         takenDates,
@@ -131,25 +144,76 @@ export const client = {
                         select_available_time__at_clinic__,
                         select_available_dates_at_clinic
                     }
-                } else if (providerId) {
+                } else if (bookingChoice === 'housecall' && providerId) {
                     return {
                         takenDates,
                         takenTimes,
                         select_available_time__house_call_,
                         select_available_dates_house_call
                     }
+                } else if (bookingChoice === 'atourclinics' && !providerId) {
+                    // Get all available dates and times from all providers for 'atourclinics'
+                    // Extract all available clinic dates
+                    const allDatesAtClinic = providers
+                        .flatMap(provider => {
+                            const clinicDates = provider.bookingOptions?.available_date__clinic_;
+                            if (!clinicDates || clinicDates === false) return []; // Skip providers without available clinic dates or with false value
+                            return clinicDates.map(date => date.select_available_date__clinic_);
+                        });
+                    const aggregatedTimeAvailable = new Set(providers
+                        .flatMap(provider => (provider.bookingOptions?.select_available_time__clinic_ || [])
+                            .map(time => time.select_available_time.toLowerCase())
+                            .filter(time => {
+                                const timeString = time.split(' ')[0]; // Extract time part without AM/PM
+                                const [hours, minutes] = timeString.split(':').map(Number); // Extract hours and minutes
+                                return (hours >= 10 && hours <= 18) || (hours === 6 && minutes === 30); // Filter times between 10:30 AM to 6:30 PM
+                            })));
+                    const aggregatedTimeAvailableArray = [...aggregatedTimeAvailable];
+                    return {
+                        takenDates: [],
+                        takenTimes: [],
+                        select_available_time__at_clinic__: aggregatedTimeAvailableArray,
+                        select_available_dates_at_clinic: allDatesAtClinic
+                    };
+                } else if (bookingChoice === 'housecall') {
+                    // Get all available dates and times from all providers for 'athousecall'
+                    const allDatesHouseCall = providers
+                        .flatMap(provider => {
+                            const houseCallDates = provider.bookingOptions?.available_date__housecall;
+                            if (!houseCallDates || houseCallDates === false) return []; // Skip providers without available house call dates or with false value
+                            return houseCallDates.map(date => date.select_available_date__housecall);
+                        });
+                    // Normalize to lowercase and filter times between 10:30 AM to 6:30 PM
+                    const aggregatedTimeAvailable = new Set(providers
+                        .flatMap(provider => {
+                            const houseCallTimes = provider.bookingOptions?.select_available_time__housecall__;
+                            if (!houseCallTimes || houseCallTimes === false) return []; // Skip providers without available house call times or with false value
+                            return houseCallTimes.map(time => time.select_available_time__house_call_.toLowerCase());
+                        })
+                        .filter(time => {
+                            const timeString = time.split(' ')[0]; // Extract time part without AM/PM
+                            const [hours, minutes] = timeString.split(':').map(Number); // Extract hours and minutes
+                            return (hours >= 10 && hours <= 18) || (hours === 6 && minutes === 30); // Filter times between 10:30 AM to 6:30 PM
+                        }));
+
+                    // Convert Set back to array
+                    const aggregatedTimeAvailableArray = [...aggregatedTimeAvailable];
+                    return {
+                        takenDates: [],
+                        takenTimes: [],
+                        select_available_time__house_call_: aggregatedTimeAvailableArray,
+                        select_available_dates_house_call: allDatesHouseCall
+                    };
                 } else {
                     return;
                 }
-
             }
-
         } catch (error) {
             console.error("Error fetching data:", error);
             throw error;
         }
-
     }
+
     ,
     async createOrder(order) {
         const url = `https://rejuve.md/wp-json/wc/v3/orders`;
@@ -178,18 +242,18 @@ export const client = {
         }
     }
     ,
-    handlePaymentIntent: async (theTotalPriceAmount) => {
-        try {
-            const paymentIntent = await stripe.paymentIntents.create({
-                amount: theTotalPriceAmount * 100,
-                currency: 'usd',
-                payment_method_types: ['card'],
-            });
-            const { id: paymentIntentId, client_secret } = paymentIntent;
-            return { paymentIntentId, client_secret };
-        } catch (error) {
-            console.error('Error creating payment intent:', error);
-            throw error;
-        }
-    },
+    // handlePaymentIntent: async (theTotalPriceAmount) => {
+    //     try {
+    //         const paymentIntent = await stripe.paymentIntents.create({
+    //             amount: theTotalPriceAmount * 100,
+    //             currency: 'usd',
+    //             payment_method_types: ['card'],
+    //         });
+    //         const { id: paymentIntentId, client_secret } = paymentIntent;
+    //         return { paymentIntentId, client_secret };
+    //     } catch (error) {
+    //         console.error('Error creating payment intent:', error);
+    //         throw error;
+    //     }
+    // },
 };
