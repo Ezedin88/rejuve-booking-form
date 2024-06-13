@@ -18,6 +18,16 @@
   color: #333 !important;
 }
 
+.pointer-date-picker {
+  cursor:pointer;
+}
+
+.disabled-date-picker {
+  /* pointer-events: none; */
+  cursor: not-allowed;
+}
+
+
 .date-picker:hover {
   border-color: #32c0cc;
   color: #32c0cc;

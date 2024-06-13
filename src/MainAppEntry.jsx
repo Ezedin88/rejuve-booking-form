@@ -85,7 +85,7 @@ function MainAppEntry() {
       setTreatments(data);
     };
     const fetchProviders = async () => {
-      const data = await client.getAllProviders();
+      const data = await client.getZenotiProviders();
       setProviders(data);
     };
     const fetchProductById = async () => {
@@ -116,6 +116,9 @@ function MainAppEntry() {
       setIsFetchingProduct(false);
     };
 
+    // client.getZenotiProviders();
+    // client.getCentersData();
+    // client.createZenotiGuest();
     fetchProductById();
     fetchProviders();
     fetchTreatments();

@@ -2,6 +2,10 @@ import '../inputStyles.css';
 import CustomInput from '../CustomInput'
 
 function UserDetail({index}) {
+    //  const userDataBillingInformation = values?.userData?.map(
+    //         (item) => item.billing
+    //       )
+    //       console.log('values===>',userDataBillingInformation)
     return (
         <div className='user-input-wrapper'>
             <CustomInput placeholder='Johnathan' label="First Name" name={`userData[${index}].billing.first_name`} type="text" />

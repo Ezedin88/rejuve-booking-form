@@ -116,7 +116,8 @@ const CustomDatepicker = (props) => {
     <div className="date-picker-container">
       <MdOutlineCalendarToday className="calendar-icon" />
       <DatePicker
-        className="date-picker"
+        className="date-picker custom-tooltip pointer-date-picker"
+        data-tooltip='cursor'
         name={name}
         value={selectedDate}
         selected={selectedDate}

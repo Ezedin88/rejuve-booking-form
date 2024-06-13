@@ -67,6 +67,7 @@ export const client = {
                         bookingOptions: booking_options
                     };
                 });
+                console.log('woocommerce provider===>', data)
                 return formattedProviders;
             }
         } catch (error) {
@@ -256,4 +257,93 @@ export const client = {
     //         throw error;
     //     }
     // },
-};
+
+    getCentersData: async () => {
+        const url = `https://rejuve.md/wp-json/zenoti/v1/get-all-centers`;
+        const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
+        const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
+        const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
+
+        try {
+            const response = await fetch(url, {
+                headers: {
+                    Authorization: `Basic ${encodedCredentials}`,
+                    "Content-Type": "application/json"
+                },
+            });
+            const data = await response.json();
+            console.log('centers data===>', data);
+            return data;
+        }
+        catch (error) {
+            console.log('error: ', error);
+        }
+
+    },
+    // create a guest
+    createZenotiGuest: async (guestData) => {
+        const url = `https://rejuve.md/wp-json/zenoti/v1/create-guest`;
+        const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
+        const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
+        const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    Authorization: `Basic ${encodedCredentials}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(guestData)
+            });
+            const data = await response.json();
+            console.log('guest data===>', data);
+            return data;
+        }
+        catch (error) {
+            console.log('error: ', error);
+        }
+    },
+
+    // get providers
+    getZenotiProviders: async () => {
+        const url = `https://rejuve.md/wp-json/zenoti/v1/get-zenoti-providers`;
+        const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
+        const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
+        const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
+
+        try {
+            const response = await fetch(url, {
+                headers: {
+                    Authorization: `Basic ${encodedCredentials}`,
+                    "Content-Type": "application/json"
+                },
+            }
+            );
+            const data = await response.json();
+            // don't show data that has personal_info.first_name = 'Front'
+            if (data) {
+                const filteredData = data?.therapists?.filter(item => item.personal_info.first_name !== "Front");
+                const formattedData = filteredData?.map(item => {
+                    const job_info_name = item.job_info.name
+                        .replace(/\s+/g, ' ')
+                        .toLowerCase()
+                        .split(' ')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+
+                    return ({
+                        id: item.id,
+                        job_info: item.job_info,
+                        name: item.personal_info.first_name + ' ' + '(' + job_info_name + ')',
+                    })
+                });
+                console.log('zenoti providers===>', data);
+                return formattedData;
+            }
+        }
+        catch (error) {
+            console.log('error: ', error);
+        }
+    }
+}
