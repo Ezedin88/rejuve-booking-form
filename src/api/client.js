@@ -43,7 +43,7 @@ export const client = {
         }
     },
     async getAllProviders() {
-        const url = `https://rejuve.md/wp-json/wp/v2/provider/?status=publish`;
+        const url = `https://rejuve.md/wp-json/wp/v2/provider`;
         const username = 'ck_fc0b9c9746fdf1fbabcb01d6cf35f7e577c349d2';
         const password = 'cs_4ba59ff35428397bbebc94ce42425deeeff5cc9d';
         const encodedCredentials = btoa(`${username}:${password}`);
@@ -67,7 +67,6 @@ export const client = {
                         bookingOptions: booking_options
                     };
                 });
-                console.log('woocommerce provider===>', data)
                 return formattedProviders;
             }
         } catch (error) {
@@ -114,13 +113,16 @@ export const client = {
 
                 const providersWithCurrentId = providers?.filter(provider => provider.id === providerId);
                 const { bookingOptions } = providersWithCurrentId?.[0] || {};
-                const { available_date__clinic_, available_date__housecall, select_available_time__clinic_, select_available_time__housecall__ } = bookingOptions || {};
+                const { 'specific_available_date_&_time_clinic': specificAvailableDateAndTimeClinic,
+                    'specific_available_date_&_time_house': specificAvailableDateAndTimeHouse,
+                    available_date__clinic_, available_date__housecall, select_available_time__clinic_, select_available_time__housecall__ } = bookingOptions || {};
 
                 const select_available_dates_house_call = (available_date__housecall || []).map(date => date.select_available_date__housecall);
                 const select_available_dates_at_clinic = (available_date__clinic_ || []).map(date => date.select_available_date__clinic_);
 
-                const select_available_time__house_call_ = (select_available_time__housecall__ || []).map(time => time.select_available_time__house_call_);
+                const select_available_time__house_call_ = (select_available_time__housecall__ || []).map(time => time.select_available_time__housecall);
                 const select_available_time__at_clinic__ = (select_available_time__clinic_ || []).map(time => time.select_available_time);
+
                 // get all times between 10:30am - 6:30pm
                 const generateAllTimes = () => {
                     const times = [];
@@ -143,14 +145,16 @@ export const client = {
                         takenDates,
                         takenTimes,
                         select_available_time__at_clinic__,
-                        select_available_dates_at_clinic
+                        select_available_dates_at_clinic,
+                        specificAvailableDateAndTimeClinic
                     }
                 } else if (bookingChoice === 'housecall' && providerId) {
                     return {
                         takenDates,
                         takenTimes,
                         select_available_time__house_call_,
-                        select_available_dates_house_call
+                        select_available_dates_house_call,
+                        specificAvailableDateAndTimeHouse
                     }
                 } else if (bookingChoice === 'atourclinics' && !providerId) {
                     // Get all available dates and times from all providers for 'atourclinics'
@@ -272,7 +276,6 @@ export const client = {
                 },
             });
             const data = await response.json();
-            console.log('centers data===>', data);
             return data;
         }
         catch (error) {
@@ -297,7 +300,6 @@ export const client = {
                 body: JSON.stringify(guestData)
             });
             const data = await response.json();
-            console.log('guest data===>', data);
             return data;
         }
         catch (error) {
@@ -338,7 +340,6 @@ export const client = {
                         name: item.personal_info.first_name + ' ' + '(' + job_info_name + ')',
                     })
                 });
-                console.log('zenoti providers===>', data);
                 return formattedData;
             }
         }

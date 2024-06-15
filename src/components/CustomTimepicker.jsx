@@ -62,6 +62,13 @@ const TimePicker = (props) => {
   const { setFieldTouched, setFieldValue, values } = useFormikContext();
   const { name } = props;
   const availableTimes = props?.availableTimes;
+  const mergedDates = props?.mergedDates;
+ 
+    const timesForSelectedDate = values?.bookingDate&&mergedDates?.length>0&&mergedDates
+        .filter(item => item.date_and_time_clinic.startsWith(values?.bookingDate))
+        .map(item => item.date_and_time_clinic.split(' ')[1] + ' ' + item.date_and_time_clinic.split(' ')[2]);
+   
+  const formatSelectedDate = timesForSelectedDate?.length>0 ? formatTimes(timesForSelectedDate) : [];
   const formatedAvailableTimeOptions = formatTimes(availableTimes);
   const Option = (props) => {
     return (
@@ -111,7 +118,9 @@ const TimePicker = (props) => {
           setFieldValue(name, selectedOption.value);
           values.bookingTime = selectedOption.value;
         }}
-        options={ formatedAvailableTimeOptions?.length >0 && formatedAvailableTimeOptions || []}
+        options={ 
+          formatSelectedDate?.length>0?formatSelectedDate:
+          formatedAvailableTimeOptions?.length >0 && formatedAvailableTimeOptions || []}
         className="time-picker-select"
         placeholder="HH:MM AM/PM"
         styles={customStyles}

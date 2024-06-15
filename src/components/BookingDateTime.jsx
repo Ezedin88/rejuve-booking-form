@@ -14,6 +14,10 @@ function BookingDateTime({ values, availableBookingPeriods }) {
         ? bookingPeriods?.select_available_time__at_clinic__ ?? []
         : bookingPeriods?.select_available_time__house_call_ ?? [];
 
+    const availableMergedDateTime = values.bookingChoice === 'atourclinics'
+    ? bookingPeriods?.specificAvailableDateAndTimeClinic ?? []
+    : bookingPeriods?.specificAvailableDateAndTimeHouse ?? [];
+
     // If takenDates is empty, return all available dates
     const availableDates = takenDates.size === 0
         ? availableDatesRaw
@@ -25,8 +29,9 @@ function BookingDateTime({ values, availableBookingPeriods }) {
         : availableTimesRaw.filter(time => !takenTimes.has(time));
 
 
-    return { availableDates, availableTimes };
+    return { availableDates, availableTimes, availableMergedDateTime };
 }
+
 const availableSlots = getAvailableSlots(availableBookingPeriods);
   return (
     <div style={{
@@ -34,9 +39,9 @@ const availableSlots = getAvailableSlots(availableBookingPeriods);
       flexWrap: 'wrap',
       gap: '32px',
     }}>
-      <CustomInput availableDates={availableSlots?.availableDates} label="Booking Date" name="bookingDate" type="date" 
+      <CustomInput availableDates={availableSlots?.availableDates} mergedDates={availableSlots?.availableMergedDateTime} label="Booking Date" name="bookingDate" type="date" 
       />
-      <CustomInput availableTimes={availableSlots?.availableTimes} label="Booking Time" name="bookingTime" type="time" />
+      <CustomInput availableTimes={availableSlots?.availableTimes} mergedDates={availableSlots?.availableMergedDateTime} label="Booking Time" name="bookingTime" type="time" />
     </div>
   )
 }

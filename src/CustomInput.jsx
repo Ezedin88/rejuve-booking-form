@@ -10,6 +10,7 @@ const CustomInput = ({
   dateOfBirth,
   availableDates,
   availableTimes,
+  mergedDates,
   ...props
 }) => {
   const [field, meta] = useField(props);
@@ -94,6 +95,7 @@ const CustomInput = ({
             </label>
             <TimePicker
               availableTimes={availableTimes}
+              mergedDates={mergedDates}
               htmlFor={field.name}
               {...field}
               {...props}
@@ -116,6 +118,7 @@ const CustomInput = ({
             </label>
             <CustomDatepicker
               availableDates={availableDates}
+              mergedDates={mergedDates}
               dateOfBirth={dateOfBirth}
               htmlFor={field.name}
               {...field}

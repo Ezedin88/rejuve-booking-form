@@ -29,8 +29,9 @@ registerLocale('custom', customLocale);
 const CustomDatepicker = (props) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const {  setFieldValue,values } = useFormikContext();
-  const { name, onBlur,dateOfBirth,availableDates } = props||{};
-
+  const { name, onBlur,dateOfBirth,availableDates,mergedDates } = props||{};
+  const datesOnly = mergedDates?.map(item => item.date_and_time_clinic.split(' ')[0]);
+  const mergedDates1 = [...new Set(datesOnly), ...new Set(availableDates)];
   const parseDate = (inputDate) => {
     // Assuming inputDate is in the format DDMMYYYY or MM/DD/YYYY or MM-DD-YYYY
     const parts = inputDate.split(/[\\/-]/);
@@ -174,9 +175,9 @@ const CustomDatepicker = (props) => {
         maxDate={dateOfBirth&&
           new Date(new Date().getFullYear() - 1, new Date().getMonth(), new Date().getDate())}
           includeDates={
-            !dateOfBirth && values.provider !== "Any"
-              ? availableDates && availableDates.length > 0 && availableDates[0] !== undefined
-                ? availableDates.map(date => parse(date, 'MM/dd/yyyy', new Date()))
+            !dateOfBirth
+              ? mergedDates1 && mergedDates1.length > 0 && mergedDates1[0] !== undefined
+                ? mergedDates1.map(date => parse(date, 'MM/dd/yyyy', new Date()))
                 : []
               : undefined
           }
