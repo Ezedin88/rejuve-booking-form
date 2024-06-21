@@ -127,6 +127,7 @@ function MainAppEntry() {
       event.preventDefault();
       localStorage.removeItem('selectedTreatments');
       localStorage.removeItem('booking-location-choice');
+      localStorage.removeItem('bookingData');
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -265,6 +266,8 @@ function MainAppEntry() {
             try {
               window.removeEventListener('beforeunload', () => {});
               localStorage.removeItem('selectedTreatments');
+              localStorage.removeItem('booking-location-choice');
+              localStorage.removeItem('bookingData');
               window.scrollTo(0, 0);
               changeCreatingOrderStatus(true);
               await client.createOrder(dataToSend);
@@ -291,6 +294,8 @@ function MainAppEntry() {
         try {
           window.removeEventListener('beforeunload', () => {});
           localStorage.removeItem('selectedTreatments');
+          localStorage.removeItem('booking-location-choice');
+          localStorage.removeItem('bookingData');
           window.scrollTo(0, 0);
           changeCreatingOrderStatus(true);
           await client.createOrder(dataToSend);

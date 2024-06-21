@@ -13,15 +13,13 @@ import BookingDateTime from './BookingDateTime';
 import AlmostDoneSection from './AlmostDone';
 import CardPaymentMethod from './CardPaymentMethod';
 import Agreement from './Agreement';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ChooseTreatments from './ChooseTreatments';
 import BookingLocation from './BookingLocation';
 import ProductHero from './ProductHero';
 import CustomInput from '../CustomInput';
 import WhyRejuve from './WhyRejuve';
 import OrderSummary from './OrderSummary';
-import ReCAPTCHA from 'react-google-recaptcha';
-import { toast } from 'react-toastify';
 function FormSection({
   lineItems,
   setlineItems,
@@ -89,13 +87,11 @@ function FormSection({
   useEffect(() => {
     setTotalWithTip(totalCalculation + Number(calculatedTipAmount || 0));
   }, [totalCalculation, calculatedTipAmount]);
-  const rejuvehangoverId = '6LddwPIpAAAAAJW6Zt3K8FGZ5jD0ZsTdSYq_HP2l';
 
   const [refactoredErrors, setRefactoredErrors] = useState([]);
   const [termsError, setTermsError] = useState(false);
   const [hasAnyErrors, setHasAnyErrors] = useState(false);
   const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
-  const recaptchaRef = useRef(null);
 
   return (
     <>
@@ -107,12 +103,22 @@ function FormSection({
         onSubmit={handleSubmit}
       >
         {({ values, errors, setValues, setTouched, validateForm, isValid }) => {
+
           let bookingLocationChoice;
           bookingLocationChoice = localStorage.getItem('booking-location-choice')??null;
           if(bookingLocationChoice){
             values.bookingChoice = bookingLocationChoice;
           }
-          
+          const bookingData = JSON.parse(localStorage.getItem('bookingData'));
+
+          if(bookingData){
+          values.clinicChoice = bookingData&&bookingData?.bookingChoice==='atourclinics'&& bookingData?.bookingAddress;
+
+          values.bookingAddress = bookingData && bookingData?.bookingData?.bookingChoice === 'housecall' && bookingData?.bookingAddress;
+
+          values.bookingChoice = bookingData && bookingData?.bookingChoice||'atourclinics';
+}
+
       const hasErrors =
             Object.keys(errors).filter((key) => key !== 'terms').length > 0;
           if (!hasErrors) {
@@ -357,7 +363,7 @@ function FormSection({
                 </div>
               </div>
               {/* booking date and time preference */}
-              <div className="choose_providers_wrapp">
+              <div className="choose_providers_wrapper">
                 <div className="choose-providers" id="choose-providers">
                   <p className="form-main-titles">
                     Booking Date and Time Preference
@@ -441,11 +447,6 @@ function FormSection({
                     }
                     onClick={async (e) => {
                       e.preventDefault();
-                        const recaptchaToken = recaptchaRef.current ? recaptchaRef.current.getValue() : null;
-                        if (!recaptchaToken) {
-                          toast('Please verify the reCAPTCHA!',{type:'error'})
-                          return;
-                        }
                       const termsError = await checkAgreementErrors();
                       if (termsError) {
                         setTermsError(true);
@@ -478,7 +479,6 @@ function FormSection({
                     isProcessingPayment ? 'Processing Payment...' : 'Book and Pay'
                     }</p>
                   </button>
-                  <ReCAPTCHA sitekey={rejuvehangoverId} ref={recaptchaRef} style={{maxWidth:'320px !important'}}/>
                 </div>
               </div>
               {/* {Object.keys(errors).length > 0 && <small style={{ color: 'red', fontSize: '16px' }}>Please fill all fields</small>} */}

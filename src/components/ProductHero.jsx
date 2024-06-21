@@ -210,7 +210,7 @@ function ProductHero({
                       >
                         Book House Call
                       </button>
-                      <p className="where-to-book">we come to yodu</p>
+                      <p className="where-to-book">we come to you</p>
                     </div>
                   )}
                   {isCurrentNadType && (

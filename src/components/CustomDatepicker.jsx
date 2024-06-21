@@ -30,8 +30,10 @@ const CustomDatepicker = (props) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const {  setFieldValue,values } = useFormikContext();
   const { name, onBlur,dateOfBirth,availableDates,mergedDates } = props||{};
-  const datesOnly = mergedDates?.map(item => item.date_and_time_clinic.split(' ')[0]);
-  const mergedDates1 = [...new Set(datesOnly), ...new Set(availableDates)];
+  const datesOnly = mergedDates?.length > 0 
+  ? mergedDates.map(item => item.date_and_time_clinic.split(' ')[0])
+  : [];
+    const mergedDates1 = [...new Set(datesOnly), ...new Set(availableDates)];
   const parseDate = (inputDate) => {
     // Assuming inputDate is in the format DDMMYYYY or MM/DD/YYYY or MM-DD-YYYY
     const parts = inputDate.split(/[\\/-]/);
