@@ -3,9 +3,11 @@ import CustomInput from '../CustomInput'
 import { client } from '../api/client';
 
 function BookingDateTime({ values, availableBookingPeriods }) {
+  console.log({availableBookingPeriods})
   function getAvailableSlots(bookingPeriods) {
     const takenDates = new Set(bookingPeriods?.takenDates ?? []);
     const takenTimes = new Set(bookingPeriods?.takenTimes ?? []);
+    const takenDateTime = new Set(bookingPeriods?.takenTimeDate ?? []);
 
     const availableDatesRaw = values.bookingChoice === 'atourclinics' 
         ? bookingPeriods?.select_available_dates_at_clinic ?? []
@@ -15,7 +17,7 @@ function BookingDateTime({ values, availableBookingPeriods }) {
         : bookingPeriods?.select_available_time__house_call_ ?? [];
 
     const availableMergedDateTime = values.bookingChoice === 'atourclinics'
-    ? bookingPeriods?.specificAvailableDateAndTimeClinic ?? []
+    ? bookingPeriods?.resultSpecificAvailableDateAndTimeClinic?? []
     : bookingPeriods?.specificAvailableDateAndTimeHouse ?? [];
 
     // If takenDates is empty, return all available dates
@@ -28,8 +30,7 @@ function BookingDateTime({ values, availableBookingPeriods }) {
         ? availableTimesRaw
         : availableTimesRaw.filter(time => !takenTimes.has(time));
 
-
-    return { availableDates, availableTimes, availableMergedDateTime };
+    return { availableDates, availableTimes, availableMergedDateTime,takenDateTime };
 }
 
 const availableSlots = getAvailableSlots(availableBookingPeriods);

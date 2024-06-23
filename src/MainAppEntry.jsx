@@ -9,6 +9,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { organizeLineItems } from './utils/organizeLineitems';
 import { Slide, ToastContainer, toast } from 'react-toastify';
+import {Loader} from "@googlemaps/js-api-loader";
 import 'react-toastify/dist/ReactToastify.css';
 
 function MainAppEntry() {
@@ -26,18 +27,22 @@ function MainAppEntry() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [totalWithTip, setTotalWithTip] = useState(0);
-  const dataPage = document
-    .querySelector('[data-page_id]')?.getAttribute('data-page_id');
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBiMgA18QMFdnj67qadAYRk816SdI8c8ag&libraries=places`;
-    script.async = true;
-    script.defer = true;
-    script.addEventListener('load', () => {
+
+  
+  useEffect(()=>{
+    const loader = new Loader({
+      apiKey: 'AIzaSyBiMgA18QMFdnj67qadAYRk816SdI8c8ag',
+      version: 'weekly',
+      libraries: ['places'],
+    });
+
+    loader.load().then(() => {
       setIsScriptLoaded(true);
     });
-    document.body.appendChild(script);
-  }, []);
+  },[])
+
+  const dataPage = document
+    .querySelector('[data-page_id]')?.getAttribute('data-page_id');
 
   const isFormFilled = (values) => {
     // Check if any of the fields in the current form are empty
@@ -90,7 +95,7 @@ function MainAppEntry() {
     };
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
-      const data = await client.getProductById(dataPage||null)??null;
+      const data = await client.getProductById(108||null)??null;
       if(data){
       setCurrentProduct(data);
       setCurrentProductCopy(data);
@@ -124,7 +129,6 @@ function MainAppEntry() {
   // Remove item from localStorage when navigating away from the about page
   useEffect(() => {
     const handleBeforeUnload = (event) => {
-      event.preventDefault();
       localStorage.removeItem('selectedTreatments');
       localStorage.removeItem('booking-location-choice');
       localStorage.removeItem('bookingData');
@@ -400,6 +404,7 @@ function MainAppEntry() {
               isProcessingPayment={isProcessing}
               messagePayment={errorMessage}
               setTotalWithTip={setTotalWithTip}
+              isScriptLoaded={isScriptLoaded}
             />
           )}
           <ToastContainer position="top-center" transition={Slide} />

@@ -54,6 +54,7 @@ function FormSection({
   setTheCardNumberElement,
   setTheClientSecret,
   setTotalWithTip,
+  isScriptLoaded
 }) {
   const [agreeToTos, setAgreeToTos] = useState(false);
   const [agreeToCreateAccount, setAgreeToCreateAccount] = useState(true);
@@ -230,6 +231,7 @@ function FormSection({
                               setWhereBooking={setWhereBooking}
                               userDataErrors={userDataErrors}
                               setRefactoredErrors={setRefactoredErrors}
+                              isScriptLoaded={isScriptLoaded}
                             />
                           </div>
                         )}

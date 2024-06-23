@@ -6,12 +6,12 @@ import PlacesAutocomplete from 'react-places-autocomplete';
 import useLocationAutoComplete from '../hooks/LocationAutoComplete';
 import { useEffect } from 'react';
 
-function BookingLocation({ values }) {
+function BookingLocation({ values,isScriptLoaded }) {
+  
   const { address, handleChange, handleSelect, formattedAddress } =
     useLocationAutoComplete();
-  const { address: extractedAddress, city, state, zip } = address || {};
+    const { address: extractedAddress, city, state, zip } = address || {};
   const { setFieldValue, setFieldTouched, errors } = useFormikContext();
-
   useEffect(() => {
     if (extractedAddress) {
       setFieldValue('bookingAddress.address_1', extractedAddress);
@@ -124,7 +124,9 @@ function BookingLocation({ values }) {
             className="error-clinic-selection input-box-error-message"
           />
         </div>
-      )) || (
+      )) || 
+      (
+    values?.bookingChoice === 'housecall' && !isScriptLoaded ? <h1>...loading</h1>:
         <div className="address-wrapper">
           <PlacesAutocomplete
             value={

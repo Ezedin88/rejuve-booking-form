@@ -1,7 +1,5 @@
 // import Stripe from "stripe";
 
-// const stripe = new Stripe('sk_test_51HFQsEF7hHoyPJTdMELQKrMh7K41sNmrb6yf9D53PmUIQNOm6P4WrLxOMTS6K1mEUdxqsIW443yp9Zrw4e3lKymv00859FkIfv');
-
 export const client = {
     getProductById: async (product_id) => {
         const apiUrl = `https://rejuve.md/wp-json/wc/v3/products/${product_id}`;
@@ -43,7 +41,7 @@ export const client = {
         }
     },
     async getAllProviders() {
-        const url = `https://rejuve.md/wp-json/wp/v2/provider`;
+        const url = `https://rejuve.md/wp-json/wp/v2/provider?status=publish`;
         const username = 'ck_fc0b9c9746fdf1fbabcb01d6cf35f7e577c349d2';
         const password = 'cs_4ba59ff35428397bbebc94ce42425deeeff5cc9d';
         const encodedCredentials = btoa(`${username}:${password}`);
@@ -99,15 +97,17 @@ export const client = {
                 const metaDataArray = processingOrders.map(({ meta_data }) => meta_data);
                 const providerInfos = metaDataArray.map(metaData => metaData.find(({ key }) => key === 'providerinfo'));
                 const validProviderInfos = providerInfos.filter(providerInfo => providerInfo);
-
                 const takenTimes = [];
                 const takenDates = [];
+                const takenTimeDate = [];
+
                 if (providerId) {
                     const periodsForCurrentProvider = validProviderInfos.filter(({ value }) => value.id === providerId);
                     periodsForCurrentProvider.forEach(({ value }) => {
                         const { time, date } = value;
                         takenDates.push(date);
                         takenTimes.push(time);
+                        takenTimeDate.push({ date, time });
                     });
                 }
 
@@ -120,26 +120,9 @@ export const client = {
                 const select_available_dates_house_call = (available_date__housecall || []).map(date => date.select_available_date__housecall);
                 const select_available_dates_at_clinic = (available_date__clinic_ || []).map(date => date.select_available_date__clinic_);
 
-                const select_available_time__house_call_ = (select_available_time__housecall__ || []).map(time => time.select_available_time__housecall);
+                const select_available_time__house_call_ = (select_available_time__housecall__ || []).map(time => time.select_available_time__house_call_);
                 const select_available_time__at_clinic__ = (select_available_time__clinic_ || []).map(time => time.select_available_time);
 
-                // get all times between 10:30am - 6:30pm
-                const generateAllTimes = () => {
-                    const times = [];
-                    let currentTime = new Date();
-                    currentTime.setHours(10, 30, 0, 0);
-
-                    const endTime = new Date();
-                    endTime.setHours(18, 30, 0, 0);
-
-                    while (currentTime <= endTime) {
-                        times.push(currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-                        currentTime.setMinutes(currentTime.getMinutes() + 30);
-                    }
-                    return times;
-                }
-
-                const allTimes = generateAllTimes();
                 if (bookingChoice === 'atourclinics' && providerId) {
                     return {
                         takenDates,
@@ -165,6 +148,20 @@ export const client = {
                             if (!clinicDates || clinicDates === false) return []; // Skip providers without available clinic dates or with false value
                             return clinicDates.map(date => date.select_available_date__clinic_);
                         });
+
+                    const aggregatedSpecificAvailableDateAndTimeClinic = (providers) => {
+                        return providers.reduce((acc, provider) => {
+                            const { bookingOptions: { "specific_available_date_&_time_clinic": specificAvailableDateAndTimeClinic } } = provider;
+                            if (specificAvailableDateAndTimeClinic && Array.isArray(specificAvailableDateAndTimeClinic) && specificAvailableDateAndTimeClinic.length > 0) {
+                                acc.push(specificAvailableDateAndTimeClinic);
+                            }
+                            return acc;  // return acc here, not provider
+                        }, []);
+                    };
+
+                    const resultSpecificAvailableDateAndTimeClinic = aggregatedSpecificAvailableDateAndTimeClinic(providers).flat();
+
+
                     const aggregatedTimeAvailable = new Set(providers
                         .flatMap(provider => (provider.bookingOptions?.select_available_time__clinic_ || [])
                             .map(time => time.select_available_time.toLowerCase())
@@ -177,10 +174,12 @@ export const client = {
                     return {
                         takenDates: [],
                         takenTimes: [],
+                        takenTimeDate: [],
                         select_available_time__at_clinic__: aggregatedTimeAvailableArray,
-                        select_available_dates_at_clinic: allDatesAtClinic
+                        select_available_dates_at_clinic: allDatesAtClinic,
+                        resultSpecificAvailableDateAndTimeClinic
                     };
-                } else if (bookingChoice === 'housecall') {
+                } else if (bookingChoice === 'housecall' && !providerId) {
                     // Get all available dates and times from all providers for 'athousecall'
                     const allDatesHouseCall = providers
                         .flatMap(provider => {
@@ -201,13 +200,27 @@ export const client = {
                             return (hours >= 10 && hours <= 18) || (hours === 6 && minutes === 30); // Filter times between 10:30 AM to 6:30 PM
                         }));
 
+                    const aggregatedSpecificAvailableDateAndTimeHouse = (providers) => {
+                        return providers.reduce((acc, provider) => {
+                            const { bookingOptions: { "specific_available_date_&_time_house": specificAvailableDateAndTimeHouse } } = provider;
+                            if (specificAvailableDateAndTimeHouse && Array.isArray(specificAvailableDateAndTimeHouse) && specificAvailableDateAndTimeHouse.length > 0) {
+                                acc.push(specificAvailableDateAndTimeHouse);
+                            }
+                            return acc;  // return acc here, not provider
+                        }, []);
+                    };
+
+                    const resultSpecificAvailableDateAndTimeHouse = aggregatedSpecificAvailableDateAndTimeHouse(providers).flat();
+
                     // Convert Set back to array
                     const aggregatedTimeAvailableArray = [...aggregatedTimeAvailable];
                     return {
                         takenDates: [],
                         takenTimes: [],
+                        takenTimeDate: [],
                         select_available_time__house_call_: aggregatedTimeAvailableArray,
-                        select_available_dates_house_call: allDatesHouseCall
+                        select_available_dates_house_call: allDatesHouseCall,
+                        resultSpecificAvailableDateAndTimeHouse
                     };
                 } else {
                     return;

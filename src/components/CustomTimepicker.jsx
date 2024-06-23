@@ -64,10 +64,12 @@ const TimePicker = (props) => {
   const availableTimes = props?.availableTimes;
   const mergedDates = props?.mergedDates;
  
-    const timesForSelectedDate = values?.bookingDate&&mergedDates?.length>0&&mergedDates
+  const timesForSelectedDate = values?.bookingDate && mergedDates?.length > 0 && [...new Set(
+    mergedDates
         .filter(item => item.date_and_time_clinic.startsWith(values?.bookingDate))
-        .map(item => item.date_and_time_clinic.split(' ')[1] + ' ' + item.date_and_time_clinic.split(' ')[2]);
-   
+        .map(item => item.date_and_time_clinic.split(' ')[1] + ' ' + item.date_and_time_clinic.split(' ')[2])
+)];
+
   const formatSelectedDate = timesForSelectedDate?.length>0 ? formatTimes(timesForSelectedDate) : [];
   const formatedAvailableTimeOptions = formatTimes(availableTimes);
   const Option = (props) => {

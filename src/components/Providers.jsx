@@ -16,6 +16,7 @@ function Providers({ providers, values,setAvailableBookingPeriods }) {
                     providers,
                     values
                 });
+
                 setAvailableBookingPeriods(data);
             } catch (error) {
                 console.error('Error fetching selected provider period:', error);

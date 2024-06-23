@@ -7,6 +7,7 @@
 }
 
 @media screen and (max-width: 768px) {
+
   .product-description .responsiveGrid,
   .responsiveGrid {
     grid-template-columns: repeat(1, 1fr);
@@ -34,11 +35,13 @@
 .css-1xc3v61-indicatorContainer svg {
   right: -170px !important;
 }
+
 @media screen and (min-width: 768px) {
   .react-datepicker-wrapper .react-datepicker__input-container:after {
     right: 20px !important;
   }
 }
+
 @media screen and (max-width: 768px) {
   /* .react-datepicker-wrapper .react-datepicker__input-container:after {
     right: -487px !important;
@@ -54,10 +57,7 @@
   min-width: 100px !important;
 }
 
-.react-datepicker-popper
-  .react-datepicker
-  .react-datepicker__header
-  button:after {
+.react-datepicker-popper .react-datepicker .react-datepicker__header button:after {
   border: none !important;
 }
 
@@ -98,49 +98,49 @@
 
 /* botox styles */
 
-.product-hero-main-wrapper section.beauty_description_decolletage{
+.single-product-page-product-hero-main-wrapper section.beauty_description_decolletage {
   padding-top: 64px !important;
   position: relative !important;
   z-index: 2 !important;
 }
 
 section.decolletage_wrapper_header .botox-page-title {
-margin:auto !important;
-font-family: 'Inter' !important;
-font-style: normal !important;
-font-weight: 600 !important;
-font-size: 48px !important;
-line-height: 120% !important;
-text-align: center !important;
-color: #282D41 !important;
+  margin: auto !important;
+  font-family: 'Inter' !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 48px !important;
+  line-height: 120% !important;
+  text-align: center !important;
+  color: #282D41 !important;
 }
 
 section.decolletage_wrapper_header .botox-page-title-description {
   /* This months special offer per side */
-max-width: 513px !important;
-margin: auto !important;
-font-family: 'Inter' !important;
-font-style: normal !important;
-font-weight: 400 !important;
-font-size: 32px !important;
-line-height: 120% !important;
-text-align: center !important;
-color: #282D41 !important;
-padding-top: 22px !important;
-padding-bottom: 4px !important;
+  max-width: 513px !important;
+  margin: auto !important;
+  font-family: 'Inter' !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 32px !important;
+  line-height: 120% !important;
+  text-align: center !important;
+  color: #282D41 !important;
+  padding-top: 22px !important;
+  padding-bottom: 4px !important;
 }
 
 section.decolletage_wrapper_header .botox-page-description-content {
   /* Select areas you want */
-max-width: 334px !important;
-margin: auto !important;
-font-family: 'Inter' !important;
-font-style: normal !important;
-font-weight: 400 !important;
-font-size: 32px !important;
-line-height: 120% !important;
-text-align: center !important;
-color: #32C0CC !important;
+  max-width: 334px !important;
+  margin: auto !important;
+  font-family: 'Inter' !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 32px !important;
+  line-height: 120% !important;
+  text-align: center !important;
+  color: #32C0CC !important;
 }
 
 section.product-hero-wrapper.hero-decolattege {
@@ -156,7 +156,7 @@ section.product-hero-wrapper.hero-decolattege {
 }
 
 .product-image.decolattege-image {
-  margin-bottom:-6px !important;
+  margin-bottom: -6px !important;
 }
 
 /* face-buttons-wrapper */
@@ -165,7 +165,7 @@ section.product-hero-wrapper.hero-decolattege {
   position: absolute;
   inset: 0;
   /* top: 305px; */
-  top:39.5%;
+  top: 39.5%;
 }
 
 /* eye-brow */
@@ -173,7 +173,7 @@ section.eye-brow-button-wrapper input.eye-brow-button {
   background: skyblue;
   position: relative;
   left: 6.09%;
-  top:10px;
+  top: 10px;
 }
 
 /* crow's feet */
@@ -181,7 +181,7 @@ section.crow-feet-button-wrapper input.crow-feet-button {
   background: skyblue;
   position: relative;
   right: 6.9%;
-  top:25px;
+  top: 25px;
 }
 
 
@@ -189,7 +189,7 @@ section.crow-feet-button-wrapper input.crow-feet-button {
 section.lip-top-button-wrapper input.lip-top-button {
   background: rgb(9, 174, 240);
   position: relative;
-  top:75px;
+  top: 75px;
 }
 
 /* gummy smile */
@@ -214,24 +214,25 @@ section.neck-bands-button-wrapper input.neck-bands-button {
 }
 
 .face-circle-buttons:hover {
-  box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.5); 
+  box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.5);
   animation: pulsate 1s infinite;
 }
 
-.face-circle-buttons:active{
-  box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.5); /* White glow effect on click */
+.face-circle-buttons:active {
+  box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.5);
+  /* White glow effect on click */
   animation: pulsate 1s infinite;
 }
 
 .face-circle-buttons {
-  display: inline-block; 
+  display: inline-block;
   width: 25px;
-  height: 25px; 
-  background-color: #ff7b00; 
-  border-radius: 50%; 
-  transition: box-shadow 0.3s ease-in-out; 
-  outline: none; 
-  border: none; 
+  height: 25px;
+  background-color: #ff7b00;
+  border-radius: 50%;
+  transition: box-shadow 0.3s ease-in-out;
+  outline: none;
+  border: none;
   cursor: pointer;
 }
 
@@ -268,9 +269,9 @@ section.neck-bands-button-wrapper input.neck-bands-button {
   content: 'X';
   color: rgb(0, 0, 0);
   font-weight: bold;
-  position:relative;
-  top:-2px;
-  left:-2px;
+  position: relative;
+  top: -2px;
+  left: -2px;
 }
 
 
@@ -281,9 +282,11 @@ section.neck-bands-button-wrapper input.neck-bands-button {
   0% {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
   }
+
   70% {
     box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
@@ -300,124 +303,128 @@ section.neck-bands-button-wrapper input.neck-bands-button {
 
 /* 768 */
 @media screen and (max-width: 768px) {
+
   /* title text styles decolattex */
   section.decolletage_wrapper_header .botox-page-title {
-    margin:auto !important;
+    margin: auto !important;
     font-family: 'Inter' !important;
     font-weight: 600 !important;
     font-size: 28px !important;
-    }
+  }
 
-section.decolletage_wrapper_header .botox-page-title-description {
-  font-size: 16px !important;
-  padding-top: 12px !important;
-}
+  section.decolletage_wrapper_header .botox-page-title-description {
+    font-size: 16px !important;
+    padding-top: 12px !important;
+  }
 
-section.decolletage_wrapper_header .botox-page-description-content {
-  font-size:16px !important;
-}
+  section.decolletage_wrapper_header .botox-page-description-content {
+    font-size: 16px !important;
+  }
 
-section.product-hero-wrapper.hero-decolattege {
-  margin-top: -25px !important;
-}
+  section.product-hero-wrapper.hero-decolattege {
+    margin-top: -25px !important;
+  }
 
-/* crow's feet */
-section.crow-feet-button-wrapper input.crow-feet-button {
-  top:-25px;
-}
+  /* crow's feet */
+  section.crow-feet-button-wrapper input.crow-feet-button {
+    top: -25px;
+  }
 
-/* eyebrow button */
-section.eye-brow-button-wrapper input.eye-brow-button {
-  top:-22px;
-}
+  /* eyebrow button */
+  section.eye-brow-button-wrapper input.eye-brow-button {
+    top: -22px;
+  }
 
-/* lip top */
-section.lip-top-button-wrapper input.lip-top-button {
-  top:-15px;
-  width: 20px;
-  height:15px;
-}
+  /* lip top */
+  section.lip-top-button-wrapper input.lip-top-button {
+    top: -15px;
+    width: 20px;
+    height: 15px;
+  }
 
-/* gummy smile */
-section.gummy-smile-button-wrapper input.gummy-smile-button {
-  top: -63px;
-  width: 20px;
-}
+  /* gummy smile */
+  section.gummy-smile-button-wrapper input.gummy-smile-button {
+    top: -63px;
+    width: 20px;
+  }
 
-/* orange peel chin */
-section.orange-peel-chin-button-wrapper input.orange-peel-chin-button {
-  top: -80px;
-  width: 20px;
-}
+  /* orange peel chin */
+  section.orange-peel-chin-button-wrapper input.orange-peel-chin-button {
+    top: -80px;
+    width: 20px;
+  }
 
-/* neck bands */
-section.neck-bands-button-wrapper input.neck-bands-button {
-  top: -88px;
-  width: 20px;
-  height:20px;
-}
+  /* neck bands */
+  section.neck-bands-button-wrapper input.neck-bands-button {
+    top: -88px;
+    width: 20px;
+    height: 20px;
+  }
 
 }
 
 /* small 500 */
 @media screen and (max-width: 500px) {
   .face-buttons-wrapper {
-    top:35% !important;
+    top: 35% !important;
   }
 
   /* eyebrow button */
-section.eye-brow-button-wrapper input.eye-brow-button {
-  background: skyblue;
-  position: relative;
-  left: 6.09%;
-  top:-.8rem;
+  section.eye-brow-button-wrapper input.eye-brow-button {
+    background: skyblue;
+    position: relative;
+    left: 6.09%;
+    top: -.8rem;
+  }
+
+  /* crow's feet */
+  section.crow-feet-button-wrapper input.crow-feet-button {
+    position: relative;
+    right: 6.9%;
+    top: -18px;
+  }
+
 }
 
-/* crow's feet */
-section.crow-feet-button-wrapper input.crow-feet-button {
-  position: relative;
-  right: 6.9%;
-  top:-18px;
-}
-
-}
 /* small 4150 */
 @media screen and (max-width: 415px) {
+
   /* crow's feet */
-section.crow-feet-button-wrapper input.crow-feet-button {
-  top:-26 px;
+  section.crow-feet-button-wrapper input.crow-feet-button {
+    top: -26 px;
+  }
 }
-}
+
 /* small screen 768 */
 @media screen and (max-width: 320px) {
   .face-buttons-wrapper {
-    top:30% !important;
+    top: 30% !important;
   }
 
   section.eye-brow-button-wrapper input.eye-brow-button {
-    top:-16px;
+    top: -16px;
   }
 
   /* crow's feet */
-section.crow-feet-button-wrapper input.crow-feet-button {
-  position: relative;
-  right: 6.9%;
-  top:-34px;
-}
+  section.crow-feet-button-wrapper input.crow-feet-button {
+    position: relative;
+    right: 6.9%;
+    top: -34px;
+  }
 
-/* lip top */
-section.lip-top-button-wrapper input.lip-top-button {
-  background: rgb(9, 174, 240);
-  position: relative;
-  /* left: 6.09%; */
-  top:-43px;
-}
+  /* lip top */
+  section.lip-top-button-wrapper input.lip-top-button {
+    background: rgb(9, 174, 240);
+    position: relative;
+    /* left: 6.09%; */
+    top: -43px;
+  }
 
-.face-circle-buttons {
- /* make the size very small */
-  width: 10px;
-  height: 10px;
-  transform: scale(0.5);
-}
+  .face-circle-buttons {
+    /* make the size very small */
+    width: 10px;
+    height: 10px;
+    transform: scale(0.5);
+  }
 
 }
