@@ -13,7 +13,6 @@
   margin-top: 32px !important;
   /* padding-bottom: 40px !important; */
   background-color: #e3faff;
-  max-width: 1257px;
   border-radius: 8px;
   margin: auto;
 }
@@ -262,6 +261,7 @@ input.accordion-checkbox-details:checked::before {
   align-items: center;
   gap: 40px;
 }
+
 @media screen and (max-width: 390px) {
   .checked-items-wrapper {
     margin-right: 15px;

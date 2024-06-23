@@ -12,6 +12,7 @@
 }
 
 @media screen and (max-width: 768px) {
+
   .user_wrapper,
   .choose_providers_wrapper {
     padding: 0 15px;
@@ -151,7 +152,6 @@
 .choose-providers,
 .order-summary-main {
   /* margin-top: 61px !important; */
-  max-width: 1257px;
   margin: auto;
   background-color: #e3faff;
   padding: 25px 0px 33px 25px;
@@ -160,7 +160,6 @@
 }
 
 .user-detail-main {
-  max-width: 1257px;
   margin: auto;
   background-color: #e3faff;
   padding: 25px 0px 33px 50px;
@@ -248,16 +247,9 @@
 }
 
 .choose-treatments-main {
-  max-width: 1257px;
   margin: auto;
   box-sizing: border-box;
   border-radius: 12px;
-}
-
-@media screen and (max-width: 900px) {
-  .choose-treatments-main {
-    padding: 0px 10px;
-  }
 }
 
 .add-another-person-main {
@@ -306,29 +298,9 @@
   background-color: #32c0cc;
 }
 
-@media (max-width: 900px) {
-  .user-detail-main,
-  .booking-location-main {
-    display: flex !important;
-    flex-wrap: wrap;
-    flex-direction: column;
-    padding: 33px 15px;
-    max-width: 90%;
-  }
-
-  .remove-wrapper {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 70%;
-    margin: auto;
-    padding-top: 32px;
-  }
-}
-
 /* small screen */
 @media (max-width: 768px) {
+
   .user-detail-main,
   .booking-location-main,
   .choose-providers {

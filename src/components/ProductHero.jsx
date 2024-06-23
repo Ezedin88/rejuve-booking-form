@@ -128,7 +128,7 @@ function ProductHero({
   return (
     <>
       {currentProduct && Object.keys(currentProduct).length > 0 &&
-        <section className="product-hero-main-wrapper">
+        <section className="single-product-page-product-hero-main-wrapper">
           {
             isDecolletage &&
             <section
@@ -178,9 +178,9 @@ function ProductHero({
             {/* content section */}
             {!isDecolletage &&
               <section className="product-description-wrapper">
-                <p className="product-name">{name}</p>
+                <p className="booking-page product-name">{name}</p>
                 <p
-                  className="product-description"
+                  className="booking-page product-description"
                   dangerouslySetInnerHTML={{ __html: short_description }}
                 />
                 {/* booking sections */}
@@ -276,7 +276,7 @@ function ProductHero({
           </section>
         </section>
         ||
-        <section className="product-hero-main-wrapper">
+        <section className="single-product-page-product-hero-main-wrapper">
         <section className="product-hero-wrapper medical-service-menu">
           <article className='medical-service-menu-title'>Rejuve Medical Service Menu</article>
           <article className='medical-service-menu-description'>

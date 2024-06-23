@@ -5,7 +5,7 @@ export const getProductPrice = ({ product, isFetchingProduct }) => {
     const pricePattern = /<bdi><span class="woocommerce-Price-currencySymbol">&#36;<\/span>(\d+(?:,\d+)*)<\/bdi>/g;
     const matches = !isFetchingProduct && price_html && [...price_html.matchAll(pricePattern)];
     let largeHeroImage = images && images[0]?.src || '';
-    let smallHeroImage = images && images[1]?.src || '';
+    let smallHeroImage = images && images[0]?.src || '';
     const prices = !isFetchingProduct && price_html && matches?.map(match => match[1].replace(/,/g, '')) || 0;
     let bookInClinic = null;
     let bookHouseCall = null;

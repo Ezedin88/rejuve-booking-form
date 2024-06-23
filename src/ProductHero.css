@@ -1,19 +1,24 @@
-.product-hero-main-wrapper {
+.single-product-page-product-hero-main-wrapper {
   background: #e3faff;
-  padding: 0 10px;
-  background: orange;
-  max-height: 862px;
+  padding-inline: 162px;
+  padding-block: 67px;
+  box-sizing: border-box;
 }
 
 .product-hero-wrapper {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-content: center;
   align-items: center;
-  padding: 75px 73px;
+  max-height: 728px;
+  height: 100%;
 }
 
-.product-image {
-  flex: 1;
+.product-description-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .image-container {
@@ -22,6 +27,11 @@
   background: radial-gradient(circle,
       rgba(255, 255, 255, 1) 37%,
       rgba(2, 0, 36, 0) 60%);
+}
+
+.single-product-page-product-hero-main-wrapper section.product-image img {
+  scale: 1.2;
+  /* height: 700px; */
 }
 
 .image-container.large-hero-image {
@@ -33,7 +43,7 @@
 }
 
 .image {
-  width: 90%;
+  width: 100%;
   height: auto;
 }
 
@@ -44,24 +54,15 @@
   margin-left: 5px;
 }
 
-.product-description-wrapper {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: flex-start;
-  padding-left: 20px;
-}
 
-.product-name {
+.booking-page.product-name {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 48px;
   line-height: 130%;
   color: #282d41 !important;
-
-  /* margin: 0; */
+  margin: 0 !important;
 }
 
 .product-cite {
@@ -73,13 +74,14 @@
   color: #5a5f73;
 }
 
-.product-description {
+.booking-page.product-description {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
   text-align: left !important;
+  margin: 0 !important;
   /* Text/Dark Secondary */
   color: #5a5f73;
 }
@@ -129,61 +131,30 @@
 }
 
 /* tablet size */
-@media (max-width: 900px) {
+@media (max-width: 1220px) {
+  .single-product-page-product-hero-main-wrapper {
+    padding-inline: unset;
+    padding-block: 13px;
+    width: 100%;
+  }
+
+  .single-product-page-product-hero-main-wrapper section.product-image img {
+    scale: 1.8;
+    /* height: 700px; */
+  }
+
+  .product-hero-wrapper {
+    /* padding-inline: 73px; */
+    padding-left: 0px;
+    max-height: 100%;
+  }
+
   .product-price-buttons-wrapper {
     gap: 50px;
   }
 
   .product-description-wrapper {
-    padding: 15px 0px;
-  }
-
-  .book-button {
-    /* width: 180px; */
-  }
-
-  .product-hero-wrapper {
-    flex-direction: column;
-
-    padding: 0 12px;
-  }
-
-  .product-price {
-    text-align: center !important;
-    width: 100%;
-  }
-
-  .product-name {
-    font-weight: 700;
-    text-align: center;
-    color: #282d41;
-  }
-
-  .product-hero-wrapper {
-    flex-direction: column;
-
-    padding: 24px 24px !important;
-  }
-
-  .booking-buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-  }
-
-  .product-description-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .product-description {
-    text-align: center !important;
-    line-height: 150% !important;
+    padding: 0;
   }
 }
 
@@ -210,10 +181,19 @@
   color: #32c0cc;
 }
 
+@media (max-width: 768px) {}
+
 /* Styles for small screens */
-@media (max-width: 768px) {
+@media (max-width: 643px) {
+
   .product-price {
     text-align: center;
+  }
+
+  .single-product-page-product-hero-main-wrapper section.product-image img {
+    scale: unset;
+    width: 55%;
+    height: auto;
   }
 
   .image-container.large-hero-image {
@@ -222,8 +202,6 @@
 
   .image-container.small-hero-image {
     display: block;
-    display: flex !important;
-    justify-content: center !important;
   }
 
   .product-name {
@@ -239,9 +217,7 @@
   }
 
   .product-hero-wrapper {
-    flex-direction: column;
-
-    padding: 0 12px;
+    grid-template-columns: repeat(1, 1fr) !important;
   }
 
   .product-price-buttons-wrapper {
@@ -250,13 +226,15 @@
     flex-direction: column;
     align-items: center;
     gap: unset;
+    padding-block: 28px;
   }
 
   .booking-buttons {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 20px !important;
   }
 
@@ -284,9 +262,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 437px;
-    width: 100%;
-    padding: 10px;
+    padding-inline: 13px;
+    padding-block: 24px;
   }
 
   .product-description {
