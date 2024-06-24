@@ -11,6 +11,15 @@
   gap: 3px;
 }
 
+.input-box-wrapper {
+  max-width: 563.5px;
+  width: 100%;
+}
+
+.input-box-wrapper.birth-date-input-box {
+  max-width: 494px;
+}
+
 .input-box-wrapper label::after {
   content: '*';
   display: flex;
@@ -31,12 +40,12 @@
   align-items: flex-start;
   padding: 9px 12px;
   gap: 10px;
-  width: 563px !important;
   height: 44px !important;
   border: 1px solid rgba(192, 196, 204, 0.47);
   border-radius: 4px;
   outline: none;
   background-color: #ffffff !important;
+  width: 100%;
 }
 
 .input-box.your_address_style {
@@ -119,18 +128,6 @@
 }
 
 /* small screen */
-@media (max-width: 900px) {
-  .zip-city-wrapper {
-    flex-direction: column !important;
-    justify-content: center;
-    align-items: center;
-    margin: unset !important;
-  }
-
-  .user-input-wrapper {
-    width: 100% !important;
-  }
-}
 
 .input-box-label {
   text-align: left;
@@ -142,12 +139,12 @@
 }
 
 .label-input-wrapper {
-  width: 10%;
   position: relative;
 }
 
-@media screen and (max-width: 900px) {
-  .label-input-wrapper {
+@media (max-width:1540px) {
+  .input-box-wrapper {
+    max-width: 522px !important;
     width: 100%;
   }
 }
@@ -185,5 +182,38 @@
   .input-box-wrapper {
     /* margin-top: 20px; */
     width: 100%;
+  }
+}
+
+.form-main-titles {
+  margin-block: 16px;
+}
+
+@media (max-width: 465px) {
+
+  .user-input-wrapper,
+  .selection-wrapper,
+  .selection_wrapper,
+  div.provider-input-label-wrapper,
+  .provider-group-wrapper,
+  .payment-cards-wrapper,
+  .bookingDateTime-container-wrapper,
+  .card-number .StripeElement,
+  .special-instructions-text-area,
+  .text-area-label.in-product-page,
+  .card-label.in-product-page {
+    max-width: 321px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .card-info {
+    max-width: 340px;
+    margin: auto;
+    width: 100%;
+  }
+
+  .provider-name-label {
+    font-size: 15px;
   }
 }

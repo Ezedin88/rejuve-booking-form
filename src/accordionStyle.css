@@ -40,25 +40,17 @@
   outline: none !important;
 }
 
-@media screen and (max-width: 900px) {
-  .accordion-btn {
-    padding: 25px 0px;
-  }
+.check-box-price-wrapper {
+  background: orange;
+  max-width: 454px;
+  width: 100%
 }
 
 .accordion-title-shower-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-right: 50px;
-  padding-left: 50px;
-}
-
-@media screen and (max-width: 900px) {
-  .accordion-title-shower-wrapper {
-    padding-right: 0;
-    padding-left: 0;
-  }
+  padding-left: 90px;
 }
 
 .accordion-title {
@@ -94,20 +86,17 @@
   gap: 35px;
   justify-content: space-between;
   align-items: center;
-  padding: 0 75px 0 75px;
+  padding-inline: 100px;
   flex-wrap: wrap;
-}
-
-@media (max-width: 900px) {
-  .accordion-main-wrapper {
-    max-width: 80% !important;
-    border-radius: 8px;
-    margin: auto;
-  }
 }
 
 /* target small screen */
 @media (max-width: 768px) {
+
+  .accordion-title-shower-wrapper {
+    padding-left: unset;
+  }
+
   .accordion-main-wrapper {
     max-width: 480px !important;
     border-radius: 8px;
@@ -150,7 +139,6 @@
 }
 
 .accordion-inner-wrapper {
-  min-width: 497px !important;
   display: flex !important;
   justify-content: space-between !important;
   align-items: center;

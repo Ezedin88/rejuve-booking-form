@@ -26,6 +26,7 @@ function ProductHero({
   treatmentChoices,
   selectNad,
   setCurrentProduct,
+  dataPage
 }) {
   const isCurrentNadType = currentProduct?.categories?.[0]?.slug === 'nad';
   const isDecolletage = currentProduct?.slug === 'decolletage';
@@ -138,7 +139,8 @@ function ProductHero({
             />
           }
 
-          <section className={`product-hero-wrapper ${isDecolletage ? 'hero-decolattege' : ''}`}>
+          <section className={`product-hero-wrapper ${isDecolletage ? 'hero-decolattege' : ''}
+          ${dataPage&&'medical-service-menu' ? 'medical-service-menu' : ''}`}>
             {/* image section*/}
             <section className="product-image">
               {/* <div className="image-container large-hero-image"> */}

@@ -170,7 +170,7 @@ section.product-hero-wrapper.hero-decolattege {
 
 /* eye-brow */
 section.eye-brow-button-wrapper input.eye-brow-button {
-  background: skyblue;
+
   position: relative;
   left: 6.09%;
   top: 10px;
@@ -178,7 +178,7 @@ section.eye-brow-button-wrapper input.eye-brow-button {
 
 /* crow's feet */
 section.crow-feet-button-wrapper input.crow-feet-button {
-  background: skyblue;
+
   position: relative;
   right: 6.9%;
   top: 25px;
@@ -371,7 +371,7 @@ section.neck-bands-button-wrapper input.neck-bands-button {
 
   /* eyebrow button */
   section.eye-brow-button-wrapper input.eye-brow-button {
-    background: skyblue;
+
     position: relative;
     left: 6.09%;
     top: -.8rem;

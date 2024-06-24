@@ -95,7 +95,7 @@ function MainAppEntry() {
     };
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
-      const data = await client.getProductById(108||null)??null;
+      const data = await client.getProductById(dataPage||null)??null;
       if(data){
       setCurrentProduct(data);
       setCurrentProductCopy(data);
@@ -405,6 +405,7 @@ function MainAppEntry() {
               messagePayment={errorMessage}
               setTotalWithTip={setTotalWithTip}
               isScriptLoaded={isScriptLoaded}
+              dataPage={dataPage}
             />
           )}
           <ToastContainer position="top-center" transition={Slide} />

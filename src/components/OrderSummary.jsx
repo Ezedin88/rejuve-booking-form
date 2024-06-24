@@ -7,9 +7,11 @@ function OrderSummary({
     tips
 }) {
     return (
-        <div className="choose_providers_wrapper">
-            <div className="order-summary-main" id="order-summary-main">
+        <div className="general-details-card-wrapper">
                 <p className="form-main-titles">Order Summary</p>
+            <div className="order-summary-main-card-wrapper">
+        <div className="choose_providers_wrapper order-summary">
+            <div className="order-summary-main" id="order-summary-main">
                 <div
                     className="order-summary-main-inner"
                     id="order-summary-main-in"
@@ -91,6 +93,8 @@ function OrderSummary({
                 </div>
             </div>
         </div>
+        </div>
+    </div>
     )
 }
 

@@ -44,7 +44,7 @@ const CustomInput = ({
           // if text area
           (props.type === 'textArea' && (
             <div className="text-area-wrapper-input">
-              <div className="text-area-label" htmlFor={field.name}>
+              <div className="text-area-label in-product-page" htmlFor={field.name}>
                 {label}
               </div>
               <textarea
@@ -111,7 +111,9 @@ const CustomInput = ({
       )}
 
       {props.type === 'date' && (
-        <div className={cityStateZip ? 'cityStateZip' : 'input-box-wrapper'}>
+        <div className={`${cityStateZip ? 'cityStateZip' : 'input-box-wrapper'}
+          ${dateOfBirth && 'birth-date-input-box'}
+        `}>
           <div className="label-input-wrapper">
             <label className={`input-box-label ${dateOfBirth && 'birth-date-label'}`} htmlFor={field.name}>
               {label}

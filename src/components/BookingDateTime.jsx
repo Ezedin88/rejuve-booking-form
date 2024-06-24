@@ -3,7 +3,6 @@ import CustomInput from '../CustomInput'
 import { client } from '../api/client';
 
 function BookingDateTime({ values, availableBookingPeriods }) {
-  console.log({availableBookingPeriods})
   function getAvailableSlots(bookingPeriods) {
     const takenDates = new Set(bookingPeriods?.takenDates ?? []);
     const takenTimes = new Set(bookingPeriods?.takenTimes ?? []);
@@ -35,14 +34,16 @@ function BookingDateTime({ values, availableBookingPeriods }) {
 
 const availableSlots = getAvailableSlots(availableBookingPeriods);
   return (
-    <div style={{
+    <div 
+    className='bookingDateTime-container-wrapper'
+    style={{
       display: 'flex',
       flexWrap: 'wrap',
-      gap: '32px',
+      justifyContent:'space-between'
     }}>
-      <CustomInput availableDates={availableSlots?.availableDates} mergedDates={availableSlots?.availableMergedDateTime} label="Booking Date" name="bookingDate" type="date" 
+      <CustomInput availableDates={availableSlots?.availableDates} mergedDates={availableSlots?.availableMergedDateTime} label="Date" name="bookingDate" type="date" 
       />
-      <CustomInput availableTimes={availableSlots?.availableTimes} mergedDates={availableSlots?.availableMergedDateTime} label="Booking Time" name="bookingTime" type="time" />
+      <CustomInput availableTimes={availableSlots?.availableTimes} mergedDates={availableSlots?.availableMergedDateTime} label="Time" name="bookingTime" type="time" />
     </div>
   )
 }

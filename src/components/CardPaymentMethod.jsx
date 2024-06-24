@@ -39,7 +39,7 @@ function CardPaymentMethod({ values }) {
       {values.paymentMethod === 'creditCard' && (
         <div className="card-elements">
           <div className="card-number">
-            <label className="card-label">Card number</label>
+            <label className="card-label in-product-page">Card number</label>
             <CardNumberElement
               options={CARD_ELEMENT_OPTIONS}
               class="card-number-input"
@@ -48,11 +48,11 @@ function CardPaymentMethod({ values }) {
 
           <div className="card-info">
             <div className="expiry-date">
-              <label className="card-label">Expiration</label>
+              <label className="card-label in-product-page">Expiration</label>
               <CardExpiryElement options={CARD_ELEMENT_OPTIONS} />
             </div>
             <div className="cvc">
-              <label className="card-label">CVC</label>
+              <label className="card-label in-product-page">CVC</label>
               <CardCvcElement options={CARD_ELEMENT_OPTIONS} />
             </div>
           </div>

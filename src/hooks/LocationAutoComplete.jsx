@@ -1,21 +1,28 @@
 import { useFormikContext } from "formik";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { geocodeByAddress } from "react-places-autocomplete";
 
 function useLocationAutoComplete() {
-    const [address, setAddress] = useState('');
+    const bookingData = JSON.parse(localStorage.getItem('bookingData'));
+    const [address, setAddress] = useState(bookingData?.bookingAddress?.address_1??'');
     const [extractedAddressData, setExtractedAddressData] = useState({});
-    const [formattedAddress,setFormattedAddress] = useState('');
-    const {setFieldValue,setFieldTouched} = useFormikContext();
-    const handleChange = address => {
+    const [formattedAddress, setFormattedAddress] = useState('');
+    const { setFieldValue, setFieldTouched } = useFormikContext();
+
+    useEffect(() => {
+        setFieldValue('bookingAddress.address_1', address);
+        setFieldTouched('bookingAddress.address_1', true);
+    }, [address, setFieldValue, setFieldTouched]);
+
+    const handleChange = (address) => {
         setAddress(address);
-        setFieldValue('bookingAddress.address_1',address);
-        setFieldTouched('bookingAddress.address_1',true);
-      };
-    
-      const handleSelect = address => {
+        setFieldValue('bookingAddress.address_1', address);
+        setFieldTouched('bookingAddress.address_1', true);
+    };
+
+    const handleSelect = (address) => {
         geocodeByAddress(address)
-            .then(results => {
+            .then((results) => {
                 const addressComponents = results[0].address_components;
                 const formattedAddress = results[0].formatted_address;
                 const extractedData = {
@@ -24,10 +31,10 @@ function useLocationAutoComplete() {
                     state: "",
                     zip: ""
                 };
-    
+
                 let streetNumber = "";
                 let route = "";
-    
+
                 addressComponents.forEach((component) => {
                     const types = component.types;
                     if (types.includes("street_number")) {
@@ -46,21 +53,19 @@ function useLocationAutoComplete() {
                         extractedData.zip = component.long_name;
                     }
                 });
-    
+
                 // Combine street number and route
                 extractedData.address = `${streetNumber} ${route}`.trim();
-    
+
                 setExtractedAddressData(extractedData);
                 setFormattedAddress(formattedAddress);
                 setAddress(extractedData);
             });
     };
-    
 
-      const handleAddressBlur = () => {
+    const handleAddressBlur = () => {
         setFieldTouched('bookingAddress.address_1', true);
-      };
-    
+    };
 
     return {
         handleChange,
@@ -72,4 +77,4 @@ function useLocationAutoComplete() {
     }
 }
 
-export default useLocationAutoComplete
+export default useLocationAutoComplete;

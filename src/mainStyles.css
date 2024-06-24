@@ -1,21 +1,64 @@
 .user-detail-main,
 .booking-location-main,
-.choose-treatments-main,
 .choose-providers,
-.order-summary-main {
-  margin-top: 100px !important;
+.almost-done-section,
+.order-summary-main-card-wrapper {
   position: relative;
+  background-color: #e3faff;
+  padding-inline: 50px;
+}
+
+/* padding blocks */
+
+.user-detail-main {
+  padding-bottom: 50px;
+  padding-top: 33px;
+}
+
+.booking-location-main {
+  padding-block: 32px;
+}
+
+.choose-providers {
+  padding-top: 43.5px;
+  padding-bottom: 50px;
+}
+
+.choose_providers_wrapper.book_time_wrapper .choose-providers {
+  padding-top: 69px;
+  padding-bottom: 59px;
+}
+
+.choose_providers_wrapper.almost_done .almost-done-section {
+  padding-block: 56px;
+}
+
+.order-summary-main-card-wrapper {
+  padding-top: 23px;
+  padding-bottom: 40px;
+}
+
+/* blocks end end here */
+
+section.product-page-form-section-wrapper {
+  max-width: 1257px;
+  width: 100%;
+  margin: auto;
 }
 
 .css-1xc3v61-indicatorContainer {
   display: none !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1220px) {
+  section.product-page-form-section-wrapper {
+    max-width: 1172px;
+  }
+}
 
-  .user_wrapper,
-  .choose_providers_wrapper {
-    padding: 0 15px;
+@media screen and (max-width: 643px) {
+  .choose_providers_wrapper.almost_done {
+    padding-inline: unset;
   }
 }
 
@@ -148,25 +191,6 @@
 
 /* summary till this */
 
-.booking-location-main,
-.choose-providers,
-.order-summary-main {
-  /* margin-top: 61px !important; */
-  margin: auto;
-  background-color: #e3faff;
-  padding: 25px 0px 33px 25px;
-  box-sizing: border-box;
-  border-radius: 12px;
-}
-
-.user-detail-main {
-  margin: auto;
-  background-color: #e3faff;
-  padding: 25px 0px 33px 50px;
-  box-sizing: border-box;
-  border-radius: 12px;
-}
-
 .remove-wrapper {
   box-sizing: border-box;
   display: flex;
@@ -210,15 +234,9 @@
   border: 1px solid #ff0000;
 }
 
-.order-summary-main {
-  padding: unset;
-  padding: 16px 50px 33px;
-}
-
 .order-summary-main-inner {
   position: relative;
   /* background-color: #FBF2DD; */
-  max-width: 1137px;
   width: 100%;
   margin: auto;
 }
@@ -299,15 +317,23 @@
 }
 
 /* small screen */
-@media (max-width: 768px) {
+@media (max-width: 643px) {
 
   .user-detail-main,
   .booking-location-main,
   .choose-providers {
     /* padding: 33px 20px; */
     width: 100%;
-    max-width: 95%;
     padding: 25px;
+  }
+
+  .user-detail-main,
+  .booking-location-main,
+  .choose-providers,
+  .almost-done-section,
+  .order-summary-main-card-wrapper {
+    padding-inline: unset;
+    margin: auto;
   }
 
   .click-agree-reminder-wrapper {

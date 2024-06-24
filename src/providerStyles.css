@@ -1,6 +1,3 @@
-
-
-
 .provider-input-label-wrapper {
     background-color: #fff;
     box-sizing: border-box;
@@ -8,15 +5,16 @@
     justify-content: flex-start;
     align-items: flex-start;
     padding: 9px 12px;
-    width: 563px;
+    max-width: 521px;
+    width: 100%;
     height: 44px;
     border: 1px solid rgba(192, 196, 204, 0.47);
     border-radius: 4px;
     outline: none;
-    gap:10px;
+    gap: 10px;
 }
 
-.provider-name-label{
+.provider-name-label {
     color: black !important;
 }
 
@@ -24,15 +22,12 @@
     margin-top: 32px;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
-    gap: 32px;
+    justify-content: space-between;
 }
 
-/* target small screen */
-@media (max-width: 900px) {
-    .provider-input-label-wrapper {
-    padding: 9px 12px;
-    width: 100%;
-    height: auto;
+/* query for 1160px */
+@media (max-width: 1160px) {
+    .provider-group-wrapper {
+        gap: 32px;
     }
 }

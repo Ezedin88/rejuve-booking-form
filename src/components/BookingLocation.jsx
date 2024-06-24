@@ -7,7 +7,17 @@ import useLocationAutoComplete from '../hooks/LocationAutoComplete';
 import { useEffect } from 'react';
 
 function BookingLocation({ values,isScriptLoaded }) {
-  
+  const bookingData = JSON.parse(localStorage.getItem('bookingData'));
+
+  if (bookingData) {
+    values.clinicChoice = bookingData && bookingData?.bookingChoice === 'atourclinics' && bookingData?.bookingAddress?.bookingAddress;
+
+    values.bookingAddress = bookingData && bookingData?.bookingChoice === 'housecall' && bookingData?.bookingAddress;
+    if(bookingData?.bookingChoice === 'housecall'){
+    values.bookingAddress.address_1 = bookingData?.bookingAddress?.address_1;
+}
+    // values.bookingChoice = bookingData && bookingData?.bookingChoice || 'atourclinics';
+  }
   const { address, handleChange, handleSelect, formattedAddress } =
     useLocationAutoComplete();
     const { address: extractedAddress, city, state, zip } = address || {};

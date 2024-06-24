@@ -9,7 +9,7 @@
   align-items: flex-start;
   padding: 9px 12px 9px 0 !important;
   gap: 10px;
-  width: 563px !important;
+  width: 100% !important;
   height: 44px !important;
   border: 1px solid rgba(192, 196, 204, 0.47);
   border-radius: 4px;
@@ -19,7 +19,7 @@
 }
 
 .pointer-date-picker {
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .disabled-date-picker {
@@ -84,6 +84,7 @@
   font-size: 1rem;
   color: #32c0cc;
   padding: 0.1rem;
+
   &:active {
     outline: none;
   }
@@ -102,17 +103,20 @@
 
 .react-datepicker__day {
   border-radius: 50%;
+
   &:hover {
     background-color: #c7f7fb;
     color: #333;
     border-radius: 50%;
   }
 }
+
 .react-datepicker__day--selected {
   background-color: #32c0cc;
   border-radius: 50%;
   padding: 0;
   color: #fff;
+
   &:hover {
     background-color: #c7f7fb;
     color: #333;
@@ -204,21 +208,19 @@
 
 .react-datepicker__input-container {
   width: unset !important;
+  width: 100% !important;
 }
 
-.react-datepicker-popper
-  .react-datepicker
-  .react-datepicker__header
-  button::after {
+.react-datepicker-popper .react-datepicker .react-datepicker__header button::after {
   display: none !important;
 }
-.react-datepicker__header.react-datepicker__header--custom
-  .custom-header
-  select:first-child {
+
+.react-datepicker__header.react-datepicker__header--custom .custom-header select:first-child {
   width: 100px !important;
 }
 
 @media screen and (max-width: 768px) {
+
   .date-picker,
   .react-datepicker__input-container {
     width: 100% !important;
