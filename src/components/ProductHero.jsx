@@ -140,7 +140,7 @@ function ProductHero({
           }
 
           <section className={`product-hero-wrapper ${isDecolletage ? 'hero-decolattege' : ''}
-          ${dataPage&&'medical-service-menu' ? 'medical-service-menu' : ''}`}>
+          ${!dataPage ? 'medical-service-menu' : ''}`}>
             {/* image section*/}
             <section className="product-image">
               {/* <div className="image-container large-hero-image"> */}

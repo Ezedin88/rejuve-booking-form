@@ -10,11 +10,11 @@ function BookingLocation({ values,isScriptLoaded }) {
   const bookingData = JSON.parse(localStorage.getItem('bookingData'));
 
   if (bookingData) {
-    values.clinicChoice = bookingData && bookingData?.bookingChoice === 'atourclinics' && bookingData?.bookingAddress?.bookingAddress;
-
+    values.clinicChoice = bookingData && bookingData?.bookingChoice === 'atourclinics' && bookingData?.bookingAddress;
+    values.bookingChoice = bookingData && bookingData?.bookingChoice === 'housecall' && 'housecall'||'atourclinics';
     values.bookingAddress = bookingData && bookingData?.bookingChoice === 'housecall' && bookingData?.bookingAddress;
     if(bookingData?.bookingChoice === 'housecall'){
-    values.bookingAddress.address_1 = bookingData?.bookingAddress?.address_1;
+    values.bookingAddress.address_1 = bookingData?.bookingAddress?.address_1??'';
 }
     // values.bookingChoice = bookingData && bookingData?.bookingChoice || 'atourclinics';
   }
@@ -45,8 +45,8 @@ function BookingLocation({ values,isScriptLoaded }) {
   const [field] = useField('clinicChoice');
 
   return (
-    <div className="selection_wrapper">
-      <div className="selection-wrapper">
+    <div className="the-single-product-page selection_wrapper">
+      <div className="the-single-product-page selection-wrapper">
         <div className="choose-radio-wrapper">
           <div className="where-span">
             <div
@@ -65,7 +65,8 @@ function BookingLocation({ values,isScriptLoaded }) {
             style={{cursor:'pointer'}}
             >
               {' '}
-              At Our Clinics{' '}
+              Rejuve Clinics
+              {' '}
               <span className="location-span">At our locations</span>
             </p>
           </div>
@@ -81,6 +82,7 @@ function BookingLocation({ values,isScriptLoaded }) {
                 type="radio"
                 name="bookingChoice"
                 value="housecall"
+                checked={values.bookingChoice === 'housecall'}
               />
             </div>
             <p className="location-where"
@@ -88,7 +90,8 @@ function BookingLocation({ values,isScriptLoaded }) {
             style={{cursor:'pointer'}}
             >
               {' '}
-              We Come to You{' '}
+               House Call
+               {' '}
               <span className="location-span">We come to you</span>
             </p>
           </div>
@@ -138,66 +141,73 @@ function BookingLocation({ values,isScriptLoaded }) {
       (
     values?.bookingChoice === 'housecall' && !isScriptLoaded ? <h1>...loading</h1>:
         <div className="address-wrapper">
-          <PlacesAutocomplete
-            value={
-              typeof address === 'string'
-                ? address
-                : extractedAddress || formattedAddress
-            }
-            onChange={handleChange}
-            onSelect={handleSelect}
-          >
-            {({
-              getInputProps,
-              suggestions,
-              getSuggestionItemProps,
-              loading,
-            }) => (
-              <div className="address_wrapper">
-                <CustomInput
-                  label="Your Address"
-                  name="bookingAddress.address_1"
-                  type="text"
-                  {...getInputProps({
-                    placeholder: 'Search Places ...',
-                    className: 'location-search-input',
-                    onBlur: () =>
-                      setFieldTouched('bookingAddress.address_1', true),
-                  })}
-                />
-                <div className="autocomplete-dropdown-container">
-                  {loading && <div>Loading...</div>}
-                  {suggestions.map((suggestion) => {
-                    const className = suggestion.active
-                      ? 'suggestion-item--active input-box'
-                      : 'suggestion-item input-box';
-                    const style = suggestion.active
-                      ? {
-                          backgroundColor: '#fafafa',
-                          cursor: 'pointer',
-                          color: '#000',
-                        }
-                      : {
-                          backgroundColor: '#ffffff',
-                          cursor: 'pointer',
-                          color: '#000',
-                        };
-                    return (
-                      <div
-                        key={suggestion.placeId}
-                        {...getSuggestionItemProps(suggestion, {
-                          className,
-                          style,
-                        })}
-                      >
-                        <span>{suggestion.description}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </PlacesAutocomplete>
+         <PlacesAutocomplete
+  value={
+    typeof address === 'string'
+      ? address
+      : extractedAddress || formattedAddress
+  }
+  onChange={(address) => {
+    handleChange(address);
+    // Remove bookingData from localStorage when the user starts typing
+    localStorage.removeItem('bookingData');
+  }}
+  onSelect={handleSelect}
+>
+  {({
+    getInputProps,
+    suggestions,
+    getSuggestionItemProps,
+    loading,
+  }) => (
+    <div className="address_wrapper">
+      <CustomInput
+        label="Your Address"
+        name="bookingAddress.address_1"
+        type="text"
+        {...getInputProps({
+          placeholder: 'Search Places ...',
+          className: 'location-search-input',
+          onBlur: () =>
+            setFieldTouched('bookingAddress.address_1', true),
+          // Add onInput handler to remove bookingData from localStorage
+          onInput: () => localStorage.removeItem('bookingData'),
+        })}
+      />
+      <div className="autocomplete-dropdown-container">
+        {loading && <div>Loading...</div>}
+        {suggestions.map((suggestion) => {
+          const className = suggestion.active
+            ? 'suggestion-item--active input-box'
+            : 'suggestion-item input-box';
+          const style = suggestion.active
+            ? {
+                backgroundColor: '#fafafa',
+                cursor: 'pointer',
+                color: '#000',
+              }
+            : {
+                backgroundColor: '#ffffff',
+                cursor: 'pointer',
+                color: '#000',
+              };
+          return (
+            <div
+              key={suggestion.placeId}
+              {...getSuggestionItemProps(suggestion, {
+                className,
+                style,
+              })}
+            >
+              <span>{suggestion.description}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  )}
+</PlacesAutocomplete>
+
 
           <CustomInput
             label="Your Address2"

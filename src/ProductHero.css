@@ -10,7 +10,7 @@
   grid-template-columns: repeat(2, 1fr);
   place-content: center;
   align-items: center;
-  height: 862px;
+  /* height: 862px; */
 }
 
 .product-hero-wrapper.medical-service-menu {
@@ -66,6 +66,7 @@
   line-height: 130%;
   color: #282d41 !important;
   margin: 0 !important;
+  padding-block: 24px;
 }
 
 .product-cite {
@@ -198,8 +199,12 @@
 
   .single-product-page-product-hero-main-wrapper section.product-image img {
     scale: unset;
-    width: 80%;
+    width: 67%;
     height: auto;
+  }
+
+  .single-product-page-product-hero-main-wrapper section.product-image {
+    max-height: 75%;
   }
 
   .image-container.large-hero-image {

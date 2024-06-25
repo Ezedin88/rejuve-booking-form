@@ -167,8 +167,7 @@
   position: absolute;
   color: #32c0cc;
   left: 18px;
-  top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-15%);
   font-size: 16px !important;
   z-index: 20;
   background: #fff;

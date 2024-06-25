@@ -31,7 +31,12 @@ function Agreement({
             style={{ cursor: 'pointer' }}
             onClick={() => setAgreeToTos(!agreeToTos)}
           >
-            I agree to the ToS,
+            
+            I agree to the <a
+              href="https://rejuve.md/tos-policy/"
+              style={{ textDecoration: 'none', color: '#32c0cc' }}
+              onClick={(e) => e.stopPropagation()} // Prevents toggling agreeToTos when clicking the link
+            >ToS</a>,
             <a
               href="https://rejuve.md/privacy-policy/"
               style={{ textDecoration: 'none', color: '#32c0cc' }}
@@ -39,7 +44,19 @@ function Agreement({
             >
               Privacy Policy
             </a>
-            , Consent To Treat, and Cancellation Policy *
+            ,
+            <a 
+            href="https://rejuve.md/consent-to-treat-policy/"
+            style={{ textDecoration: 'none', color: '#32c0cc' }}
+            onClick={(e) => e.stopPropagation()} // Prevents toggling agreeToTos when clicking the link
+            >
+             Consent To Treat
+             </a>
+             , <a
+              href="https://rejuve.md/cancellation-policy/"
+              style={{ textDecoration: 'none', color: '#32c0cc' }}
+              onClick={(e) => e.stopPropagation()} // Prevents toggling agreeToTos when clicking the link
+            >and Cancellation Policy *</a>
           </p>
         </label>
       </div>

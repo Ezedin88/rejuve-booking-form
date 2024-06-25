@@ -5,6 +5,21 @@
   align-items: center;
 }
 
+div.the-single-product-page.selection-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.the-product-page.cityStateZip {
+  width: 100%;
+}
+
+div.the-single-product-page.selection-wrapper+div.address-wrapper div.address_wrapper {
+  width: 100%;
+}
+
 .choose-radio-wrapper {
   background-color: #fff !important;
   box-sizing: border-box;
@@ -170,7 +185,12 @@
 }
 
 @media (max-width: 815px) {
+
   .selection-wrapper {
+    gap: 32px;
+  }
+
+  div.the-single-product-page.selection-wrapper {
     gap: 32px;
   }
 }

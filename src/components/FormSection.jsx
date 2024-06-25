@@ -488,14 +488,23 @@ function FormSection({
                 <div className="click-agree-reminder-wrapper">
                   <img src="http://rejuve.md/wp-content/uploads/2024/05/info-1.svg" />
                   <p className="agree-to-tos-info">
-                    You need to read and agree to our Tos,
+                    You need to read and agree to our  <a
+                      href="https://rejuve.md/tos-policy/"
+                      alt="Privacy policy"
+                    >Tos</a>,
                     <a
                       href="https://rejuve.md/privacy-policy/"
                       alt="Privacy policy"
                     >
                       Privacy Policy
                     </a>
-                    , Consent To Treat and Cancellation Policy to continue
+                    ,<a
+                      href="https://rejuve.md/consent-to-treat-policy/"
+                      alt="Privacy policy"
+                    > Consent To Treat</a> and<a
+                    href="https://rejuve.md/cancellation-policy/"
+                    alt="Privacy policy"
+                  > Cancellation Policy</a> to continue
                     booking.
                   </p>
                 </div>

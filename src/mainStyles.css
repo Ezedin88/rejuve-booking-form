@@ -8,6 +8,11 @@
   padding-inline: 50px;
 }
 
+
+.order-summary-main-card-wrapper {
+  background-color: #FFF9EB;
+}
+
 /* padding blocks */
 
 .user-detail-main {

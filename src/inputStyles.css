@@ -142,6 +142,12 @@
   position: relative;
 }
 
+
+
+.the-single-product-page.selection_wrapper {
+  width: 100% !important;
+}
+
 @media (max-width:1540px) {
   .input-box-wrapper {
     max-width: 522px !important;
@@ -191,9 +197,14 @@
 
 @media (max-width: 465px) {
 
+  .selection-wrapper {
+    max-width: 321px;
+    width: 100%;
+    margin: auto;
+  }
+
   .user-input-wrapper,
-  .selection-wrapper,
-  .selection_wrapper,
+  div.the-single-product-page.selection-wrapper,
   div.provider-input-label-wrapper,
   .provider-group-wrapper,
   .payment-cards-wrapper,
@@ -215,5 +226,12 @@
 
   .provider-name-label {
     font-size: 15px;
+  }
+}
+
+@media(max-width:400px) {
+  div.card-elements div.card-info {
+    flex-wrap: wrap;
+    height: unset;
   }
 }

@@ -15,7 +15,7 @@
 }
 
 .provider-name-label {
-    color: black !important;
+    color: #5A5F73 !important;
 }
 
 .provider-group-wrapper {
@@ -23,6 +23,34 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+
+/* media for 475, 457 and 442 */
+@media (max-width: 475px) {
+    .provider-name-label {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 457px) {
+    .provider-name-label {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 425px) {
+    .provider-name-label {
+        font-size: 12px;
+    }
+}
+
+@media (max-width:410px) {
+    .provider-name-label {
+        font-size: 15px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
 }
 
 /* query for 1160px */

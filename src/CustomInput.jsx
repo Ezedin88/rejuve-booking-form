@@ -61,8 +61,8 @@ const CustomInput = ({
         props.type !== 'textArea' &&
         props.type !== 'date' &&
         props.type !== 'time' && (
-          <div className={cityStateZip ? 'cityStateZip' : 'input-box-wrapper'}>
-            <div className="label-input-wrapper">
+<div className={`${cityStateZip ? 'cityStateZip' : 'input-box-wrapper'} the-product-page`}>
+              <div className="label-input-wrapper">
               <label className="input-box-label" htmlFor={field.name}>
                 {label}
               </label>
@@ -88,7 +88,7 @@ const CustomInput = ({
         )}
 
       {props.type === 'time' && (
-        <div className={cityStateZip ? 'cityStateZip' : 'input-box-wrapper'}>
+          <div className={`${cityStateZip ? 'cityStateZip' : 'input-box-wrapper'} the-product-page`}>
           <div className="label-input-wrapper">
             <label className="input-box-label" htmlFor={field.name}>
               {label}
@@ -113,6 +113,7 @@ const CustomInput = ({
       {props.type === 'date' && (
         <div className={`${cityStateZip ? 'cityStateZip' : 'input-box-wrapper'}
           ${dateOfBirth && 'birth-date-input-box'}
+          the-product-page
         `}>
           <div className="label-input-wrapper">
             <label className={`input-box-label ${dateOfBirth && 'birth-date-label'}`} htmlFor={field.name}>
