@@ -1,10 +1,5 @@
 import '../mainStyles.css';
-import {
-  FieldArray,
-  Form,
-  Formik,
-  setNestedObjectValues,
-} from 'formik';
+import { FieldArray, Form, Formik, setNestedObjectValues } from 'formik';
 import { handleValidation } from '../Validation';
 import { initialValues } from '../initialValues';
 import UserDetail from './UserDetail';
@@ -55,29 +50,35 @@ function FormSection({
   setTheClientSecret,
   setTotalWithTip,
   isScriptLoaded,
-  dataPage
+  dataPage,
 }) {
   const [agreeToTos, setAgreeToTos] = useState(false);
   const [agreeToCreateAccount, setAgreeToCreateAccount] = useState(true);
   const [agreeToSignUp, setAgreeToSignUp] = useState(true);
-  const selectAdons = treatments.filter((item) =>
-    item.categories.some((category) => category.slug === 'ad-ons')
-  );
-  const selectBooster = treatments.filter((item) =>
-    item.categories.some((category) => category.slug === 'booster')
-  );
-  const selectVitaminInjections = treatments.filter((item) =>
-    item.categories.some((category) => category.slug === 'vitamin-injections')
-  );
-  const selectAdvancedTherapies = treatments.filter((item) =>
-    item.categories.some((category) => category.slug === 'advanced-therapies')
-  );
-  const selectIvTherapies = treatments.filter((item) =>
-    item.categories.some((category) => category.slug === 'iv-treatment')
-  );
-  const selectDecolettage = treatments.filter((item) =>
-    item.categories[0]?.name === 'Botox Products'
-  );
+  const selectAdons = treatments
+    ?.filter((item) =>
+      item.categories.some((category) => category.slug === 'ad-ons')
+    )
+    ?.sort((a, b) => a.name > b.name);
+  const selectBooster = treatments
+    ?.filter((item) =>
+      item.categories.some((category) => category.slug === 'booster')
+    )
+    ?.sort((a, b) => a.name > b.name);
+  // const selectVitaminInjections = treatments.filter((item) =>
+  //   item.categories.some((category) => category.slug === 'vitamin-injections')
+  // );
+  // const selectAdvancedTherapies = treatments.filter((item) =>
+  //   item.categories.some((category) => category.slug === 'advanced-therapies')
+  // );
+  const selectIvTherapies = treatments
+    ?.filter((item) =>
+      item.categories.some((category) => category.slug === 'iv-treatment')
+    )
+    ?.sort((a, b) => a.name > b.name);
+  // const selectDecolettage = treatments.filter((item) =>
+  //   item.categories[0]?.name === 'Botox Products'
+  // );
   const currentProductPrice = Number(currentProduct?.price) || 0;
   const totalCalculation = lineItems.reduce(
     (acc, item) => acc + Number(item.price),
@@ -105,7 +106,6 @@ function FormSection({
         onSubmit={handleSubmit}
       >
         {({ values, errors, setValues, setTouched, validateForm, isValid }) => {
-    
           const hasErrors =
             Object.keys(errors).filter((key) => key !== 'terms').length > 0;
           if (!hasErrors) {
@@ -209,99 +209,107 @@ function FormSection({
                             </div>
                           </div>
                           {index === 0 && (
-                          <div className="general-details-card-wrapper">
-                            <p className="form-main-titles">Choose Location</p>
-                            <div
-                              className="booking-location-main"
-                              id="booking-location-main"
-                            >
-                              <BookingLocation
-                                index={index}
-                                values={values}
-                                setWhereBooking={setWhereBooking}
-                                userDataErrors={userDataErrors}
-                                setRefactoredErrors={setRefactoredErrors}
-                                isScriptLoaded={isScriptLoaded}
-                              />
-                            </div>
+                            <div className="general-details-card-wrapper">
+                              <p className="form-main-titles">
+                                Choose Location
+                              </p>
+                              <div
+                                className="booking-location-main"
+                                id="booking-location-main"
+                              >
+                                <BookingLocation
+                                  index={index}
+                                  values={values}
+                                  setWhereBooking={setWhereBooking}
+                                  userDataErrors={userDataErrors}
+                                  setRefactoredErrors={setRefactoredErrors}
+                                  isScriptLoaded={isScriptLoaded}
+                                />
+                              </div>
                             </div>
                           )}
                           <div className="general-details-card-wrapper">
-                          <div
-                            className="choose-treatments-main"
-                            id="choose-treatments-main"
-                          >
-                            <p className="form-main-titles">Choose Treatments</p>
-                            <ChooseTreatments
-                              dataValues={values}
-                              treatmentChoices={selectIvTherapies}
-                              index={index}
-                              lineItems={lineItems}
-                              setlineItems={setlineItems}
-                              title={selectIvTherapies?.[0]?.categories[0]?.name}
-                              ivTherapy
-                              isDecolettage={isDecolettage}
-                              setCurrentProduct={setCurrentProduct}
-                              whereBooking={whereBooking}
-                              isFetchingProduct={isFetchingProduct}
-                            />
-                            {
-                              isDecolettage && (
+                            <div
+                              className="choose-treatments-main"
+                              id="choose-treatments-main"
+                            >
+                              <p className="form-main-titles">
+                                Choose Treatments
+                              </p>
+                              <ChooseTreatments
+                                dataValues={values}
+                                treatmentChoices={selectIvTherapies}
+                                index={index}
+                                lineItems={lineItems}
+                                setlineItems={setlineItems}
+                                title={
+                                  selectIvTherapies?.[0]?.categories[0]?.name
+                                }
+                                ivTherapy
+                                // isDecolettage={isDecolettage}
+                                setCurrentProduct={setCurrentProduct}
+                                whereBooking={whereBooking}
+                                isFetchingProduct={isFetchingProduct}
+                              />
+                              {/* {isDecolettage && (
                                 <ChooseTreatments
                                   dataValues={values}
                                   treatmentChoices={selectDecolettage}
                                   index={index}
                                   lineItems={lineItems}
                                   setlineItems={setlineItems}
-                                  title={selectDecolettage?.[0]?.categories[0]?.name}
+                                  title={
+                                    selectDecolettage?.[0]?.categories[0]?.name
+                                  }
                                 />
-                              )
-                            }
-                            <ChooseTreatments
-                              dataValues={values}
-                              treatmentChoices={selectNad}
-                              index={index}
-                              lineItems={lineItems}
-                              setlineItems={setlineItems}
-                              title={selectNad?.[0]?.categories[0]?.name}
-                            />
-                            <ChooseTreatments
-                              dataValues={values}
-                              treatmentChoices={selectAdons}
-                              index={index}
-                              lineItems={lineItems}
-                              setlineItems={setlineItems}
-                              title={selectAdons?.[0]?.categories[0]?.name}
-                            />
-                            <ChooseTreatments
-                              dataValues={values}
-                              treatmentChoices={selectBooster}
-                              index={index}
-                              lineItems={lineItems}
-                              setlineItems={setlineItems}
-                              title={selectBooster?.[0]?.categories[0]?.name}
-                            />
-                            <ChooseTreatments
-                              dataValues={values}
-                              treatmentChoices={selectVitaminInjections}
-                              index={index}
-                              lineItems={lineItems}
-                              setlineItems={setlineItems}
-                              title={
-                                selectVitaminInjections?.[0]?.categories[0]?.name
-                              }
-                            />
-                            <ChooseTreatments
-                              dataValues={values}
-                              treatmentChoices={selectAdvancedTherapies}
-                              index={index}
-                              lineItems={lineItems}
-                              setlineItems={setlineItems}
-                              title={
-                                selectAdvancedTherapies?.[0]?.categories[0]?.name
-                              }
-                            />
-                          </div>
+                              )} */}
+                              {/* <ChooseTreatments
+                                dataValues={values}
+                                treatmentChoices={selectNad}
+                                index={index}
+                                lineItems={lineItems}
+                                setlineItems={setlineItems}
+                                title={selectNad?.[0]?.categories[0]?.name}
+                              /> */}
+                              <ChooseTreatments
+                                dataValues={values}
+                                treatmentChoices={selectAdons}
+                                index={index}
+                                lineItems={lineItems}
+                                setlineItems={setlineItems}
+                                title={selectAdons?.[0]?.categories[0]?.name}
+                              />
+                              <ChooseTreatments
+                                dataValues={values}
+                                treatmentChoices={selectBooster}
+                                index={index}
+                                lineItems={lineItems}
+                                setlineItems={setlineItems}
+                                title={selectBooster?.[0]?.categories[0]?.name}
+                              />
+                              {/* <ChooseTreatments
+                                dataValues={values}
+                                treatmentChoices={selectVitaminInjections}
+                                index={index}
+                                lineItems={lineItems}
+                                setlineItems={setlineItems}
+                                title={
+                                  selectVitaminInjections?.[0]?.categories[0]
+                                    ?.name
+                                }
+                              /> */}
+                              {/* <ChooseTreatments
+                                dataValues={values}
+                                treatmentChoices={selectAdvancedTherapies}
+                                index={index}
+                                lineItems={lineItems}
+                                setlineItems={setlineItems}
+                                title={
+                                  selectAdvancedTherapies?.[0]?.categories[0]
+                                    ?.name
+                                }
+                              /> */}
+                            </div>
                           </div>
                           <></>
                         </div>
@@ -314,7 +322,8 @@ function FormSection({
                     <div className="another-person-info-error">
                       <img src="http://rejuve.md/wp-content/uploads/2024/05/info-1.svg" />
                       <p className="fill-all-fields">
-                        Please fill your information before adding another person
+                        Please fill your information before adding another
+                        person
                       </p>
                     </div>
                   )}
@@ -346,80 +355,92 @@ function FormSection({
                 </div>
                 {/* Choose Providers */}
                 <div className="general-details-card-wrapper">
-                    <p className="form-main-titles">Choose Provider</p>
-                <div className="choose_providers_wrapper">
-                  <div className="choose-providers" id="choose-providers">
-                    <Providers
-                      providers={providers}
-                      handleProviderChange={handleProviderChange}
-                      selectedProvider={selectedProvider}
-                      values={values}
-                      setAvailableBookingPeriods={setAvailableBookingPeriods}
-                    />
+                  <p className="form-main-titles">Choose Provider</p>
+                  <div className="choose_providers_wrapper">
+                    <div className="choose-providers" id="choose-providers">
+                      <Providers
+                        providers={providers}
+                        handleProviderChange={handleProviderChange}
+                        selectedProvider={selectedProvider}
+                        values={values}
+                        setAvailableBookingPeriods={setAvailableBookingPeriods}
+                      />
+                    </div>
                   </div>
-                </div>
                 </div>
                 {/* booking date and time preference */}
                 <div className="general-details-card-wrapper">
-                    <p className="form-main-titles">
-                      Booking Date and Time Preference
-                    </p>
-                <div className="choose_providers_wrapper book_time_wrapper">
-                  <div className="choose-providers" id="choose-providers">
-                    <BookingDateTime values={values} providers={providers}
-                      availableBookingPeriods={availableBookingPeriods}
-                    />
+                  <p className="form-main-titles">
+                    Booking Date and Time Preference
+                  </p>
+                  <div className="choose_providers_wrapper book_time_wrapper">
+                    <div className="choose-providers" id="choose-providers">
+                      <BookingDateTime
+                        values={values}
+                        providers={providers}
+                        availableBookingPeriods={availableBookingPeriods}
+                      />
+                    </div>
                   </div>
-                </div>
                 </div>
                 {/* almost done */}
                 <div className="general-details-card-wrapper">
-                    <p className="form-main-titles">Almost Done</p>
-                <div className="choose_providers_wrapper almost_done">
-                  <div className="almost-done-section" id="almost-done-section">
-                    <AlmostDoneSection
-                      calculatedTipAmount={calculatedTipAmount}
-                      handleCustomTipChange={handleCustomTipChange}
-                      handlePercentageChange={handlePercentageChange}
-                      defaultTip={defaultTip}
-                      values={values}
-                      setValues={setValues}
-                      tipOptions={tipOptions}
-                    />
-                  </div>
-                </div>
-                </div>
-                {/* order summary */}
-                <OrderSummary lineItems={lineItems} totalCalculation={totalCalculation} calculatedTipAmount={calculatedTipAmount} tips={tips} values={values} />
-                {/* Payment Method */}
-                <div className="general-details-card-wrapper">
-                    <p className="form-main-titles">
-                      Choose your desired payment method:
-                    </p>
-                <div className="choose_providers_wrapper">
-                  <div className="choose-providers" id="credit-card-section">
-                    <div className="payment-cards-wrapper">
-                      <CustomInput
-                        label="Card Number"
-                        name="paymentMethod"
-                        type="radio"
-                        value="creditCard"
-                      />
-                      <CustomInput
-                        label="Pay at Location"
-                        name="paymentMethod"
-                        type="radio"
-                        value="payAtLocation"
+                  <p className="form-main-titles">Almost Done</p>
+                  <div className="choose_providers_wrapper almost_done">
+                    <div
+                      className="almost-done-section"
+                      id="almost-done-section"
+                    >
+                      <AlmostDoneSection
+                        calculatedTipAmount={calculatedTipAmount}
+                        handleCustomTipChange={handleCustomTipChange}
+                        handlePercentageChange={handlePercentageChange}
+                        defaultTip={defaultTip}
+                        values={values}
+                        setValues={setValues}
+                        tipOptions={tipOptions}
                       />
                     </div>
-                    <CardPaymentMethod values={values}
-                      messagePayment={messagePayment}
-                      isProcessingPayment={isProcessingPayment}
-                      setTheCardNumberElement={setTheCardNumberElement}
-                      setTheClientSecret={setTheClientSecret}
-                    />
                   </div>
                 </div>
+                {/* order summary */}
+                <OrderSummary
+                  lineItems={lineItems}
+                  totalCalculation={totalCalculation}
+                  calculatedTipAmount={calculatedTipAmount}
+                  tips={tips}
+                  values={values}
+                />
+                {/* Payment Method */}
+                <div className="general-details-card-wrapper">
+                  <p className="form-main-titles">
+                    Choose your desired payment method:
+                  </p>
+                  <div className="choose_providers_wrapper">
+                    <div className="choose-providers" id="credit-card-section">
+                      <div className="payment-cards-wrapper">
+                        <CustomInput
+                          label="Card Number"
+                          name="paymentMethod"
+                          type="radio"
+                          value="creditCard"
+                        />
+                        <CustomInput
+                          label="Pay at Location"
+                          name="paymentMethod"
+                          type="radio"
+                          value="payAtLocation"
+                        />
+                      </div>
+                      <CardPaymentMethod
+                        values={values}
+                        messagePayment={messagePayment}
+                        isProcessingPayment={isProcessingPayment}
+                        setTheCardNumberElement={setTheCardNumberElement}
+                        setTheClientSecret={setTheClientSecret}
+                      />
+                    </div>
+                  </div>
                 </div>
                 {/* Choose Providers */}
                 <div className="choose_providers_wrapper">
@@ -437,7 +458,7 @@ function FormSection({
                     />
                   </div>
                 </div>
-              {/* submit button */}
+                {/* submit button */}
                 <div className="book-and-pay-btn-wrapper">
                   <button
                     style={{ marginBottom: '15px' }}
@@ -477,9 +498,11 @@ function FormSection({
                         alt="locked icon"
                       />
                     </div>
-                    <p style={{ margin: 0 }}>{
-                      isProcessingPayment ? 'Processing Payment...' : 'Book and Pay'
-                    }</p>
+                    <p style={{ margin: 0 }}>
+                      {isProcessingPayment
+                        ? 'Processing Payment...'
+                        : 'Book and Pay'}
+                    </p>
                   </button>
                 </div>
               </section>
@@ -488,24 +511,37 @@ function FormSection({
                 <div className="click-agree-reminder-wrapper">
                   <img src="http://rejuve.md/wp-content/uploads/2024/05/info-1.svg" />
                   <p className="agree-to-tos-info">
-                    You need to read and agree to our  <a
+                    You need to read and agree to our{' '}
+                    <a
                       href="https://rejuve.md/tos-policy/"
                       alt="Privacy policy"
-                    >Tos</a>,
+                    >
+                      Tos
+                    </a>
+                    ,
                     <a
                       href="https://rejuve.md/privacy-policy/"
                       alt="Privacy policy"
                     >
                       Privacy Policy
                     </a>
-                    ,<a
+                    ,
+                    <a
                       href="https://rejuve.md/consent-to-treat-policy/"
                       alt="Privacy policy"
-                    > Consent To Treat</a> and<a
-                    href="https://rejuve.md/cancellation-policy/"
-                    alt="Privacy policy"
-                  > Cancellation Policy</a> to continue
-                    booking.
+                    >
+                      {' '}
+                      Consent To Treat
+                    </a>{' '}
+                    and
+                    <a
+                      href="https://rejuve.md/cancellation-policy/"
+                      alt="Privacy policy"
+                    >
+                      {' '}
+                      Cancellation Policy
+                    </a>{' '}
+                    to continue booking.
                   </p>
                 </div>
               )}
