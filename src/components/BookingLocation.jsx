@@ -67,7 +67,7 @@ function BookingLocation({ values,isScriptLoaded }) {
               {' '}
               Rejuve Clinics
               {' '}
-              <span className="location-span">At our locations</span>
+              <span className="location-span"> &#160; At our locations</span>
             </p>
           </div>
         </div>
@@ -92,7 +92,8 @@ function BookingLocation({ values,isScriptLoaded }) {
               {' '}
                House Call
                {' '}
-              <span className="location-span">We come to you</span>
+              <span className="location-span">
+              &#160;    We come to you</span>
             </p>
           </div>
         </div>

@@ -1,6 +1,23 @@
 // import Stripe from "stripe";
 
 export const client = {
+
+    sendEmail: async ({ message }) => {
+        const url = 'https://rejuve.md/wp-json/custom/v1/send-email';
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                to: 'booking@rejuve.com',
+                subject: 'Discrepancy in Cardholder Information for Patient Billing',
+                message: message
+            })
+        });
+        await response.json();
+    },
+
     getProductById: async (product_id) => {
         const apiUrl = `https://rejuve.md/wp-json/wc/v3/products/${product_id}`;
         const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
@@ -250,7 +267,9 @@ export const client = {
                     },
                     body: JSON.stringify(singleOrder)
                 });
-                return response.json();
+                const responseData = await response.json();
+                console.log('Order Response: ', responseData)
+                return responseData;
             });
             const results = await Promise.all(requests);
             return results;

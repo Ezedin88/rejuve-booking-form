@@ -20,6 +20,18 @@ export const initialValues = {
     },
     "bookingChoice": "atourclinics",
     "clinicChoice": "",
+    "biller_details": {
+        "name": "",
+        "email": "",
+        "address": {
+            "line1": "",
+            "line2": "",
+            "city": "",
+            "state": "",
+            "postal_code": "",
+            "country": ""
+        },
+    },
     bookingDate: "",
     bookingTime: "",
     provider: "Any",

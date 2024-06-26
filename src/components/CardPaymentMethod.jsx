@@ -6,7 +6,11 @@ import {
   CardNumberElement,
   useElements,
   useStripe,
+  AddressElement,
+  
 } from '@stripe/react-stripe-js';
+import { useEffect, useState } from 'react';
+import { useFormikContext } from 'formik';
 
 function CardPaymentMethod({ values }) {
   const stripe = useStripe();
@@ -34,9 +38,23 @@ function CardPaymentMethod({ values }) {
     },
   };
 
+  const options = {mode:'billing',autocomplete:{
+    mode: "google_maps_api",
+    apiKey: "AIzaSyBiMgA18QMFdnj67qadAYRk816SdI8c8ag",
+  },
+  fields:{
+    Address:{
+      label:'Addres2222s',
+    },
+    
+  }
+}
+
+const {setFieldValue} = useFormikContext();
   return (
     <>
       {values.paymentMethod === 'creditCard' && (
+        <div>
         <div className="card-elements">
           <div className="card-number">
             <label className="card-label in-product-page">Card number</label>
@@ -56,6 +74,21 @@ function CardPaymentMethod({ values }) {
               <CardCvcElement options={CARD_ELEMENT_OPTIONS} />
             </div>
           </div>
+        </div>
+            <div className="address" style={{marginTop:'20px'}}>
+              <AddressElement options={options} 
+              onChange={(event)=>{
+                if(event.complete){
+                  const addressData = event.value;
+                  setFieldValue('biller_details.name',addressData.name);
+                  setFieldValue('biller_details.line1',addressData.address.line1);
+                  setFieldValue('biller_details.line2',addressData.address.line2??"");
+                  setFieldValue('biller_details.city',addressData.address.city);
+                  setFieldValue('biller_details.state',addressData.address.state);
+                  setFieldValue('biller_details.postal_code',addressData.address.postal_code);
+                }
+              }}/>
+            </div>
         </div>
       )}
       <CustomInput

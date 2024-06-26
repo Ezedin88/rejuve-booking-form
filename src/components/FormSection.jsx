@@ -59,12 +59,16 @@ function FormSection({
     ?.filter((item) =>
       item.categories.some((category) => category.slug === 'ad-ons')
     )
-    ?.sort((a, b) => a.name > b.name);
-  const selectBooster = treatments
+    ?.sort((a, b) => a.name.localeCompare(b.name)); // Use localeCompare for string comparison
+
+console.log('adons==>', selectAdons);
+
+const selectBooster = treatments
     ?.filter((item) =>
       item.categories.some((category) => category.slug === 'booster')
     )
-    ?.sort((a, b) => a.name > b.name);
+    ?.sort((a, b) => a.name.localeCompare(b.name)); // Adjusted for descending order
+
   // const selectVitaminInjections = treatments.filter((item) =>
   //   item.categories.some((category) => category.slug === 'vitamin-injections')
   // );
@@ -75,7 +79,7 @@ function FormSection({
     ?.filter((item) =>
       item.categories.some((category) => category.slug === 'iv-treatment')
     )
-    ?.sort((a, b) => a.name > b.name);
+    ?.sort((a, b) => a.name.localeCompare(b.name)); // Adjusted for descending order
   // const selectDecolettage = treatments.filter((item) =>
   //   item.categories[0]?.name === 'Botox Products'
   // );

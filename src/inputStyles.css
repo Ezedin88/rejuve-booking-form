@@ -101,7 +101,7 @@
 
 .card-info {
   max-width: 563.5px;
-  width: 100%;
+  /* width: 100%; */
   overflow: hidden;
   height: 71px;
   display: flex;
@@ -146,6 +146,18 @@
 
 .the-single-product-page.selection_wrapper {
   width: 100% !important;
+}
+
+@media (max-width: 1220px) {
+
+  .expiry-date,
+  .cvc {
+    width: 50%;
+  }
+
+  .card-info {
+    max-width: unset;
+  }
 }
 
 @media (max-width:1540px) {
@@ -195,12 +207,25 @@
   margin-block: 16px;
 }
 
+@media (max-width: 643px) {
+
+  .expiry-date,
+  .cvc {
+    width: 100%;
+  }
+}
+
 @media (max-width: 465px) {
 
   .selection-wrapper {
     max-width: 321px;
     width: 100%;
     margin: auto;
+  }
+
+  div.address div.StripeElement {
+    max-width: 340px;
+    margin: 0 auto;
   }
 
   .user-input-wrapper,

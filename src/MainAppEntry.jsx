@@ -23,7 +23,6 @@ function MainAppEntry() {
   const [whereBooking, setWhereBooking] = useState('atourclinics');
   const [providers, setProviders] = useState([]);
   const [stripePromise, setStripePromise] = useState(null);
-  const [clientSecret, setClientSecret] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [totalWithTip, setTotalWithTip] = useState(0);
@@ -142,8 +141,7 @@ function MainAppEntry() {
     };
   }, []);
 
-  useEffect(() => {
-    const fetchPaymentIntent = async () => {
+    const fetchPaymentIntent = async (values) => {
       try {
         const response = await fetch(
           'https://rejuve.md/wp-json/stripe/v1/create-payment-intent',
@@ -164,8 +162,9 @@ function MainAppEntry() {
         );
 
         const data = await response.json();
-        if (response.ok) {
-          setClientSecret(data.clientSecret);
+        if (data) {
+          // setClientSecret(data.clientSecret);
+          return data.clientSecret;
         } else {
           throw new Error(data.message || 'Failed to fetch client secret');
         }
@@ -174,14 +173,7 @@ function MainAppEntry() {
       }
     };
 
-    fetchPaymentIntent();
-  }, [
-    totalWithTip,
-    values.userData[0].billing.email,
-    values.userData[0].billing.first_name,
-    values.userData[0].billing.last_name,
-  ]);
-
+ 
   const removeFromList = (index, values, setValues) => {
     const userData = [...values.userData];
     userData.splice(index, 1);
@@ -225,94 +217,126 @@ function MainAppEntry() {
     setIsCreatingOrder(status);
   };
   const submitForm = async (values) => {
-    const transformedData = organizeLineItems({
-      values,
-      lineItems,
-      calculatedTipAmount,
-      providers,
-    });
-    const { values: dataValues, meta_data, fee_lines } = transformedData || {};
-    const dataToSend = dataValues?.userData?.map((item, key) => ({
-      status: 'processing',
-      payment_method:
-        dataValues.paymentMethod === 'creditCard' ? 'stripe' : 'house',
-      payment_method_title:
-        dataValues.paymentMethod === 'creditCard' ? 'Card' : 'House',
-      set_paid: false,
-      meta_data,
-      billing: { ...item.billing, ...dataValues.bookingAddress },
-      line_items: item.line_items,
-      fee_lines,
-    }));
-    if (values.paymentMethod === 'creditCard') {
-      setIsProcessing(true);
-
-      const { stripe, elements, cardElement } = values?.cardNumberElement;
-
-      if (!stripe || !elements) {
-        return;
-      }
-
-      setIsProcessing(true);
-      if (clientSecret) {
-        const { error, paymentIntent } = await stripe.confirmCardPayment(
-          clientSecret,
-          {
-            payment_method: {
-              card: cardElement,
-            },
-          }
-        );
-
-        if (paymentIntent) {
-          setIsProcessing(false);
-          if (dataToSend) {
-            try {
-              window.removeEventListener('beforeunload', () => {});
-              localStorage.removeItem('selectedTreatments');
-              localStorage.removeItem('booking-location-choice');
-              localStorage.removeItem('bookingData');
-              window.scrollTo(0, 0);
-              changeCreatingOrderStatus(true);
-              await client.createOrder(dataToSend);
-              changeCreatingOrderStatus(false);
-              window.location.href = 'https://rejuve.md/order-confirmation/';
-            } catch (error) {
-              changeCreatingOrderStatus(false);
-              console.error('Error creating order:', error);
-            }
-          }
-        } else {
-          setErrorMessage(error?.message || 'Payment failed');
-          toast(error?.message || 'Payment failed', { type: 'error' });
-        }
-
-        if (error) {
-          setIsProcessing(false);
+    setIsProcessing(true);
+    try {
+      const transformedData = organizeLineItems({
+        values,
+        lineItems,
+        calculatedTipAmount,
+        providers,
+      });
+  
+      const { values: dataValues, meta_data, fee_lines } = transformedData || {};
+      const dataToSend = dataValues?.userData?.map((item, key) => ({
+        status: 'processing',
+        payment_method:
+          dataValues.paymentMethod === 'creditCard' ? 'stripe' : 'house',
+        payment_method_title:
+          dataValues.paymentMethod === 'creditCard' ? 'Card' : 'House',
+        set_paid: false,
+        meta_data,
+        billing: { ...item.billing, ...dataValues.bookingAddress },
+        line_items: item.line_items,
+        fee_lines,
+      }));
+  
+      if (values.paymentMethod === 'creditCard') {
+        const theClientSecret = await fetchPaymentIntent(values);
+      
+        setIsProcessing(true);
+  
+        const { stripe, elements, cardElement } = values?.cardNumberElement;
+  
+        if (!stripe || !elements) {
           return;
         }
-      }
-      setIsProcessing(false);
-    } else {
-      if (dataToSend) {
-        try {
-          window.removeEventListener('beforeunload', () => {});
-          localStorage.removeItem('selectedTreatments');
-          localStorage.removeItem('booking-location-choice');
-          localStorage.removeItem('bookingData');
-          window.scrollTo(0, 0);
-          changeCreatingOrderStatus(true);
-          await client.createOrder(dataToSend);
-          changeCreatingOrderStatus(false);
-          window.location.href = 'https://rejuve.md/order-confirmation/';
-        } catch (error) {
-          changeCreatingOrderStatus(false);
-          console.error('Error creating order:', error);
+  
+  
+        if (theClientSecret) {
+  
+          const { error, paymentIntent } = await stripe.confirmCardPayment(theClientSecret, {
+            payment_method: {
+              card: cardElement,
+              billing_details: {
+                name: values.biller_details.name,
+                email: values.biller_details.email,
+                address: {
+                  line1: values.biller_details.address.line1,
+                  line2: values.biller_details.address.line2,
+                  city: values.biller_details.address.city,
+                  state: values.biller_details.address.state,
+                  postal_code: values.biller_details.address.postal_code,
+                }
+              },
+            },
+          });
+  
+          if (error) {
+            console.error('Error during payment confirmation:', error);
+            setErrorMessage(error?.message || 'Payment failed');
+            toast(error?.message || 'Payment failed', { type: 'error' });
+            setIsProcessing(false);
+            return;
+          }
+    
+          if (paymentIntent) {
+            const areTheSame = values.biller_details.name === values.userData[0].billing.first_name + ' ' + values.userData[0].billing.last_name;
+            if (!areTheSame) {
+              client.sendEmail({
+                message: `The name on the card does not match the billing information provided. Patient Name: ${values.userData[0].billing.first_name} ${values.userData[0].billing.last_name}. Cardholder Name: ${values.biller_details.name}.`,
+              })
+            }
+            setIsProcessing(false);
+            if (dataToSend) {
+              try {
+                window.removeEventListener('beforeunload', () => {});
+                localStorage.removeItem('selectedTreatments');
+                localStorage.removeItem('booking-location-choice');
+                localStorage.removeItem('bookingData');
+                window.scrollTo(0, 0);
+                changeCreatingOrderStatus(true);
+                await client.createOrder(dataToSend);
+                changeCreatingOrderStatus(false);
+                window.location.href = 'https://rejuve.md/order-confirmation/';
+              } catch (error) {
+                changeCreatingOrderStatus(false);
+                console.error('Error creating order:', error);
+              }
+            }
+          } else {
+            setErrorMessage('Payment failed');
+            toast('Payment failed', { type: 'error' });
+          }
+        } else {
+          setErrorMessage('Client Secret is not valid');
+          setIsProcessing(false);
+        }
+      } else {
+        if (dataToSend) {
+          try {
+            window.removeEventListener('beforeunload', () => {});
+            localStorage.removeItem('selectedTreatments');
+            localStorage.removeItem('booking-location-choice');
+            localStorage.removeItem('bookingData');
+            window.scrollTo(0, 0);
+            changeCreatingOrderStatus(true);
+            await client.createOrder(dataToSend);
+            changeCreatingOrderStatus(false);
+            window.location.href = 'https://rejuve.md/order-confirmation/';
+          } catch (error) {
+            changeCreatingOrderStatus(false);
+            console.error('Error creating order:', error);
+          }
         }
       }
+    } catch (error) {
+      console.error('Error in submitForm:', error);
+      setErrorMessage('An error occurred. Please try again.');
+      setIsProcessing(false);
     }
+    setIsProcessing(false);
   };
-
+  
   const handleSubmit = (values, options) => {
     const transformedData = organizeLineItems({ values, lineItems });
   };
