@@ -71,11 +71,7 @@ const CustomInput = ({
                 {...field}
                 {...props}
                 autoComplete="true"
-                className={
-                  props.name === 'bookingAddress.address_1'
-                    ? 'input-box'
-                    : 'input-box'
-                }
+                className={`${props.className ? props.className : ''} ${props.name === 'bookingAddress.address_1' ? 'input-box' : 'input-box'}`}
               />
             </div>
             <ErrorMessage

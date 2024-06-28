@@ -268,7 +268,6 @@ export const client = {
                     body: JSON.stringify(singleOrder)
                 });
                 const responseData = await response.json();
-                console.log('Order Response: ', responseData)
                 return responseData;
             });
             const results = await Promise.all(requests);

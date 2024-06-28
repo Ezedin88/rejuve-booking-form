@@ -1,3 +1,35 @@
+/* new components */
+.location-search-input {
+  box-shadow: none !important;
+}
+
+.card-holder-name .input-box-wrapper.the-product-page,
+.card-holder-billing .input-box-wrapper.the-product-page {
+  all: unset !important;
+}
+
+.card-holder-name-label,
+.card-holder-billing-label {
+  background-color: orange !important;
+  width: 100%;
+  margin-left: auto;
+}
+
+div.holder-info .card-holder-name,
+div.holder-info .card-holder-billing {
+  max-width: 563px !important;
+  width: 100%;
+}
+
+
+div.holder-info {
+  display: flex;
+  /* justify-content: space-between; */
+  /* flex-wrap: wrap; */
+  gap: 32px;
+  width: 100%;
+}
+
 .user-input-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -209,6 +241,31 @@
 
 @media (max-width: 643px) {
 
+  /* new components */
+
+  div.holder-info .card-holder-name,
+  div.holder-info .card-holder-billing {
+    max-width: unset !important;
+    width: 100%;
+  }
+
+  div.holder-info {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: unset;
+  }
+
+  div.holder-info+div.card-number {
+    margin-bottom: 20px;
+  }
+
+  .card-elements {
+    gap: unset !important;
+  }
+
+  /* new components */
+
   .expiry-date,
   .cvc {
     width: 100%;
@@ -258,5 +315,9 @@
   div.card-elements div.card-info {
     flex-wrap: wrap;
     height: unset;
+  }
+
+  .product-section-card-h1 {
+    font-size: 24px !important
   }
 }

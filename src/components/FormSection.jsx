@@ -61,8 +61,6 @@ function FormSection({
     )
     ?.sort((a, b) => a.name.localeCompare(b.name)); // Use localeCompare for string comparison
 
-console.log('adons==>', selectAdons);
-
 const selectBooster = treatments
     ?.filter((item) =>
       item.categories.some((category) => category.slug === 'booster')
@@ -442,6 +440,7 @@ const selectBooster = treatments
                         isProcessingPayment={isProcessingPayment}
                         setTheCardNumberElement={setTheCardNumberElement}
                         setTheClientSecret={setTheClientSecret}
+                        isScriptLoaded={isScriptLoaded}
                       />
                     </div>
                   </div>
