@@ -28,52 +28,52 @@ registerLocale('custom', customLocale);
 
 const CustomDatepicker = (props) => {
   const [selectedDate, setSelectedDate] = useState(null);
-  const {  setFieldValue,values } = useFormikContext();
-  const { name, onBlur,dateOfBirth,availableDates,mergedDates } = props||{};
-  const datesOnly = mergedDates?.length > 0 
-  ? mergedDates.map(item => item.date_and_time_clinic.split(' ')[0])
-  : [];
+  const { setFieldValue, values } = useFormikContext();
+  const { name, onBlur, dateOfBirth, availableDates, mergedDates } = props || {};
+  const datesOnly = mergedDates?.length > 0
+    ? mergedDates.map(item => item.date_and_time_clinic.split(' ')[0])
+    : [];
 
-    const mergedDates1 = [...new Set(datesOnly), ...new Set(availableDates)];
+  const mergedDates1 = [...new Set(datesOnly), ...new Set(availableDates)];
 
-    const parseDate = (inputDate) => {
+  const parseDate = (inputDate) => {
     // Assuming inputDate is in the format DDMMYYYY or MM/DD/YYYY or MM-DD-YYYY
     const parts = inputDate.split(/[\\/-]/);
     let month, day, year;
-    
+
     if (parts.length === 1) {
-        // If only numbers provided without separators, assuming MMDDYYYY format
-        if (inputDate.length === 8) {
-            month = parseInt(inputDate.substring(0, 2), 10);
-            day = parseInt(inputDate.substring(2, 4), 10);
-            year = parseInt(inputDate.substring(4), 10);
-        } else if (inputDate.length === 7) {
-            // Assuming MDYYYY format, where the month is one digit and day is two digits
-            month = parseInt(inputDate.substring(0, 1), 10);
-            day = parseInt(inputDate.substring(1, 3), 10);
-            year = parseInt(inputDate.substring(3), 10);
-        } else if (inputDate.length === 6) {
-            // Assuming DYYYY format, where both month and day are one digit each
-            month = parseInt(inputDate.substring(0, 1), 10);
-            day = parseInt(inputDate.substring(1, 2), 10);
-            year = parseInt(inputDate.substring(2), 10);
-        } else {
-            // Invalid input format
-            return null;
-        }
-    } else if (parts.length === 3) {
-        // If input is in the format MM/DD/YYYY or MM-DD-YYYY
-        month = parseInt(parts[0], 10);
-        day = parseInt(parts[1], 10);
-        year = parseInt(parts[2], 10);
-    } else {
+      // If only numbers provided without separators, assuming MMDDYYYY format
+      if (inputDate.length === 8) {
+        month = parseInt(inputDate.substring(0, 2), 10);
+        day = parseInt(inputDate.substring(2, 4), 10);
+        year = parseInt(inputDate.substring(4), 10);
+      } else if (inputDate.length === 7) {
+        // Assuming MDYYYY format, where the month is one digit and day is two digits
+        month = parseInt(inputDate.substring(0, 1), 10);
+        day = parseInt(inputDate.substring(1, 3), 10);
+        year = parseInt(inputDate.substring(3), 10);
+      } else if (inputDate.length === 6) {
+        // Assuming DYYYY format, where both month and day are one digit each
+        month = parseInt(inputDate.substring(0, 1), 10);
+        day = parseInt(inputDate.substring(1, 2), 10);
+        year = parseInt(inputDate.substring(2), 10);
+      } else {
         // Invalid input format
         return null;
+      }
+    } else if (parts.length === 3) {
+      // If input is in the format MM/DD/YYYY or MM-DD-YYYY
+      month = parseInt(parts[0], 10);
+      day = parseInt(parts[1], 10);
+      year = parseInt(parts[2], 10);
+    } else {
+      // Invalid input format
+      return null;
     }
 
     // Checking for valid date
     if (isNaN(month) || isNaN(day) || isNaN(year)) {
-        return null;
+      return null;
     }
 
     // Creating a date object
@@ -81,12 +81,12 @@ const CustomDatepicker = (props) => {
 
     // Check if date object corresponds to the input date
     if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
-        return null;
+      return null;
     }
 
     return date;
   };
-  
+
   const handleDateChange = (date) => {
     const inputDate = date instanceof Date ? date : parseDate(date);
     setSelectedDate(inputDate);
@@ -170,22 +170,25 @@ const CustomDatepicker = (props) => {
             </button>
           </div>
         )}
-        placeholderText="MM/DD/YYYY"
+        placeholderText={`${!dateOfBirth &&
+        (mergedDates1.length === 0 || mergedDates1[0] === undefined||mergedDates1.length>0) &&
+        (!mergedDates1.includes(format(new Date(), 'MM/dd/yyyy')) ||mergedDates1.includes(format(new Date(), 'MM/dd/yyyy')))?' All dates are taken':'MM/DD/YYYY'}`}
+        
         dateFormat="MM/dd/yyyy"
         showPopperArrow={false}
         calendarClassName="custom-calendar"
         locale="custom"
-        minDate={!dateOfBirth&&new Date()}
-        maxDate={dateOfBirth&&
+        minDate={!dateOfBirth && new Date()}
+        maxDate={dateOfBirth &&
           new Date(new Date().getFullYear() - 1, new Date().getMonth(), new Date().getDate())}
-          includeDates={
-            !dateOfBirth
-              ? mergedDates1 && mergedDates1.length > 0 && mergedDates1[0] !== undefined
-                ? mergedDates1.map(date => parse(date, 'MM/dd/yyyy', new Date()))
-                : []
-              : undefined
-          }
-          />
+        includeDates={
+          !dateOfBirth
+            ? mergedDates1 && mergedDates1.length > 0 && mergedDates1[0] !== undefined
+              ? mergedDates1.map(date => parse(date, 'MM/dd/yyyy', new Date()))
+              : []
+            : undefined
+        }
+      />
     </div>
   );
 };

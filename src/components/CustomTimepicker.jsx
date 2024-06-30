@@ -108,7 +108,7 @@ const TimePicker = (props) => {
     <div className="time-picker">
       <FaRegClock className="clock-icon" />
       <Select
-        // isDisabled = {values.bookingDate ? false : true}
+        isDisabled = {values.bookingDate ? false : true}
         blurInputOnSelect={true}
         onBlur={() => setFieldTouched(name, true)} // Ensure field is touched on blur
         isOptionSelected={(value) => !value && setFieldTouched(name, true)} // Correct usage of isOptionSelected

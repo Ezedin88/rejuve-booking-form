@@ -10,7 +10,7 @@ export const client = {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                to: 'booking@rejuve.com',
+                to: 'booking@rejuve.md',
                 subject: 'Discrepancy in Cardholder Information for Patient Billing',
                 message: message
             })

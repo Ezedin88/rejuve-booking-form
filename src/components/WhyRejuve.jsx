@@ -31,6 +31,7 @@ const thirdHeroTitle = convenience_list_2_convenience_title || convenience_list_
     <>
      <section className='product-section' id='product-section-id'>
       <h1 className='product-section-title'>{convenience_section_title}</h1>
+      <div className="main-section-container">
       <div className='product-section-cards' >
         <div className='product-section-card'>
           <img src="http://rejuve.md/wp-content/uploads/2024/01/Frame_9.svg" alt="placeholder" />
@@ -56,6 +57,7 @@ const thirdHeroTitle = convenience_list_2_convenience_title || convenience_list_
             className='why-rejuve-description'
           >{convenience_list_2_convenience_dscription || convenience_list_2_description}</p>
         </div>
+      </div>
       </div>
     </section>
     <section className="book-weight-loss-section">

@@ -42,7 +42,7 @@ section#product-section-id {
   display: flex !important;
   flex-wrap: wrap !important;
   align-content: center !important;
-  justify-content: center !important;
+  justify-content: space-between !important;
   flex-direction: row !important;
   gap: 1rem !important;
 }

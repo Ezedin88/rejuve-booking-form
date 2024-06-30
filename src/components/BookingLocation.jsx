@@ -142,6 +142,7 @@ function BookingLocation({ values,isScriptLoaded }) {
       (
     values?.bookingChoice === 'housecall' && !isScriptLoaded ? <h1>...loading</h1>:
         <div className="address-wrapper">
+          <div className="top-level-addresses-wrapper">
          <PlacesAutocomplete
   value={
     typeof address === 'string'
@@ -162,6 +163,7 @@ function BookingLocation({ values,isScriptLoaded }) {
     loading,
   }) => (
     <div className="address_wrapper">
+
       <CustomInput
         label="Your Address"
         name="bookingAddress.address_1"
@@ -208,13 +210,12 @@ function BookingLocation({ values,isScriptLoaded }) {
     </div>
   )}
 </PlacesAutocomplete>
-
-
-          <CustomInput
+ <CustomInput
             label="Your Address2"
             name="bookingAddress.address_2"
             type="text"
           />
+          </div>
           <div className="zip-city-wrapper" style={{ display: 'flex' }}>
             <CustomInput
               cityStateZip

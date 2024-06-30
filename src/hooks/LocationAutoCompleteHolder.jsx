@@ -1,14 +1,15 @@
 import { useFormikContext } from "formik";
-import { useState, } from "react";
+import { useState } from "react";
 import { geocodeByAddress } from "react-places-autocomplete";
 
 function useLocationAutoComplete() {
-     const [address, setAddress] = useState('');
+    const [address, setAddress] = useState('');
     const [extractedAddressData, setExtractedAddressData] = useState({
         address: '',
         city: '',
         state: '',
-        zip: ''
+        zip: '',
+        country: ''
     });
     const [formattedAddress, setFormattedAddress] = useState('');
     const { setFieldValue, setFieldTouched } = useFormikContext();
@@ -23,14 +24,12 @@ function useLocationAutoComplete() {
         const currentRequest = geocodeByAddress(address);
 
         currentRequest.then(results => {
-
             const addressComponents = results[0].address_components;
             const formattedAddress = results[0].formatted_address;
-            console.log('the address components==>',addressComponents)
             const extractedData = {
                 address: "",
                 city: "",
-                country:"",
+                country: "",
                 state: "",
                 zip: ""
             };
@@ -55,24 +54,21 @@ function useLocationAutoComplete() {
                 if (types.includes("postal_code")) {
                     extractedData.zip = component.long_name;
                 }
-                if(types.includes("country")){
+                if (types.includes("country")) {
                     extractedData.country = component.long_name;
                 }
             });
 
-            // Combine street number and route
             extractedData.address = `${streetNumber} ${route}`.trim();
 
             setExtractedAddressData(extractedData);
             setFormattedAddress(formattedAddress);
-            setAddress(extractedData);
 
-            // Update form values
-            setFieldValue('biller_details.address.line1', formattedAddress||'');
-            setFieldValue('biller_details.address.city', extractedData.city);
-            setFieldValue('biller_details.address.state', extractedData.state);
-            setFieldValue('biller_details.address.postal_code', extractedData.zip);
-            setFieldValue('biller_details.address.country', extractedData.country);
+            setFieldValue('biller_details.address.line1', formattedAddress || '');
+            setFieldValue('biller_details.address.city', extractedData.city || '');
+            setFieldValue('biller_details.address.state', extractedData.state || '');
+            setFieldValue('biller_details.address.postal_code', extractedData.zip || '');
+            setFieldValue('biller_details.address.country', extractedData.country || '');
         }).catch(error => {
             console.error("Geocode error: ", error);
         });
@@ -82,13 +78,25 @@ function useLocationAutoComplete() {
         setFieldTouched('biller_details.address.line1', true);
     };
 
+    const handleStateChange = (e) => {
+        const { value } = e.target;
+        setFieldValue('biller_details.address.state', value);
+    };
+
+    const handleZipChange = (e) => {
+        const { value } = e.target;
+        setFieldValue('biller_details.address.postal_code', value);
+    };
+
     return {
         handleChange,
         handleSelect,
         extractedAddressData,
         address,
         formattedAddress,
-        handleAddressBlur
+        handleAddressBlur,
+        handleStateChange,
+        handleZipChange
     };
 }
 

@@ -1,3 +1,10 @@
+body.single.single-product {
+  .label-input-wrapper:last-child {
+    margin-bottom: unset !important;
+  }
+}
+
+
 /* new components */
 .location-search-input {
   box-shadow: none !important;
@@ -10,7 +17,6 @@
 
 .card-holder-name-label,
 .card-holder-billing-label {
-  background-color: orange !important;
   width: 100%;
   margin-left: auto;
 }
@@ -112,7 +118,9 @@ div.holder-info {
 .card-number {
   display: flex;
   flex-direction: column;
-  width: 563.5px;
+  /* width: 563.5px; */
+  width:100%;
+  justify-content:space-between;
   height: 71px;
 }
 
@@ -174,10 +182,34 @@ div.holder-info {
   position: relative;
 }
 
-
-
 .the-single-product-page.selection_wrapper {
   width: 100% !important;
+}
+
+.card-holder-billing.zip-and-state {
+  display: flex;
+  gap:13px;
+}
+
+div.top-level-addresses-wrapper {
+  display:flex;
+  width:100%;
+}
+
+.card-holder-billing.zip-and-state div.input-box-wrapper.the-product-page {
+  width: 100% !important;
+}
+
+.card-number+.card-info {
+  width:100%;
+  gap:32px;
+  justify-content:unset;
+}
+
+.card_number_expiry_wrapper {
+  display:flex;
+  gap:32px;
+  width:100%;
 }
 
 @media (max-width: 1220px) {
@@ -241,6 +273,27 @@ div.holder-info {
 
 @media (max-width: 643px) {
 
+  div.top-level-addresses-wrapper {
+    flex-wrap: wrap;
+  }
+
+  div.top-level-addresses-wrapper > div.address_wrapper {
+    margin-bottom:24px;
+  }
+
+  .card_number_expiry_wrapper {
+   flex-wrap:wrap;
+   margin-top:24px;
+  }
+
+  .cityStateZip .input-box {
+    max-width: unset;
+  }
+
+  div.holder-info.country_zip_parent {
+    margin-top: 24px;
+  }
+
   /* new components */
 
   div.holder-info .card-holder-name,
@@ -254,6 +307,12 @@ div.holder-info {
     flex-wrap: wrap;
     width: 100%;
     gap: unset;
+  }
+
+  div.holder-info.holder_name_billing_parent,div.holder-info.country_zip_parent,
+  .card_number_expiry_wrapper
+  {
+    gap:24px;
   }
 
   div.holder-info+div.card-number {

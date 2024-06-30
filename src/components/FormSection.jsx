@@ -176,7 +176,7 @@ const selectBooster = treatments
                 <WhyRejuve currentProduct={heroCurrentProduct} />
                 {/* </div> */}
               </>
-              <section className="product-page-form-section-wrapper">
+              <section className="product-page-form-section-wrapper" id="user-detail-section">
                 <FieldArray name="userData">
                   {() =>
                     values.userData.map((item, index) => {
@@ -205,7 +205,6 @@ const selectBooster = treatments
                             </p>
                             <div
                               className="user-detail-main"
-                              id="user-detail-section"
                             >
                               <UserDetail index={index} />
                             </div>
