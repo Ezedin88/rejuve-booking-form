@@ -50,6 +50,44 @@ for (let i = 0; i < 24; i++) {
   }
 }
 
+const addHours = (date, hours) => {
+  const result = new Date(date);
+  result.setHours(result.getHours() + hours);
+  return result;
+};
+
+const currentTime = new Date();
+const futureTime = addHours(currentTime, 3);
+
+const filteredTimeOptions = timeOptions.filter(({ value }) => {
+  const [time, period] = value.split(' ');
+  const [hour, minute] = time.split(':').map(Number);
+
+  let timeIn24HourFormat;
+  if (period === 'AM') {
+    timeIn24HourFormat = hour % 12;
+  } else {
+    timeIn24HourFormat = (hour % 12) + 12;
+  }
+
+  const optionDate = new Date();
+  optionDate.setHours(timeIn24HourFormat);
+  optionDate.setMinutes(minute);
+
+  // Check if the time is within 10:30 AM to 6:30 PM range
+  const isInTimeRange = 
+    (timeIn24HourFormat > 10 || (timeIn24HourFormat === 10 && minute >= 30)) &&
+    (timeIn24HourFormat < 18 || (timeIn24HourFormat === 18 && minute <= 30));
+
+  // Check if the time is at least 3 hours later than the current time
+  const isLaterThanFutureTime = optionDate >= futureTime;
+
+  return isInTimeRange && isLaterThanFutureTime;
+});
+
+
+
+
 function formatTimes(times) {
   return times?.length>0 && times?.map(time => ({
       label: time,
@@ -108,28 +146,35 @@ const TimePicker = (props) => {
     <div className="time-picker">
       <FaRegClock className="clock-icon" />
       <Select
-        isDisabled = {values.bookingDate ? false : true}
-        blurInputOnSelect={true}
-        onBlur={() => setFieldTouched(name, true)} // Ensure field is touched on blur
-        isOptionSelected={(value) => !value && setFieldTouched(name, true)} // Correct usage of isOptionSelected
-        name={name}
-        value={selectedTime}
-        onChange={(selectedOption) => {
-          setFieldTouched(name, true); // Mark field as touched on selection
-          setSelectedTime(selectedOption);
-          setFieldValue(name, selectedOption.value);
-          values.bookingTime = selectedOption.value;
-        }}
-        options={ 
-          formatSelectedDate?.length>0?formatSelectedDate:
-          formatedAvailableTimeOptions?.length >0 && formatedAvailableTimeOptions || []}
-        className="time-picker-select"
-        placeholder="HH:MM AM/PM"
-        styles={customStyles}
-        formatOptionLabel={formatOptionLabel}
-        components={{ DropdownIndicator, Option }}
-        isOptionDisabled={(option) => option.isDisabled}
-      />
+  isDisabled={values.bookingDate ? false : true}
+  blurInputOnSelect={true}
+  onBlur={() => setFieldTouched(name, true)} // Ensure field is touched on blur
+  isOptionSelected={(value) => !value && setFieldTouched(name, true)} // Correct usage of isOptionSelected
+  name={name}
+  value={selectedTime}
+  onChange={(selectedOption) => {
+    setFieldTouched(name, true); // Mark field as touched on selection
+    setSelectedTime(selectedOption);
+    setFieldValue(name, selectedOption.value);
+    values.bookingTime = selectedOption.value;
+  }}
+  options={
+    values.provider === 'Any'
+      ? filteredTimeOptions
+      : formatSelectedDate?.length > 0
+      ? formatSelectedDate
+      : formatedAvailableTimeOptions?.length > 0
+      ? formatedAvailableTimeOptions
+      : []
+  }
+  className="time-picker-select"
+  placeholder="HH:MM AM/PM"
+  styles={customStyles}
+  formatOptionLabel={formatOptionLabel}
+  components={{ DropdownIndicator, Option }}
+  isOptionDisabled={(option) => option.isDisabled}
+/>
+
     </div>
   );
 };

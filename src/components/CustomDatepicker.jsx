@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import '../date.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { enUS } from 'date-fns/locale';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { MdOutlineCalendarToday } from 'react-icons/md';
 import { useFormikContext } from 'formik';
-import { format, parse } from 'date-fns';
+import { format, parse,addDays } from 'date-fns';
 
 const customLocale = {
   ...enUS,
@@ -117,6 +117,26 @@ const CustomDatepicker = (props) => {
     }
   };
 
+  useEffect(()=>{
+    setSelectedDate(null);
+    setFieldValue(name, '');
+  },[values.provider,setFieldValue,name]);
+
+  const getWeekdays = (startDate, numberOfDays) => {
+    const dates = [];
+    let currentDate = startDate;
+    while (dates.length < numberOfDays) {
+      if (currentDate.getDay() !== 0 && currentDate.getDay() !== 6) {
+        dates.push(format(currentDate, 'MM/dd/yyyy'));
+      }
+      currentDate = addDays(currentDate, 1);
+    }
+    return dates;
+  };
+
+  const anyScheduleDate = getWeekdays(new Date(), 365);
+
+const isProviderAny = values?.provider === 'Any';
   return (
     <div className="date-picker-container">
       <MdOutlineCalendarToday className="calendar-icon" />
@@ -171,6 +191,7 @@ const CustomDatepicker = (props) => {
           </div>
         )}
         placeholderText={`${!dateOfBirth &&
+          isProviderAny ? 'MM/DD/YYYY':
         (mergedDates1.length === 0 || mergedDates1[0] === undefined||mergedDates1.length>0) &&
         (!mergedDates1.includes(format(new Date(), 'MM/dd/yyyy')) ||mergedDates1.includes(format(new Date(), 'MM/dd/yyyy')))?' All dates are taken':'MM/DD/YYYY'}`}
         
@@ -183,7 +204,9 @@ const CustomDatepicker = (props) => {
           new Date(new Date().getFullYear() - 1, new Date().getMonth(), new Date().getDate())}
         includeDates={
           !dateOfBirth
-            ? mergedDates1 && mergedDates1.length > 0 && mergedDates1[0] !== undefined
+            ? 
+            isProviderAny ? anyScheduleDate.map(date => parse(date, 'MM/dd/yyyy', new Date())) :
+            mergedDates1 && mergedDates1.length > 0 && mergedDates1[0] !== undefined
               ? mergedDates1.map(date => parse(date, 'MM/dd/yyyy', new Date()))
               : []
             : undefined
