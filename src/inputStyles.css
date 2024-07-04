@@ -38,10 +38,10 @@ div.holder-info {
 
 .user-input-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
+  gap: 20px !important;
   justify-content: flex-start;
 }
+
 
 .input-box-label {
   display: flex;
@@ -50,12 +50,26 @@ div.holder-info {
 }
 
 .input-box-wrapper {
-  max-width: 563.5px;
+  max-width: 563.5px !important;
+  width: 100%;
+  position: relative;
+}
+
+.user-detail-main .single-page-user-info-wrapper .input-box-wrapper.birth-date-input-box.the-product-page {
+  max-width: 522px !important;
+}
+
+.user-detail-main .single-page-user-info-wrapper .input-box-wrapper.the-product-page {
+  max-width: unset !important;
+}
+
+.general-details-card-wrapper .choose_providers_wrapper.book_time_wrapper .input-box-wrapper {
+  max-width: 522px !important;
   width: 100%;
 }
 
 .input-box-wrapper.birth-date-input-box {
-  max-width: 494px;
+  max-width: 522px !important;
 }
 
 .input-box-wrapper label::after {
@@ -108,19 +122,23 @@ div.holder-info {
 .card-elements {
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
+  gap: 20px;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
   margin-top: 22px;
 }
 
+.card-number-input.StripeElement {
+  padding: 0px !important;
+}
+
 .card-number {
   display: flex;
   flex-direction: column;
   /* width: 563.5px; */
-  width:100%;
-  justify-content:space-between;
+  width: 100%;
+  justify-content: space-between;
   height: 71px;
 }
 
@@ -131,6 +149,7 @@ div.holder-info {
   margin: unset;
   outline: none;
   background-color: #ffffff !important;
+  border: 1px solid rgba(192, 196, 204, 0.47)
 }
 
 .card-label {
@@ -141,9 +160,8 @@ div.holder-info {
 
 .card-info {
   max-width: 563.5px;
-  /* width: 100%; */
   overflow: hidden;
-  height: 71px;
+  height: 74px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -154,17 +172,18 @@ div.holder-info {
 .cvc {
   display: flex;
   flex-direction: column;
-  width: 260px;
-  height: 71px;
+  width: 100% !important;
+  height: 74px;
+  max-width: 265px !important;
 }
 
 .expiry-date .StripeElement,
 .cvc .StripeElement {
-  width: 100% !important;
   height: 44px !important;
   outline: none;
   padding: 9px !important;
   background-color: #ffffff !important;
+  border: 1px solid rgba(192, 196, 204, 0.47);
 }
 
 /* small screen */
@@ -174,7 +193,7 @@ div.holder-info {
   min-width: 100px;
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 18px;
   color: #282d41;
 }
 
@@ -186,14 +205,18 @@ div.holder-info {
   width: 100% !important;
 }
 
+#booking-location-main .the-single-product.selection_wrapper {
+  width: 100% !important;
+}
+
 .card-holder-billing.zip-and-state {
   display: flex;
-  gap:13px;
+  gap: 30px;
 }
 
 div.top-level-addresses-wrapper {
-  display:flex;
-  width:100%;
+  display: flex;
+  width: 100%;
 }
 
 .card-holder-billing.zip-and-state div.input-box-wrapper.the-product-page {
@@ -201,15 +224,23 @@ div.top-level-addresses-wrapper {
 }
 
 .card-number+.card-info {
-  width:100%;
-  gap:32px;
-  justify-content:unset;
+  width: 100%;
+  gap: 32px;
+  justify-content: unset;
 }
 
 .card_number_expiry_wrapper {
-  display:flex;
-  gap:32px;
-  width:100%;
+  display: flex;
+  gap: 32px;
+  width: 100%;
+  font-size: 18px;
+}
+
+@media (max-width: 1280px) {
+  .input-box-wrapper {
+    max-width: 522px !important;
+    width: 100%;
+  }
 }
 
 @media (max-width: 1220px) {
@@ -224,18 +255,20 @@ div.top-level-addresses-wrapper {
   }
 }
 
-@media (max-width:1540px) {
+/* @media (max-width:1540px) {
   .input-box-wrapper {
-    max-width: 522px !important;
+    max-width: 563px !important;
     width: 100%;
   }
-}
+} */
 
 .input-box-error-message {
   color: red;
   font-size: 13px !important;
   font-weight: 500;
   margin-bottom: 2px;
+  position: absolute;
+  top: 70px;
 }
 
 .error-clinic-selection {
@@ -277,13 +310,13 @@ div.top-level-addresses-wrapper {
     flex-wrap: wrap;
   }
 
-  div.top-level-addresses-wrapper > div.address_wrapper {
-    margin-bottom:24px;
+  div.top-level-addresses-wrapper>div.address_wrapper {
+    margin-bottom: 24px;
   }
 
   .card_number_expiry_wrapper {
-   flex-wrap:wrap;
-   margin-top:24px;
+    flex-wrap: wrap;
+    margin-top: 24px;
   }
 
   .cityStateZip .input-box {
@@ -309,10 +342,16 @@ div.top-level-addresses-wrapper {
     gap: unset;
   }
 
-  div.holder-info.holder_name_billing_parent,div.holder-info.country_zip_parent,
-  .card_number_expiry_wrapper
-  {
-    gap:24px;
+  div.holder-info.holder_name_billing_parent,
+  div.holder-info.country_zip_parent,
+  .card_number_expiry_wrapper {
+    gap: 24px;
+    max-width: unset;
+    margin: 9px auto;
+  }
+
+  .card-number-input.StripeElement {
+    padding: 9px !important;
   }
 
   div.holder-info+div.card-number {
@@ -328,6 +367,14 @@ div.top-level-addresses-wrapper {
   .expiry-date,
   .cvc {
     width: 100%;
+  }
+
+  .card-number .StripeElement {
+    padding: unset
+  }
+
+  .card_number_expiry_wrapper .card-number-input.StripeElement {
+    padding: unset !important;
   }
 }
 
@@ -349,7 +396,6 @@ div.top-level-addresses-wrapper {
   div.provider-input-label-wrapper,
   .provider-group-wrapper,
   .payment-cards-wrapper,
-  .bookingDateTime-container-wrapper,
   .card-number .StripeElement,
   .special-instructions-text-area,
   .text-area-label.in-product-page,

@@ -7,8 +7,11 @@
 
 div.the-single-product-page.selection-wrapper {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
+  gap: 20px;
+  flex-wrap: unset !important;
+  max-width: 1175px !important;
+  width: 100%;
   align-items: center;
 }
 
@@ -27,9 +30,8 @@ div.the-single-product-page.selection-wrapper+div.address-wrapper div.address_wr
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 9px 12px;
   gap: 10px;
-  max-width: 521px;
+  max-width: 563px !important;
   width: 100%;
   height: 44px;
   border: 1px solid rgba(192, 196, 204, 0.47);
@@ -92,9 +94,14 @@ div.the-single-product-page.selection-wrapper+div.address-wrapper div.address_wr
   opacity: 1;
 }
 
-.select-clinic-wrapper {
+.the-single-product.selection_wrapper .select-clinic-wrapper {
   position: relative;
   display: block;
+  max-width: 1175px !important;
+}
+
+.the-single-product.selection_wrapper .input-box-error-message {
+  top: 45px !important;
 }
 
 .select-location-dropdown {
@@ -106,7 +113,7 @@ div.the-single-product-page.selection-wrapper+div.address-wrapper div.address_wr
   padding: 9px 12px 9px 30px !important;
   gap: 10px;
   margin-top: 32px !important;
-  max-width: 1072px !important;
+  max-width: 1175px !important;
   width: 100% !important;
   height: 44px;
   border: 1px solid rgba(192, 196, 204, 0.47);
@@ -131,6 +138,39 @@ div.the-single-product-page.selection-wrapper+div.address-wrapper div.address_wr
   right: 90px;
   top: 12px;
   display: none !important;
+}
+
+.bookingDateTime-container-wrapper {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: unset !important;
+  max-width: 1175px !important;
+  width: 100%;
+}
+
+.bookingDateTime-container-wrapper .input-box-wrapper {
+  max-width: 522px !important;
+}
+
+@media (max-width: 1280px) {
+  .single-page-location .choose-radio-wrapper {
+    max-width: 1175px !important;
+  }
+
+  .choose-radio-wrapper {
+    padding: 9px 12px;
+  }
+
+  .general-details-card-wrapper .choose_providers_wrapper.book_time_wrapper .input-box-wrapper {
+    width: 100%;
+  }
+
+  div.the-single-product-page.selection-wrapper .choose-radio-wrapper {
+    max-width: 563px !important;
+    width: 100%;
+  }
 }
 
 /* target large screen */
@@ -197,6 +237,8 @@ div.the-single-product-page.selection-wrapper+div.address-wrapper div.address_wr
 
 .select-clinic-wrapper {
   position: relative;
+  max-width: 321px !important;
+  margin: auto !important;
 }
 
 .location-icon {
@@ -236,10 +278,11 @@ div.the-single-product-page.selection-wrapper+div.address-wrapper div.address_wr
 .location-search-input:active {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
   border: honeydew;
+  border: 1px solid rgba(192, 196, 204, 0.47);
   display: block;
   width: 100%;
   padding: 16px;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 2px;
   outline: none;
 }

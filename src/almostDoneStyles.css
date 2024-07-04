@@ -45,7 +45,6 @@
 }
 
 .promo-wrapper {
-  padding: 20px 20px;
   display: flex;
   gap: 50px;
   justify-content: space-between;
@@ -111,7 +110,7 @@
   display: none;
 }
 
-.tip-choice-group input[type='radio'] + label {
+.tip-choice-group input[type='radio']+label {
   position: relative;
   padding-left: 40px;
   /* increased from 30px to 40px */
@@ -119,7 +118,7 @@
   display: inline-block;
 }
 
-.tip-choice-group input[type='radio'] + label:before {
+.tip-choice-group input[type='radio']+label:before {
   content: '';
   position: absolute;
   left: 0;
@@ -131,7 +130,7 @@
   margin-right: 10px;
 }
 
-.tip-choice-group input[type='radio']:checked + label:after {
+.tip-choice-group input[type='radio']:checked+label:after {
   content: '';
   position: absolute;
   left: 7px;
@@ -188,13 +187,14 @@
     display: block;
     padding: 20px 10px;
   }
+
   .promo-discount-button-wrapper {
     display: flex;
     justify-content: space-between;
     gap: 15px;
   }
-  .enter-promo-discount {
-  }
+
+  .enter-promo-discount {}
 
   .apply-promo-btn {
     /* Auto layout */

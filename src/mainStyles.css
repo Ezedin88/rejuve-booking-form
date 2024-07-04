@@ -5,9 +5,19 @@
 .order-summary-main-card-wrapper {
   position: relative;
   background-color: #e3faff;
-  padding-inline: 50px;
+  padding-inline: 52px;
 }
 
+#user-detail-section {
+  max-width: 1251px !important;
+  margin: 0 auto;
+}
+
+.single-page-user-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
 .order-summary-main-card-wrapper {
   background-color: #FFF9EB;
@@ -45,19 +55,16 @@
 
 /* blocks end end here */
 
-section.product-page-form-section-wrapper {
-  max-width: 1257px;
-  width: 100%;
-  margin: auto;
-}
 
 .css-1xc3v61-indicatorContainer {
   display: none !important;
 }
 
-@media screen and (max-width: 1220px) {
+@media screen and (max-width: 1280px) {
   section.product-page-form-section-wrapper {
-    max-width: 1172px;
+    max-width: 1200px;
+    padding: 0 20px;
+    width: unset !important;
   }
 }
 
@@ -324,11 +331,18 @@ section.product-page-form-section-wrapper {
 /* small screen */
 @media (max-width: 643px) {
 
+  #user-detail-section .general-details-card-wrapper {
+    width: unset !important;
+  }
+
+  div.the-single-product-page.selection-wrapper {
+    flex-direction: column;
+  }
+
   .user-detail-main,
   .booking-location-main,
   .choose-providers {
     /* padding: 33px 20px; */
-    width: 100%;
     padding: 25px;
   }
 
@@ -337,8 +351,8 @@ section.product-page-form-section-wrapper {
   .choose-providers,
   .almost-done-section,
   .order-summary-main-card-wrapper {
-    padding-inline: unset;
     margin: auto;
+    font-size: 18px !important;
   }
 
   .click-agree-reminder-wrapper {
@@ -523,7 +537,6 @@ section.product-page-form-section-wrapper {
   font-size: 16px !important;
   line-height: 22px !important;
   /* identical to box height, or 138% */
-  display: flex;
   align-items: center;
   font-feature-settings: 'tnum' on, 'lnum' on;
   color: #afb1b3;
