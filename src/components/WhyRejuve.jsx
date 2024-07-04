@@ -34,7 +34,7 @@ const thirdHeroTitle = convenience_list_2_convenience_title || convenience_list_
       <div className="main-section-container">
       <div className='product-section-cards' >
         <div className='product-section-card'>
-          <img src="http://rejuve.com/wp-content/uploads/2024/01/Frame_9.svg" alt="placeholder" />
+          <img src="http://rejuve.md/wp-content/uploads/2024/01/Frame_9.svg" alt="placeholder" />
           <h1 
       className="product-section-card-h1" 
       dangerouslySetInnerHTML={{ __html: mainHeroTitle }}
@@ -44,14 +44,14 @@ const thirdHeroTitle = convenience_list_2_convenience_title || convenience_list_
           >{convenience_list_0_convenience_dscription || convenience_list_0_description}</p>
         </div>
         <div className='product-section-card'>
-          <img src="http://rejuve.com/wp-content/uploads/2024/01/Frame_8.svg" alt="placeholder" />
+          <img src="http://rejuve.md/wp-content/uploads/2024/01/Frame_8.svg" alt="placeholder" />
          <h1 className="product-section-card-h1" dangerouslySetInnerHTML={{ __html: secondHeroTitle }} />
           <p
             className='why-rejuve-description'  
           >{convenience_list_1_convenience_dscription || convenience_list_1_description}</p>
         </div>
         <div className='product-section-card'>
-          <img src="http://rejuve.com/wp-content/uploads/2024/01/Frame_10.svg" alt="placeholder" />
+          <img src="http://rejuve.md/wp-content/uploads/2024/01/Frame_10.svg" alt="placeholder" />
           <h1 className="product-section-card-h1" dangerouslySetInnerHTML={{ __html: thirdHeroTitle }} />
           <p
             className='why-rejuve-description'

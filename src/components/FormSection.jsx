@@ -321,7 +321,7 @@ const selectBooster = treatments
                 <div className="add-another-person-main">
                   {areThereUserDataErrors && (
                     <div className="another-person-info-error">
-                      <img src="http://rejuve.com/wp-content/uploads/2024/05/info-1.svg" />
+                      <img src="http://rejuve.md/wp-content/uploads/2024/05/info-1.svg" />
                       <p className="fill-all-fields">
                         Please fill your information before adding another
                         person
@@ -350,7 +350,7 @@ const selectBooster = treatments
                       });
                     }}
                   >
-                    <img src="http://rejuve.com/wp-content/uploads/2024/05/personIcon-1.svg" />
+                    <img src="http://rejuve.md/wp-content/uploads/2024/05/personIcon-1.svg" />
                     Add Another Person
                   </button>
                 </div>
@@ -496,7 +496,7 @@ const selectBooster = treatments
                   >
                     <div>
                       <img
-                        src="http://rejuve.com/wp-content/uploads/2024/05/lock-icon-1.svg"
+                        src="http://rejuve.md/wp-content/uploads/2024/05/lock-icon-1.svg"
                         alt="locked icon"
                       />
                     </div>
@@ -511,25 +511,25 @@ const selectBooster = treatments
               {/* {Object.keys(errors).length > 0 && <small style={{ color: 'red', fontSize: '16px' }}>Please fill all fields</small>} */}
               {termsError && (
                 <div className="click-agree-reminder-wrapper">
-                  <img src="http://rejuve.com/wp-content/uploads/2024/05/info-1.svg" />
+                  <img src="http://rejuve.md/wp-content/uploads/2024/05/info-1.svg" />
                   <p className="agree-to-tos-info">
                     You need to read and agree to our{' '}
                     <a
-                      href="https://rejuve.com/tos-policy/"
+                      href="https://rejuve.md/tos-policy/"
                       alt="Privacy policy"
                     >
                       Tos
                     </a>
                     ,
                     <a
-                      href="https://rejuve.com/privacy-policy/"
+                      href="https://rejuve.md/privacy-policy/"
                       alt="Privacy policy"
                     >
                       Privacy Policy
                     </a>
                     ,
                     <a
-                      href="https://rejuve.com/consent-to-treat-policy/"
+                      href="https://rejuve.md/consent-to-treat-policy/"
                       alt="Privacy policy"
                     >
                       {' '}
@@ -537,7 +537,7 @@ const selectBooster = treatments
                     </a>{' '}
                     and
                     <a
-                      href="https://rejuve.com/cancellation-policy/"
+                      href="https://rejuve.md/cancellation-policy/"
                       alt="Privacy policy"
                     >
                       {' '}
@@ -549,7 +549,7 @@ const selectBooster = treatments
               )}
               {hasUserDataErrors && (
                 <div className="click-agree-reminder-wrapper">
-                  <img src="http://rejuve.com/wp-content/uploads/2024/05/info-1.svg" />
+                  <img src="http://rejuve.md/wp-content/uploads/2024/05/info-1.svg" />
                   <p className="agree-to-tos-info">
                     Fill all required fields to continue booking.
                   </p>
