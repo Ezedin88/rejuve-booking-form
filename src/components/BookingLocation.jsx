@@ -126,11 +126,11 @@ function BookingLocation({ values,isScriptLoaded }) {
           </select>
           <img
             className="location-icon"
-            src="http://rejuve.md/wp-content/uploads/2024/05/location-icon-1.svg"
+            src="http://rejuve.com/wp-content/uploads/2024/05/location-icon-1.svg"
           />
           <img
             className="drop-down-icon"
-            src="http://rejuve.md/wp-content/uploads/2024/05/arrow-down.svg"
+            src="http://rejuve.com/wp-content/uploads/2024/05/arrow-down.svg"
           />
           <ErrorMessage
             name="clinicChoice"

@@ -137,6 +137,9 @@ const CustomDatepicker = (props) => {
   const anyScheduleDate = getWeekdays(new Date(), 365);
 
 const isProviderAny = values?.provider === 'Any';
+const isAvailable1 = mergedDates1.length || mergedDates1[0] === undefined || mergedDates1.length > 0 ?true:false;
+const isAvailable2 = !mergedDates1.includes(format(new Date(), 'MM/dd/yyyy'));
+
   return (
     <div className="date-picker-container">
       <MdOutlineCalendarToday className="calendar-icon" />
@@ -190,10 +193,8 @@ const isProviderAny = values?.provider === 'Any';
             </button>
           </div>
         )}
-        placeholderText={`${!dateOfBirth &&
-          isProviderAny ? 'MM/DD/YYYY':
-        (mergedDates1.length === 0 || mergedDates1[0] === undefined||mergedDates1.length>0) &&
-        (!mergedDates1.includes(format(new Date(), 'MM/dd/yyyy')) ||mergedDates1.includes(format(new Date(), 'MM/dd/yyyy')))?' All dates are taken':'MM/DD/YYYY'}`}
+        placeholderText={`${dateOfBirth && 'MM/DD/YYYY' || isProviderAny ? 'MM/DD/YYYY':
+        isAvailable1||isAvailable2 ? 'MM/DD/YYYY' : 'Please Select Another Provider'}`}
         
         dateFormat="MM/dd/yyyy"
         showPopperArrow={false}

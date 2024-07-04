@@ -3,14 +3,14 @@
 export const client = {
 
     sendEmail: async ({ message }) => {
-        const url = 'https://rejuve.md/wp-json/custom/v1/send-email';
+        const url = 'https://rejuve.com/wp-json/custom/v1/send-email';
         const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                to: 'booking@rejuve.md',
+                to: 'booking@rejuve.com',
                 subject: 'Discrepancy in Cardholder Information for Patient Billing',
                 message: message
             })
@@ -19,7 +19,7 @@ export const client = {
     },
 
     getProductById: async (product_id) => {
-        const apiUrl = `https://rejuve.md/wp-json/wc/v3/products/${product_id}`;
+        const apiUrl = `https://rejuve.com/wp-json/wc/v3/products/${product_id}`;
         const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
         const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
         const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
@@ -39,7 +39,7 @@ export const client = {
         }
     },
     getAllTreatments: async () => {
-        const apiUrl = `https://rejuve.md/wp-json/wc/v3/products/?per_page=100`;
+        const apiUrl = `https://rejuve.com/wp-json/wc/v3/products/?per_page=100`;
         const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
         const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
 
@@ -58,7 +58,7 @@ export const client = {
         }
     },
     async getAllProviders() {
-        const url = `https://rejuve.md/wp-json/wp/v2/provider?status=publish`;
+        const url = `https://rejuve.com/wp-json/wp/v2/provider?status=publish`;
         const username = 'ck_fc0b9c9746fdf1fbabcb01d6cf35f7e577c349d2';
         const password = 'cs_4ba59ff35428397bbebc94ce42425deeeff5cc9d';
         const encodedCredentials = btoa(`${username}:${password}`);
@@ -92,7 +92,7 @@ export const client = {
     async getSelectedProviderTimeAndDate(props) {
         const { providerId, values, providers } = props || {};
         const { bookingChoice } = values || {};
-        const url = `https://rejuve.md/wp-json/wc/v3/orders`;
+        const url = `https://rejuve.com/wp-json/wc/v3/orders`;
         const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
         const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
         const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
@@ -251,7 +251,7 @@ export const client = {
 
     ,
     async createOrder(order) {
-        const url = `https://rejuve.md/wp-json/wc/v3/orders`;
+        const url = `https://rejuve.com/wp-json/wc/v3/orders`;
         const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
         const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
         const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
@@ -294,7 +294,7 @@ export const client = {
     // },
 
     getCentersData: async () => {
-        const url = `https://rejuve.md/wp-json/zenoti/v1/get-all-centers`;
+        const url = `https://rejuve.com/wp-json/zenoti/v1/get-all-centers`;
         const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
         const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
         const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
@@ -316,7 +316,7 @@ export const client = {
     },
     // create a guest
     createZenotiGuest: async (guestData) => {
-        const url = `https://rejuve.md/wp-json/zenoti/v1/create-guest`;
+        const url = `https://rejuve.com/wp-json/zenoti/v1/create-guest`;
         const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
         const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
         const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
@@ -340,7 +340,7 @@ export const client = {
 
     // get providers
     getZenotiProviders: async () => {
-        const url = `https://rejuve.md/wp-json/zenoti/v1/get-zenoti-providers`;
+        const url = `https://rejuve.com/wp-json/zenoti/v1/get-zenoti-providers`;
         const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
         const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
         const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);

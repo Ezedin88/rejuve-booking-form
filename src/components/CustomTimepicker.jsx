@@ -50,14 +50,25 @@ for (let i = 0; i < 24; i++) {
   }
 }
 
-const addHours = (date, hours) => {
-  const result = new Date(date);
-  result.setHours(result.getHours() + hours);
-  return result;
-};
+function formatTimes(times) {
+  return times?.length>0 && times?.map(time => ({
+      label: time,
+      value: time
+  }))||[];
+}
 
-const currentTime = new Date();
-const futureTime = addHours(currentTime, 3);
+const TimePicker = (props) => {
+  const [selectedTime, setSelectedTime] = React.useState(null);
+  const { setFieldTouched, setFieldValue, values } = useFormikContext();
+
+
+  const currentTime = new Date();
+let futureTime = new Date();
+
+// Calculate future time (3 hours from now) if values.provider === 'Any' and values.bookingDate is today
+if (values.provider === 'Any' && values.bookingDate && new Date(values.bookingDate).toDateString() === currentTime.toDateString()) {
+  futureTime.setHours(currentTime.getHours() + 3);
+}
 
 const filteredTimeOptions = timeOptions.filter(({ value }) => {
   const [time, period] = value.split(' ');
@@ -80,7 +91,12 @@ const filteredTimeOptions = timeOptions.filter(({ value }) => {
     (timeIn24HourFormat < 18 || (timeIn24HourFormat === 18 && minute <= 30));
 
   // Check if the time is at least 3 hours later than the current time
-  const isLaterThanFutureTime = optionDate >= futureTime;
+  const isLaterThanFutureTime = !(
+    values.provider === 'Any' &&
+    values.bookingDate &&
+    new Date(values.bookingDate).toDateString() === currentTime.toDateString() &&
+    optionDate < futureTime
+  );
 
   return isInTimeRange && isLaterThanFutureTime;
 });
@@ -88,16 +104,6 @@ const filteredTimeOptions = timeOptions.filter(({ value }) => {
 
 
 
-function formatTimes(times) {
-  return times?.length>0 && times?.map(time => ({
-      label: time,
-      value: time
-  }))||[];
-}
-
-const TimePicker = (props) => {
-  const [selectedTime, setSelectedTime] = React.useState(null);
-  const { setFieldTouched, setFieldValue, values } = useFormikContext();
   const { name } = props;
   const availableTimes = props?.availableTimes;
   const mergedDates = props?.mergedDates;
