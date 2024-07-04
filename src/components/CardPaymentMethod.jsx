@@ -74,6 +74,26 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
         <div>
           <div className="card-elements">
             {/* holder name and address */}
+            <div className="card_number_expiry_wrapper">
+              <div className="card-number">
+                <label className="card-label in-product-page">Card number</label>
+                <CardNumberElement
+                  options={CARD_ELEMENT_OPTIONS}
+                  className="card-number-input"
+                />
+              </div>
+
+              <div className="card-info">
+                <div className="expiry-date">
+                  <label className="card-label in-product-page">Expiration</label>
+                  <CardExpiryElement options={CARD_ELEMENT_OPTIONS} />
+                </div>
+                <div className="cvc">
+                  <label className="card-label in-product-page">CVC</label>
+                  <CardCvcElement options={CARD_ELEMENT_OPTIONS} />
+                </div>
+              </div>
+            </div>
             <div className="holder-info holder_name_billing_parent">
               <div className="card-holder-name">
                 <CustomInput
@@ -126,15 +146,15 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
                               : 'suggestion-item input-box';
                             const style = suggestion.active
                               ? {
-                                  backgroundColor: '#fafafa',
-                                  cursor: 'pointer',
-                                  color: '#000',
-                                }
+                                backgroundColor: '#fafafa',
+                                cursor: 'pointer',
+                                color: '#000',
+                              }
                               : {
-                                  backgroundColor: '#ffffff',
-                                  cursor: 'pointer',
-                                  color: '#000',
-                                };
+                                backgroundColor: '#ffffff',
+                                cursor: 'pointer',
+                                color: '#000',
+                              };
                             return (
                               <div
                                 key={suggestion.placeId}
@@ -187,26 +207,6 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
                   onChange={handleZipChange}
                 />
               </div>
-            </div>
-                <div className="card_number_expiry_wrapper">
-            <div className="card-number">
-              <label className="card-label in-product-page">Card number</label>
-              <CardNumberElement
-                options={CARD_ELEMENT_OPTIONS}
-                className="card-number-input"
-              />
-            </div>
-
-            <div className="card-info">
-              <div className="expiry-date">
-                <label className="card-label in-product-page">Expiration</label>
-                <CardExpiryElement options={CARD_ELEMENT_OPTIONS} />
-              </div>
-              <div className="cvc">
-                <label className="card-label in-product-page">CVC</label>
-                <CardCvcElement options={CARD_ELEMENT_OPTIONS} />
-              </div>
-            </div>
             </div>
           </div>
         </div>
