@@ -211,7 +211,8 @@ function BookingLocation({ values, isScriptLoaded }) {
                   )}
                 </PlacesAutocomplete>
                 <CustomInput
-                  label="Your Address2"
+                  label="Your Address 2"
+                  placeholder="4579 Norman Street"
                   name="bookingAddress.address_2"
                   type="text"
                 />
@@ -222,11 +223,13 @@ function BookingLocation({ values, isScriptLoaded }) {
                   label="City"
                   name="bookingAddress.city"
                   type="text"
+                  placeholder="Los Angeles"
                   value={city || values.bookingAddress.city}
                 />
                 <CustomInput
                   cityStateZip
                   label="State"
+                  placeholder="California"
                   name="bookingAddress.state"
                   type="text"
                   value={state || values.bookingAddress.state}
@@ -234,6 +237,7 @@ function BookingLocation({ values, isScriptLoaded }) {
                 <CustomInput
                   cityStateZip
                   label="zipcode"
+                  placeholder="90008"
                   name="bookingAddress.postcode"
                   type="text"
                   value={zip || values.bookingAddress.postcode}

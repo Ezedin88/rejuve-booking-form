@@ -13,12 +13,12 @@ const CustomInput = ({
   mergedDates,
   ...props
 }) => {
-  const [field, meta] = useField(props);
-  return (
-    <>
-      {
-        // if radio
-        (props.type === 'radio' && (
+  const [field] = useField(props);
+
+  const renderInputField = () => {
+    switch (props.type) {
+      case 'radio':
+        return (
           <div className="radio-input-wrapper">
             <div className="radio-box">
               <input
@@ -40,38 +40,40 @@ const CustomInput = ({
               {label}
             </p>
           </div>
-        )) ||
-          // if text area
-          (props.type === 'textArea' && (
-            <div className="text-area-wrapper-input">
-              <div className="text-area-label in-product-page" htmlFor={field.name}>
-                {label}
-              </div>
-              <textarea
-                placeholder={placeholder}
-                {...field}
-                {...props}
-                autoComplete="true"
-                className="special-instructions-text-area"
-              />
+        );
+
+      case 'textArea':
+        return (
+          <div className="text-area-wrapper-input">
+            <div className="text-area-label in-product-page" htmlFor={field.name}>
+              {label}
             </div>
-          ))
-      }
-      {props.type !== 'radio' &&
-        props.type !== 'textArea' &&
-        props.type !== 'date' &&
-        props.type !== 'time' && (
-<div className={`${cityStateZip ? 'cityStateZip' : 'input-box-wrapper'} the-product-page`}>
-              <div className="label-input-wrapper">
-              <label className="input-box-label" htmlFor={field.name}>
+            <textarea
+              placeholder={placeholder}
+              {...field}
+              {...props}
+              autoComplete="true"
+              className="special-instructions-text-area"
+            />
+          </div>
+        );
+
+      case 'date':
+        return (
+          <div
+            className={`${cityStateZip ? 'cityStateZip' : 'input-box-wrapper'} ${dateOfBirth && 'birth-date-input-box'} the-product-page`}
+          >
+            <div className="label-input-wrapper">
+              <label className={`input-box-label ${dateOfBirth && 'birth-date-label'}`} htmlFor={field.name}>
                 {label}
               </label>
-              <input
-                placeholder={placeholder}
+              <CustomDatepicker
+                availableDates={availableDates}
+                mergedDates={mergedDates}
+                dateOfBirth={dateOfBirth}
+                htmlFor={field.name}
                 {...field}
                 {...props}
-                autoComplete="true"
-                className={`${props.className ? props.className : ''} ${props.name === 'bookingAddress.address_1' ? 'input-box' : 'input-box'}`}
               />
             </div>
             <ErrorMessage
@@ -81,73 +83,73 @@ const CustomInput = ({
               style={{}}
             />
           </div>
-        )}
+        );
 
-      {props.type === 'time' && (
+      case 'time':
+        return (
           <div className={`${cityStateZip ? 'cityStateZip' : 'input-box-wrapper'} the-product-page`}>
-          <div className="label-input-wrapper">
-            <label className="input-box-label" htmlFor={field.name}>
-              {label}
-            </label>
-            <TimePicker
-              availableTimes={availableTimes}
-              mergedDates={mergedDates}
-              htmlFor={field.name}
-              {...field}
-              {...props}
+            <div className="label-input-wrapper">
+              <label className="input-box-label" htmlFor={field.name}>
+                {label}
+              </label>
+              <TimePicker
+                availableTimes={availableTimes}
+                mergedDates={mergedDates}
+                htmlFor={field.name}
+                {...field}
+                {...props}
+              />
+            </div>
+            <ErrorMessage
+              className="input-box-error-message"
+              component="div"
+              name={field.name}
+              style={{}}
             />
           </div>
-          <ErrorMessage
-            className="input-box-error-message"
-            component="div"
-            name={field.name}
-            style={{}}
-          />
-        </div>
-      )}
+        );
 
-      {props.type === 'date' && (
-        <div className={`${cityStateZip ? 'cityStateZip' : 'input-box-wrapper'}
-          ${dateOfBirth && 'birth-date-input-box'}
-          the-product-page
-        `}>
-          <div className="label-input-wrapper">
-            <label className={`input-box-label ${dateOfBirth && 'birth-date-label'}`} htmlFor={field.name}>
-              {label}
-            </label>
-            <CustomDatepicker
-              availableDates={availableDates}
-              mergedDates={mergedDates}
-              dateOfBirth={dateOfBirth}
-              htmlFor={field.name}
-              {...field}
-              {...props}
+      default:
+        return (
+          <div className={`${cityStateZip ? 'cityStateZip' : 'input-box-wrapper'} the-product-page`}>
+            <div className="label-input-wrapper">
+              <label className="input-box-label" htmlFor={field.name}>
+                {label}
+              </label>
+              <input
+                placeholder={placeholder}
+                {...field}
+                {...props}
+                autoComplete="true"
+                className={`${props.className ? props.className : ''} input-box`}
+              />
+            </div>
+            <ErrorMessage
+              className="input-box-error-message"
+              component="div"
+              name={field.name}
+              style={{}}
             />
           </div>
-          <ErrorMessage
-            className="input-box-error-message"
-            component="div"
-            name={field.name}
-            style={{}}
-          />
-        </div>
-      )}
-    </>
-  );
+        );
+    }
+  };
+
+  return <>{renderInputField()}</>;
 };
-// const errorMessage = {
-//     color: "red",
-//     position: "absolute",
-//     fontSize: "11px"
-// }
-
-export default CustomInput;
 
 CustomInput.propTypes = {
   label: propTypes.string.isRequired,
   placeholder: propTypes.string,
   cityStateZip: propTypes.bool,
+  dateOfBirth: propTypes.bool,
+  availableDates: propTypes.array,
+  availableTimes: propTypes.array,
+  mergedDates: propTypes.array,
   props: propTypes.object,
   ref: propTypes.object,
   type: propTypes.string,
+  className: propTypes.string,
 };
+
+export default CustomInput;

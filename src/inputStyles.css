@@ -28,7 +28,12 @@ div.holder-info .card-holder-billing {
 }
 
 #credit-card-section .card-elements .holder-info input {
-  font-size: 18px !important;
+  font-size: 15px !important;
+}
+
+/* target place holder */
+#credit-card-section .card-elements .holder-info input::placeholder {
+  color: #C0C4CC;
 }
 
 div.holder-info {
@@ -48,6 +53,7 @@ div.holder-info {
 .input-box-label {
   display: flex;
   white-space: nowrap;
+  margin-bottom: 5px;
   gap: 3px;
 }
 
@@ -158,6 +164,8 @@ div.holder-info {
   text-align: left;
   margin-bottom: 5px;
   color: #282d41;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .card-info {
@@ -192,14 +200,12 @@ div.holder-info {
   padding: 9px !important;
 }
 
-/* small screen */
-
 .input-box-label {
   text-align: left;
   min-width: 100px;
   font-style: normal;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 14px;
   color: #282d41;
 }
 
@@ -240,6 +246,12 @@ div.top-level-addresses-wrapper {
   gap: 32px;
   width: 100%;
   font-size: 18px;
+}
+
+/* for card elements */
+.ElementsApp,
+.ElementsApp .InputElement {
+  font-size: 15px !important;
 }
 
 @media (max-width: 1280px) {

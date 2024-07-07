@@ -34,6 +34,13 @@ export const handleValidation = yup.object().shape({
         then: (s)=>s.required('Clinic location is required'),
         otherwise: (s)=>s,
     }),
+    card_number: yup.string().when('paymentMethod', {
+        is:(val)=>{
+            return val === 'creditCard'
+        },
+        then:(s)=>s.required('Card number is required'),
+        otherwise:(s)=>s,
+    }),
     bookingAddress: yup.object().shape({
         address_1: yup.string().when('$bookingChoice', {
            is:(val)=>{

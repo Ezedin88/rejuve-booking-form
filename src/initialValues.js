@@ -32,6 +32,7 @@ export const initialValues = {
             country: '',
         },
     },
+    card_number: '',
     bookingDate: '',
     bookingTime: '',
     provider: 'Any',

@@ -1,4 +1,5 @@
 import '../paymentMethod.css';
+import PropTypes from 'prop-types';
 import CustomInput from '../CustomInput';
 import {
   CardCvcElement,
@@ -6,10 +7,9 @@ import {
   CardNumberElement,
   useElements,
   useStripe,
-  AddressElement,
 } from '@stripe/react-stripe-js';
 import { useEffect } from 'react';
-import { useFormikContext } from 'formik';
+import { ErrorMessage, useFormikContext } from 'formik';
 import useLocationAutoComplete from '../hooks/LocationAutoCompleteHolder';
 import PlacesAutocomplete from 'react-places-autocomplete';
 
@@ -30,6 +30,8 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
         fontSmoothing: 'antialiased',
         '::placeholder': {
           color: '#c6c6c6',
+          fontSize: '15px',
+          content: 'hello'
         },
       },
       invalid: {
@@ -39,7 +41,7 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
     },
   };
 
-  const { setFieldValue, setFieldTouched } = useFormikContext();
+  const { setFieldValue, setFieldTouched, setFieldError } = useFormikContext();
   const {
     address,
     handleChange,
@@ -68,6 +70,15 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
     }
   }, [extractedAddress, city, state, zip, setFieldValue, setFieldTouched]);
 
+  // const handleCardNumberBlur = () => {
+  //   console.log("Blurred!")
+  //   setFieldTouched('cardNumber', true);
+  //   if (!cardElement._elementState.empty) {
+  //     console.log('empty')
+  //     setFieldError('cardNumber', 'Card number is required');
+  //   }
+  // };
+
   return (
     <>
       {values.paymentMethod === 'creditCard' && (
@@ -78,15 +89,21 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
               <div className="card-number">
                 <label className="card-label in-product-page">Card number</label>
                 <CardNumberElement
-                  options={CARD_ELEMENT_OPTIONS}
+                  options={{ ...CARD_ELEMENT_OPTIONS, placeholder: '1234 - 4567 - 8901 - 2345' }}
+                  name="cardNumber"
                   className="card-number-input"
+                />
+                <ErrorMessage
+                  name="cardNumber"
+                  component="div"
+                  className="error-message"
                 />
               </div>
 
               <div className="card-info">
                 <div className="expiry-date">
                   <label className="card-label in-product-page">Expiration</label>
-                  <CardExpiryElement options={CARD_ELEMENT_OPTIONS} />
+                  <CardExpiryElement options={CARD_ELEMENT_OPTIONS} name="card_number"/>
                 </div>
                 <div className="cvc">
                   <label className="card-label in-product-page">CVC</label>
@@ -222,3 +239,8 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
 }
 
 export default CardPaymentMethod;
+
+CardPaymentMethod.propTypes = {
+  values: PropTypes.object.isRequired,
+  isScriptLoaded: PropTypes.bool.isRequired,
+};

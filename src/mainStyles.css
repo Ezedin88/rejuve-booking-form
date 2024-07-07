@@ -19,6 +19,16 @@
   gap: 20px;
 }
 
+.single-page-user-info-wrapper .input-box-wrapper input::placeholder {
+  color: color: rgba(40, 45, 65, 0.7);;
+  font-size: 14px;
+}
+
+.single-page-user-info-wrapper .input-box-wrapper:last-child input::placeholder {
+  color: #C0C4CC;
+  font-size: 14px;
+}
+
 .order-summary-main-card-wrapper {
   background-color: #FFF9EB;
 }
@@ -529,7 +539,7 @@
 
 .agree-to-tos-info {
   /* You need to read and agree to our Tos, Privacy Policy , Consent To Treat and Cancellation Policy to continue booking. */
-  max-width: 887px !important;
+  max-width: 905px !important;
   text-align: left !important;
   font-family: 'Inter' !important;
   font-style: normal !important;

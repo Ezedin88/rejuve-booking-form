@@ -10,7 +10,7 @@ function UserDetail({ index }) {
             </div>
             <div className='user-input-wrapper'>
                 <CustomInput placeholder='jonathan.s@gmail.com' label="Email" name={`userData[${index}].billing.email`} type="email" />
-                <CustomInput placeholder='Phone number' label="Phone" name={`userData[${index}].billing.phone`} type="text" />
+                <CustomInput placeholder='(123) 456-7890' label="Phone" name={`userData[${index}].billing.phone`} type="text" />
             </div>
             <CustomInput placeholder='07/19/19' label="Date of Birth" name={`userData[${index}].billing.dateOfBirth`} type="date" dateOfBirth />
         </div>
