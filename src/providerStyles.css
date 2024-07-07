@@ -28,7 +28,6 @@
 .provider-group-wrapper {
     margin-top: 32px;
     display: flex;
-    flex-wrap: wrap;
     gap: 20px;
     justify-content: space-between;
 }
@@ -41,6 +40,12 @@
     .choose_providers_wrapper .choose-providers .provider-group-wrapper {
         flex-wrap: unset;
         max-width: 1175px !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .order-summary-main-card-wrapper {
+        padding-inline: unset !important;
     }
 }
 

@@ -27,6 +27,9 @@ div.holder-info .card-holder-billing {
   width: 100%;
 }
 
+#credit-card-section .card-elements .holder-info input {
+  font-size: 18px !important;
+}
 
 div.holder-info {
   display: flex;
@@ -41,7 +44,6 @@ div.holder-info {
   gap: 20px !important;
   justify-content: flex-start;
 }
-
 
 .input-box-label {
   display: flex;
@@ -130,7 +132,7 @@ div.holder-info {
 }
 
 .card-number-input.StripeElement {
-  padding: 0px !important;
+  padding: 9px !important;
 }
 
 .card-number {
@@ -184,6 +186,10 @@ div.holder-info {
   padding: 9px !important;
   background-color: #ffffff !important;
   border: 1px solid rgba(192, 196, 204, 0.47);
+}
+
+#credit-card-section .card-elements .card-number .card-number-input>div {
+  padding: 9px !important;
 }
 
 /* small screen */
@@ -298,6 +304,16 @@ div.top-level-addresses-wrapper {
     /* margin-top: 20px; */
     width: 100%;
   }
+
+  input[type='text'] {
+    max-width: unset !important;
+    width: 100%;
+  }
+
+  .single-page-user-info-wrapper div {
+    flex-wrap: nowrap !important;
+    flex-direction: row !important;
+  }
 }
 
 .form-main-titles {
@@ -373,8 +389,8 @@ div.top-level-addresses-wrapper {
     padding: unset
   }
 
-  .card_number_expiry_wrapper .card-number-input.StripeElement {
-    padding: unset !important;
+  .single-page-user-info-wrapper div:nth-child(1) {
+    flex-direction: column !important;
   }
 }
 
@@ -391,11 +407,9 @@ div.top-level-addresses-wrapper {
     margin: 0 auto;
   }
 
-  .user-input-wrapper,
   div.the-single-product-page.selection-wrapper,
   div.provider-input-label-wrapper,
   .provider-group-wrapper,
-  .payment-cards-wrapper,
   .card-number .StripeElement,
   .special-instructions-text-area,
   .text-area-label.in-product-page,
@@ -405,8 +419,13 @@ div.top-level-addresses-wrapper {
     margin: auto;
   }
 
+
+  .payment-cards-wrapper {
+    width: 100%;
+    margin: auto;
+  }
+
   .card-info {
-    max-width: 340px;
     margin: auto;
     width: 100%;
   }
@@ -418,7 +437,6 @@ div.top-level-addresses-wrapper {
 
 @media(max-width:400px) {
   div.card-elements div.card-info {
-    flex-wrap: wrap;
     height: unset;
   }
 
