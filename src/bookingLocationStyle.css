@@ -39,6 +39,10 @@ div.the-single-product-page.selection-wrapper+div.address-wrapper div.address_wr
   outline: none;
 }
 
+#booking-location-main .the-single-product-page .choose-radio-wrapper {
+  padding: 10px !important;
+}
+
 .location-where {
   font-family: 'Inter';
   font-style: normal;
