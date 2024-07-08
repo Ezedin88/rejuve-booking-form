@@ -1,0 +1,4868 @@
+@charset "UTF-8";
+
+#root {
+  margin: 0 auto;
+  text-align: center;
+  font-family: inter
+}
+
+@media screen and (max-width: 768px) {
+
+  .product-description .responsiveGrid,
+  .responsiveGrid {
+    grid-template-columns: repeat(1, 1fr)
+  }
+
+  .react-datepicker-popper {
+    left: 0
+  }
+}
+
+.react-datepicker-wrapper {
+  width: 100% !important
+}
+
+.react-datepicker-wrapper .react-datepicker__input-container input {
+  padding-left: 45px !important
+}
+
+@media screen and (min-width: 768px) {
+  .react-datepicker-popper {
+    left: 190px !important
+  }
+}
+
+.css-1xc3v61-indicatorContainer svg {
+  right: -170px !important
+}
+
+@media screen and (min-width: 768px) {
+  .react-datepicker-wrapper .react-datepicker__input-container:after {
+    right: 20px !important
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .css-1xc3v61-indicatorContainer svg {
+    right: 37px !important
+  }
+}
+
+.react-datepicker-popper .react-datepicker .react-datepicker__header select {
+  padding: 0 20px !important;
+  min-width: 100px !important
+}
+
+.react-datepicker-popper .react-datepicker .react-datepicker__header button:after {
+  border: none !important
+}
+
+@media screen and (max-width: 390px) {
+  .time-picker-select svg {
+    right: 60px !important
+  }
+}
+
+.all-wrapper {
+  padding: 10px
+}
+
+@keyframes logo-spin {
+  0% {
+    transform: rotate(0)
+  }
+
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear
+  }
+}
+
+.card {
+  padding: 2em
+}
+
+.read-the-docs {
+  color: #888
+}
+
+.single-product-page-product-hero-main-wrapper section.beauty_description_decolletage {
+  padding-top: 64px !important;
+  position: relative !important;
+  z-index: 2 !important
+}
+
+section.decolletage_wrapper_header .botox-page-title {
+  margin: auto !important;
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 48px !important;
+  line-height: 120% !important;
+  text-align: center !important;
+  color: #282d41 !important
+}
+
+section.decolletage_wrapper_header .botox-page-title-description {
+  max-width: 513px !important;
+  margin: auto !important;
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 32px !important;
+  line-height: 120% !important;
+  text-align: center !important;
+  color: #282d41 !important;
+  padding-top: 22px !important;
+  padding-bottom: 4px !important
+}
+
+section.decolletage_wrapper_header .botox-page-description-content {
+  max-width: 334px !important;
+  margin: auto !important;
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 32px !important;
+  line-height: 120% !important;
+  text-align: center !important;
+  color: #32c0cc !important
+}
+
+section.product-hero-wrapper.hero-decolattege {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: -125px !important;
+  position: relative !important;
+  z-index: 1 !important
+}
+
+.product-image.decolattege-image {
+  position: relative !important
+}
+
+.product-image.decolattege-image {
+  margin-bottom: -6px !important
+}
+
+.face-buttons-wrapper {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  top: 39.5%
+}
+
+section.eye-brow-button-wrapper input.eye-brow-button {
+  position: relative;
+  left: 6.09%;
+  top: 10px
+}
+
+section.crow-feet-button-wrapper input.crow-feet-button {
+  position: relative;
+  right: 6.9%;
+  top: 25px
+}
+
+section.lip-top-button-wrapper input.lip-top-button {
+  background: #09aef0;
+  position: relative;
+  top: 75px
+}
+
+section.gummy-smile-button-wrapper input.gummy-smile-button {
+  background: #967f5d;
+  position: relative;
+  top: 65px
+}
+
+section.orange-peel-chin-button-wrapper input.orange-peel-chin-button {
+  background: #8f0;
+  position: relative;
+  top: 78px
+}
+
+section.neck-bands-button-wrapper input.neck-bands-button {
+  background: #006eff;
+  position: relative;
+  top: 120px
+}
+
+.face-circle-buttons:hover,
+.face-circle-buttons:active {
+  box-shadow: 0 0 200px #ffffff80, 0 0 30px #ffffff80;
+  animation: pulsate 1s infinite
+}
+
+.face-circle-buttons {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: #ff7b00;
+  border-radius: 50%;
+  transition: box-shadow .3s ease-in-out;
+  outline: none;
+  border: none;
+  cursor: pointer
+}
+
+.forehead-button {
+  background-color: #0e3c5a !important;
+  position: relative
+}
+
+.botox-check-box-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.botox-check-box-button {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative
+}
+
+.botox-check-box-button:checked:before {
+  content: "X";
+  color: #000;
+  font-weight: 700;
+  position: relative;
+  top: -2px;
+  left: -2px
+}
+
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 #ffffffb3
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px #fff0
+  }
+
+  to {
+    box-shadow: 0 0 #fff0
+  }
+}
+
+@media screen and (max-width: 1920px) {
+  section.decolletage_wrapper_header .botox-page-title {
+    font-size: 3.5rem
+  }
+}
+
+@media screen and (max-width: 768px) {
+  section.decolletage_wrapper_header .botox-page-title {
+    margin: auto !important;
+    font-family: Inter !important;
+    font-weight: 600 !important;
+    font-size: 28px !important
+  }
+
+  section.decolletage_wrapper_header .botox-page-title-description {
+    font-size: 16px !important;
+    padding-top: 12px !important
+  }
+
+  section.decolletage_wrapper_header .botox-page-description-content {
+    font-size: 16px !important
+  }
+
+  section.product-hero-wrapper.hero-decolattege {
+    margin-top: -25px !important
+  }
+
+  section.crow-feet-button-wrapper input.crow-feet-button {
+    top: -25px
+  }
+
+  section.eye-brow-button-wrapper input.eye-brow-button {
+    top: -22px
+  }
+
+  section.lip-top-button-wrapper input.lip-top-button {
+    top: -15px;
+    width: 20px;
+    height: 15px
+  }
+
+  section.gummy-smile-button-wrapper input.gummy-smile-button {
+    top: -63px;
+    width: 20px
+  }
+
+  section.orange-peel-chin-button-wrapper input.orange-peel-chin-button {
+    top: -80px;
+    width: 20px
+  }
+
+  section.neck-bands-button-wrapper input.neck-bands-button {
+    top: -88px;
+    width: 20px;
+    height: 20px
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .face-buttons-wrapper {
+    top: 35% !important
+  }
+
+  section.eye-brow-button-wrapper input.eye-brow-button {
+    position: relative;
+    left: 6.09%;
+    top: -.8rem
+  }
+
+  section.crow-feet-button-wrapper input.crow-feet-button {
+    position: relative;
+    right: 6.9%;
+    top: -18px
+  }
+}
+
+@media screen and (max-width: 415px) {
+  section.crow-feet-button-wrapper input.crow-feet-button {
+    top: -26 px
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .face-buttons-wrapper {
+    top: 30% !important
+  }
+
+  section.eye-brow-button-wrapper input.eye-brow-button {
+    top: -16px
+  }
+
+  section.crow-feet-button-wrapper input.crow-feet-button {
+    position: relative;
+    right: 6.9%;
+    top: -34px
+  }
+
+  section.lip-top-button-wrapper input.lip-top-button {
+    background: #09aef0;
+    position: relative;
+    top: -43px
+  }
+
+  .face-circle-buttons {
+    width: 10px;
+    height: 10px;
+    transform: scale(.5)
+  }
+}
+
+.user-detail-main,
+.booking-location-main,
+.choose-providers,
+.almost-done-section,
+.order-summary-main-card-wrapper {
+  position: relative;
+  background-color: #e3faff;
+  padding-inline: 52px
+}
+
+.order-summary-main-card-wrapper {
+  background-color: #fff9eb
+}
+
+#user-detail-section {
+  max-width: 1251px !important;
+  margin: 0 auto
+}
+
+.single-page-user-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px
+}
+
+.single-page-user-info-wrapper .input-box-wrapper input::placeholder {
+  color: #282d41b3;
+  font-size: 14px
+}
+
+.single-page-user-info-wrapper>:last-child input::placeholder {
+  font-size: 14px;
+  color: #c0c4cc
+}
+
+.user-detail-main {
+  padding-bottom: 50px;
+  padding-top: 33px
+}
+
+.booking-location-main {
+  padding-block: 32px
+}
+
+.choose-providers {
+  padding-top: 43.5px;
+  padding-bottom: 50px
+}
+
+.choose_providers_wrapper.book_time_wrapper .choose-providers {
+  padding-bottom: 59px
+}
+
+.choose_providers_wrapper.almost_done .almost-done-section {
+  padding-block: 56px
+}
+
+.order-summary-main-card-wrapper {
+  padding-top: 23px;
+  padding-bottom: 40px
+}
+
+.css-1xc3v61-indicatorContainer {
+  display: none !important
+}
+
+@media screen and (max-width: 1280px) {
+  section.product-page-form-section-wrapper {
+    max-width: 1200px;
+    padding: 0 20px;
+    width: unset !important
+  }
+}
+
+@media screen and (max-width: 643px) {
+  .choose_providers_wrapper.almost_done {
+    padding-inline: unset
+  }
+}
+
+.form-main-titles {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #282d41;
+  text-align: left
+}
+
+@media screen and (max-width: 768px) {
+  .form-main-titles {
+    line-height: 130% !important;
+    margin-bottom: 16px !important;
+    width: 100%
+  }
+
+  .personWrapper {
+    margin-top: unset !important
+  }
+}
+
+.form-main-inner-title {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  color: #282d41;
+  text-align: left;
+  top: -65px;
+  left: 0
+}
+
+.personWrapper {
+  margin-top: 32px
+}
+
+.item-price-summary-wrapper {
+  margin-top: 16px;
+  background-color: #fbf2dd;
+  padding: 32px
+}
+
+.product-name-summary {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #282d41
+}
+
+.product-price-summary {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  color: #282d41
+}
+
+.item-price-summary {
+  display: flex;
+  justify-content: space-between
+}
+
+.total-summary-whole-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-top: 30px
+}
+
+.sub-total-summary {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column
+}
+
+.total-label-price {
+  display: flex;
+  justify-content: space-between
+}
+
+.sub-total-summary-label {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #282d41
+}
+
+.sub-total-summary-price {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  color: #282d41
+}
+
+.total-calculation {
+  box-sizing: border-box;
+  border-top: .8px solid rgba(40, 45, 65, .22);
+  padding-top: 5px !important
+}
+
+.total-calculation-label,
+.total-calculation-price {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: #282d41
+}
+
+.remove-wrapper {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1257px;
+  margin: auto;
+  padding-top: 32px
+}
+
+.person-to-remove {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #333746
+}
+
+.remove-person-button {
+  cursor: pointer !important;
+  background-color: transparent;
+  border: 1px solid #ff0000;
+  color: red;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none !important
+}
+
+.remove-person-button:hover {
+  background-color: #fff4f4;
+  border: 1px solid #ff0000
+}
+
+.remove-person-button:active {
+  background-color: #fff;
+  border: 1px solid #ff0000
+}
+
+.order-summary-main-inner {
+  position: relative;
+  width: 100%;
+  margin: auto
+}
+
+.order-summary-main {
+  background-color: #fff9eb
+}
+
+.agreement-wrapper-main {
+  margin-top: 20px !important;
+  max-width: 1257px;
+  margin: auto;
+  padding: 25px 0 33px;
+  box-sizing: border-box;
+  border-radius: 12px
+}
+
+@media screen and (max-width: 768px) {
+  .agreement-wrapper-main {
+    padding: 25px 10px
+  }
+
+  .order-summary-main {
+    padding: 33px 18px !important
+  }
+}
+
+.choose-treatments-main {
+  margin: auto;
+  box-sizing: border-box;
+  border-radius: 12px
+}
+
+.add-another-person-main {
+  margin-top: 10px !important;
+  max-width: 1257px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 25px 0 33px;
+  box-sizing: border-box;
+  border-radius: 12px
+}
+
+.add-another-person-main .another-person-info-error .fill-all-fields {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #afb1b2 !important;
+  margin-bottom: 0 !important
+}
+
+.add-another-person-button {
+  padding: 10px 20px;
+  width: 250px;
+  height: 55px;
+  background: #32c0cc;
+  border-radius: 5px;
+  border: none;
+  outline: none !important;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #fff;
+  cursor: pointer !important
+}
+
+.add-another-person-button:hover {
+  background-color: #3dcbd8
+}
+
+.add-another-person-button:active {
+  background-color: #32c0cc
+}
+
+@media (max-width: 643px) {
+  #user-detail-section .general-details-card-wrapper {
+    width: unset !important
+  }
+
+  div.the-single-product-page.selection-wrapper {
+    flex-direction: column
+  }
+
+  .user-detail-main,
+  .booking-location-main,
+  .choose-providers {
+    padding: 25px
+  }
+
+  .user-detail-main,
+  .booking-location-main,
+  .choose-providers,
+  .almost-done-section,
+  .order-summary-main-card-wrapper {
+    margin: auto;
+    font-size: 18px !important
+  }
+
+  .click-agree-reminder-wrapper {
+    max-width: 95% !important;
+    margin: auto;
+    display: flex;
+    gap: 8px
+  }
+
+  .payment-cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px
+  }
+
+  .add-another-person-main {
+    align-items: flex-start;
+    padding: 20px 25px
+  }
+}
+
+.payment-cards-wrapper {
+  display: flex;
+  gap: 32px
+}
+
+.radio-input-wrapper {
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #fff;
+  gap: 12px;
+  width: 563.5px;
+  height: 44px;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0 0 0 25px
+}
+
+@media screen and (max-width: 768px) {
+  .radio-input-wrapper {
+    width: 100% !important;
+    padding: 0 15px
+  }
+}
+
+.payment-radio-input {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  padding: unset !important
+}
+
+.radio-input-label {
+  margin-bottom: 0 !important
+}
+
+.payment-radio-input {
+  padding: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  border: 1px solid rgba(192, 196, 204, .47);
+  width: 20px;
+  border-radius: 10px;
+  height: 20px;
+  position: relative;
+  background-color: #fff
+}
+
+.payment-radio-input:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(192, 196, 204, .47);
+  background-color: #32c0cc;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0
+}
+
+.payment-radio-input:checked:before {
+  opacity: 1
+}
+
+.book-and-pay-btn-wrapper {
+  max-width: 1257px;
+  margin: auto;
+  box-sizing: border-box;
+  border-radius: 12px
+}
+
+.book-and-pay-btn:active {
+  transform: scale(.98);
+  background-color: #3cbecc
+}
+
+.book-and-pay-btn.disabled {
+  background-color: #32bfcc50 !important;
+  cursor: not-allowed !important
+}
+
+.css-1u9des2-indicatorSeparator {
+  display: none !important
+}
+
+@media screen and (max-width: 768px) {
+  .book-and-pay-btn-wrapper {
+    padding: 0 10px
+  }
+
+  .css-1xc3v61-indicatorContainer {
+    position: relative !important;
+    left: 20px !important;
+    margin: auto !important;
+    bottom: 5px !important;
+    color: #32c0cc !important
+  }
+}
+
+.book-and-pay-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 19px 40px;
+  gap: 10px;
+  width: 221.15px;
+  background: #32c0cc;
+  border-radius: 5px;
+  color: #fff;
+  outline: none !important;
+  border: none !important;
+  cursor: pointer !important
+}
+
+.book-and-pay-btn.disabled {
+  background: #3fcad640;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 19px 40px;
+  gap: 10px;
+  width: 221.15px;
+  border-radius: 5px;
+  color: #fff;
+  outline: none !important;
+  border: none !important;
+  cursor: not-allowed !important
+}
+
+.click-agree-reminder-wrapper {
+  max-width: 1257px;
+  margin: auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 10px !important
+}
+
+.agree-to-tos-info {
+  max-width: 905px !important;
+  text-align: left !important;
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 22px !important;
+  align-items: center;
+  font-feature-settings: "tnum" on, "lnum" on;
+  color: #afb1b3;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important
+}
+
+.agreement-description {
+  margin-bottom: 0 !important
+}
+
+.agree-to-tos-info a {
+  color: #32c0cc;
+  text-decoration: underline !important;
+  margin: 0 3px !important
+}
+
+.date-picker-container {
+  position: relative !important
+}
+
+.agreement-checkbox-input {
+  border-radius: 100%
+}
+
+.spinning-image {
+  height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto
+}
+
+@media screen and (max-width: 768px) {
+  .calendar-icon {
+    position: absolute !important;
+    top: 13px;
+    left: 14px
+  }
+
+  .item-price-summary {
+    display: flex !important
+  }
+
+  .sub-total-summary {
+    gap: 30px !important
+  }
+
+  .css-hp2wzz {
+    width: 403px
+  }
+}
+
+.another-person-info-error {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px;
+  margin-bottom: 12px !important
+}
+
+body.single.single-product .label-input-wrapper:last-child {
+  margin-bottom: unset !important
+}
+
+.location-search-input {
+  box-shadow: none !important
+}
+
+.card-holder-name .input-box-wrapper.the-product-page,
+.card-holder-billing .input-box-wrapper.the-product-page {
+  all: unset !important
+}
+
+.card-holder-name-label,
+.card-holder-billing-label {
+  width: 100%;
+  margin-left: auto
+}
+
+div.holder-info .card-holder-name,
+div.holder-info .card-holder-billing {
+  max-width: 563px !important;
+  width: 100%
+}
+
+#credit-card-section .card-elements .holder-info input {
+  font-size: 15px !important
+}
+
+#credit-card-section .card-elements .holder-info input::placeholder {
+  color: #c0c4cc
+}
+
+div.holder-info {
+  display: flex;
+  gap: 32px;
+  width: 100%
+}
+
+.user-input-wrapper {
+  display: flex;
+  gap: 20px !important;
+  justify-content: flex-start
+}
+
+.input-box-label {
+  display: flex;
+  white-space: nowrap;
+  margin-bottom: 5px;
+  gap: 3px
+}
+
+.input-box-wrapper {
+  max-width: 563.5px !important;
+  width: 100%;
+  position: relative
+}
+
+.user-detail-main .single-page-user-info-wrapper .input-box-wrapper.birth-date-input-box.the-product-page {
+  max-width: 522px !important
+}
+
+.user-detail-main .single-page-user-info-wrapper .input-box-wrapper.the-product-page {
+  max-width: unset !important
+}
+
+.general-details-card-wrapper .choose_providers_wrapper.book_time_wrapper .input-box-wrapper {
+  max-width: 522px !important;
+  width: 100%
+}
+
+.input-box-wrapper.birth-date-input-box {
+  max-width: 522px !important
+}
+
+.input-box-wrapper label:after {
+  content: "*";
+  display: flex;
+  width: 10px;
+  height: 10px;
+  color: #32c0cc
+}
+
+.input-box-error-message {
+  text-align: left
+}
+
+.input-box {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 9px 12px;
+  gap: 10px;
+  height: 44px !important;
+  border: 1px solid rgba(192, 196, 204, .47);
+  border-radius: 4px;
+  outline: none;
+  background-color: #fff !important;
+  width: 100%
+}
+
+.input-box.your_address_style {
+  height: fit-content !important;
+  text-align: left;
+  width: 563px !important;
+  height: 44px !important
+}
+
+.zip-city-wrapper {
+  margin-top: -10px;
+  width: 100%;
+  gap: 32px
+}
+
+.cityStateZip .input-box {
+  max-width: 365px !important;
+  padding: 9px 12px
+}
+
+.card-elements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 22px
+}
+
+.card-number-input.StripeElement {
+  padding: 9px !important
+}
+
+.card-number {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  height: 71px
+}
+
+.card-number .StripeElement {
+  max-width: 545px;
+  height: 44px;
+  padding: 9px 12px 9px 10px;
+  margin: unset;
+  outline: none;
+  background-color: #fff !important;
+  border: 1px solid rgba(192, 196, 204, .47)
+}
+
+.card-label {
+  text-align: left;
+  margin-bottom: 5px;
+  color: #282d41;
+  font-weight: 500;
+  font-size: 14px
+}
+
+.card-info {
+  max-width: 563.5px;
+  overflow: hidden;
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px
+}
+
+.expiry-date,
+.cvc {
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+  height: 74px;
+  max-width: 265px !important
+}
+
+.expiry-date .StripeElement,
+.cvc .StripeElement {
+  height: 44px !important;
+  outline: none;
+  padding: 9px !important;
+  background-color: #fff !important;
+  border: 1px solid rgba(192, 196, 204, .47)
+}
+
+#credit-card-section .card-elements .card-number .card-number-input>div {
+  padding: 9px !important
+}
+
+.input-box-label {
+  text-align: left;
+  min-width: 100px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #282d41
+}
+
+.label-input-wrapper {
+  position: relative
+}
+
+.the-single-product-page.selection_wrapper,
+#booking-location-main .the-single-product.selection_wrapper {
+  width: 100% !important
+}
+
+.card-holder-billing.zip-and-state {
+  display: flex;
+  gap: 30px
+}
+
+div.top-level-addresses-wrapper {
+  display: flex;
+  width: 100%
+}
+
+.card-holder-billing.zip-and-state div.input-box-wrapper.the-product-page {
+  width: 100% !important
+}
+
+.card-number+.card-info {
+  width: 100%;
+  gap: 32px;
+  justify-content: unset
+}
+
+.card_number_expiry_wrapper {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+  font-size: 18px
+}
+
+.ElementsApp,
+.ElementsApp .InputElement {
+  font-size: 15px !important
+}
+
+@media (max-width: 1280px) {
+  .input-box-wrapper {
+    max-width: 522px !important;
+    width: 100%
+  }
+}
+
+@media (max-width: 1220px) {
+
+  .expiry-date,
+  .cvc {
+    width: 50%
+  }
+
+  .card-info {
+    max-width: unset
+  }
+}
+
+.input-box-error-message {
+  color: red;
+  font-size: 13px !important;
+  font-weight: 500;
+  margin-bottom: 2px;
+  position: absolute;
+  top: 70px
+}
+
+.error-clinic-selection,
+.choose-tip-amount {
+  text-align: left
+}
+
+@media (max-width: 900px) {
+  .user-input-wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center !important
+  }
+
+  .input-box {
+    padding: 9px 12px;
+    width: 100% !important
+  }
+
+  .input-box-wrapper {
+    width: 100%
+  }
+
+  input[type=text] {
+    max-width: unset !important;
+    width: 100%
+  }
+
+  .single-page-user-info-wrapper div {
+    flex-wrap: nowrap !important;
+    flex-direction: row !important
+  }
+}
+
+.form-main-titles {
+  margin-block: 16px
+}
+
+@media (max-width: 643px) {
+  div.top-level-addresses-wrapper {
+    flex-wrap: wrap
+  }
+
+  div.top-level-addresses-wrapper>div.address_wrapper {
+    margin-bottom: 24px
+  }
+
+  .card_number_expiry_wrapper {
+    flex-wrap: wrap;
+    margin-top: 24px
+  }
+
+  .cityStateZip .input-box {
+    max-width: unset
+  }
+
+  div.holder-info.country_zip_parent {
+    margin-top: 24px
+  }
+
+  div.holder-info .card-holder-name,
+  div.holder-info .card-holder-billing {
+    max-width: unset !important;
+    width: 100%
+  }
+
+  div.holder-info {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: unset
+  }
+
+  div.holder-info.holder_name_billing_parent,
+  div.holder-info.country_zip_parent,
+  .card_number_expiry_wrapper {
+    gap: 24px;
+    max-width: unset;
+    margin: 9px auto
+  }
+
+  .card-number-input.StripeElement {
+    padding: 9px !important
+  }
+
+  div.holder-info+div.card-number {
+    margin-bottom: 20px
+  }
+
+  .card-elements {
+    gap: unset !important
+  }
+
+  .expiry-date,
+  .cvc {
+    width: 100%
+  }
+
+  .card-number .StripeElement {
+    padding: unset
+  }
+
+  .single-page-user-info-wrapper div:nth-child(1) {
+    flex-direction: column !important
+  }
+}
+
+@media (max-width: 465px) {
+  .selection-wrapper {
+    max-width: 321px;
+    width: 100%;
+    margin: auto
+  }
+
+  div.address div.StripeElement {
+    max-width: 340px;
+    margin: 0 auto
+  }
+
+  div.the-single-product-page.selection-wrapper,
+  div.provider-input-label-wrapper,
+  .provider-group-wrapper,
+  .card-number .StripeElement,
+  .special-instructions-text-area,
+  .text-area-label.in-product-page,
+  .card-label.in-product-page {
+    max-width: 321px;
+    width: 100%;
+    margin: auto
+  }
+
+  .payment-cards-wrapper {
+    width: 100%;
+    margin: auto
+  }
+
+  .card-info {
+    margin: auto;
+    width: 100%
+  }
+
+  .provider-name-label {
+    font-size: 15px
+  }
+}
+
+@media (max-width:400px) {
+  div.card-elements div.card-info {
+    height: unset
+  }
+
+  .product-section-card-h1 {
+    font-size: 24px !important
+  }
+}
+
+.date-picker {
+  box-sizing: border-box;
+  display: flex;
+  font-size: 16px !important;
+  font-family: Inter, sans-serif !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 9px 12px 9px 0 !important;
+  gap: 10px;
+  width: 100% !important;
+  height: 44px !important;
+  border: 1px solid rgba(192, 196, 204, .47);
+  border-radius: 4px;
+  outline: none;
+  background-color: #fff !important;
+  color: #333 !important
+}
+
+.pointer-date-picker {
+  cursor: pointer
+}
+
+.disabled-date-picker {
+  cursor: not-allowed
+}
+
+.date-picker:hover {
+  border-color: #32c0cc;
+  color: #32c0cc;
+  box-shadow: 0 0 5px #3fc4d080
+}
+
+.date-picker:focus {
+  border-color: #32c0cc;
+  box-shadow: 0 0 5px #3fc4d080;
+  outline: none
+}
+
+.date-picker-container {
+  position: relative;
+  display: flex
+}
+
+.react-datepicker__header {
+  background: transparent;
+  border: none;
+  padding: 10px
+}
+
+.calendar-icon {
+  position: absolute;
+  color: #32c0cc;
+  z-index: 10;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%)
+}
+
+.custom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 .2rem;
+  background: transparent;
+  border: none
+}
+
+.custom-header button {
+  background: none;
+  border: none;
+  margin: 0 .5rem;
+  cursor: pointer;
+  color: #32c0cc
+}
+
+.custom-header select {
+  background: #f1f1f1;
+  border-radius: .2rem;
+  border: 1px solid rgb(185, 185, 185);
+  font-size: 1rem;
+  color: #32c0cc;
+  padding: .1rem
+}
+
+.custom-header select:active {
+  outline: none
+}
+
+.custom-calendar .react-datepicker__day-name,
+.custom-calendar .react-datepicker__day,
+.custom-calendar .react-datepicker__time-name {
+  width: calc(100% / 9);
+  display: inline-block;
+  text-align: center;
+  margin: 0 5px;
+  padding: 3px 4px;
+  box-sizing: border-box
+}
+
+.react-datepicker__day {
+  border-radius: 50%
+}
+
+.react-datepicker__day:hover {
+  background-color: #c7f7fb;
+  color: #333;
+  border-radius: 50%
+}
+
+.react-datepicker__day--selected {
+  background-color: #32c0cc;
+  border-radius: 50%;
+  padding: 0;
+  color: #fff
+}
+
+.react-datepicker__day--selected:hover {
+  background-color: #c7f7fb;
+  color: #333;
+  border-radius: 50%
+}
+
+.custom-calendar .react-datepicker__day--outside-month {
+  visibility: hidden
+}
+
+.time-picker {
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 16px !important;
+  padding: 9px 12px !important;
+  gap: 10px;
+  max-width: 522px !important;
+  height: 44px !important;
+  border: 1px solid rgba(192, 196, 204, .47);
+  border-radius: 4px;
+  outline: none;
+  background-color: #fff !important;
+  color: #333 !important
+}
+
+.time-picker:hover {
+  border-color: #32c0cc;
+  color: #32c0cc;
+  box-shadow: 0 0 5px #3fc4d080
+}
+
+.time-picker-select {
+  display: flex !important;
+  align-items: center !important;
+  text-align: left !important;
+  padding: 7px 0 !important;
+  width: 100% !important;
+  margin: unset !important
+}
+
+.clock-icon {
+  position: absolute;
+  color: #32c0cc;
+  left: 18px;
+  transform: translateY(-15%);
+  font-size: 16px !important;
+  z-index: 20;
+  background: #fff
+}
+
+.time-picker-checkbox {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background-color: #fff;
+  border: 1px solid #c6c6c6;
+  padding: 7px !important;
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 3px !important;
+  margin-right: 5px !important;
+  margin-top: 5px !important;
+  display: inline-block !important;
+  position: relative !important
+}
+
+.time-picker-checkbox:checked {
+  background-color: #fff !important;
+  border: 1px solid #32c0cc !important
+}
+
+.time-picker-checkbox:checked:after {
+  content: "" !important;
+  display: flex !important;
+  width: 7px !important;
+  height: 7px !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background-color: #32c0cc !important;
+  border: 1px solid #32c0cc !important
+}
+
+.react-datepicker__input-container {
+  width: unset !important;
+  width: 100% !important
+}
+
+.react-datepicker-popper .react-datepicker .react-datepicker__header button:after {
+  display: none !important
+}
+
+.react-datepicker__header.react-datepicker__header--custom .custom-header select:first-child {
+  width: 100px !important
+}
+
+@media screen and (max-width: 768px) {
+
+  .date-picker,
+  .react-datepicker__input-container {
+    width: 100% !important
+  }
+}
+
+@media (max-width: 900px) {
+
+  .date-picker,
+  .time-picker-select,
+  .time-picker {
+    max-width: 100% !important
+  }
+
+  .time-picker {
+    padding: 9px 12px 9px 40px
+  }
+}
+
+.react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-year-read-view--down-arrow,
+.react-datepicker__navigation-icon:before {
+  border-color: #ccc;
+  border-style: solid;
+  border-width: 3px 3px 0 0;
+  content: "";
+  display: block;
+  height: 9px;
+  position: absolute;
+  top: 6px;
+  width: 9px
+}
+
+.react-datepicker-wrapper {
+  display: inline-block;
+  padding: 0;
+  border: 0
+}
+
+.react-datepicker {
+  font-family: Helvetica Neue, helvetica, arial, sans-serif;
+  font-size: .8rem;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #aeaeae;
+  border-radius: .3rem;
+  display: inline-block;
+  position: relative;
+  line-height: initial
+}
+
+.react-datepicker--time-only .react-datepicker__time-container {
+  border-left: 0
+}
+
+.react-datepicker--time-only .react-datepicker__time,
+.react-datepicker--time-only .react-datepicker__time-box {
+  border-bottom-left-radius: .3rem;
+  border-bottom-right-radius: .3rem
+}
+
+.react-datepicker-popper {
+  z-index: 1;
+  line-height: 0
+}
+
+.react-datepicker-popper .react-datepicker__triangle {
+  stroke: #aeaeae
+}
+
+.react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle {
+  fill: #f0f0f0;
+  color: #f0f0f0
+}
+
+.react-datepicker-popper[data-placement^=top] .react-datepicker__triangle {
+  fill: #fff;
+  color: #fff
+}
+
+.react-datepicker__header {
+  text-align: center;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #aeaeae;
+  border-top-left-radius: .3rem;
+  padding: 8px 0;
+  position: relative
+}
+
+.react-datepicker__header--time {
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px
+}
+
+.react-datepicker__header--time:not(.react-datepicker__header--time--only) {
+  border-top-left-radius: 0
+}
+
+.react-datepicker__header:not(.react-datepicker__header--has-time-select) {
+  border-top-right-radius: .3rem
+}
+
+.react-datepicker__year-dropdown-container--select,
+.react-datepicker__month-dropdown-container--select,
+.react-datepicker__month-year-dropdown-container--select,
+.react-datepicker__year-dropdown-container--scroll,
+.react-datepicker__month-dropdown-container--scroll,
+.react-datepicker__month-year-dropdown-container--scroll {
+  display: inline-block;
+  margin: 0 15px
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+  margin-top: 0;
+  color: #000;
+  font-weight: 700;
+  font-size: .944rem
+}
+
+.react-datepicker-time__header {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden
+}
+
+.react-datepicker__navigation {
+  align-items: center;
+  background: none;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  top: 2px;
+  padding: 0;
+  border: none;
+  z-index: 1;
+  height: 32px;
+  width: 32px;
+  text-indent: -999em;
+  overflow: hidden
+}
+
+.react-datepicker__navigation--previous {
+  left: 2px
+}
+
+.react-datepicker__navigation--next {
+  right: 2px
+}
+
+.react-datepicker__navigation--next--with-time:not(.react-datepicker__navigation--next--with-today-button) {
+  right: 85px
+}
+
+.react-datepicker__navigation--years {
+  position: relative;
+  top: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.react-datepicker__navigation--years-previous {
+  top: 4px
+}
+
+.react-datepicker__navigation--years-upcoming {
+  top: -4px
+}
+
+.react-datepicker__navigation:hover *:before {
+  border-color: #a6a6a6
+}
+
+.react-datepicker__navigation-icon {
+  position: relative;
+  top: -1px;
+  font-size: 20px;
+  width: 0
+}
+
+.react-datepicker__navigation-icon--next {
+  left: -2px
+}
+
+.react-datepicker__navigation-icon--next:before {
+  transform: rotate(45deg);
+  left: -7px
+}
+
+.react-datepicker__navigation-icon--previous {
+  right: -2px
+}
+
+.react-datepicker__navigation-icon--previous:before {
+  transform: rotate(225deg);
+  right: -7px
+}
+
+.react-datepicker__month-container {
+  float: left
+}
+
+.react-datepicker__year {
+  margin: .4rem;
+  text-align: center
+}
+
+.react-datepicker__year-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 180px
+}
+
+.react-datepicker__year .react-datepicker__year-text {
+  display: inline-block;
+  width: 4rem;
+  margin: 2px
+}
+
+.react-datepicker__month {
+  margin: .4rem;
+  text-align: center
+}
+
+.react-datepicker__month .react-datepicker__month-text,
+.react-datepicker__month .react-datepicker__quarter-text {
+  display: inline-block;
+  width: 4rem;
+  margin: 2px
+}
+
+.react-datepicker__input-time-container {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin: 5px 0 10px 15px;
+  text-align: left
+}
+
+.react-datepicker__input-time-container .react-datepicker-time__caption,
+.react-datepicker__input-time-container .react-datepicker-time__input-container {
+  display: inline-block
+}
+
+.react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input {
+  display: inline-block;
+  margin-left: 10px
+}
+
+.react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input input {
+  width: auto
+}
+
+.react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input input[type=time]::-webkit-inner-spin-button,
+.react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input input[type=time]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0
+}
+
+.react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input input[type=time] {
+  -moz-appearance: textfield
+}
+
+.react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__delimiter {
+  margin-left: 5px;
+  display: inline-block
+}
+
+.react-datepicker__time-container {
+  float: right;
+  border-left: 1px solid #aeaeae;
+  width: 85px
+}
+
+.react-datepicker__time-container--with-today-button {
+  display: inline;
+  border: 1px solid #aeaeae;
+  border-radius: .3rem;
+  position: absolute;
+  right: -87px;
+  top: 0
+}
+
+.react-datepicker__time-container .react-datepicker__time {
+  position: relative;
+  background: #fff;
+  border-bottom-right-radius: .3rem
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box {
+  width: 85px;
+  overflow-x: hidden;
+  margin: 0 auto;
+  text-align: center;
+  border-bottom-right-radius: .3rem
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+  list-style: none;
+  margin: 0;
+  height: calc(195px + .85rem);
+  overflow-y: scroll;
+  padding-right: 0;
+  padding-left: 0;
+  width: 100%;
+  box-sizing: content-box
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
+  height: 30px;
+  padding: 5px 10px;
+  white-space: nowrap
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item:hover {
+  cursor: pointer;
+  background-color: #f0f0f0
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+  background-color: #216ba5;
+  color: #fff;
+  font-weight: 700
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected:hover {
+  background-color: #216ba5
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--disabled {
+  color: #ccc
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--disabled:hover {
+  cursor: default;
+  background-color: transparent
+}
+
+.react-datepicker__week-number {
+  color: #ccc;
+  display: inline-block;
+  width: 1.7rem;
+  line-height: 1.7rem;
+  text-align: center;
+  margin: .166rem
+}
+
+.react-datepicker__week-number.react-datepicker__week-number--clickable {
+  cursor: pointer
+}
+
+.react-datepicker__week-number.react-datepicker__week-number--clickable:not(.react-datepicker__week-number--selected, .react-datepicker__week-number--keyboard-selected):hover {
+  border-radius: .3rem;
+  background-color: #f0f0f0
+}
+
+.react-datepicker__week-number--selected {
+  border-radius: .3rem;
+  background-color: #216ba5;
+  color: #fff
+}
+
+.react-datepicker__week-number--selected:hover {
+  background-color: #1d5d90
+}
+
+.react-datepicker__week-number--keyboard-selected {
+  border-radius: .3rem;
+  background-color: #2a87d0;
+  color: #fff
+}
+
+.react-datepicker__week-number--keyboard-selected:hover {
+  background-color: #1d5d90
+}
+
+.react-datepicker__day-names {
+  white-space: nowrap;
+  margin-bottom: -8px
+}
+
+.react-datepicker__week {
+  white-space: nowrap
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  color: #000;
+  display: inline-block;
+  width: 1.7rem;
+  line-height: 1.7rem;
+  text-align: center;
+  margin: .166rem
+}
+
+.react-datepicker__day,
+.react-datepicker__month-text,
+.react-datepicker__quarter-text,
+.react-datepicker__year-text {
+  cursor: pointer
+}
+
+.react-datepicker__day:hover,
+.react-datepicker__month-text:hover,
+.react-datepicker__quarter-text:hover,
+.react-datepicker__year-text:hover {
+  border-radius: .3rem;
+  background-color: #f0f0f0
+}
+
+.react-datepicker__day--today,
+.react-datepicker__month-text--today,
+.react-datepicker__quarter-text--today,
+.react-datepicker__year-text--today {
+  font-weight: 700
+}
+
+.react-datepicker__day--highlighted,
+.react-datepicker__month-text--highlighted,
+.react-datepicker__quarter-text--highlighted,
+.react-datepicker__year-text--highlighted {
+  border-radius: .3rem;
+  background-color: #3dcc4a;
+  color: #fff
+}
+
+.react-datepicker__day--highlighted:hover,
+.react-datepicker__month-text--highlighted:hover,
+.react-datepicker__quarter-text--highlighted:hover,
+.react-datepicker__year-text--highlighted:hover {
+  background-color: #32be3f
+}
+
+.react-datepicker__day--highlighted-custom-1,
+.react-datepicker__month-text--highlighted-custom-1,
+.react-datepicker__quarter-text--highlighted-custom-1,
+.react-datepicker__year-text--highlighted-custom-1 {
+  color: #f0f
+}
+
+.react-datepicker__day--highlighted-custom-2,
+.react-datepicker__month-text--highlighted-custom-2,
+.react-datepicker__quarter-text--highlighted-custom-2,
+.react-datepicker__year-text--highlighted-custom-2 {
+  color: green
+}
+
+.react-datepicker__day--holidays,
+.react-datepicker__month-text--holidays,
+.react-datepicker__quarter-text--holidays,
+.react-datepicker__year-text--holidays {
+  position: relative;
+  border-radius: .3rem;
+  background-color: #ff6803;
+  color: #fff
+}
+
+.react-datepicker__day--holidays .overlay,
+.react-datepicker__month-text--holidays .overlay,
+.react-datepicker__quarter-text--holidays .overlay,
+.react-datepicker__year-text--holidays .overlay {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 4px;
+  border-radius: 4px;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity .3s ease-in-out
+}
+
+.react-datepicker__day--holidays:hover,
+.react-datepicker__month-text--holidays:hover,
+.react-datepicker__quarter-text--holidays:hover,
+.react-datepicker__year-text--holidays:hover {
+  background-color: #cf5300
+}
+
+.react-datepicker__day--holidays:hover .overlay,
+.react-datepicker__month-text--holidays:hover .overlay,
+.react-datepicker__quarter-text--holidays:hover .overlay,
+.react-datepicker__year-text--holidays:hover .overlay {
+  visibility: visible;
+  opacity: 1
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
+.react-datepicker__month-text--selected,
+.react-datepicker__month-text--in-selecting-range,
+.react-datepicker__month-text--in-range,
+.react-datepicker__quarter-text--selected,
+.react-datepicker__quarter-text--in-selecting-range,
+.react-datepicker__quarter-text--in-range,
+.react-datepicker__year-text--selected,
+.react-datepicker__year-text--in-selecting-range,
+.react-datepicker__year-text--in-range {
+  border-radius: .3rem;
+  background-color: #216ba5;
+  color: #fff
+}
+
+.react-datepicker__day--selected:hover,
+.react-datepicker__day--in-selecting-range:hover,
+.react-datepicker__day--in-range:hover,
+.react-datepicker__month-text--selected:hover,
+.react-datepicker__month-text--in-selecting-range:hover,
+.react-datepicker__month-text--in-range:hover,
+.react-datepicker__quarter-text--selected:hover,
+.react-datepicker__quarter-text--in-selecting-range:hover,
+.react-datepicker__quarter-text--in-range:hover,
+.react-datepicker__year-text--selected:hover,
+.react-datepicker__year-text--in-selecting-range:hover,
+.react-datepicker__year-text--in-range:hover {
+  background-color: #1d5d90
+}
+
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__month-text--keyboard-selected,
+.react-datepicker__quarter-text--keyboard-selected,
+.react-datepicker__year-text--keyboard-selected {
+  border-radius: .3rem;
+  background-color: #bad9f1;
+  color: #000
+}
+
+.react-datepicker__day--keyboard-selected:hover,
+.react-datepicker__month-text--keyboard-selected:hover,
+.react-datepicker__quarter-text--keyboard-selected:hover,
+.react-datepicker__year-text--keyboard-selected:hover {
+  background-color: #1d5d90
+}
+
+.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range),
+.react-datepicker__month-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range),
+.react-datepicker__quarter-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range),
+.react-datepicker__year-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range) {
+  background-color: #216ba580
+}
+
+.react-datepicker__month--selecting-range .react-datepicker__day--in-range:not(.react-datepicker__day--in-selecting-range, .react-datepicker__month-text--in-selecting-range, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__year-text--in-selecting-range),
+.react-datepicker__year--selecting-range .react-datepicker__day--in-range:not(.react-datepicker__day--in-selecting-range, .react-datepicker__month-text--in-selecting-range, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__year-text--in-selecting-range),
+.react-datepicker__month--selecting-range .react-datepicker__month-text--in-range:not(.react-datepicker__day--in-selecting-range, .react-datepicker__month-text--in-selecting-range, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__year-text--in-selecting-range),
+.react-datepicker__year--selecting-range .react-datepicker__month-text--in-range:not(.react-datepicker__day--in-selecting-range, .react-datepicker__month-text--in-selecting-range, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__year-text--in-selecting-range),
+.react-datepicker__month--selecting-range .react-datepicker__quarter-text--in-range:not(.react-datepicker__day--in-selecting-range, .react-datepicker__month-text--in-selecting-range, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__year-text--in-selecting-range),
+.react-datepicker__year--selecting-range .react-datepicker__quarter-text--in-range:not(.react-datepicker__day--in-selecting-range, .react-datepicker__month-text--in-selecting-range, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__year-text--in-selecting-range),
+.react-datepicker__month--selecting-range .react-datepicker__year-text--in-range:not(.react-datepicker__day--in-selecting-range, .react-datepicker__month-text--in-selecting-range, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__year-text--in-selecting-range),
+.react-datepicker__year--selecting-range .react-datepicker__year-text--in-range:not(.react-datepicker__day--in-selecting-range, .react-datepicker__month-text--in-selecting-range, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__year-text--in-selecting-range) {
+  background-color: #f0f0f0;
+  color: #000
+}
+
+.react-datepicker__day--disabled,
+.react-datepicker__month-text--disabled,
+.react-datepicker__quarter-text--disabled,
+.react-datepicker__year-text--disabled {
+  cursor: default;
+  color: #ccc
+}
+
+.react-datepicker__day--disabled:hover,
+.react-datepicker__month-text--disabled:hover,
+.react-datepicker__quarter-text--disabled:hover,
+.react-datepicker__year-text--disabled:hover {
+  background-color: transparent
+}
+
+.react-datepicker__day--disabled .overlay,
+.react-datepicker__month-text--disabled .overlay,
+.react-datepicker__quarter-text--disabled .overlay,
+.react-datepicker__year-text--disabled .overlay {
+  position: absolute;
+  bottom: 70%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 4px;
+  border-radius: 4px;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity .3s ease-in-out
+}
+
+.react-datepicker__input-container {
+  position: relative;
+  display: inline-block;
+  width: 100%
+}
+
+.react-datepicker__input-container .react-datepicker__calendar-icon {
+  position: absolute;
+  padding: .5rem;
+  box-sizing: content-box
+}
+
+.react-datepicker__view-calendar-icon input {
+  padding: 6px 10px 5px 25px
+}
+
+.react-datepicker__year-read-view,
+.react-datepicker__month-read-view,
+.react-datepicker__month-year-read-view {
+  border: 1px solid transparent;
+  border-radius: .3rem;
+  position: relative
+}
+
+.react-datepicker__year-read-view:hover,
+.react-datepicker__month-read-view:hover,
+.react-datepicker__month-year-read-view:hover {
+  cursor: pointer
+}
+
+.react-datepicker__year-read-view:hover .react-datepicker__year-read-view--down-arrow,
+.react-datepicker__year-read-view:hover .react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-read-view:hover .react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view:hover .react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-year-read-view:hover .react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-year-read-view:hover .react-datepicker__month-read-view--down-arrow {
+  border-top-color: #b3b3b3
+}
+
+.react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-year-read-view--down-arrow {
+  transform: rotate(135deg);
+  right: -16px;
+  top: 0
+}
+
+.react-datepicker__year-dropdown,
+.react-datepicker__month-dropdown,
+.react-datepicker__month-year-dropdown {
+  background-color: #f0f0f0;
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  top: 30px;
+  z-index: 1;
+  text-align: center;
+  border-radius: .3rem;
+  border: 1px solid #aeaeae
+}
+
+.react-datepicker__year-dropdown:hover,
+.react-datepicker__month-dropdown:hover,
+.react-datepicker__month-year-dropdown:hover {
+  cursor: pointer
+}
+
+.react-datepicker__year-dropdown--scrollable,
+.react-datepicker__month-dropdown--scrollable,
+.react-datepicker__month-year-dropdown--scrollable {
+  height: 150px;
+  overflow-y: scroll
+}
+
+.react-datepicker__year-option,
+.react-datepicker__month-option,
+.react-datepicker__month-year-option {
+  line-height: 20px;
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.react-datepicker__year-option:first-of-type,
+.react-datepicker__month-option:first-of-type,
+.react-datepicker__month-year-option:first-of-type {
+  border-top-left-radius: .3rem;
+  border-top-right-radius: .3rem
+}
+
+.react-datepicker__year-option:last-of-type,
+.react-datepicker__month-option:last-of-type,
+.react-datepicker__month-year-option:last-of-type {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-bottom-left-radius: .3rem;
+  border-bottom-right-radius: .3rem
+}
+
+.react-datepicker__year-option:hover,
+.react-datepicker__month-option:hover,
+.react-datepicker__month-year-option:hover {
+  background-color: #ccc
+}
+
+.react-datepicker__year-option:hover .react-datepicker__navigation--years-upcoming,
+.react-datepicker__month-option:hover .react-datepicker__navigation--years-upcoming,
+.react-datepicker__month-year-option:hover .react-datepicker__navigation--years-upcoming {
+  border-bottom-color: #b3b3b3
+}
+
+.react-datepicker__year-option:hover .react-datepicker__navigation--years-previous,
+.react-datepicker__month-option:hover .react-datepicker__navigation--years-previous,
+.react-datepicker__month-year-option:hover .react-datepicker__navigation--years-previous {
+  border-top-color: #b3b3b3
+}
+
+.react-datepicker__year-option--selected,
+.react-datepicker__month-option--selected,
+.react-datepicker__month-year-option--selected {
+  position: absolute;
+  left: 15px
+}
+
+.react-datepicker__close-icon {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  padding: 0 6px 0 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle
+}
+
+.react-datepicker__close-icon:after {
+  cursor: pointer;
+  background-color: #216ba5;
+  color: #fff;
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+  padding: 2px;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  content: "×"
+}
+
+.react-datepicker__close-icon--disabled {
+  cursor: default
+}
+
+.react-datepicker__close-icon--disabled:after {
+  cursor: default;
+  background-color: #ccc
+}
+
+.react-datepicker__today-button {
+  background: #f0f0f0;
+  border-top: 1px solid #aeaeae;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 700;
+  padding: 5px 0;
+  clear: left
+}
+
+.react-datepicker__portal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000c;
+  left: 0;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  z-index: 2147483647
+}
+
+.react-datepicker__portal .react-datepicker__day-name,
+.react-datepicker__portal .react-datepicker__day,
+.react-datepicker__portal .react-datepicker__time-name {
+  width: 3rem;
+  line-height: 3rem
+}
+
+@media (max-width: 400px),
+(max-height: 550px) {
+
+  .react-datepicker__portal .react-datepicker__day-name,
+  .react-datepicker__portal .react-datepicker__day,
+  .react-datepicker__portal .react-datepicker__time-name {
+    width: 2rem;
+    line-height: 2rem
+  }
+}
+
+.react-datepicker__portal .react-datepicker__current-month,
+.react-datepicker__portal .react-datepicker-time__header {
+  font-size: 1.44rem
+}
+
+.react-datepicker__children-container {
+  width: 13.8rem;
+  margin: .4rem;
+  padding-right: .2rem;
+  padding-left: .2rem;
+  height: auto
+}
+
+.react-datepicker__aria-live {
+  position: absolute;
+  clip-path: circle(0);
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  width: 1px;
+  white-space: nowrap
+}
+
+.react-datepicker__calendar-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -.125em
+}
+
+.provider-input-label-wrapper {
+  background-color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 9px 12px;
+  max-width: 563px;
+  width: 100%;
+  height: 44px;
+  border: 1px solid rgba(192, 196, 204, .47);
+  border-radius: 4px;
+  outline: none;
+  gap: 10px
+}
+
+.provider-name-label {
+  color: #5a5f73 !important
+}
+
+.choose_providers_wrapper .choose-providers .provider-group-wrapper {
+  display: flex;
+  gap: 20px;
+  max-width: 1175px;
+  width: 100%
+}
+
+.provider-group-wrapper {
+  margin-top: 32px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between
+}
+
+@media (max-width: 1280px) {
+  .provider-input-label-wrapper {
+    max-width: 1175px !important
+  }
+
+  .choose_providers_wrapper .choose-providers .provider-group-wrapper {
+    flex-wrap: unset;
+    max-width: 1175px !important
+  }
+}
+
+@media (max-width: 900px) {
+  .order-summary-main-card-wrapper {
+    padding-inline: unset !important
+  }
+}
+
+@media (max-width: 830px) {
+
+  .choose_providers_wrapper .choose-providers .provider-group-wrapper,
+  .bookingDateTime-container-wrapper {
+    flex-direction: column
+  }
+
+  .bookingDateTime-container-wrapper .input-box-wrapper {
+    max-width: 100% !important
+  }
+}
+
+@media (max-width: 475px) {
+  .provider-name-label {
+    font-size: 15px
+  }
+}
+
+@media (max-width: 457px) {
+  .provider-name-label {
+    font-size: 14px
+  }
+}
+
+@media (max-width: 425px) {
+  .provider-name-label {
+    font-size: 12px
+  }
+}
+
+@media (max-width:410px) {
+  .provider-name-label {
+    font-size: 15px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden
+  }
+}
+
+@media (max-width: 1160px) {
+  .provider-group-wrapper {
+    gap: 32px
+  }
+}
+
+.promo-discount-button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px
+}
+
+.enter-promo-discount {
+  width: 50% !important;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 11px 12px;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #c0c4cc;
+  border-radius: 4px
+}
+
+.promo-and-gift {
+  flex-grow: 1
+}
+
+.apply-promo-btn {
+  width: 50%;
+  justify-content: center;
+  padding: 11px 12px;
+  height: 44px;
+  background: #32c0cc;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center
+}
+
+.promo-wrapper {
+  display: flex;
+  gap: 50px;
+  justify-content: space-between
+}
+
+.do-you-have-promo,
+.tip {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  font-feature-settings: "tnum" on, "lnum" on;
+  color: #282d41
+}
+
+.do-you-have-promo {
+  margin-bottom: 15px
+}
+
+.promo-checkbox-and-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px
+}
+
+.promo-check-box {
+  transform: scale(1.5)
+}
+
+.tips-and-inbox {
+  display: flex;
+  flex-direction: column;
+  gap: 20px
+}
+
+.flex-tips-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start !important;
+  text-align: left !important
+}
+
+.tip-choice-group {
+  background: #fcffff;
+  padding: 8px 18px;
+  border-radius: 5px;
+  color: #000;
+  min-width: 133px !important
+}
+
+.tip-choice-group input[type=radio] {
+  width: 100%;
+  max-width: 20px;
+  height: 20px
+}
+
+.tip-choice-group input[type=radio] {
+  display: none
+}
+
+.tip-choice-group input[type=radio]+label {
+  position: relative;
+  padding-left: 40px;
+  cursor: pointer;
+  display: inline-block
+}
+
+.tip-choice-group input[type=radio]+label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #32c0cc;
+  border-radius: 50%;
+  margin-right: 10px
+}
+
+.tip-choice-group input[type=radio]:checked+label:after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 7px;
+  width: 10px;
+  height: 10px;
+  background-color: #32c0cc;
+  border-radius: 50%
+}
+
+.tip-input-and-dollar-wrapper {
+  display: flex
+}
+
+.tipTotalLabel {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600 !important;
+  font-size: 16px;
+  line-height: 22px;
+  color: #282d41
+}
+
+.tipTotalPrice {
+  color: #32c0cc !important;
+  font-size: 16px !important;
+  font-weight: 600 !important
+}
+
+.inner-tip-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px !important
+}
+
+@media (max-width: 768px) {
+  .tip-choice-group {
+    width: 100% !important
+  }
+
+  .promo-and-gift {
+    display: flex;
+    flex-direction: column;
+    gap: 17px
+  }
+
+  div.tip-wrapper {
+    margin-top: 15px !important
+  }
+
+  .promo-wrapper {
+    display: block;
+    padding: 20px 10px
+  }
+
+  .promo-discount-button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px
+  }
+
+  .apply-promo-btn {
+    width: 50%;
+    justify-content: center;
+    padding: 11px 12px;
+    height: 44px;
+    background: #32c0cc;
+    border-radius: 4px;
+    border: none;
+    color: #fff;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center
+  }
+}
+
+.text-area-wrapper-input {
+  margin-top: 15px !important;
+  margin-right: 30px !important;
+  box-sizing: border-box;
+  margin: auto
+}
+
+@media screen and (max-width: 768px) {
+  .text-area-wrapper-input {
+    width: 100%
+  }
+}
+
+.special-instructions-text-area {
+  background: #fff !important;
+  color: #000 !important;
+  width: 100%;
+  margin: auto;
+  outline: none !important;
+  border: 1px solid rgba(192, 196, 204, .47);
+  height: 200px !important;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 12px
+}
+
+.text-area-label {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: left;
+  color: #32c0cc;
+  padding: 24px 0
+}
+
+.agreement-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #282d41
+}
+
+input.agreement-checkbox-input {
+  padding: unset !important;
+  box-sizing: border-box;
+  background-color: #32c0cc;
+  border: 1px solid rgba(192, 196, 204, .47);
+  cursor: pointer
+}
+
+input.agreement-checkbox-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  border: 1px solid #32C0CC;
+  min-width: 20px;
+  min-height: 20px;
+  position: relative;
+  background-color: #fff
+}
+
+@media screen and (max-width: 768px) {
+  .input.agreement-checkbox-input {
+    min-width: 20px;
+    min-height: 20px
+  }
+}
+
+input.agreement-checkbox-input:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #32C0CC;
+  background-color: #32c0cc;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0
+}
+
+input.agreement-checkbox-input:checked:before {
+  opacity: 1;
+  border-radius: 100px !important
+}
+
+.agreement-wrapper-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px
+}
+
+.accordion-section {
+  padding: 10px;
+  margin-top: 10px !important
+}
+
+.accordion-main-wrapper.open {
+  padding-bottom: 40px !important
+}
+
+.accordion-main-wrapper {
+  margin-top: 32px !important;
+  background-color: #e3faff;
+  border-radius: 8px;
+  margin: auto
+}
+
+.content {
+  margin-top: 5px;
+  justify-content: unset !important
+}
+
+.open.arrow {
+  transform: rotate(180deg)
+}
+
+.arrow {
+  transition: transform .3s ease-in-out
+}
+
+.accordion-btn {
+  width: 100%;
+  background-color: transparent;
+  padding: 25px;
+  background-color: #e3faff;
+  border: none;
+  outline: none !important
+}
+
+.check-box-price-wrapper {
+  max-width: 454px;
+  width: 100%
+}
+
+.accordion-title-shower-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 90px
+}
+
+.accordion-title {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center
+}
+
+.arrow {
+  border: solid #32c0cc;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px
+}
+
+.arrow.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg)
+}
+
+.arrow.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg)
+}
+
+.treatments-wrapper {
+  display: flex;
+  gap: 35px;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 100px;
+  flex-wrap: wrap
+}
+
+@media (max-width: 768px) {
+  .accordion-title-shower-wrapper {
+    padding-left: unset
+  }
+
+  .accordion-main-wrapper {
+    max-width: 480px !important;
+    border-radius: 8px;
+    margin: auto;
+    padding: 0 20px
+  }
+
+  .treatments-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: normal;
+    padding: unset;
+    flex-wrap: wrap;
+    width: 100%
+  }
+
+  .accordion-inner-wrapper {
+    min-width: 100% !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%
+  }
+
+  .accordion-main-wrapper .accordion-title {
+    flex-direction: column !important;
+    align-items: start !important;
+    gap: 5px !important
+  }
+
+  .accordion-main-wrapper.open .accordion-title {
+    gap: 20px !important
+  }
+
+  .checked-items-wrapper {
+    gap: 22px !important
+  }
+}
+
+.accordion-inner-wrapper {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center;
+  width: 100%
+}
+
+.accordion-item-price .price-tag {
+  color: #32c0cc !important;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  margin-bottom: 0 !important
+}
+
+.checkbox-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #282d41 !important
+}
+
+input.accordion-checkbox-details {
+  box-sizing: border-box;
+  background-color: #32c0cc;
+  border: 1px solid rgba(192, 196, 204, .47)
+}
+
+input.accordion-checkbox-details {
+  padding: unset !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  border: 1px solid rgba(192, 196, 204, .47);
+  width: 20px;
+  height: 20px;
+  position: relative;
+  background-color: #fff
+}
+
+input.accordion-checkbox-details:before {
+  padding: unset !important;
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(192, 196, 204, .47);
+  background-color: #32c0cc;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0
+}
+
+input.accordion-checkbox-details.iv-therapy-checkbox {
+  padding: unset !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  border: 1px solid rgba(192, 196, 204, .47);
+  width: 20px;
+  border-radius: 10px;
+  height: 20px;
+  position: relative;
+  background-color: #fff
+}
+
+input.accordion-checkbox-details.iv-therapy-checkbox:before {
+  padding: unset !important;
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(192, 196, 204, .47);
+  background-color: #32c0cc;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0
+}
+
+input.accordion-checkbox-details:checked:before {
+  padding: unset !important;
+  opacity: 1
+}
+
+.accordion-title {
+  width: 100%
+}
+
+.accordion-the-title {
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+  margin-right: 18px !important;
+  text-align: left;
+  color: #282d41 !important
+}
+
+.checked-items-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 40px
+}
+
+@media screen and (max-width: 390px) {
+  .checked-items-wrapper {
+    margin-right: 15px
+  }
+}
+
+.checked-items-wrapper p {
+  margin: 0;
+  color: #32c0cc
+}
+
+.checked-item {
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+.close-icon {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none !important
+}
+
+.close-icon:active {
+  transform: scale(1.1)
+}
+
+.close-icon img {
+  width: 20px;
+  height: 20px
+}
+
+.close-icon {
+  cursor: pointer !important
+}
+
+.selection-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center
+}
+
+div.the-single-product-page.selection-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: unset !important;
+  max-width: 1175px !important;
+  width: 100%;
+  align-items: center
+}
+
+div.the-product-page.cityStateZip {
+  width: 100%
+}
+
+div.the-single-product-page.selection-wrapper+div.address-wrapper div.address_wrapper {
+  width: 100%
+}
+
+.choose-radio-wrapper {
+  background-color: #fff !important;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 563px !important;
+  width: 100%;
+  height: 44px;
+  border: 1px solid rgba(192, 196, 204, .47);
+  border-radius: 4px;
+  outline: none
+}
+
+#booking-location-main .the-single-product-page .choose-radio-wrapper {
+  padding: 10px !important
+}
+
+.location-where {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #5a5f73;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important
+}
+
+.location-span {
+  color: #f6d66f
+}
+
+.where-span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  gap: 5
+}
+
+.location-radios,
+.provider-input {
+  padding: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  border: 1px solid rgba(192, 196, 204, .47);
+  width: 20px;
+  border-radius: 10px;
+  height: 20px;
+  position: relative;
+  background-color: #fff
+}
+
+.location-radios:before,
+.provider-input:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(192, 196, 204, .47);
+  background-color: #32c0cc;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0
+}
+
+.location-radios:checked:before,
+.provider-input:checked:before {
+  opacity: 1
+}
+
+.the-single-product.selection_wrapper .select-clinic-wrapper {
+  position: relative;
+  display: block;
+  max-width: 1175px !important
+}
+
+.the-single-product.selection_wrapper .input-box-error-message {
+  top: 45px !important
+}
+
+.select-location-dropdown {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 9px 12px 9px 30px !important;
+  gap: 10px;
+  margin-top: 32px !important;
+  max-width: 1175px !important;
+  width: 100% !important;
+  height: 44px;
+  border: 1px solid rgba(192, 196, 204, .47);
+  background-color: #fff !important;
+  border-radius: 4px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none
+}
+
+.address-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px;
+  margin-top: 25px
+}
+
+.drop-down-icon {
+  font-size: 16px;
+  position: absolute;
+  right: 90px;
+  top: 12px;
+  display: none !important
+}
+
+.bookingDateTime-container-wrapper {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: unset !important;
+  max-width: 1175px !important;
+  width: 100%
+}
+
+.bookingDateTime-container-wrapper .input-box-wrapper {
+  max-width: 522px !important
+}
+
+@media (max-width: 1280px) {
+  .single-page-location .choose-radio-wrapper {
+    max-width: 1175px !important
+  }
+
+  .choose-radio-wrapper {
+    padding: 9px 12px
+  }
+
+  .general-details-card-wrapper .choose_providers_wrapper.book_time_wrapper .input-box-wrapper {
+    width: 100%
+  }
+
+  div.the-single-product-page.selection-wrapper .choose-radio-wrapper {
+    max-width: 563px !important;
+    width: 100%
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .drop-down-icon {
+    right: 10px
+  }
+}
+
+@media (max-width: 1160px) {
+  .bookingDateTime-container-wrapper {
+    gap: 32px
+  }
+}
+
+@media (max-width: 900px) {
+  .address-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 32px
+  }
+
+  .address_wrapper {
+    width: 100% !important
+  }
+
+  .cityStateZip,
+  .selection_wrapper {
+    width: 100%
+  }
+
+  .select-location-dropdown {
+    background-color: #fff !important;
+    padding: 9px 27px;
+    width: 350px !important;
+    margin: auto
+  }
+
+  #clinic-location-dropdown {
+    width: 100% !important
+  }
+
+  .choose-radio-wrapper {
+    padding: 9px 12px
+  }
+}
+
+@media (max-width: 815px) {
+
+  .selection-wrapper,
+  div.the-single-product-page.selection-wrapper {
+    gap: 32px
+  }
+}
+
+.select-clinic-wrapper {
+  position: relative;
+  max-width: 321px !important;
+  margin: auto !important
+}
+
+.location-icon {
+  position: absolute;
+  left: 0;
+  top: 5px
+}
+
+.drop-down-icon {
+  right: 10px
+}
+
+.autocomplete-dropdown-container {
+  position: absolute !important;
+  z-index: 10
+}
+
+@media screen and (max-width: 767px) {
+  .drop-down-icon {
+    right: 10px
+  }
+
+  .autocomplete-dropdown-container {
+    width: 86% !important
+  }
+
+  .autocomplete-dropdown-container>div {
+    height: fit-content !important
+  }
+}
+
+.location-search-input,
+.location-search-input:focus,
+.location-search-input:active {
+  box-shadow: 0 2px 2px #00000029, 0 0 0 1px #00000014;
+  border: honeydew;
+  border: 1px solid rgba(192, 196, 204, .47);
+  display: block;
+  width: 100%;
+  padding: 16px;
+  font-size: 14px;
+  border-radius: 2px;
+  outline: none
+}
+
+.single-product-page-product-hero-main-wrapper {
+  background: #e3faff;
+  padding-inline: 162px;
+  padding-block: 67px;
+  box-sizing: border-box
+}
+
+.product-hero-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-content: center;
+  align-items: center
+}
+
+.product-hero-wrapper.medical-service-menu {
+  grid-template-columns: repeat(1, 1fr);
+  height: unset
+}
+
+.product-description-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start
+}
+
+.image-container {
+  background: #fff;
+  background: radial-gradient(circle, #fff 37%, #02002400 60%)
+}
+
+.single-product-page-product-hero-main-wrapper section.product-image img {
+  scale: 1
+}
+
+.image-container.large-hero-image {
+  display: block
+}
+
+.image-container.small-hero-image {
+  display: none
+}
+
+.image {
+  width: 100%;
+  height: auto
+}
+
+.where-to-book:before {
+  content: "*";
+  font-size: 20px;
+  margin-left: 5px
+}
+
+.booking-page.product-name {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 130%;
+  color: #282d41 !important;
+  margin: 0 !important;
+  padding-block: 24px
+}
+
+.product-cite {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 150%;
+  color: #5a5f73
+}
+
+.booking-page.product-description {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: left !important;
+  margin: 0 !important;
+  color: #5a5f73
+}
+
+.product-price-buttons-wrapper {
+  display: flex;
+  justify-content: flex-start !important;
+  align-items: center;
+  gap: 99px;
+  width: 100% !important
+}
+
+.book-button {
+  background-color: #32c0cc;
+  padding: 20px 30px;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  width: 190px;
+  margin-bottom: 5px !important;
+  outline: none !important
+}
+
+.book-button.nad-buttons {
+  width: 120px !important;
+  padding: 15px;
+  color: #282d41;
+  background-color: #fff
+}
+
+.book-button.nad-buttons:hover {
+  background-color: #f5f5f5
+}
+
+.book-button.nad-buttons:active {
+  background-color: #e5e5e5
+}
+
+.book-button:hover {
+  background-color: #24b8c5
+}
+
+.book-button:active {
+  background-color: #27c1c9
+}
+
+@media (max-width: 1220px) {
+  .single-product-page-product-hero-main-wrapper {
+    padding-inline: unset;
+    padding-block: 13px;
+    width: 100%
+  }
+
+  .single-product-page-product-hero-main-wrapper section.product-image img {
+    scale: 1
+  }
+
+  .product-hero-wrapper {
+    padding-left: 0;
+    height: 728px
+  }
+
+  .product-hero-wrapper.medical-service-menu {
+    height: unset
+  }
+
+  .product-price-buttons-wrapper {
+    gap: 50px
+  }
+
+  .product-description-wrapper {
+    padding: 0;
+    padding-inline: 29px
+  }
+}
+
+.where-to-book {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: left !important;
+  color: #5a5f7399
+}
+
+.product-price {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: left !important;
+  color: #32c0cc
+}
+
+@media (max-width: 643px) {
+  .product-price {
+    text-align: center
+  }
+
+  .single-product-page-product-hero-main-wrapper section.product-image img {
+    scale: unset;
+    width: 67%;
+    height: auto
+  }
+
+  .single-product-page-product-hero-main-wrapper section.product-image {
+    max-height: 75%
+  }
+
+  .image-container.large-hero-image {
+    display: none
+  }
+
+  .image-container.small-hero-image {
+    display: flex;
+    justify-content: center
+  }
+
+  .product-name {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 120%;
+    text-align: center;
+    color: #282d41
+  }
+
+  .product-hero-wrapper {
+    grid-template-columns: repeat(1, 1fr) !important;
+    height: 969px
+  }
+
+  .product-hero-wrapper.medical-service-menu {
+    height: unset
+  }
+
+  .product-price-buttons-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: unset;
+    padding-block: 28px
+  }
+
+  .booking-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px !important
+  }
+
+  .nad-wrapper {
+    justify-content: center !important
+  }
+
+  .selected-and-unselected-nad {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important
+  }
+
+  .book-button.nad-buttons {
+    width: unset !important;
+    padding: 15px;
+    color: #282d41;
+    width: 185px !important;
+    background-color: #fff
+  }
+
+  .product-description-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 13px;
+    padding-block: 24px
+  }
+
+  .product-description {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #5a5f73;
+    text-align: center;
+    margin-bottom: 28px !important
+  }
+
+  .product-hero-wrapper .product-description-wrapper>p>h4 {
+    max-width: 437px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    margin-top: 28px !important;
+    color: #5a5f73
+  }
+
+  .product-hero-wrapper .product-description-wrapper>p>p {
+    max-width: 437px !important;
+    font-family: Inter !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 12px !important;
+    line-height: 150% !important;
+    text-align: center !important;
+    color: #5a5f73 !important
+  }
+
+  .product-description h4 {
+    margin: 10px auto !important
+  }
+}
+
+.product-hero-wrapper.medical-service-menu {
+  flex-direction: column !important;
+  gap: 12px !important;
+  padding-top: 100px;
+  padding-bottom: 123px
+}
+
+.medical-service-menu-title {
+  max-width: 735px;
+  margin: auto !important;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 39px;
+  display: flex;
+  text-align: center;
+  color: #282d41
+}
+
+.medical-service-menu-description {
+  max-width: 735px;
+  margin: auto !important;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  color: #282d41
+}
+
+.nowrap {
+  white-space: nowrap
+}
+
+span a.click-here-service-menu {
+  color: #32c0cc !important;
+  text-decoration: none
+}
+
+@media (max-width: 768px) {
+  .product-hero-wrapper.medical-service-menu {
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding-top: 60px !important;
+    padding-bottom: 70px !important
+  }
+
+  .medical-service-menu-title {
+    font-size: 28px;
+    line-height: 34px
+  }
+
+  .medical-service-menu-description {
+    font-size: 18px;
+    line-height: 28px
+  }
+}
+
+.product-section {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
+  margin: 60px auto 40px !important;
+  padding: unset !important;
+  max-width: 1718px !important
+}
+
+section#product-section-id {
+  margin: auto !important
+}
+
+.why-rejuve-description {
+  max-width: 540.67px !important;
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 150% !important;
+  text-align: center !important;
+  color: #5a5f73 !important
+}
+
+.product-section-title {
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 2rem !important;
+  text-align: center !important;
+  color: #282d41 !important;
+  margin: 70px auto 65px !important
+}
+
+.product-section-cards {
+  width: 100% !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-content: center !important;
+  justify-content: space-between !important;
+  flex-direction: row !important;
+  gap: 1rem !important
+}
+
+.product-section-card {
+  max-width: 420.67px;
+  width: 100% !important;
+  display: flex !important;
+  text-align: center !important;
+  align-items: center !important;
+  flex-direction: column !important
+}
+
+.product-section-card-h1 {
+  margin-bottom: 24px !important;
+  max-width: 300.67px !important;
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 32px !important;
+  line-height: 39px !important;
+  text-align: center !important;
+  color: #282d41 !important
+}
+
+.iv-therapy-context,
+.book-weight-loss-metabolic,
+.returning-customer,
+.click-to-login {
+  margin: 0
+}
+
+.book-weight-loss-section {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-top: 100px !important;
+  gap: 16px !important;
+  margin-bottom: 100px !important
+}
+
+.book-weight-loss-section>.iv-therapy-top .iv-therapy-context {
+  max-width: 359px !important;
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 20px !important;
+  line-height: 150% !important;
+  text-align: center !important;
+  color: #282d41 !important
+}
+
+.middle-main .book-weight-loss-metabolic {
+  max-width: 1218px !important;
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 48px !important;
+  text-align: center !important;
+  color: #282d41 !important
+}
+
+.returning-customer-context>.returning-customer {
+  max-width: 1218px !important;
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 24px !important;
+  line-height: 150% !important;
+  text-align: center !important;
+  color: #5a5f73 !important
+}
+
+.click-to-login>a {
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 24px !important;
+  line-height: 150% !important;
+  text-align: center !important;
+  color: #32c0cc !important;
+  text-decoration: none !important
+}
+
+.returning-customer-context {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important
+}
+
+@media (max-width: 768px) {
+  .product-section {
+    max-width: 360px !important;
+    padding: 0 12px !important;
+    margin: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important
+  }
+
+  p {
+    margin: 0 !important
+  }
+
+  .book-weight-loss-section {
+    margin-top: 50px !important;
+    margin-bottom: 100px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 16px
+  }
+
+  .returning-customer-context {
+    flex-direction: column
+  }
+
+  .click-to-login>a {
+    max-width: 359px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center
+  }
+
+  .returning-customer-context>.returning-customer {
+    max-width: 359px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center
+  }
+
+  p#book-weight-loss-metabolic-id {
+    max-width: 359px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 120%;
+    text-align: center;
+    color: #282d41 !important
+  }
+
+  .product-section {
+    margin: 0 !important;
+    padding: auto 120px !important
+  }
+
+  .product-section-card {
+    width: 100% !important;
+    margin-top: 32px !important
+  }
+
+  .product-section-card:first-child {
+    margin-top: 0 !important
+  }
+
+  .product-section-card-h1 {
+    max-width: 351px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center
+  }
+
+  .product-section-title {
+    margin: 110px 0 32px !important;
+    font-family: Inter;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 32px !important;
+    line-height: 130% !important;
+    text-align: center
+  }
+
+  .why-rejuve-description {
+    font-size: 1rem !important
+  }
+}
+
+:root {
+  --toastify-color-light: #fff;
+  --toastify-color-dark: #121212;
+  --toastify-color-info: #3498db;
+  --toastify-color-success: #07bc0c;
+  --toastify-color-warning: #f1c40f;
+  --toastify-color-error: #e74c3c;
+  --toastify-color-transparent: rgba(255, 255, 255, .7);
+  --toastify-icon-color-info: var(--toastify-color-info);
+  --toastify-icon-color-success: var(--toastify-color-success);
+  --toastify-icon-color-warning: var(--toastify-color-warning);
+  --toastify-icon-color-error: var(--toastify-color-error);
+  --toastify-toast-width: 320px;
+  --toastify-toast-offset: 16px;
+  --toastify-toast-top: max(var(--toastify-toast-offset), env(safe-area-inset-top));
+  --toastify-toast-right: max(var(--toastify-toast-offset), env(safe-area-inset-right));
+  --toastify-toast-left: max(var(--toastify-toast-offset), env(safe-area-inset-left));
+  --toastify-toast-bottom: max(var(--toastify-toast-offset), env(safe-area-inset-bottom));
+  --toastify-toast-background: #fff;
+  --toastify-toast-min-height: 64px;
+  --toastify-toast-max-height: 800px;
+  --toastify-toast-bd-radius: 6px;
+  --toastify-font-family: sans-serif;
+  --toastify-z-index: 9999;
+  --toastify-text-color-light: #757575;
+  --toastify-text-color-dark: #fff;
+  --toastify-text-color-info: #fff;
+  --toastify-text-color-success: #fff;
+  --toastify-text-color-warning: #fff;
+  --toastify-text-color-error: #fff;
+  --toastify-spinner-color: #616161;
+  --toastify-spinner-color-empty-area: #e0e0e0;
+  --toastify-color-progress-light: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+  --toastify-color-progress-dark: #bb86fc;
+  --toastify-color-progress-info: var(--toastify-color-info);
+  --toastify-color-progress-success: var(--toastify-color-success);
+  --toastify-color-progress-warning: var(--toastify-color-warning);
+  --toastify-color-progress-error: var(--toastify-color-error);
+  --toastify-color-progress-bgo: .2
+}
+
+.Toastify__toast-container {
+  z-index: var(--toastify-z-index);
+  -webkit-transform: translate3d(0, 0, var(--toastify-z-index));
+  position: fixed;
+  padding: 4px;
+  width: var(--toastify-toast-width);
+  box-sizing: border-box;
+  color: #fff
+}
+
+.Toastify__toast-container--top-left {
+  top: var(--toastify-toast-top);
+  left: var(--toastify-toast-left)
+}
+
+.Toastify__toast-container--top-center {
+  top: var(--toastify-toast-top);
+  left: 50%;
+  transform: translate(-50%)
+}
+
+.Toastify__toast-container--top-right {
+  top: var(--toastify-toast-top);
+  right: var(--toastify-toast-right)
+}
+
+.Toastify__toast-container--bottom-left {
+  bottom: var(--toastify-toast-bottom);
+  left: var(--toastify-toast-left)
+}
+
+.Toastify__toast-container--bottom-center {
+  bottom: var(--toastify-toast-bottom);
+  left: 50%;
+  transform: translate(-50%)
+}
+
+.Toastify__toast-container--bottom-right {
+  bottom: var(--toastify-toast-bottom);
+  right: var(--toastify-toast-right)
+}
+
+@media only screen and (max-width : 480px) {
+  .Toastify__toast-container {
+    width: 100vw;
+    padding: 0;
+    left: env(safe-area-inset-left);
+    margin: 0
+  }
+
+  .Toastify__toast-container--top-left,
+  .Toastify__toast-container--top-center,
+  .Toastify__toast-container--top-right {
+    top: env(safe-area-inset-top);
+    transform: translate(0)
+  }
+
+  .Toastify__toast-container--bottom-left,
+  .Toastify__toast-container--bottom-center,
+  .Toastify__toast-container--bottom-right {
+    bottom: env(safe-area-inset-bottom);
+    transform: translate(0)
+  }
+
+  .Toastify__toast-container--rtl {
+    right: env(safe-area-inset-right);
+    left: initial
+  }
+}
+
+.Toastify__toast {
+  --y: 0;
+  position: relative;
+  -ms-touch-action: none;
+  touch-action: none;
+  min-height: var(--toastify-toast-min-height);
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  padding: 8px;
+  border-radius: var(--toastify-toast-bd-radius);
+  box-shadow: 0 4px 12px #0000001a;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  max-height: var(--toastify-toast-max-height);
+  font-family: var(--toastify-font-family);
+  cursor: default;
+  direction: ltr;
+  z-index: 0;
+  overflow: hidden
+}
+
+.Toastify__toast--stacked {
+  position: absolute;
+  width: 100%;
+  transform: translate3d(0, var(--y), 0) scale(var(--s));
+  transition: transform .3s
+}
+
+.Toastify__toast--stacked[data-collapsed] .Toastify__toast-body,
+.Toastify__toast--stacked[data-collapsed] .Toastify__close-button {
+  transition: opacity .1s
+}
+
+.Toastify__toast--stacked[data-collapsed=false] {
+  overflow: visible
+}
+
+.Toastify__toast--stacked[data-collapsed=true]:not(:last-child)>* {
+  opacity: 0
+}
+
+.Toastify__toast--stacked:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: calc(var(--g) * 1px);
+  bottom: 100%
+}
+
+.Toastify__toast--stacked[data-pos=top] {
+  top: 0
+}
+
+.Toastify__toast--stacked[data-pos=bot] {
+  bottom: 0
+}
+
+.Toastify__toast--stacked[data-pos=bot].Toastify__toast--stacked:before {
+  transform-origin: top
+}
+
+.Toastify__toast--stacked[data-pos=top].Toastify__toast--stacked:before {
+  transform-origin: bottom
+}
+
+.Toastify__toast--stacked:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  transform: scaleY(3);
+  z-index: -1
+}
+
+.Toastify__toast--rtl {
+  direction: rtl
+}
+
+.Toastify__toast--close-on-click {
+  cursor: pointer
+}
+
+.Toastify__toast-body {
+  margin: auto 0;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 6px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center
+}
+
+.Toastify__toast-body>div:last-child {
+  word-break: break-word;
+  -ms-flex: 1;
+  flex: 1
+}
+
+.Toastify__toast-icon {
+  -webkit-margin-end: 10px;
+  margin-inline-end: 10px;
+  width: 20px;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -ms-flexbox;
+  display: flex
+}
+
+.Toastify--animate {
+  animation-fill-mode: both;
+  animation-duration: .5s
+}
+
+.Toastify--animate-icon {
+  animation-fill-mode: both;
+  animation-duration: .3s
+}
+
+@media only screen and (max-width : 480px) {
+  .Toastify__toast {
+    margin-bottom: 0;
+    border-radius: 0
+  }
+}
+
+.Toastify__toast-theme--dark {
+  background: var(--toastify-color-dark);
+  color: var(--toastify-text-color-dark)
+}
+
+.Toastify__toast-theme--light,
+.Toastify__toast-theme--colored.Toastify__toast--default {
+  background: var(--toastify-color-light);
+  color: var(--toastify-text-color-light)
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--info {
+  color: var(--toastify-text-color-info);
+  background: var(--toastify-color-info)
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--success {
+  color: var(--toastify-text-color-success);
+  background: var(--toastify-color-success)
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--warning {
+  color: var(--toastify-text-color-warning);
+  background: var(--toastify-color-warning)
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--error {
+  color: var(--toastify-text-color-error);
+  background: var(--toastify-color-error)
+}
+
+.Toastify__progress-bar-theme--light {
+  background: var(--toastify-color-progress-light)
+}
+
+.Toastify__progress-bar-theme--dark {
+  background: var(--toastify-color-progress-dark)
+}
+
+.Toastify__progress-bar--info {
+  background: var(--toastify-color-progress-info)
+}
+
+.Toastify__progress-bar--success {
+  background: var(--toastify-color-progress-success)
+}
+
+.Toastify__progress-bar--warning {
+  background: var(--toastify-color-progress-warning)
+}
+
+.Toastify__progress-bar--error {
+  background: var(--toastify-color-progress-error)
+}
+
+.Toastify__progress-bar-theme--colored.Toastify__progress-bar--info,
+.Toastify__progress-bar-theme--colored.Toastify__progress-bar--success,
+.Toastify__progress-bar-theme--colored.Toastify__progress-bar--warning,
+.Toastify__progress-bar-theme--colored.Toastify__progress-bar--error {
+  background: var(--toastify-color-transparent)
+}
+
+.Toastify__close-button {
+  color: #fff;
+  background: transparent;
+  outline: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  opacity: .7;
+  transition: .3s ease;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  z-index: 1
+}
+
+.Toastify__close-button--light {
+  color: #000;
+  opacity: .3
+}
+
+.Toastify__close-button>svg {
+  fill: currentColor;
+  height: 16px;
+  width: 14px
+}
+
+.Toastify__close-button:hover,
+.Toastify__close-button:focus {
+  opacity: 1
+}
+
+@keyframes Toastify__trackProgress {
+  0% {
+    transform: scaleX(1)
+  }
+
+  to {
+    transform: scaleX(0)
+  }
+}
+
+.Toastify__progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--toastify-z-index);
+  opacity: .7;
+  transform-origin: left;
+  border-bottom-left-radius: var(--toastify-toast-bd-radius)
+}
+
+.Toastify__progress-bar--animated {
+  animation: Toastify__trackProgress linear 1 forwards
+}
+
+.Toastify__progress-bar--controlled {
+  transition: transform .2s
+}
+
+.Toastify__progress-bar--rtl {
+  right: 0;
+  left: initial;
+  transform-origin: right;
+  border-bottom-left-radius: initial;
+  border-bottom-right-radius: var(--toastify-toast-bd-radius)
+}
+
+.Toastify__progress-bar--wrp {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  border-bottom-left-radius: var(--toastify-toast-bd-radius)
+}
+
+.Toastify__progress-bar--wrp[data-hidden=true] {
+  opacity: 0
+}
+
+.Toastify__progress-bar--bg {
+  opacity: var(--toastify-color-progress-bgo);
+  width: 100%;
+  height: 100%
+}
+
+.Toastify__spinner {
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+  border: 2px solid;
+  border-radius: 100%;
+  border-color: var(--toastify-spinner-color-empty-area);
+  border-right-color: var(--toastify-spinner-color);
+  animation: Toastify__spin .65s linear infinite
+}
+
+@keyframes Toastify__bounceInRight {
+
+  0%,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+  }
+
+  0% {
+    opacity: 0;
+    transform: translate3d(3000px, 0, 0)
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(-25px, 0, 0)
+  }
+
+  75% {
+    transform: translate3d(10px, 0, 0)
+  }
+
+  90% {
+    transform: translate3d(-5px, 0, 0)
+  }
+
+  to {
+    transform: none
+  }
+}
+
+@keyframes Toastify__bounceOutRight {
+  20% {
+    opacity: 1;
+    transform: translate3d(-20px, var(--y), 0)
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(2000px, var(--y), 0)
+  }
+}
+
+@keyframes Toastify__bounceInLeft {
+
+  0%,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+  }
+
+  0% {
+    opacity: 0;
+    transform: translate3d(-3000px, 0, 0)
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(25px, 0, 0)
+  }
+
+  75% {
+    transform: translate3d(-10px, 0, 0)
+  }
+
+  90% {
+    transform: translate3d(5px, 0, 0)
+  }
+
+  to {
+    transform: none
+  }
+}
+
+@keyframes Toastify__bounceOutLeft {
+  20% {
+    opacity: 1;
+    transform: translate3d(20px, var(--y), 0)
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(-2000px, var(--y), 0)
+  }
+}
+
+@keyframes Toastify__bounceInUp {
+
+  0%,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+  }
+
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 3000px, 0)
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0)
+  }
+
+  75% {
+    transform: translate3d(0, 10px, 0)
+  }
+
+  90% {
+    transform: translate3d(0, -5px, 0)
+  }
+
+  to {
+    transform: translateZ(0)
+  }
+}
+
+@keyframes Toastify__bounceOutUp {
+  20% {
+    transform: translate3d(0, calc(var(--y) - 10px), 0)
+  }
+
+  40%,
+  45% {
+    opacity: 1;
+    transform: translate3d(0, calc(var(--y) + 20px), 0)
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -2000px, 0)
+  }
+}
+
+@keyframes Toastify__bounceInDown {
+
+  0%,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+  }
+
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0)
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 25px, 0)
+  }
+
+  75% {
+    transform: translate3d(0, -10px, 0)
+  }
+
+  90% {
+    transform: translate3d(0, 5px, 0)
+  }
+
+  to {
+    transform: none
+  }
+}
+
+@keyframes Toastify__bounceOutDown {
+  20% {
+    transform: translate3d(0, calc(var(--y) - 10px), 0)
+  }
+
+  40%,
+  45% {
+    opacity: 1;
+    transform: translate3d(0, calc(var(--y) + 20px), 0)
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, 2000px, 0)
+  }
+}
+
+.Toastify__bounce-enter--top-left,
+.Toastify__bounce-enter--bottom-left {
+  animation-name: Toastify__bounceInLeft
+}
+
+.Toastify__bounce-enter--top-right,
+.Toastify__bounce-enter--bottom-right {
+  animation-name: Toastify__bounceInRight
+}
+
+.Toastify__bounce-enter--top-center {
+  animation-name: Toastify__bounceInDown
+}
+
+.Toastify__bounce-enter--bottom-center {
+  animation-name: Toastify__bounceInUp
+}
+
+.Toastify__bounce-exit--top-left,
+.Toastify__bounce-exit--bottom-left {
+  animation-name: Toastify__bounceOutLeft
+}
+
+.Toastify__bounce-exit--top-right,
+.Toastify__bounce-exit--bottom-right {
+  animation-name: Toastify__bounceOutRight
+}
+
+.Toastify__bounce-exit--top-center {
+  animation-name: Toastify__bounceOutUp
+}
+
+.Toastify__bounce-exit--bottom-center {
+  animation-name: Toastify__bounceOutDown
+}
+
+@keyframes Toastify__zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3)
+  }
+
+  50% {
+    opacity: 1
+  }
+}
+
+@keyframes Toastify__zoomOut {
+  0% {
+    opacity: 1
+  }
+
+  50% {
+    opacity: 0;
+    transform: translate3d(0, var(--y), 0) scale3d(.3, .3, .3)
+  }
+
+  to {
+    opacity: 0
+  }
+}
+
+.Toastify__zoom-enter {
+  animation-name: Toastify__zoomIn
+}
+
+.Toastify__zoom-exit {
+  animation-name: Toastify__zoomOut
+}
+
+@keyframes Toastify__flipIn {
+  0% {
+    transform: perspective(400px) rotateX(90deg);
+    animation-timing-function: ease-in;
+    opacity: 0
+  }
+
+  40% {
+    transform: perspective(400px) rotateX(-20deg);
+    animation-timing-function: ease-in
+  }
+
+  60% {
+    transform: perspective(400px) rotateX(10deg);
+    opacity: 1
+  }
+
+  80% {
+    transform: perspective(400px) rotateX(-5deg)
+  }
+
+  to {
+    transform: perspective(400px)
+  }
+}
+
+@keyframes Toastify__flipOut {
+  0% {
+    transform: translate3d(0, var(--y), 0) perspective(400px)
+  }
+
+  30% {
+    transform: translate3d(0, var(--y), 0) perspective(400px) rotateX(-20deg);
+    opacity: 1
+  }
+
+  to {
+    transform: translate3d(0, var(--y), 0) perspective(400px) rotateX(90deg);
+    opacity: 0
+  }
+}
+
+.Toastify__flip-enter {
+  animation-name: Toastify__flipIn
+}
+
+.Toastify__flip-exit {
+  animation-name: Toastify__flipOut
+}
+
+@keyframes Toastify__slideInRight {
+  0% {
+    transform: translate3d(110%, 0, 0);
+    visibility: visible
+  }
+
+  to {
+    transform: translate3d(0, var(--y), 0)
+  }
+}
+
+@keyframes Toastify__slideInLeft {
+  0% {
+    transform: translate3d(-110%, 0, 0);
+    visibility: visible
+  }
+
+  to {
+    transform: translate3d(0, var(--y), 0)
+  }
+}
+
+@keyframes Toastify__slideInUp {
+  0% {
+    transform: translate3d(0, 110%, 0);
+    visibility: visible
+  }
+
+  to {
+    transform: translate3d(0, var(--y), 0)
+  }
+}
+
+@keyframes Toastify__slideInDown {
+  0% {
+    transform: translate3d(0, -110%, 0);
+    visibility: visible
+  }
+
+  to {
+    transform: translate3d(0, var(--y), 0)
+  }
+}
+
+@keyframes Toastify__slideOutRight {
+  0% {
+    transform: translate3d(0, var(--y), 0)
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(110%, var(--y), 0)
+  }
+}
+
+@keyframes Toastify__slideOutLeft {
+  0% {
+    transform: translate3d(0, var(--y), 0)
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(-110%, var(--y), 0)
+  }
+}
+
+@keyframes Toastify__slideOutDown {
+  0% {
+    transform: translate3d(0, var(--y), 0)
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(0, 500px, 0)
+  }
+}
+
+@keyframes Toastify__slideOutUp {
+  0% {
+    transform: translate3d(0, var(--y), 0)
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(0, -500px, 0)
+  }
+}
+
+.Toastify__slide-enter--top-left,
+.Toastify__slide-enter--bottom-left {
+  animation-name: Toastify__slideInLeft
+}
+
+.Toastify__slide-enter--top-right,
+.Toastify__slide-enter--bottom-right {
+  animation-name: Toastify__slideInRight
+}
+
+.Toastify__slide-enter--top-center {
+  animation-name: Toastify__slideInDown
+}
+
+.Toastify__slide-enter--bottom-center {
+  animation-name: Toastify__slideInUp
+}
+
+.Toastify__slide-exit--top-left,
+.Toastify__slide-exit--bottom-left {
+  animation-name: Toastify__slideOutLeft;
+  animation-timing-function: ease-in;
+  animation-duration: .3s
+}
+
+.Toastify__slide-exit--top-right,
+.Toastify__slide-exit--bottom-right {
+  animation-name: Toastify__slideOutRight;
+  animation-timing-function: ease-in;
+  animation-duration: .3s
+}
+
+.Toastify__slide-exit--top-center {
+  animation-name: Toastify__slideOutUp;
+  animation-timing-function: ease-in;
+  animation-duration: .3s
+}
+
+.Toastify__slide-exit--bottom-center {
+  animation-name: Toastify__slideOutDown;
+  animation-timing-function: ease-in;
+  animation-duration: .3s
+}
+
+@keyframes Toastify__spin {
+  0% {
+    transform: rotate(0)
+  }
+
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: #ffffffde;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale
+}
+
+body {
+  background: #fff !important
+}

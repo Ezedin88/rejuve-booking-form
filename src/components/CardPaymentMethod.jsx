@@ -103,7 +103,7 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
               <div className="card-info">
                 <div className="expiry-date">
                   <label className="card-label in-product-page">Expiration</label>
-                  <CardExpiryElement options={CARD_ELEMENT_OPTIONS} name="card_number"/>
+                  <CardExpiryElement options={CARD_ELEMENT_OPTIONS} name="card_number" />
                 </div>
                 <div className="cvc">
                   <label className="card-label in-product-page">CVC</label>
@@ -122,6 +122,10 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
                   className="card-holder-name-input"
                 />
               </div>
+            </div>
+
+            {/* Billing address */}
+            <div className="billing-container">
               <div className="card-holder-billing">
                 {!isScriptLoaded ? (
                   <h1>...loading</h1>
@@ -142,14 +146,15 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
                       loading,
                     }) => (
                       <>
+                        <h2 className='billing-header-text'>Billing Address</h2>
                         <CustomInput
-                          label="Billing"
-                          className="card-holder-billing-address-input"
+                          label="Country"
+                          className="card-holder-billing-address-input country-container"
                           name="biller_details.address.line1"
                           type="text"
-                          placeholder="Billing Address"
+                          placeholder="Country"
                           {...getInputProps({
-                            placeholder: 'Billing Address',
+                            placeholder: 'Country',
                             className: 'location-search-input',
                             onBlur: handleAddressBlur,
                           })}
@@ -185,6 +190,63 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
                             );
                           })}
                         </div>
+                        <div className="state-city-wrapper">
+                          <div className="holder-info country_zip_parent">
+                            <div className="card-holder-billing zip-and-state">
+                              <CustomInput
+                                label="City"
+                                className="card-holder-billing-address-input"
+                                name="biller_details.address.city"
+                                value={values.biller_details.address.city}
+                                type="text"
+                                placeholder="City"
+                              // onChange={handleCityChange}
+                              />
+                              <CustomInput
+                                label="State"
+                                className="card-holder-state-address-input"
+                                name="biller_details.address.state"
+                                value={values.biller_details.address.state}
+                                type="text"
+                                placeholder="State"
+                                onChange={handleStateChange}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="street-address-line">
+                          <CustomInput
+                            label="Street Address"
+                            name="biller_details.address.street_address"
+                            type="text"
+                            placeholder="Street Address"
+                            value={values.biller_details.address.street_address}
+                            className="card-holder-name-input"
+                          />
+                        </div>
+                        <div className="street-address-line">
+                          <CustomInput
+                            label="Address Line 2"
+                            name="biller_details.address.address_line_2"
+                            type="text"
+                            placeholder="Street Address"
+                            value={values.biller_details.address.address_line_2}
+                            className="card-holder-name-input"
+                          />
+                        </div>
+                        <div className="zip-wrapper">
+                          <div className="card-holder-billing zip-and-state">
+                            <CustomInput
+                              label="Zip"
+                              className="card-holder-billing-address-input zip-input"
+                              name="biller_details.address.postal_code"
+                              value={values.biller_details.address.postal_code}
+                              type="text"
+                              placeholder="Zip"
+                              onChange={handleZipChange}
+                            />
+                          </div>
+                        </div>
                       </>
                     )}
                   </PlacesAutocomplete>
@@ -192,39 +254,6 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
               </div>
             </div>
 
-            {/* country and zip */}
-            <div className="holder-info country_zip_parent">
-              <div className="card-holder-name">
-                <CustomInput
-                  label="Country"
-                  name="biller_details.address.country"
-                  type="text"
-                  placeholder="Country"
-                  value={values.biller_details.address.country}
-                  className="card-holder-name-input"
-                />
-              </div>
-              <div className="card-holder-billing zip-and-state">
-                <CustomInput
-                  label="State"
-                  className="card-holder-state-address-input"
-                  name="biller_details.address.state"
-                  value={values.biller_details.address.state}
-                  type="text"
-                  placeholder="State"
-                  onChange={handleStateChange}
-                />
-                <CustomInput
-                  label="Zip"
-                  className="card-holder-billing-address-input"
-                  name="biller_details.address.postal_code"
-                  value={values.biller_details.address.postal_code}
-                  type="text"
-                  placeholder="Zip"
-                  onChange={handleZipChange}
-                />
-              </div>
-            </div>
           </div>
         </div>
       )}

@@ -20,7 +20,8 @@
 }
 
 .single-page-user-info-wrapper .input-box-wrapper input::placeholder {
-  color: color: rgba(40, 45, 65, 0.7);;
+  color: rgba(40, 45, 65, 0.7);
+  ;
   font-size: 14px;
 }
 
@@ -70,11 +71,74 @@
   display: none !important;
 }
 
+.billing-header-text {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: left;
+  line-height: 22px;
+  color: #32c0cc;
+}
+
+.billing-container {
+  display: flex;
+  gap: 20px;
+  max-width: 1257px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.billing-container .card-holder-billing {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.input-box-wrapper.the-product-page .country-container {
+  max-width: 563px !important;
+}
+
+.billing-address-container .card-holder-billing .card-holder-billing.zip-and-state,
+div.card-holder-billing .state-city-wrapper .holder-info.country_zip_parent .card-holder-billing.zip-and-state {
+  display: flex !important;
+  flex-direction: row;
+  width: 100% !important;
+  max-width: 1175px !important;
+}
+
+div.card-holder-billing .input-box-wrapper.the-product-page {
+  width: 563px;
+}
+
+.zip-wrapper .card-holder-billing.zip-and-state {
+  max-width: 200px;
+}
+
+.street-address-line {
+  display: flex;
+  max-width: 1175px !important;
+  width: 100%;
+}
+
+div.card-holder-billing .street-address-line .input-box-wrapper.the-product-page .input-box,
+div.card-holder-billing .street-address-line .input-box-wrapper.the-product-page {
+  max-width: 1175px !important;
+  width: 100% !important;
+}
+
 @media screen and (max-width: 1280px) {
   section.product-page-form-section-wrapper {
     max-width: 1200px;
     padding: 0 20px;
     width: unset !important;
+  }
+}
+
+@media (max-width: 900px) {
+  div.card-holder-billing .input-box-wrapper.the-product-page {
+    width: 100% !important;
   }
 }
 
@@ -340,7 +404,6 @@
 
 /* small screen */
 @media (max-width: 643px) {
-
   #user-detail-section .general-details-card-wrapper {
     width: unset !important;
   }

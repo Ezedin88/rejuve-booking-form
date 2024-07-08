@@ -105,7 +105,7 @@ div.the-single-product-page.selection-wrapper+div.address-wrapper div.address_wr
 }
 
 .the-single-product.selection_wrapper .input-box-error-message {
-  top: 45px !important;
+  /* bottom: 45px !important; */
 }
 
 .select-location-dropdown {
