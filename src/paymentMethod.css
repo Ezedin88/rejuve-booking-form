@@ -2,7 +2,7 @@
 
 .text-area-wrapper-input {
     margin-top: 15px !important;
-    margin-right: 30px !important;
+    /* margin-right: 30px !important; */
     box-sizing: border-box;
     margin: auto;
 }

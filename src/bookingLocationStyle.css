@@ -16,7 +16,12 @@ div.the-single-product-page.selection-wrapper {
 }
 
 div.the-product-page.cityStateZip {
+  position:relative;
   width: 100%;
+}
+
+div.the-product-page.cityStateZip .input-box-error-message,div.top-level-addresses-wrapper .address_wrapper div.input-box-error-message {
+  top: 70px !important;
 }
 
 div.the-single-product-page.selection-wrapper+div.address-wrapper div.address_wrapper {

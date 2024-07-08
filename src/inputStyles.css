@@ -189,7 +189,7 @@ div.holder-info {
 
 .expiry-date .StripeElement,
 .cvc .StripeElement {
-  height: 44px !important;
+  /* height: 44px !important; */
   outline: none;
   padding: 9px !important;
   background-color: #ffffff !important;
