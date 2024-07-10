@@ -36,6 +36,18 @@ div.holder-info .card-holder-billing {
   color: #C0C4CC;
 }
 
+.location-search-input.input-box::placeholder {
+  color: #C0C4CC !important;
+}
+
+.card-holder-name-input.input-box::placeholder {
+  color: #C0C4CC !important;
+}
+
+.card-holder-billing-address-input.zip-input.input-box::placeholder {
+  color: #C0C4CC !important;
+}
+
 div.holder-info {
   display: flex;
   /* justify-content: space-between; */
@@ -119,7 +131,6 @@ div.holder-info {
   margin-top: -10px;
   width: 100%;
   gap: 32px;
-  /* justify-content: space-between; */
 }
 
 .cityStateZip .input-box {
@@ -229,11 +240,10 @@ div.holder-info {
 div.top-level-addresses-wrapper {
   display: flex;
   width: 100%;
-  gap: 20px !important;
+  gap:20px;
 }
 
 .card-holder-billing.zip-and-state div.input-box-wrapper.the-product-page {
-  max-width: 563px !important;
   width: 100% !important;
 }
 
@@ -288,7 +298,6 @@ div.top-level-addresses-wrapper {
   font-weight: 500;
   margin-bottom: 2px;
   position: absolute;
-  /* top: 70px; */
 }
 
 .error-clinic-selection {
@@ -338,6 +347,7 @@ div.top-level-addresses-wrapper {
 
   div.top-level-addresses-wrapper {
     flex-wrap: wrap;
+    gap: unset !important;
   }
 
   div.top-level-addresses-wrapper>div.address_wrapper {
@@ -405,6 +415,16 @@ div.top-level-addresses-wrapper {
 
   .single-page-user-info-wrapper div:nth-child(1) {
     flex-direction: column !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .zip-city-wrapper {
+    flex-wrap: wrap;
+  }
+
+  .zip-city-wrapper .cityStateZip .input-box {
+    max-width: unset !important;
   }
 }
 

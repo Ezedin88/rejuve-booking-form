@@ -63,7 +63,7 @@ function useLocationAutoComplete() {
 
             setExtractedAddressData(extractedData);
             setFormattedAddress(formattedAddress);
-
+            formattedAddress && setAddress(formattedAddress);
             setFieldValue('biller_details.address.line1', formattedAddress || '');
             setFieldValue('biller_details.address.city', extractedData.city || '');
             setFieldValue('biller_details.address.state', extractedData.state || '');
@@ -75,6 +75,7 @@ function useLocationAutoComplete() {
     };
 
     const handleAddressBlur = () => {
+        setFieldValue('biller_details.address.line1', formattedAddress);
         setFieldTouched('biller_details.address.line1', true);
     };
 

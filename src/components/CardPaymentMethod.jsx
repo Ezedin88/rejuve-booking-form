@@ -31,7 +31,7 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
         '::placeholder': {
           color: '#c6c6c6',
           fontSize: '15px',
-          content: 'hello'
+          fontWeight: 'normal',
         },
       },
       invalid: {
@@ -148,13 +148,13 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
                       <>
                         <h2 className='billing-header-text'>Billing Address</h2>
                         <CustomInput
-                          label="Country"
+                          label="Street Address"
                           className="card-holder-billing-address-input country-container"
                           name="biller_details.address.line1"
                           type="text"
                           placeholder="Country"
                           {...getInputProps({
-                            placeholder: 'Country',
+                            placeholder: '4579 Norman Street',
                             className: 'location-search-input',
                             onBlur: handleAddressBlur,
                           })}
@@ -216,11 +216,11 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
                         </div>
                         <div className="street-address-line">
                           <CustomInput
-                            label="Street Address"
-                            name="biller_details.address.street_address"
+                            label="Country"
+                            name="biller_details.address.country"
                             type="text"
-                            placeholder="Street Address"
-                            value={values.biller_details.address.street_address}
+                            placeholder="USA"
+                            value={values.biller_details.address.country}
                             className="card-holder-name-input"
                           />
                         </div>
@@ -229,7 +229,7 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
                             label="Address Line 2"
                             name="biller_details.address.address_line_2"
                             type="text"
-                            placeholder="Street Address"
+                            placeholder="Street Address 2"
                             value={values.biller_details.address.address_line_2}
                             className="card-holder-name-input"
                           />
@@ -242,7 +242,7 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
                               name="biller_details.address.postal_code"
                               value={values.biller_details.address.postal_code}
                               type="text"
-                              placeholder="Zip"
+                              placeholder="90008"
                               onChange={handleZipChange}
                             />
                           </div>

@@ -144,7 +144,7 @@ function MainAppEntry() {
     const fetchPaymentIntent = async (values) => {
       try {
         const response = await fetch(
-          'https://rejuve.md/wp-json/stripe/v1/create-payment-intent',
+          'https://rejuve.com/wp-json/stripe/v1/create-payment-intent',
           {
             method: 'POST',
             headers: {
@@ -297,7 +297,7 @@ function MainAppEntry() {
                 changeCreatingOrderStatus(true);
                 await client.createOrder(dataToSend);
                 changeCreatingOrderStatus(false);
-                window.location.href = 'https://rejuve.md/order-confirmation/';
+                window.location.href = 'https://rejuve.com/order-confirmation/';
               } catch (error) {
                 changeCreatingOrderStatus(false);
                 console.error('Error creating order:', error);
@@ -322,7 +322,7 @@ function MainAppEntry() {
             changeCreatingOrderStatus(true);
             await client.createOrder(dataToSend);
             changeCreatingOrderStatus(false);
-            window.location.href = 'https://rejuve.md/order-confirmation/';
+            window.location.href = 'https://rejuve.com/order-confirmation/';
           } catch (error) {
             changeCreatingOrderStatus(false);
             console.error('Error creating order:', error);
@@ -361,9 +361,9 @@ function MainAppEntry() {
     setPercentageTip(0);
     setDefaultTip(null);
   };
-  //  get publish key from rejuve.md/wp-json/stripe/v1/custom-payment-config
+  //  get publish key from rejuve.com/wp-json/stripe/v1/custom-payment-config
   useEffect(() => {
-    fetch('https://rejuve.md/wp-json/stripe/v1/stripe-payment-config1', {
+    fetch('https://rejuve.com/wp-json/stripe/v1/stripe-payment-config1', {
       method: 'GET',
     }).then(async (result) => {
       var { publishableKey } = await result.json();
@@ -388,7 +388,7 @@ function MainAppEntry() {
                 borderRadius: '500px',
               }}
             >
-              <img src="http://rejuve.md/wp-content/themes/rejuve/assets/images/Pill-spinning.gif" />
+              <img src="http://rejuve.com/wp-content/themes/rejuve/assets/images/Pill-spinning.gif" />
             </div>
           )) || (
             <FormSection
