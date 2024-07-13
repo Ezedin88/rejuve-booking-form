@@ -1,4 +1,5 @@
 import '../mainStyles.css';
+import propTypes from 'prop-types';
 import { FieldArray, Form, Formik, setNestedObjectValues } from 'formik';
 import { handleValidation } from '../Validation';
 import { initialValues } from '../initialValues';
@@ -28,8 +29,6 @@ function FormSection({
   calculatedTipAmount,
   selectNad,
   updateForm,
-  fieldsAreEmpty,
-  fieldsAreEmptyForUpdate,
   removeFromList,
   submitForm,
   handleSubmit,
@@ -39,7 +38,6 @@ function FormSection({
   setProductPrice,
   setWhereBooking,
   whereBooking,
-  currentMainProduct,
   heroCurrentProduct,
   tipOptions,
   tips,
@@ -57,15 +55,15 @@ function FormSection({
   const [agreeToSignUp, setAgreeToSignUp] = useState(true);
   const selectAdons = treatments
     ?.filter((item) =>
-      item.categories.some((category) => category.slug === 'ad-ons')
+      item.product_slug.includes('ad-ons')
     )
     ?.sort((a, b) => a.name.localeCompare(b.name)); // Use localeCompare for string comparison
 
-const selectBooster = treatments
+  const selectBooster = treatments
     ?.filter((item) =>
-      item.categories.some((category) => category.slug === 'booster')
+      item.product_slug.includes('booster')
     )
-    ?.sort((a, b) => a.name.localeCompare(b.name)); // Adjusted for descending order
+    ?.sort((a, b) => a.name.localeCompare(b.name));
 
   // const selectVitaminInjections = treatments.filter((item) =>
   //   item.categories.some((category) => category.slug === 'vitamin-injections')
@@ -74,19 +72,17 @@ const selectBooster = treatments
   //   item.categories.some((category) => category.slug === 'advanced-therapies')
   // );
   const selectIvTherapies = treatments
-    ?.filter((item) =>
-      item.categories.some((category) => category.slug === 'iv-treatment')
-    )
+    ?.filter((item) => item.product_slug?.includes('iv-treatment'))
     ?.sort((a, b) => a.name.localeCompare(b.name)); // Adjusted for descending order
   // const selectDecolettage = treatments.filter((item) =>
   //   item.categories[0]?.name === 'Botox Products'
   // );
-  const currentProductPrice = Number(currentProduct?.price) || 0;
+
   const totalCalculation = lineItems.reduce(
     (acc, item) => acc + Number(item.price),
     0
   );
-  const [recaptchaErrorMessage, setRecaptchaErrorMessage] = useState('');
+
   const [availableBookingPeriods, setAvailableBookingPeriods] = useState([]);
 
   useEffect(() => {
@@ -155,7 +151,6 @@ const selectBooster = treatments
             return termsError;
           };
 
-          const isDecolettage = currentProduct?.slug === 'decolletage';
           return (
             <Form style={{ marginBottom: '60px', width: '100%' }}>
               <>
@@ -243,9 +238,6 @@ const selectBooster = treatments
                                 index={index}
                                 lineItems={lineItems}
                                 setlineItems={setlineItems}
-                                title={
-                                  selectIvTherapies?.[0]?.categories[0]?.name
-                                }
                                 ivTherapy
                                 // isDecolettage={isDecolettage}
                                 setCurrentProduct={setCurrentProduct}
@@ -516,13 +508,15 @@ const selectBooster = treatments
                     You need to read and agree to our{' '}
                     <a
                       href="https://rejuve.com/tos-policy/"
-                      alt="Privacy policy"
+                      target="_blank"
+                      alt="Terms of Service"
                     >
                       Tos
                     </a>
                     ,
                     <a
                       href="https://rejuve.com/privacy-policy/"
+                      target="_blank"
                       alt="Privacy policy"
                     >
                       Privacy Policy
@@ -530,7 +524,8 @@ const selectBooster = treatments
                     ,
                     <a
                       href="https://rejuve.com/consent-to-treat-policy/"
-                      alt="Privacy policy"
+                      target="_blank"
+                      alt="Consent to Treat"
                     >
                       {' '}
                       Consent To Treat
@@ -538,13 +533,15 @@ const selectBooster = treatments
                     and
                     <a
                       href="https://rejuve.com/cancellation-policy/"
-                      alt="Privacy policy"
+                      target="_blank"
+                      alt="Cancellation Policy"
                     >
                       {' '}
                       Cancellation Policy
                     </a>{' '}
                     to continue booking.
                   </p>
+
                 </div>
               )}
               {hasUserDataErrors && (
@@ -564,3 +561,40 @@ const selectBooster = treatments
 }
 
 export default FormSection;
+
+FormSection.propTypes = {
+  lineItems: propTypes.array,
+  setlineItems: propTypes.func,
+  treatments: propTypes.array,
+  providers: propTypes.array,
+  selectedProvider: propTypes.string,
+  handleProviderChange: propTypes.func,
+  handleCustomTipChange: propTypes.func,
+  handlePercentageChange: propTypes.func,
+  defaultTip: propTypes.number,
+  calculatedTipAmount: propTypes.number,
+  selectNad: propTypes.array,
+  updateForm: propTypes.func,
+  fieldsAreEmpty: propTypes.bool,
+  fieldsAreEmptyForUpdate: propTypes.bool,
+  removeFromList: propTypes.func,
+  submitForm: propTypes.func,
+  handleSubmit: propTypes.func,
+  isFetchingProduct: propTypes.bool,
+  currentProduct: propTypes.object,
+  setCurrentProduct: propTypes.func,
+  setProductPrice: propTypes.func,
+  setWhereBooking: propTypes.func,
+  whereBooking: propTypes.string,
+  currentMainProduct: propTypes.object,
+  heroCurrentProduct: propTypes.object,
+  tipOptions: propTypes.object,
+  tips: propTypes.object,
+  messagePayment: propTypes.string,
+  isProcessingPayment: propTypes.bool,
+  setTheCardNumberElement: propTypes.func,
+  setTheClientSecret: propTypes.func,
+  setTotalWithTip: propTypes.func,
+  isScriptLoaded: propTypes.bool,
+  dataPage: propTypes.bool,
+};

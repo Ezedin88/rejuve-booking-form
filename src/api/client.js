@@ -2,8 +2,9 @@
 
 export const client = {
 
-    sendEmail: async ({ message }) => {
+    sendEmail: async ({ message, customer_email, customer_name }) => {
         const url = 'https://rejuve.com/wp-json/custom/v1/send-email';
+        const specialInstructionsSubject = `Special Instructions from ${customer_email}, ${customer_name}`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -11,7 +12,7 @@ export const client = {
             },
             body: JSON.stringify({
                 to: 'booking@rejuve.com',
-                subject: 'Discrepancy in Cardholder Information for Patient Billing',
+                subject: specialInstructionsSubject ? specialInstructionsSubject : 'Discrepancy in Cardholder Information for Patient Billing',
                 message: message
             })
         });
@@ -19,7 +20,8 @@ export const client = {
     },
 
     getProductById: async (product_id) => {
-        const apiUrl = `https://rejuve.com/wp-json/wc/v3/products/${product_id}`;
+        // const apiUrl = `https://rejuve.com/wp-json/wc/v3/products/${product_id}`;
+        const apiUrl = `https://rejuve.com/wp-json/wp/v2/custom/product?id=${product_id}`;
         const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
         const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
         const encodedCredentials = btoa(`${consumerKey}:${consumerSecret}`);
@@ -39,7 +41,8 @@ export const client = {
         }
     },
     getAllTreatments: async () => {
-        const apiUrl = `https://rejuve.com/wp-json/wc/v3/products/?per_page=100`;
+        // const apiUrl = `https://rejuve.md/wp-json/wp/v2/custom/products`;
+        const apiUrl = `https://rejuve.com/rejuve/wp-json/wp/v2/custom/products`;
         const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
         const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
 

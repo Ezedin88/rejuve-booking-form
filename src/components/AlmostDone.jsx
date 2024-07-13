@@ -15,7 +15,7 @@ function AlmostDoneSection({
     <div>
       <>
         <div className="promo-wrapper">
-          <div className="promo-and-gift">
+          {/* <div className="promo-and-gift">
             <p className="do-you-have-promo">Do you have a Promo Code ?</p>
             <div className="promo-checkbox-and-label">
               <Field
@@ -46,7 +46,7 @@ function AlmostDoneSection({
                 Apply Discount
               </button>{' '}
             </div>
-          </div>
+          </div> */}
 
           {/* checkbox gift card */}
           <div className="inner-tip-wrapper">

@@ -39,4 +39,5 @@ export const initialValues = {
     terms: false,
     paymentMethod: 'creditCard',
     cardNumberElement: {},
+    specialInstructions: '',
 };

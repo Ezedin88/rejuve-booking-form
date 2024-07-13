@@ -41,7 +41,7 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
     },
   };
 
-  const { setFieldValue, setFieldTouched, setFieldError } = useFormikContext();
+  const { setFieldValue, setFieldTouched } = useFormikContext();
   const {
     address,
     handleChange,
@@ -69,15 +69,6 @@ function CardPaymentMethod({ values, isScriptLoaded }) {
       setFieldValue('biller_details.address.postal_code', zip);
     }
   }, [extractedAddress, city, state, zip, setFieldValue, setFieldTouched]);
-
-  // const handleCardNumberBlur = () => {
-  //   console.log("Blurred!")
-  //   setFieldTouched('cardNumber', true);
-  //   if (!cardElement._elementState.empty) {
-  //     console.log('empty')
-  //     setFieldError('cardNumber', 'Card number is required');
-  //   }
-  // };
 
   return (
     <>

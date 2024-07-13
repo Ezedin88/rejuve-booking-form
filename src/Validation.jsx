@@ -27,13 +27,13 @@ export const handleValidation = yup.object().shape({
     bookingDate: yup.string().required('Booking date is required'),
     bookingTime: yup.string().required('Booking time is required'),
     bookingChoice: yup.string().required('Booking location is required'),
-    clinicChoice: yup.string().when("bookingChoice", {
-        is:(val)=>{
-            return val === 'atourclinics'
-        },
-        then: (s)=>s.required('Clinic location is required'),
-        otherwise: (s)=>s,
-    }),
+    // clinicChoice: yup.string().when("bookingChoice", {
+    //     is:(val)=>{
+    //         return val === 'atourclinics'
+    //     },
+    //     then: (s)=>s.required('Clinic location is required'),
+    //     otherwise: (s)=>s,
+    // }),
     card_number: yup.string().when('paymentMethod', {
         is:(val)=>{
             return val === 'creditCard'

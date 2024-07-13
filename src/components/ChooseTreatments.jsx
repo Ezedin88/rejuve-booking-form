@@ -1,4 +1,6 @@
+import propTypes from 'prop-types';
 import TwistAccordion from '../Accordion/AccordionComponent';
+import { getProductPrice } from '../utils/getProductPrice';
 
 function ChooseTreatments({
   index,
@@ -6,7 +8,6 @@ function ChooseTreatments({
   setlineItems,
   treatmentChoices,
   ivTherapy,
-  isFetchingProduct,
   setCurrentProduct,
   isDecolettage,
   dataValues
@@ -30,12 +31,13 @@ function ChooseTreatments({
   // when iv therapy
   const handleCheckboxChangeIvTherapy = (checked, treatment, inHousePrice) => {
     if (checked) {
+      // for hero profile image
       if (index === 0 && !isDecolettage) {
         setCurrentProduct(treatment);
       }
       setlineItems(prevLineItems => {
         const ivTreatmentIds = treatmentChoices
-          .filter(treatment => treatment.categories[0].name === 'IV Treatment')
+          .filter(treatment => treatment.categories[0] === 'IV Treatment')
           .map(treatment => treatment.id);
         const remainingLineItems = prevLineItems.filter(item => {
           if (item.userIndex !== index) {
@@ -60,26 +62,19 @@ function ChooseTreatments({
 
   return (
     <>
-      <TwistAccordion title={treatmentChoices?.[0]?.categories?.[0]?.name}
+      <TwistAccordion title={treatmentChoices?.[0]?.categories?.[0]}
         userIndex={index}
         lineItems={lineItems}
         setLineItems={setlineItems}
         treatmentChoices={treatmentChoices}
       >
         <div className='treatments-wrapper'>
-          {treatmentChoices.map(treatment => {
+          {treatmentChoices?.map(treatment => {
 
-            const { price_html = 0 } = treatment || {};
-
-            const pricePattern = /<bdi><span class="woocommerce-Price-currencySymbol">&#36;<\/span>(\d+(?:,\d+)*)<\/bdi>/g;
-
-            const matches = !isFetchingProduct && price_html && [...price_html.matchAll(pricePattern)];
-
-            const prices1 = !isFetchingProduct && matches?.map(match => match[1].replace(/,/g, ''));
-            let inHousePrice = null;
-            if (prices1.length >= 2) {
-              inHousePrice = parseFloat(prices1[1]);
-            }
+         const {price,variations} = treatment ||{};             
+        const inHousePrice = parseFloat(variations?.[1]?.price) || parseFloat(price);
+        const bookInClinic = parseFloat(variations?.[0]?.price) || parseFloat(price);
+        
             return (
               <div key={treatment.id} className='check-box-price-wrapper'>
                 <div className='accordion-inner-wrapper'>
@@ -126,7 +121,7 @@ function ChooseTreatments({
                   <div className='accordion-item-price'
                   >
                     <p className='price-tag'>
-                      $ {dataValues?.bookingChoice === 'housecall' && inHousePrice || treatment?.price}
+                      $ {dataValues?.bookingChoice === 'housecall' && inHousePrice || bookInClinic}
                     </p>
                   </div>
                 </div>
@@ -140,3 +135,15 @@ function ChooseTreatments({
 }
 
 export default ChooseTreatments
+
+ChooseTreatments.propTypes = {
+  index: propTypes.number,
+  lineItems: propTypes.array,
+  setlineItems: propTypes.func,
+  treatmentChoices: propTypes.array,
+  ivTherapy: propTypes.bool,
+  isFetchingProduct: propTypes.bool,
+  setCurrentProduct: propTypes.func,
+  isDecolettage: propTypes.bool,
+  dataValues: propTypes.object
+}

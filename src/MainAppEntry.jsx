@@ -57,7 +57,6 @@ function MainAppEntry() {
   const [fieldsAreEmpty, setFieldsAreEmpty] = useState(false);
   const [treatments, setTreatments] = useState([]);
   const [selectedProvider, setSelectedProvider] = useState('Any');
-
   const [currentProduct, setCurrentProduct] = useState({});
   const [currentProductCopy, setCurrentProductCopy] = useState({});
   const selectNad = treatments.filter((item) =>
@@ -92,6 +91,7 @@ function MainAppEntry() {
       const data = await client.getAllProviders();
       setProviders(data);
     };
+
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
       const data = await client.getProductById(dataPage||null)??null;
@@ -109,8 +109,8 @@ function MainAppEntry() {
             productName: data?.name,
             variation_id:
               values.bookingChoice !== 'atourclinics'
-                ? data?.variations[1]
-                : data?.variations[0],
+                ? data?.variations?.[1]?.id
+                : data?.variations?.[0]?.id,
             price:
               values.bookingChoice === 'housecall' ? bookHouseCall : data?.price,
             quantity: 1,
@@ -124,6 +124,13 @@ function MainAppEntry() {
     fetchProviders();
     fetchTreatments();
   }, []);
+
+  useEffect(()=>{
+    if(treatments && treatments?.length>0){
+      const event = new Event('reactAppLoaded');
+      window.dispatchEvent(event);
+    }
+  },[treatments])
 
   // Remove item from localStorage when navigating away from the about page
   useEffect(() => {
@@ -288,14 +295,21 @@ function MainAppEntry() {
             }
             setIsProcessing(false);
             if (dataToSend) {
+              changeCreatingOrderStatus(true);
               try {
                 window.removeEventListener('beforeunload', () => {});
                 localStorage.removeItem('selectedTreatments');
                 localStorage.removeItem('booking-location-choice');
                 localStorage.removeItem('bookingData');
                 window.scrollTo(0, 0);
-                changeCreatingOrderStatus(true);
                 await client.createOrder(dataToSend);
+                if(values.specialInstructions){
+                  client.sendEmail({
+                    message: `Special Instructions: ${values.specialInstructions}`,
+                    customer_email: values.userData[0].billing.email,
+                    customer_name: values.userData[0].billing.first_name + ' ' + values.userData[0].billing.last_name,
+                  });
+                }
                 changeCreatingOrderStatus(false);
                 window.location.href = 'https://rejuve.com/order-confirmation/';
               } catch (error) {
@@ -304,6 +318,7 @@ function MainAppEntry() {
               }
             }
           } else {
+            changeCreatingOrderStatus(false);
             setErrorMessage('Payment failed');
             toast('Payment failed', { type: 'error' });
           }
@@ -313,6 +328,7 @@ function MainAppEntry() {
         }
       } else {
         if (dataToSend) {
+          changeCreatingOrderStatus(true);
           try {
             window.removeEventListener('beforeunload', () => {});
             localStorage.removeItem('selectedTreatments');
@@ -321,18 +337,30 @@ function MainAppEntry() {
             window.scrollTo(0, 0);
             changeCreatingOrderStatus(true);
             await client.createOrder(dataToSend);
+            if(values.specialInstructions){
+              client.sendEmail({
+                message: `Special Instructions: ${values.specialInstructions}`,
+                customer_email: values.userData[0].billing.email,
+                customer_name: values.userData[0].billing.first_name + ' ' + values.userData[0].billing.last_name,
+              });
+            }
             changeCreatingOrderStatus(false);
             window.location.href = 'https://rejuve.com/order-confirmation/';
           } catch (error) {
             changeCreatingOrderStatus(false);
             console.error('Error creating order:', error);
           }
+        }else{
+          setErrorMessage('An error occurred. Please try again.');
+          setIsProcessing(false);
+          changeCreatingOrderStatus(false);
         }
       }
     } catch (error) {
       console.error('Error in submitForm:', error);
       setErrorMessage('An error occurred. Please try again.');
       setIsProcessing(false);
+      changeCreatingOrderStatus(false);
     }
     setIsProcessing(false);
   };
@@ -388,7 +416,7 @@ function MainAppEntry() {
                 borderRadius: '500px',
               }}
             >
-              <img src="http://rejuve.com/wp-content/themes/rejuve/assets/images/Pill-spinning.gif" />
+              <img src="http://rejuve.md/wp-content/themes/rejuve/assets/images/Pill-spinning.gif" />
             </div>
           )) || (
             <FormSection

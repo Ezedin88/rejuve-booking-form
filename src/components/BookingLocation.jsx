@@ -38,6 +38,16 @@ function BookingLocation({ values, isScriptLoaded }) {
     }
   }, [extractedAddress, city, state, zip, setFieldValue, setFieldTouched]);
 
+  useEffect(() => {
+    if (values?.bookingChoice === 'atourclinics') {
+      setFieldValue('clinicChoice', 'Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403');
+      setFieldTouched('clinicChoice', true);
+    } else {
+      setFieldValue('clinicChoice', '');
+      setFieldTouched('clinicChoice', false);
+    }
+  },[setFieldTouched, setFieldValue, values?.bookingChoice]);
+
   const handleClinicChoiceBlur = () => {
     setFieldTouched('clinicChoice', true);
   };
@@ -99,29 +109,24 @@ function BookingLocation({ values, isScriptLoaded }) {
         </div>
       </div>
       {(values?.bookingChoice === 'atourclinics' && (
-        <div className="select-clinic-wrapper">
+        <div className="select-clinic-wrapper tooltip-wrapper">
+          <p className="tooltip-text">Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403</p>
           <select
             className="select-location-dropdown"
             id="clinic-location-dropdown"
             name="clinicChoice"
+            // disabled
             value={field.value}
+            style={{cursor:'pointer'}}
             onChange={field.onChange}
             onBlur={handleClinicChoiceBlur}
             onClick={handleClinicChoiceBlur}
           >
             <option
               className="select-location-dropdown"
-              name="clinicChoice"
-              value=""
-            >
-              Select a clinic
-            </option>
-            <option
-              className="select-location-dropdown"
               value="Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403"
             >
-              Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman
-              Oaks, CA 91403
+              Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403
             </option>
           </select>
           <img

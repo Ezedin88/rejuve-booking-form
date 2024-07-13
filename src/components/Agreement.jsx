@@ -26,38 +26,42 @@ function Agreement({
             // onChange={() => setAgreeToTos(!agreeToTos)}
             className="agreement-checkbox-input"
           />
-          <p
-            className="agreement-description"
-            style={{ cursor: 'pointer' }}
-            onClick={() => setAgreeToTos(!agreeToTos)}
-          >
-            
-            I agree to the <a
-              href="https://rejuve.com/tos-policy/"
-              style={{ textDecoration: 'none', color: '#32c0cc' }}
-              onClick={(e) => e.stopPropagation()} // Prevents toggling agreeToTos when clicking the link
-            >ToS</a>,
-            <a
-              href="https://rejuve.com/privacy-policy/"
-              style={{ textDecoration: 'none', color: '#32c0cc' }}
-              onClick={(e) => e.stopPropagation()} // Prevents toggling agreeToTos when clicking the link
-            >
-              Privacy Policy
-            </a>
-            ,
-            <a 
-            href="https://rejuve.com/consent-to-treat-policy/"
-            style={{ textDecoration: 'none', color: '#32c0cc' }}
-            onClick={(e) => e.stopPropagation()} // Prevents toggling agreeToTos when clicking the link
-            >
-             Consent To Treat
-             </a>
-             , <a
-              href="https://rejuve.com/cancellation-policy/"
-              style={{ textDecoration: 'none', color: '#32c0cc' }}
-              onClick={(e) => e.stopPropagation()} // Prevents toggling agreeToTos when clicking the link
-            >and Cancellation Policy *</a>
-          </p>
+         <p
+  className="agreement-description"
+  style={{ cursor: 'pointer' }}
+  onClick={() => setAgreeToTos(!agreeToTos)}
+>
+  I agree to the <a
+    href="https://rejuve.com/tos-policy/"
+    target="_blank"
+    style={{ textDecoration: 'none', color: '#32c0cc' }}
+    onClick={(e) => e.stopPropagation()} // Prevents toggling agreeToTos when clicking the link
+  >ToS</a>,
+  <a
+    href="https://rejuve.com/privacy-policy/"
+    target="_blank"
+    style={{ textDecoration: 'none', color: '#32c0cc' }}
+    onClick={(e) => e.stopPropagation()} // Prevents toggling agreeToTos when clicking the link
+  >
+    Privacy Policy
+  </a>
+  ,
+  <a 
+    href="https://rejuve.com/consent-to-treat-policy/"
+    target="_blank"
+    style={{ textDecoration: 'none', color: '#32c0cc' }}
+    onClick={(e) => e.stopPropagation()} // Prevents toggling agreeToTos when clicking the link
+  >
+    Consent To Treat
+  </a>
+  , <a
+    href="https://rejuve.com/cancellation-policy/"
+    target="_blank"
+    style={{ textDecoration: 'none', color: '#32c0cc' }}
+    onClick={(e) => e.stopPropagation()} // Prevents toggling agreeToTos when clicking the link
+  >and Cancellation Policy *</a>
+</p>
+
         </label>
       </div>
 
