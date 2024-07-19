@@ -21,7 +21,7 @@ function BookingLocation({ values, isScriptLoaded }) {
   const { address, handleChange, handleSelect, formattedAddress } =
     useLocationAutoComplete();
   const { address: extractedAddress, city, state, zip } = address || {};
-  const { setFieldValue, setFieldTouched, errors } = useFormikContext();
+  const { setFieldValue, setFieldTouched } = useFormikContext();
   useEffect(() => {
     if (extractedAddress) {
       setFieldValue('bookingAddress.address_1', extractedAddress);
@@ -258,4 +258,5 @@ export default BookingLocation;
 
 BookingLocation.propTypes = {
   values: propTypes.object.isRequired,
+  isScriptLoaded: propTypes.bool
 };

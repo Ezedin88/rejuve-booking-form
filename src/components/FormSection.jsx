@@ -33,9 +33,7 @@ function FormSection({
   submitForm,
   handleSubmit,
   isFetchingProduct,
-  currentProduct,
   setCurrentProduct,
-  setProductPrice,
   setWhereBooking,
   whereBooking,
   heroCurrentProduct,
@@ -89,8 +87,6 @@ function FormSection({
     setTotalWithTip(totalCalculation + Number(calculatedTipAmount || 0));
   }, [totalCalculation, calculatedTipAmount]);
 
-  const [refactoredErrors, setRefactoredErrors] = useState([]);
-  const [termsError, setTermsError] = useState(false);
   const [hasAnyErrors, setHasAnyErrors] = useState(false);
   const [hasUserDataErrors, setHasUserDataErrors] = useState(false);
 
@@ -103,7 +99,7 @@ function FormSection({
         validateOnBlur
         onSubmit={handleSubmit}
       >
-        {({ values, errors, setValues, setTouched, validateForm, isValid }) => {
+        {({ values, errors, setValues, setTouched, validateForm }) => {
           const hasErrors =
             Object.keys(errors).filter((key) => key !== 'terms').length > 0;
           if (!hasErrors) {
@@ -158,7 +154,6 @@ function FormSection({
                   isFetchingProduct={isFetchingProduct}
                   currentProduct={heroCurrentProduct}
                   setCurrentProduct={setCurrentProduct}
-                  setProductPrice={setProductPrice}
                   setWhereBooking={setWhereBooking}
                   lineItems={lineItems}
                   setLineItems={setlineItems}
@@ -217,8 +212,6 @@ function FormSection({
                                   index={index}
                                   values={values}
                                   setWhereBooking={setWhereBooking}
-                                  userDataErrors={userDataErrors}
-                                  setRefactoredErrors={setRefactoredErrors}
                                   isScriptLoaded={isScriptLoaded}
                                 />
                               </div>
@@ -466,19 +459,12 @@ function FormSection({
                       e.preventDefault();
                       const termsError = await checkAgreementErrors();
                       if (termsError) {
-                        setTermsError(true);
-                        return; // Stop execution if there's a terms error
-                      } else {
-                        setTermsError(false);
+                        return;
                       }
 
                       const hasErrors = await checkForAnyErrors();
                       if (hasErrors) {
-                        setHasAnyErrors(true);
-                        return; // Stop execution if there are any other errors
-                      } else {
-                        setHasAnyErrors(false);
-                        setTermsError(false);
+                        return; 
                       }
 
                       // If no errors, submit the form
@@ -583,7 +569,6 @@ FormSection.propTypes = {
   isFetchingProduct: propTypes.bool,
   currentProduct: propTypes.object,
   setCurrentProduct: propTypes.func,
-  setProductPrice: propTypes.func,
   setWhereBooking: propTypes.func,
   whereBooking: propTypes.string,
   currentMainProduct: propTypes.object,

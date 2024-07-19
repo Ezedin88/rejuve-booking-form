@@ -1,4 +1,5 @@
 import './App.css';
+import propTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { client } from './api/client';
 import FormSection from './components/FormSection';
@@ -42,13 +43,6 @@ function MainAppEntry() {
 
   const dataPage = document
     .querySelector('[data-page_id]')?.getAttribute('data-page_id');
-
-  const isFormFilled = (values) => {
-    // Check if any of the fields in the current form are empty
-    return values.userData.every((item) =>
-      Object.values(item.billing).every((field) => field !== '')
-    );
-  };
 
 
  const checkMenuTreatments = JSON.parse(localStorage.getItem('selectedTreatments'));
@@ -126,7 +120,7 @@ function MainAppEntry() {
   }, []);
 
   useEffect(()=>{
-    if(treatments && treatments?.length>0){
+    if(treatments && treatments?.length>0 || checkMenuTreatments&&checkMenuTreatments.length>0){
       const event = new Event('reactAppLoaded');
       window.dispatchEvent(event);
     }
@@ -134,7 +128,7 @@ function MainAppEntry() {
 
   // Remove item from localStorage when navigating away from the about page
   useEffect(() => {
-    const handleBeforeUnload = (event) => {
+    const handleBeforeUnload = () => {
       localStorage.removeItem('selectedTreatments');
       localStorage.removeItem('booking-location-choice');
       localStorage.removeItem('bookingData');
@@ -234,12 +228,12 @@ function MainAppEntry() {
       });
   
       const { values: dataValues, meta_data, fee_lines } = transformedData || {};
-      const dataToSend = dataValues?.userData?.map((item, key) => ({
+      const dataToSend = dataValues?.userData?.map((item) => ({
         status: 'processing',
         payment_method:
-          dataValues.paymentMethod === 'creditCard' ? 'stripe' : 'house',
+          dataValues.paymentMethod === 'creditCard' ? 'Visa' : 'Pay at Location',
         payment_method_title:
-          dataValues.paymentMethod === 'creditCard' ? 'Card' : 'House',
+          dataValues.paymentMethod === 'creditCard' ? 'Visa' : 'Pay at Location',
         set_paid: false,
         meta_data,
         billing: { ...item.billing, ...dataValues.bookingAddress },
@@ -252,7 +246,7 @@ function MainAppEntry() {
       
         setIsProcessing(true);
   
-        const { stripe, elements, cardElement } = values?.cardNumberElement;
+        const { stripe, elements, cardElement } = values.cardNumberElement;
   
         if (!stripe || !elements) {
           return;
@@ -364,14 +358,6 @@ function MainAppEntry() {
     }
     setIsProcessing(false);
   };
-  
-  const handleSubmit = (values, options) => {
-    const transformedData = organizeLineItems({ values, lineItems });
-  };
-
-  const [productPrice, setProductPrice] = useState(
-    allPriceForTipPercentage.price || 0
-  );
 
   const handlePercentageChange = (value) => {
     setSelectedTipOption(value);
@@ -407,18 +393,22 @@ function MainAppEntry() {
             <div
               className="loading-rejuve-spinner"
               style={{
+                background:'#fff',
                 height: '100vh',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
                 maxWidth: '100%',
-                mixBlendMode: 'multiply',
-                borderRadius: '500px',
+                // mixBlendMode: 'multiply',
+                // borderRadius: '500px',
+                position: 'fixed',
+                inset:0,
+                zIndex: 9999,
               }}
             >
               <img src="http://rejuve.md/wp-content/themes/rejuve/assets/images/Pill-spinning.gif" />
             </div>
-          )) || (
+          )) || !isCreatingOrder && (
             <FormSection
               tips={{
                 customTip,
@@ -440,13 +430,11 @@ function MainAppEntry() {
               fieldsAreEmptyForUpdate={fieldsAreEmptyForUpdate}
               removeFromList={removeFromList}
               submitForm={submitForm}
-              handleSubmit={handleSubmit}
               isFetchingProduct={isFetchingProduct}
               currentProduct={currentProductCopy}
               currentMainProduct={currentProductCopy}
               heroCurrentProduct={currentProduct}
               setCurrentProduct={setCurrentProduct}
-              setProductPrice={setProductPrice}
               setWhereBooking={setWhereBooking}
               whereBooking={whereBooking}
               tipOptions={{
@@ -468,3 +456,14 @@ function MainAppEntry() {
 }
 
 export default MainAppEntry;
+
+
+MainAppEntry.propTypes = {
+  title: propTypes.string.isRequired,
+  userIndex: propTypes.number.isRequired,
+  ivTherapy: propTypes.string.isRequired,
+  children: propTypes.node.isRequired,
+  setLineItems: propTypes.func.isRequired,
+  lineItems: propTypes.array.isRequired,
+  treatmentChoices: propTypes.array.isRequired
+}

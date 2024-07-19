@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import propTypes from 'prop-types';
 import '../accordionStyle.css';
-const TwistAccordion = ({ title,userIndex,ivTherapy, children,setLineItems,lineItems,treatmentChoices }) => {
+const TwistAccordion = ({ title,userIndex, children,setLineItems,lineItems,treatmentChoices }) => {
   const [isOpen, setIsOpen] = useState(false);
 const currentAccordionCheckedItems = lineItems.filter(item => item.userIndex === userIndex);
 // filter currentaccordioncheckeditems that much with treatmentchoices id
@@ -47,3 +48,13 @@ const filteredCheckedItems = currentAccordionCheckedItems.filter(item => treatme
 };
 
 export default TwistAccordion;
+
+TwistAccordion.propTypes = {
+  title: propTypes.string.isRequired,
+  userIndex: propTypes.number.isRequired,
+  ivTherapy: propTypes.string.isRequired,
+  children: propTypes.node.isRequired,
+  setLineItems: propTypes.func.isRequired,
+  lineItems: propTypes.array.isRequired,
+  treatmentChoices: propTypes.array.isRequired
+}

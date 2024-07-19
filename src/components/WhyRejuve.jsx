@@ -1,31 +1,18 @@
+import propTypes from 'prop-types';
 import '../whyRejuve.css';
 
 function WhyRejuve({currentProduct}) {
-  const {meta_data, name:theProductName} = currentProduct ||{};
+  const {name:theProductName,acf} = currentProduct ||{};
+  const {convenience_section_title,convenience_list} = acf ||{};
+const first_convenience_title = convenience_list?.[0]?.title;
+const first_convenience_description = convenience_list?.[0]?.description;
 
-const convenience_section_title = meta_data?.find(({key}) => key==='convenience_section_title')?.value;
+const second_convenience_title = convenience_list?.[1]?.title;
+const second_convenience_description = convenience_list?.[1]?.description;
 
-const convenience_list_0_convenience_title = meta_data?.find(({key}) => key==='convenience_list_0_convenience_title')?.value;
-const convenience_list_0_title = meta_data?.find(({key}) => key==='convenience_list_0_title')?.value;
+const third_convenience_title = convenience_list?.[2]?.title;
+const third_convenience_description = convenience_list?.[2]?.description;
 
-const convenience_list_0_convenience_dscription = meta_data?.find(({key}) => key==='convenience_list_0_convenience_dscription')?.value;
-const convenience_list_0_description = meta_data?.find(({key}) => key==='convenience_list_0_description')?.value;
-
-const convenience_list_1_convenience_title = meta_data?.find(({key}) => key==='convenience_list_1_convenience_title')?.value;
-const convenience_list_1_title = meta_data?.find(({key}) => key==='convenience_list_1_title')?.value;
-
-const convenience_list_1_convenience_dscription = meta_data?.find(({key}) => key==='convenience_list_1_convenience_dscription')?.value;
-const convenience_list_1_description = meta_data?.find(({key}) => key==='convenience_list_1_description')?.value;
-
-const convenience_list_2_convenience_title = meta_data?.find(({key}) => key==='convenience_list_2_convenience_title')?.value;
-const convenience_list_2_title = meta_data?.find(({key}) => key==='convenience_list_2_title')?.value;
-
-const convenience_list_2_convenience_dscription = meta_data?.find(({key}) => key==='convenience_list_2_convenience_dscription')?.value;
-const convenience_list_2_description = meta_data?.find(({key}) => key==='convenience_list_2_description')?.value;
-
-const mainHeroTitle = convenience_list_0_convenience_title || convenience_list_0_title;
-const secondHeroTitle = convenience_list_1_convenience_title || convenience_list_1_title;
-const thirdHeroTitle = convenience_list_2_convenience_title || convenience_list_2_title;
   return (
     convenience_section_title&&currentProduct&& Object.keys(currentProduct).length>0?
     <>
@@ -37,25 +24,25 @@ const thirdHeroTitle = convenience_list_2_convenience_title || convenience_list_
           <img src="http://rejuve.com/wp-content/uploads/2024/01/Frame_9.svg" alt="placeholder" />
           <h1 
       className="product-section-card-h1" 
-      dangerouslySetInnerHTML={{ __html: mainHeroTitle }}
+      dangerouslySetInnerHTML={{ __html: first_convenience_title }}
     />
           <p
             className='why-rejuve-description'
-          >{convenience_list_0_convenience_dscription || convenience_list_0_description}</p>
+          >{first_convenience_description}</p>
         </div>
         <div className='product-section-card'>
           <img src="http://rejuve.com/wp-content/uploads/2024/01/Frame_8.svg" alt="placeholder" />
-         <h1 className="product-section-card-h1" dangerouslySetInnerHTML={{ __html: secondHeroTitle }} />
+         <h1 className="product-section-card-h1" dangerouslySetInnerHTML={{ __html: second_convenience_title }} />
           <p
             className='why-rejuve-description'  
-          >{convenience_list_1_convenience_dscription || convenience_list_1_description}</p>
+          >{second_convenience_description}</p>
         </div>
         <div className='product-section-card'>
           <img src="http://rejuve.com/wp-content/uploads/2024/01/Frame_10.svg" alt="placeholder" />
-          <h1 className="product-section-card-h1" dangerouslySetInnerHTML={{ __html: thirdHeroTitle }} />
+          <h1 className="product-section-card-h1" dangerouslySetInnerHTML={{ __html: third_convenience_title }} />
           <p
             className='why-rejuve-description'
-          >{convenience_list_2_convenience_dscription || convenience_list_2_description}</p>
+          >{third_convenience_description}</p>
         </div>
       </div>
       </div>
@@ -71,7 +58,7 @@ const thirdHeroTitle = convenience_list_2_convenience_title || convenience_list_
       </div>
       <div className="returning-customer-context">
         <p className="returning-customer">Returning customer?</p>
-        <p className="click-to-login"><a href="">Click here to login</a></p>
+        <p className="click-to-login"><a href="https://rejuve.com/sign-in">Click here to login</a></p>
       </div>
     </section>
     </>:null
@@ -79,3 +66,7 @@ const thirdHeroTitle = convenience_list_2_convenience_title || convenience_list_
 }
 
 export default WhyRejuve;
+
+WhyRejuve.propTypes = {
+  currentProduct: propTypes.object.isRequired
+} 

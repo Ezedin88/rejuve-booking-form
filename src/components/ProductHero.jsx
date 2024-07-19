@@ -40,7 +40,6 @@ const useUpdatedLineItems = (lineItems, values, arrObj) => {
 
 const ProductHero = ({
   currentProduct,
-  setProductPrice,
   setWhereBooking,
   isFetchingProduct,
   values,
@@ -84,10 +83,6 @@ const ProductHero = ({
     values.bookingChoice = bookingType;
     document.getElementById('user-detail-section').scrollIntoView({ behavior: 'smooth' });
   };
-
-  useEffect(() => {
-    setProductPrice(Number(bookHouseCall));
-  }, [bookHouseCall, isFetchingProduct, setProductPrice]);
 
   const botoxProducts = useMemo(() => {
     return treatmentChoices?.filter((item) =>  item.categories[0]?.name === 'Botox Products' );
@@ -212,13 +207,13 @@ const ProductHero = ({
           </section>
         </section>
       ) : (
-        <section className="single-product-page-product-hero-main-wrapper">
+        <section className="single-product-page-product-hero-main-wrapper service-menu-sing-page-hero-main-wrapper">
           <section className="product-hero-wrapper medical-service-menu">
             <article className="medical-service-menu-title">Rejuve Medical Service Menu</article>
             <article className="medical-service-menu-description">
               Returning customer?{' '}
               <span className="nowrap">
-                <a href="#" className="click-here-service-menu">
+                <a href="https://rejuve.com/sign-in" className="click-here-service-menu">
                   Click here
                 </a>
               </span>{' '}
@@ -235,7 +230,6 @@ export default ProductHero;
 
 ProductHero.propTypes = {
   currentProduct: propTypes.object,
-  setProductPrice: propTypes.func,
   setWhereBooking: propTypes.func,
   isFetchingProduct: propTypes.bool,
   values: propTypes.object,

@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+.single-product-page-product-hero-main-wrapper.service-menu-sing-page-hero-main-wrapper {
+  padding-block: 0;
+  background: #fff;
+}
+
 .product-hero-wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

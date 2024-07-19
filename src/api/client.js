@@ -41,8 +41,8 @@ export const client = {
         }
     },
     getAllTreatments: async () => {
-        // const apiUrl = `https://rejuve.md/wp-json/wp/v2/custom/products`;
-        const apiUrl = `https://rejuve.com/rejuve/wp-json/wp/v2/custom/products`;
+        // const apiUrl = `https://rejuve.com/wp-json/wp/v2/custom/products`;
+        const apiUrl = `https://rejuve.com/wp-json/wp/v2/custom/products`;
         const consumerKey = "ck_e7aa9e0555bdbad2db0811eda91b501d0d759dcb";
         const consumerSecret = "cs_661249c3135e6b9d86ae3fd7fae5a94bbc624e9e";
 
