@@ -2,7 +2,9 @@ import propTypes from 'prop-types';
 import '../whyRejuve.css';
 
 function WhyRejuve({currentProduct}) {
-  const {name:theProductName,acf} = currentProduct ||{};
+  const {name:theProductName,acf,categories} = currentProduct ||{};
+  const categoryName = categories?.[0] === 'IV Treatment' ? 'Iv Therapy' : categories?.[0];
+
   const {convenience_section_title,convenience_list} = acf ||{};
 const first_convenience_title = convenience_list?.[0]?.title;
 const first_convenience_description = convenience_list?.[0]?.description;
@@ -49,7 +51,7 @@ const third_convenience_description = convenience_list?.[2]?.description;
     </section>
     <section className="book-weight-loss-section">
       <div className="iv-therapy-top">
-        <p className="iv-therapy-context">IV Therapy</p>
+        <p className="iv-therapy-context">{categoryName||'Iv Therapy'}</p>
       </div>
       <div className="middle-main">
         <p className="book-weight-loss-metabolic" id='book-weight-loss-metabolic-id'>

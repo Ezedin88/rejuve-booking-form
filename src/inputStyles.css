@@ -1,5 +1,9 @@
 /* 768 max-width */
 
+body.single.single-product input {
+  color: #282D41 !important;
+}
+
 .tooltip-wrapper {
   position: relative;
   display: inline-block;
@@ -85,7 +89,7 @@ div.holder-info .card-holder-billing {
 
 /* target place holder */
 #credit-card-section .card-elements .holder-info input::placeholder {
-  color: #C0C4CC;
+  color: #C0C4CC !important;
 }
 
 .location-search-input.input-box::placeholder {

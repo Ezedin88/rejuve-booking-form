@@ -52,8 +52,15 @@ const ProductHero = ({
 }) => {
   const isCurrentNadType = currentProduct?.categories?.[0]?.slug === 'nad';
   const isDecolletage = currentProduct?.slug === 'decolletage';
-  const { description } = currentProduct || {};
-  
+  const { description,acf } = currentProduct || {};
+  const {product_image} = acf ||{};
+  const {large_screen_image_width,large_screen_image_height,small_screen_image_width,small_screen_image_height} = product_image || {};
+
+const largeScreenSizeWidthExists = large_screen_image_width ? true : false;
+const largeScreenSizeHeightExists = large_screen_image_height ? true : false;
+const smallScreenSizeWidthExists = small_screen_image_width ? true : false;
+const smallScreenSizeHeightExists = small_screen_image_height ? true : false;
+
   const arrObj = useMemo(() => {
     return treatmentChoices?.map((item) => {
       const { id, bookHouseCall, bookInClinic, variations } = getProductPrice({
@@ -124,7 +131,12 @@ const ProductHero = ({
           <section className={`product-hero-wrapper ${isDecolletage ? 'hero-decolattege' : ''} ${!dataPage ? 'medical-service-menu' : ''}`}>
             <section className="product-image">
               <div className={`product-image ${isDecolletage ? 'decolattege-image' : 'image-container large-hero-image'}`}>
-                <img src={largeHeroImage} alt="product" className="image" />
+                <img src={largeHeroImage} alt="product" className="image" 
+                style={{
+                  width: largeScreenSizeWidthExists ? `${large_screen_image_width}px` : '100%',
+                  height: largeScreenSizeHeightExists ? `${large_screen_image_height}px` : 'auto'
+                }}
+                />
                 {isDecolletage && (
                   <div className="face-buttons-wrapper">
                     {botoxProducts.map((item, index) => (
@@ -143,7 +155,12 @@ const ProductHero = ({
               </div>
               {!isDecolletage && (
                 <div className="image-container small-hero-image">
-                  <img src={smallHeroImage} alt="product" className="image" />
+                  <img src={smallHeroImage} alt="product" className="image" 
+                  style={{
+                    width: smallScreenSizeWidthExists ? `${small_screen_image_width}px` : '100%',
+                    height: smallScreenSizeHeightExists ? `${small_screen_image_height}px` : 'auto'
+                  }}
+                  />
                 </div>
               )}
             </section>

@@ -459,11 +459,11 @@ export default MainAppEntry;
 
 
 MainAppEntry.propTypes = {
-  title: propTypes.string.isRequired,
-  userIndex: propTypes.number.isRequired,
-  ivTherapy: propTypes.string.isRequired,
-  children: propTypes.node.isRequired,
-  setLineItems: propTypes.func.isRequired,
-  lineItems: propTypes.array.isRequired,
-  treatmentChoices: propTypes.array.isRequired
+  title: propTypes.string,
+  userIndex: propTypes.number,
+  ivTherapy: propTypes.string,
+  children: propTypes.node,
+  setLineItems: propTypes.func,
+  lineItems: propTypes.array,
+  treatmentChoices: propTypes.array
 }

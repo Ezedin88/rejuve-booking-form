@@ -1,6 +1,6 @@
 import propTypes from 'prop-types';
 import '../providerStyles.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { client } from '../api/client';
 import { useFormikContext } from 'formik';
 function Providers({ providers, values,setAvailableBookingPeriods }) {
@@ -30,7 +30,6 @@ function Providers({ providers, values,setAvailableBookingPeriods }) {
     
 
     const onChangeHandler = (e) => {
-        values.provider = e.target.value;
         setFieldValue('provider', e.target.value);
     }
 
@@ -86,5 +85,6 @@ export default Providers;
 
 Providers.propTypes = {
     providers: propTypes.array,
-    values: propTypes.object
+    values: propTypes.object,
+    setAvailableBookingPeriods: propTypes.func,
 }

@@ -1,3 +1,4 @@
+import propTypes from 'prop-types';
 import '../inputStyles.css';
 import CustomInput from '../CustomInput'
 
@@ -17,4 +18,8 @@ function UserDetail({ index }) {
     )
 }
 
-export default UserDetail
+export default UserDetail;
+
+UserDetail.propTypes = {
+    index: propTypes.number
+}

@@ -50,9 +50,9 @@ const filteredCheckedItems = currentAccordionCheckedItems.filter(item => treatme
 export default TwistAccordion;
 
 TwistAccordion.propTypes = {
-  title: propTypes.string.isRequired,
+  title: propTypes.string,
   userIndex: propTypes.number.isRequired,
-  ivTherapy: propTypes.string.isRequired,
+  ivTherapy: propTypes.string,
   children: propTypes.node.isRequired,
   setLineItems: propTypes.func.isRequired,
   lineItems: propTypes.array.isRequired,

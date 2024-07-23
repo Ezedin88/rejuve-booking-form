@@ -51,7 +51,7 @@
   display: none;
 }
 
-.image {
+.product-hero-wrapper .image {
   width: 100%;
   height: auto;
 }
@@ -92,6 +92,7 @@
   line-height: 150%;
   text-align: left !important;
   margin: 0 !important;
+  margin-bottom: 25px !important;
   /* Text/Dark Secondary */
   color: #5a5f73;
 }
@@ -157,6 +158,7 @@
     /* padding-inline: 73px; */
     padding-left: 0px;
     height: 728px;
+    gap: 50px;
   }
 
   .product-hero-wrapper.medical-service-menu {

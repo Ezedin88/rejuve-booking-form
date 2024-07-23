@@ -118,6 +118,7 @@ const CustomDatepicker = (props) => {
   };
 
   useEffect(()=>{
+    name === 'provider' &&
     setSelectedDate(null);
     setFieldValue(name, '');
   },[values.provider,setFieldValue,name]);
