@@ -4,16 +4,22 @@ export const billingSchema = yup.object().shape({
     first_name: yup.string()
         .min(3, 'First name must be at least 3 characters')
         .max(50, 'First name must be at most 50 characters')
-        .required('First name is required'),
+        .required('First name is required')
+        .matches(/^[a-zA-Z]+$/, 'First name must contain only alphabets'),
     last_name: yup.string()
         .min(3, 'Last name must be at least 3 characters')
         .max(50, 'Last name must be at most 50 characters')
-        .required('Last name is required'),
+        .required('Last name is required')
+        .matches(/^[a-zA-Z]+$/, 'Last name must contain only alphabets'),
     email: yup.string()
         .email('Invalid email address')
         .required('Email is required')
         .matches(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/, 'Invalid email address'),
-    phone: yup.string().required('Phone number is required'),
+        phone: yup.string()
+        .required('Phone number is required')
+        .test('len', 'Invalid phone number', val => val && /^[\d+\-()\s]+$/.test(val))  // Allow spaces in the regex
+        .test('too-short', 'Number too short', val => val && val.replace(/[^0-9]/g, '').length >= 10)
+        .test('too-long', 'Number too long', val => val && val.replace(/[^0-9]/g, '').length <= 20)    
     // dateOfBirth: yup.string().required('Date of birth is required'),
     // booking: yup.string().required('Booking is required'),
 });

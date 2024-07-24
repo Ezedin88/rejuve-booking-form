@@ -16,11 +16,12 @@ div.the-single-product-page.selection-wrapper {
 }
 
 div.the-product-page.cityStateZip {
-  position:relative;
+  position: relative;
   width: 100%;
 }
 
-div.the-product-page.cityStateZip .input-box-error-message,div.top-level-addresses-wrapper .address_wrapper div.input-box-error-message {
+div.the-product-page.cityStateZip .input-box-error-message,
+div.top-level-addresses-wrapper .address_wrapper div.input-box-error-message {
   top: 70px !important;
 }
 
@@ -57,6 +58,24 @@ div.the-single-product-page.selection-wrapper+div.address-wrapper div.address_wr
   color: #5a5f73;
   margin-bottom: 0 !important;
   margin-top: 0 !important;
+}
+
+.location-where.disabled {
+  color: #5a5f739c;
+}
+
+
+.location-span.disabled {
+  color: #f6d76fa9;
+}
+
+.location-radios.disabled:hover {
+  cursor: not-allowed !important;
+}
+
+.location-where.disabled:hover,
+.location-span.disabled {
+  cursor: not-allowed !important;
 }
 
 .location-span {

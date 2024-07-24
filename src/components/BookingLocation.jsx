@@ -5,9 +5,13 @@ import CustomInput from '../CustomInput';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import useLocationAutoComplete from '../hooks/LocationAutoComplete';
 import { useEffect } from 'react';
+import { getProductPrice } from '../utils/getProductPrice';
 
-function BookingLocation({ values, isScriptLoaded }) {
+function BookingLocation({ values, isScriptLoaded,currentProduct }) {
   const bookingData = JSON.parse(localStorage.getItem('bookingData'));
+
+    const {bookHouseCall} = getProductPrice({product: currentProduct});
+   
 
   if (bookingData) {
     values.clinicChoice = bookingData && bookingData?.bookingChoice === 'atourclinics' && bookingData?.bookingAddress;
@@ -88,21 +92,23 @@ function BookingLocation({ values, isScriptLoaded }) {
           >
             <div className="radio-circle">
               <Field
-                className="location-radios"
+                className={`location-radios ${!bookHouseCall && 'disabled'}`}
                 type="radio"
                 name="bookingChoice"
                 value="housecall"
                 checked={values.bookingChoice === 'housecall'}
+                disabled={!bookHouseCall && true || false}
               />
             </div>
-            <p className="location-where"
-              onClick={() => setFieldValue('bookingChoice', 'housecall')}
+            <p 
+              className={`location-where ${!bookHouseCall && 'disabled'}`}
+              onClick={() => bookHouseCall && setFieldValue('bookingChoice', 'housecall')|| null}
               style={{ cursor: 'pointer' }}
             >
               {' '}
               House Call
               {' '}
-              <span className="location-span">
+              <span className={`location-span ${!bookHouseCall && 'disabled'}`}>
                 &#160;    We come to you</span>
             </p>
           </div>
@@ -258,5 +264,6 @@ export default BookingLocation;
 
 BookingLocation.propTypes = {
   values: propTypes.object.isRequired,
-  isScriptLoaded: propTypes.bool
+  isScriptLoaded: propTypes.bool,
+  currentProduct: propTypes.object.isRequired,
 };

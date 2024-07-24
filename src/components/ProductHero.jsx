@@ -26,7 +26,7 @@ const useUpdatedLineItems = (lineItems, values, arrObj) => {
 
       if (priceEntry) {
         if (userBooking === 'housecall' && priceEntry.bookHouseCall !== null) {
-          lineItem.price = priceEntry.bookHouseCall;
+          lineItem.price = priceEntry.bookHouseCall || priceEntry.bookInClinic;
           lineItem.variation_id = priceEntry.variations?.[1]?.id || priceEntry.variations?.[0]?.id;
         } else {
           lineItem.price = priceEntry.bookInClinic;
@@ -84,7 +84,6 @@ const smallScreenSizeHeightExists = small_screen_image_height ? true : false;
     short_description,
     smallHeroImage,
   } = getProductPrice({ product: currentProduct, isFetchingProduct }) || {};
-
   const onChangeHandler = (bookingType) => {
     setWhereBooking(bookingType);
     values.bookingChoice = bookingType;
@@ -180,7 +179,7 @@ const smallScreenSizeHeightExists = small_screen_image_height ? true : false;
                       <p className="where-to-book">At our locations</p>
                     </div>
                   )}
-                  {bookHouseCall && !isCurrentNadType && (
+                  {bookHouseCall && !isCurrentNadType ?(
                     <div className="booking-buttons">
                       <p className="product-price">${bookHouseCall}</p>
                       <button className="book-button" type="button" onClick={() => onChangeHandler('housecall')}>
@@ -188,7 +187,7 @@ const smallScreenSizeHeightExists = small_screen_image_height ? true : false;
                       </button>
                       <p className="where-to-book">We come to you</p>
                     </div>
-                  )}
+                  ):null}
                   {isCurrentNadType && (
                     <div className="selected-and-unselected-nad">
                       <div className="nad-wrapper" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>

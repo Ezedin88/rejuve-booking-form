@@ -213,6 +213,7 @@ function FormSection({
                                   values={values}
                                   setWhereBooking={setWhereBooking}
                                   isScriptLoaded={isScriptLoaded}
+                                  currentProduct={heroCurrentProduct}
                                 />
                               </div>
                             </div>
