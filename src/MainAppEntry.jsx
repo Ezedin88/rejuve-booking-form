@@ -12,6 +12,7 @@ import { organizeLineItems } from './utils/organizeLineitems';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import {Loader} from "@googlemaps/js-api-loader";
 import 'react-toastify/dist/ReactToastify.css';
+import { createMergedProduct } from './utils/getProductInfo';
 
 function MainAppEntry() {
   const [isCreatingOrder, setIsCreatingOrder] = useState(false);
@@ -41,7 +42,7 @@ function MainAppEntry() {
     });
   },[])
 
-  const dataPage = document
+  const dataPage = 688 ||  document
     .querySelector('[data-page_id]')?.getAttribute('data-page_id');
 
 
@@ -53,12 +54,8 @@ function MainAppEntry() {
   const [selectedProvider, setSelectedProvider] = useState('Any');
   const [currentProduct, setCurrentProduct] = useState({});
   const [currentProductCopy, setCurrentProductCopy] = useState({});
-  const selectNad = treatments.filter((item) =>
-    item.categories.some((category) => category.slug === 'nad')
-  );
-
+  const selectNad = treatments.filter((item) =>item?.product_slug?.includes('nad'))
   // const providerId = providers.find(provider => provider.name === selectedProvider)?.id;
-
   useEffect(() => {
     if (fieldsAreEmpty) {
       setTimeout(() => {
@@ -88,12 +85,31 @@ function MainAppEntry() {
 
     const fetchProductById = async () => {
       setIsFetchingProduct(true);
-      const data = await client.getProductById(dataPage||null)??null;
+      const data = await client.getProductById(dataPage||null)??null;      
       if(data){
-      setCurrentProduct(data);
-      setCurrentProductCopy(data);
+        setCurrentProduct(data);
+        setCurrentProductCopy(data);
       }
-      if(data){
+
+      if(data&&data?.variations?.length>2){
+        const {variations} = data ||{};
+        const productName = data?.name;
+        const mergedProduct = createMergedProduct(variations, productName);
+        const isProductHouseCall = values.bookingChoice === 'housecall';
+        setlineItems([
+          ...lineItems,
+          {
+            userIndex:0,
+            product_id: isProductHouseCall ? mergedProduct?.variations?.[1]?.id : mergedProduct?.variations?.[0]?.id,
+            productName,
+            variation_id: isProductHouseCall ? mergedProduct?.variations?.[1]?.id : mergedProduct?.variations?.[0]?.id,
+            price: isProductHouseCall ? mergedProduct?.variations?.[1]?.housePrice : mergedProduct?.variations?.[0]?.clinicPrice,
+            quantity: 1,
+            metaData: [],
+          }
+        ])
+      }
+      else if(data){
       data?.id !== 582 &&
         setlineItems([
           ...lineItems,

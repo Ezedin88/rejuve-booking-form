@@ -19,6 +19,7 @@ function OrderSummary({
                     {values?.userData?.length > 0 &&
                         values?.userData.map((item, userIndex) => {
                             const selectedItems = lineItems.filter(lineItem => lineItem?.userIndex === userIndex);
+                           
                             return (
                                 <div key={userIndex} className="personWrapper">
                                     <p className="form-main-inner-title">

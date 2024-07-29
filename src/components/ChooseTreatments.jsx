@@ -1,6 +1,6 @@
 import propTypes from 'prop-types';
 import TwistAccordion from '../Accordion/AccordionComponent';
-import { getProductPrice } from '../utils/getProductPrice';
+import ChooseNadItemTreatments from './ChooseNadItemTreatments';
 
 function ChooseTreatments({
   index,
@@ -8,9 +8,11 @@ function ChooseTreatments({
   setlineItems,
   treatmentChoices,
   ivTherapy,
+  nadItem,
   setCurrentProduct,
-  isDecolettage,
-  dataValues
+  // isDecolettage,
+  dataValues,
+  currentProduct,
 }) {
 
   // when not iv therapy
@@ -32,9 +34,9 @@ function ChooseTreatments({
   const handleCheckboxChangeIvTherapy = (checked, treatment, inHousePrice) => {
     if (checked) {
       // for hero profile image
-      if (index === 0 && !isDecolettage) {
-        setCurrentProduct(treatment);
-      }
+      // if (index === 0 && !isDecolettage) {
+      //   setCurrentProduct(treatment);
+      // }
       setlineItems(prevLineItems => {
         const ivTreatmentIds = treatmentChoices
           .filter(treatment => treatment.categories[0] === 'IV Treatment')
@@ -59,7 +61,7 @@ function ChooseTreatments({
       });
     }
   };
-
+  
   return (
     <>
       <TwistAccordion title={treatmentChoices?.[0]?.categories?.[0]}
@@ -67,8 +69,9 @@ function ChooseTreatments({
         lineItems={lineItems}
         setLineItems={setlineItems}
         treatmentChoices={treatmentChoices}
+        nadItem={nadItem}
       >
-        <div className='treatments-wrapper'>
+        {!nadItem?<div className='treatments-wrapper'>
           {treatmentChoices?.map(treatment => {
 
          const {price,variations} = treatment ||{};             
@@ -128,7 +131,18 @@ function ChooseTreatments({
               </div>
             )
           })}
-        </div>
+        </div>:
+        <ChooseNadItemTreatments
+          index={index}
+          lineItems={lineItems}
+          setLineItems={setlineItems}
+          treatmentChoices={treatmentChoices}
+          ivTherapy={ivTherapy}
+          setCurrentProduct={setCurrentProduct}
+          dataValues={dataValues}
+          currentProduct={currentProduct}
+        />
+        }
       </TwistAccordion>
     </>
   )
@@ -145,5 +159,7 @@ ChooseTreatments.propTypes = {
   isFetchingProduct: propTypes.bool,
   setCurrentProduct: propTypes.func,
   isDecolettage: propTypes.bool,
-  dataValues: propTypes.object
+  dataValues: propTypes.object,
+  currentProduct: propTypes.object,
+  nadItem: propTypes.bool,
 }

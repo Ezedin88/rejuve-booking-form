@@ -7,11 +7,9 @@ import useLocationAutoComplete from '../hooks/LocationAutoComplete';
 import { useEffect } from 'react';
 import { getProductPrice } from '../utils/getProductPrice';
 
-function BookingLocation({ values, isScriptLoaded,currentProduct }) {
+function BookingLocation({ values, isScriptLoaded,currentProduct,lineItems,nadChoices,setLineItems }) {
   const bookingData = JSON.parse(localStorage.getItem('bookingData'));
-
     const {bookHouseCall} = getProductPrice({product: currentProduct});
-   
 
   if (bookingData) {
     values.clinicChoice = bookingData && bookingData?.bookingChoice === 'atourclinics' && bookingData?.bookingAddress;
@@ -42,6 +40,37 @@ function BookingLocation({ values, isScriptLoaded,currentProduct }) {
     }
   }, [extractedAddress, city, state, zip, setFieldValue, setFieldTouched]);
 
+  const variations = nadChoices?.[0]?.variations?.reduce((acc, variation) => {
+    const { id, name, price, image, permalink } = variation || {};
+    const nadName = name?.match(/NAD\+ \d+mg - .+?, (NAD\+ \d+mg)/)?.[1];
+    const type = permalink?.includes('attribute_type=House') ? 'priceHouseCall' : 'priceClinic';
+
+    let nadObject = acc.find(item => item.name === nadName);
+
+    if (!nadObject) {
+      nadObject = {
+        name: nadName,
+        image,
+        variation: [],
+      };
+      acc.push(nadObject);
+    }
+
+    if (permalink.includes('attribute_type=House')) {
+      nadObject.id = id; // Update id if permalink includes attribute_type=House
+    }
+
+    nadObject.variation.push({ id, [type]: price, permalink });
+
+    return acc;
+  }, []);
+
+  const lineNadItem = lineItems?.find(item => item?.productName?.toLowerCase().includes('nad'));
+  
+  const foundVariation = variations?.find(v => 
+    v.variation.some(vari => vari.id === lineNadItem?.variation_id)
+);
+
   useEffect(() => {
     if (values?.bookingChoice === 'atourclinics') {
       setFieldValue('clinicChoice', 'Rejuve Clinics Sherman Oaks, 15301 Ventura Blvd Unit U2 Sherman Oaks, CA 91403');
@@ -50,6 +79,29 @@ function BookingLocation({ values, isScriptLoaded,currentProduct }) {
       setFieldValue('clinicChoice', '');
       setFieldTouched('clinicChoice', false);
     }
+
+    setLineItems(prevLineItems => {
+      const updatedLineItems = prevLineItems.map(item => {
+        if (item.productName.toLowerCase().includes('nad')) {
+          const inHousePrice = foundVariation?.variation?.find(v => v.priceHouseCall)?.priceHouseCall || null;
+          const bookInClinic = foundVariation?.variation?.find(v => v.priceClinic)?.priceClinic || null;
+          const houseVariation = foundVariation?.variation?.find(v => v.priceHouseCall) || null;
+          const clinicVariation = foundVariation?.variation?.find(v => v.priceClinic) || null;
+          const houseCallId = houseVariation?.id || null;
+          const clinicId = clinicVariation?.id || null;
+    
+          return {
+            ...item,
+            price: values?.bookingChoice === 'housecall' ? inHousePrice : bookInClinic,
+            product_id: values?.bookingChoice === 'housecall' ? houseCallId : clinicId,
+            variation_id: values?.bookingChoice === 'housecall' ? houseCallId : clinicId
+          }
+        }
+        return item;
+      });
+      return updatedLineItems;
+    });
+
   },[setFieldTouched, setFieldValue, values?.bookingChoice]);
 
   const handleClinicChoiceBlur = () => {
@@ -57,7 +109,6 @@ function BookingLocation({ values, isScriptLoaded,currentProduct }) {
   };
 
   const [field] = useField('clinicChoice');
-
   return (
     <div className="the-single-product selection_wrapper">
       <div className="the-single-product-page selection-wrapper single-page-location">
@@ -266,4 +317,5 @@ BookingLocation.propTypes = {
   values: propTypes.object.isRequired,
   isScriptLoaded: propTypes.bool,
   currentProduct: propTypes.object.isRequired,
+  lineItems: propTypes.array
 };

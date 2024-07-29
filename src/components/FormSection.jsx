@@ -161,7 +161,7 @@ function FormSection({
                   treatmentChoices={treatments}
                   selectNad={selectNad}
                   dataPage={dataPage}
-                />
+/>
                 {/* <div className="user-detail-main" id='user-detail-section'> */}
                 <WhyRejuve currentProduct={heroCurrentProduct} />
                 {/* </div> */}
@@ -214,6 +214,9 @@ function FormSection({
                                   setWhereBooking={setWhereBooking}
                                   isScriptLoaded={isScriptLoaded}
                                   currentProduct={heroCurrentProduct}
+                                  lineItems = {lineItems}
+                                  setLineItems = {setlineItems}
+                                  nadChoices={selectNad}
                                 />
                               </div>
                             </div>
@@ -250,14 +253,17 @@ function FormSection({
                                   }
                                 />
                               )} */}
-                              {/* <ChooseTreatments
+                              <ChooseTreatments
                                 dataValues={values}
                                 treatmentChoices={selectNad}
                                 index={index}
                                 lineItems={lineItems}
                                 setlineItems={setlineItems}
                                 title={selectNad?.[0]?.categories[0]?.name}
-                              /> */}
+                                setCurrentProduct={setCurrentProduct}
+                                currentProduct={heroCurrentProduct}
+                                nadItem
+                              />
                               <ChooseTreatments
                                 dataValues={values}
                                 treatmentChoices={selectAdons}
@@ -265,6 +271,8 @@ function FormSection({
                                 lineItems={lineItems}
                                 setlineItems={setlineItems}
                                 title={selectAdons?.[0]?.categories[0]?.name}
+                                currentProduct={heroCurrentProduct}
+                                setCurrentProduct={setCurrentProduct}
                               />
                               <ChooseTreatments
                                 dataValues={values}

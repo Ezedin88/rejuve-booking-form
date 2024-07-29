@@ -150,6 +150,12 @@
   background-color: #27c1c9;
 }
 
+/* for nad page */
+div.selected-and-unselected-nad div.nad-wrapper {
+  display: flex;
+  gap: 12px;
+}
+
 /* tablet size */
 @media (max-width: 1220px) {
   .single-product-page-product-hero-main-wrapper {
@@ -206,6 +212,7 @@
   line-height: 29px;
   text-align: left !important;
   color: #32c0cc;
+  margin: 0 !important;
 }
 
 /* Styles for small screens */
