@@ -4,6 +4,7 @@ import '../ProductHero.css';
 import '../service-menu-custom-style.css';
 import { getProductPrice } from '../utils/getProductPrice';
 import { useFormikContext } from 'formik';
+import Semaglutide from './Semaglutide';
 
 const decodeHtmlEntities = (str) => {
   const txt = document.createElement('textarea');
@@ -51,6 +52,7 @@ const ProductHero = ({
   dataPage,
 }) => {
   const isCurrentNadType = currentProduct?.slug?.includes('nad');
+  const isCurrentSemaglutide = currentProduct?.product_slug?.includes('semaglutide');
   const { setFieldValue, setFieldTouched } = useFormikContext();
   const productIsHouseCall = values?.bookingChoice === 'housecall';
   const filteredNad = currentProduct?.variations?.reduce((acc, variation) => {
@@ -212,7 +214,20 @@ const ProductHero = ({
   return (
     <>
       {currentProduct && Object.keys(currentProduct).length > 0 ? (
-        <section className="single-product-page-product-hero-main-wrapper">
+        isCurrentSemaglutide ?
+        <Semaglutide 
+  largeHeroImage={largeHeroImage}
+  width={largeScreenSizeWidthExists ? `${large_screen_image_width}px` : 
+        smallScreenSizeWidthExists ? `${small_screen_image_width}px` : '100%'
+} 
+  height={largeScreenSizeHeightExists ? `${large_screen_image_height}px` :
+        smallScreenSizeHeightExists ? `${small_screen_image_height}px` : 'auto'
+  }
+/>
+:
+        <section className={`single-product-page-product-hero-main-wrapper
+          ${isCurrentNadType ? 'nad-product-hero-main-wrapper' : 'non-variant-product-hero-main-wrapper'}
+        `}>
           {isDecolletage && (
             <section
               className="decolletage_wrapper_header beauty_description_decolletage"
@@ -331,7 +346,7 @@ const ProductHero = ({
                           })}
                         </div>
                         <div className="product-price-buttons-wrapper">
-                          <div className="booking-buttons" style={{ display: 'flex', flexDirection: 'column' }}>
+                          <div className="booking-buttons nad-booking-buttons">
                             <p className="product-price" style={{ marginTop: '16px !important' }}>
                               ${bookInClinic || variantBookInClinic}
                             </p>
@@ -344,7 +359,7 @@ const ProductHero = ({
                             <p className="where-to-book">At our locations</p>
                           </div>
                           {bookHouseCall || variantBookHouseCall ?
-                            <div className="booking-buttons" style={{ display: 'flex', flexDirection: 'column' }}>
+                            <div className="booking-buttons nad-booking-buttons">
                               <p className="product-price" style={{ marginTop: '16px !important' }}>${bookHouseCall || variantBookHouseCall}</p>
                               <button className="book-button" type="button" onClick={() => nadOnChangeHandler('housecall',
                                 bookHouseCall || variantBookHouseCall,

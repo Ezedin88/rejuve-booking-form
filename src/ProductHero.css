@@ -101,7 +101,7 @@
   line-height: 150%;
   text-align: left !important;
   margin: 0 !important;
-  margin-bottom: 25px !important;
+  margin-bottom: 32px !important;
   /* Text/Dark Secondary */
   color: #5a5f73;
 }
@@ -112,6 +112,10 @@
   align-items: center;
   gap: 99px;
   width: 100% !important;
+}
+
+div.nad-wrapper+.product-price-buttons-wrapper {
+  margin-top: 32px !important;
 }
 
 .book-button {
@@ -128,8 +132,8 @@
 }
 
 .book-button.nad-buttons {
-  width: 120px !important;
-  padding: 15px 15px;
+  width: 153px !important;
+  padding: 16px 16px;
   color: #282d41;
   background-color: #fff;
 }
@@ -154,6 +158,56 @@
 div.selected-and-unselected-nad div.nad-wrapper {
   display: flex;
   gap: 12px;
+}
+
+/* for semaglutide page */
+section.semaglutide-hero-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background: #D0F4F7;
+  height: 650px;
+  background-size: auto;
+  background-position: right;
+  width: 100%;
+  background-repeat: no-repeat;
+}
+
+section.semaglutide-hero-wrapper .left-content-wrapper {
+  max-width: 609px;
+}
+
+section.semaglutide-hero-wrapper .semaglutide-title {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 76.276px;
+  line-height: 76px;
+}
+
+section.semaglutide-hero-wrapper .semaglutide-subtitle {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 19.6354px;
+  line-height: 29px;
+  color: #282D41;
+}
+
+section.semaglutide-hero-wrapper .left-content-wrapper {
+  margin: auto;
+  height: 100%;
+  gap: 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+section.semaglutide-hero-wrapper .semaglutide-title,
+section.semaglutide-hero-wrapper .semaglutide-subtitle {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* tablet size */
@@ -189,6 +243,24 @@ div.selected-and-unselected-nad div.nad-wrapper {
     padding: 0;
     padding-inline: 29px;
   }
+
+  /* style for nads */
+  div.selected-and-unselected-nad div.nad-wrapper {
+    flex-wrap: wrap;
+    max-width: 430px;
+  }
+
+  /* semaglutide style */
+  /* move semaglutide-hero-wrapper's background image to the right */
+  section.semaglutide-hero-wrapper {
+    background-position-x: 350px;
+    /* background-repeat: no-repeat; */
+  }
+
+  section.semaglutide-hero-wrapper {
+    grid-template-columns: 3fr 1fr;
+    background-size: auto;
+  }
 }
 
 .where-to-book {
@@ -199,6 +271,7 @@ div.selected-and-unselected-nad div.nad-wrapper {
   font-size: 14px;
   line-height: 17px;
   text-align: left !important;
+  margin: 0 !important;
   /* identical to box height */
 
   color: rgba(90, 95, 115, 0.6);
@@ -215,6 +288,12 @@ div.selected-and-unselected-nad div.nad-wrapper {
   margin: 0 !important;
 }
 
+.booking-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
 /* Styles for small screens */
 @media (max-width: 643px) {
 
@@ -229,11 +308,11 @@ div.selected-and-unselected-nad div.nad-wrapper {
   }
 
   .single-product-page-product-hero-main-wrapper {
-    height: 969px;
+    height: fit-content;
   }
 
   .image-container {
-    max-width: 261px;
+    max-width: 335px;
     margin: auto;
     background: none;
   }
@@ -280,6 +359,8 @@ div.selected-and-unselected-nad div.nad-wrapper {
     align-items: center;
     gap: unset;
     padding-block: 28px;
+    margin-top: 0 !important;
+    padding-top: 0;
     padding-bottom: unset;
   }
 
@@ -289,7 +370,7 @@ div.selected-and-unselected-nad div.nad-wrapper {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px !important;
+    /* margin-bottom: 20px !important; */
   }
 
   .nad-wrapper {
@@ -307,8 +388,8 @@ div.selected-and-unselected-nad div.nad-wrapper {
     width: unset !important;
     padding: 15px 15px;
     color: #282d41;
-    width: 185px !important;
     background-color: #fff;
+    margin-bottom: unset !important;
   }
 
   .product-description-wrapper {
@@ -358,6 +439,71 @@ div.selected-and-unselected-nad div.nad-wrapper {
 
   .product-description h4 {
     margin: 10px auto !important;
+  }
+
+  div.selected-and-unselected-nad div.nad-wrapper {
+    max-width: unset;
+  }
+
+  .booking-page.product-name {
+    margin: 0 !important;
+    padding-block: 0 !important;
+  }
+
+  .product-price-buttons-wrapper {
+    margin-top: 28px;
+    gap: 12px;
+  }
+
+  .single-product-page-product-hero-main-wrapper {
+    /* align-items: flex-start; */
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-hero-wrapper {
+    display: unset;
+  }
+
+  /* semaglutide hero-wrapper */
+  section.semaglutide-hero-wrapper {
+    grid-template-columns: unset;
+    background-position-x: unset;
+    background-position-x: center;
+  }
+
+  section.semaglutide-hero-wrapper .left-content-wrapper {
+    max-width: 600px;
+    margin: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    justify-content: center;
+  }
+
+  section.semaglutide-hero-wrapper .semaglutide-title {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  section.semaglutide-hero-wrapper .semaglutide-subtitle {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+}
+
+@media (max-width:461px) {
+  div.selected-and-unselected-nad div.nad-wrapper {
+    max-width: 318px;
+  }
+}
+
+@media (max-width: 425px) {
+  .single-product-page-product-hero-main-wrapper.nad-product-hero-main-wrapper {
+    min-height: 1080px !important;
+    height: fit-content !important;
   }
 }
 

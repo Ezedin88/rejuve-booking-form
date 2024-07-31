@@ -42,7 +42,7 @@ function MainAppEntry() {
     });
   },[])
 
-  const dataPage = 688 ||  document
+  const dataPage = document
     .querySelector('[data-page_id]')?.getAttribute('data-page_id');
 
 
