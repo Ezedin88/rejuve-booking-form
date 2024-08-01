@@ -63,6 +63,11 @@ function FormSection({
     )
     ?.sort((a, b) => a.name.localeCompare(b.name));
 
+  const selectPeptides = treatments
+    ?.filter((item) =>
+      item.product_slug.includes('peptides')
+    )
+    ?.sort((a, b) => a.name.localeCompare(b.name));
   // const selectVitaminInjections = treatments.filter((item) =>
   //   item.categories.some((category) => category.slug === 'vitamin-injections')
   // );
@@ -161,6 +166,7 @@ function FormSection({
                   treatmentChoices={treatments}
                   selectNad={selectNad}
                   dataPage={dataPage}
+                  peptides
 />
                 {/* <div className="user-detail-main" id='user-detail-section'> */}
                 <WhyRejuve currentProduct={heroCurrentProduct} />
@@ -281,6 +287,14 @@ function FormSection({
                                 lineItems={lineItems}
                                 setlineItems={setlineItems}
                                 title={selectBooster?.[0]?.categories[0]?.name}
+                              />
+                              <ChooseTreatments
+                                dataValues={values}
+                                treatmentChoices={selectPeptides}
+                                index={index}
+                                lineItems={lineItems}
+                                setlineItems={setlineItems}
+                                title={selectPeptides?.[0]?.categories[0]?.name}
                               />
                               {/* <ChooseTreatments
                                 dataValues={values}

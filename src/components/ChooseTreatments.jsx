@@ -12,7 +12,7 @@ function ChooseTreatments({
   setCurrentProduct,
   // isDecolettage,
   dataValues,
-  currentProduct,
+  currentProduct
 }) {
 
   // when not iv therapy

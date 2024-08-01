@@ -50,6 +50,7 @@ const ProductHero = ({
   treatmentChoices,
   setCurrentProduct,
   dataPage,
+  peptides
 }) => {
   const isCurrentNadType = currentProduct?.slug?.includes('nad');
   const isCurrentSemaglutide = currentProduct?.product_slug?.includes('semaglutide');
@@ -243,7 +244,8 @@ const ProductHero = ({
                   <img src={largeHeroImage} alt="product" className="image"
                     style={{
                       width: largeScreenSizeWidthExists ? `${large_screen_image_width}px` : '100%',
-                      height: largeScreenSizeHeightExists ? `${large_screen_image_height}px` : 'auto'
+                      height: largeScreenSizeHeightExists ? `${large_screen_image_height}px` : 'auto',
+                      borderRadius: peptides ? '12px' : ''
                     }}
                   />
                   {isDecolletage && (
@@ -267,7 +269,8 @@ const ProductHero = ({
                     <img src={smallHeroImage} alt="product" className="image"
                       style={{
                         width: smallScreenSizeWidthExists ? `${small_screen_image_width}px` : '100%',
-                        height: smallScreenSizeHeightExists ? `${small_screen_image_height}px` : 'auto'
+                        height: smallScreenSizeHeightExists ? `${small_screen_image_height}px` : 'auto',
+                        borderRadius: peptides ? '12px' : ''
                       }}
                     />
                   </div>
@@ -412,6 +415,7 @@ ProductHero.propTypes = {
   selectNad: propTypes.array,
   setCurrentProduct: propTypes.func,
   dataPage: propTypes.bool,
+  peptides: propTypes.array,
 };
 
 const getQueryParam = (url, param) => {

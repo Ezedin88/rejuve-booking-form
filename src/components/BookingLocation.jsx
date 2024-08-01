@@ -82,7 +82,7 @@ function BookingLocation({ values, isScriptLoaded,currentProduct,lineItems,nadCh
 
     setLineItems(prevLineItems => {
       const updatedLineItems = prevLineItems.map(item => {
-        if (item.productName.toLowerCase().includes('nad')) {
+        if (item.productName?.toLowerCase()?.includes('nad')) {
           const inHousePrice = foundVariation?.variation?.find(v => v.priceHouseCall)?.priceHouseCall || null;
           const bookInClinic = foundVariation?.variation?.find(v => v.priceClinic)?.priceClinic || null;
           const houseVariation = foundVariation?.variation?.find(v => v.priceHouseCall) || null;
